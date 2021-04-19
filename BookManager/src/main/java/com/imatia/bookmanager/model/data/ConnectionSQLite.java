@@ -3,6 +3,7 @@ package com.imatia.bookmanager.model.data;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ConnectionSQLite {
 
@@ -24,5 +25,4 @@ public class ConnectionSQLite {
 			connection = null;
 		}
 	}// closeConnection
-
 }
