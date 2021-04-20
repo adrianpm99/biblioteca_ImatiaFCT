@@ -21,6 +21,14 @@ public class BookController {
 		Book book = bd.getBookByIsbn(isbn);
 		return book;
 	}
+	
+	public List<Book> getBooksByAuthor(String author){
+		
+		List<Book> bookList = bd.getBooksByAuthor(author);
+
+		return bookList;
+		
+	}
 
 	public void addBook(Book book) {
 		
