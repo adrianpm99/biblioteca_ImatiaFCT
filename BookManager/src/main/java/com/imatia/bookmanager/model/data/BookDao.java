@@ -114,5 +114,58 @@ public class BookDao {
 
 		return book;
 	}
+	
+	public List<Book> getBooksByAuthor(String author) {
+		
+		String consulta = "SELECT * FROM book WHERE autor LIKE ?";
+		List<Book> bookList = new ArrayList<>();
+		Book book = new Book();
+
+		try {
+
+			Connection con = connectionSQLite.getConnection();
+
+			PreparedStatement ps = con.prepareStatement(consulta);
+
+			ps.setString(1, "%"+author+"%");
+			ps.execute();
+			ResultSet rs = ps.getResultSet();
+			while(rs.next()){
+
+			int id = rs.getInt("id");
+			String bookTitle = rs.getString("title");
+			String description = rs.getString("description");
+			String bookAuthor = rs.getString("autor");
+			int pagesNumber = rs.getInt("numberOfSheets");
+			String isbn = rs.getString("isbn");
+			String editorial = rs.getString("editorial");
+			int edition = rs.getInt("edition");
+			Year bookPublicationYear = Year.parse(rs.getString("bookPublicationYear"));
+
+			book = new Book(id, bookTitle, description, bookAuthor,pagesNumber, isbn, editorial, edition,
+					bookPublicationYear);
+			bookList.add(book);
+			
+			}
+			ps.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		
+		return bookList;
+	}
 
 }
