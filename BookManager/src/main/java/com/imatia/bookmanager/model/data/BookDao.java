@@ -148,6 +148,37 @@ public class BookDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	}
+	
+	public void modifyBook(Book book) {
+		String consulta = "UPDATE book SET title=  ?, description = ?, author = ?, numberOfSheets = ?, ISBN = ?, editorial = ?, edition = ?, bookPublicationYear= ? WHERE id = ?;";
 
+		try {
+			Connection con = connectionSQLite.getConnection();
+			
+			PreparedStatement ps = con.prepareStatement(consulta);
+			ps.setString(1, book.getTitle());
+			ps.setString(2, book.getDescription());
+			ps.setString(3, book.getAuthor());
+			ps.setInt(4, book.getNumberOfSheets());
+			ps.setString(5, book.getISBN());
+			ps.setString(6, book.getEditorial());
+			ps.setInt(7, book.getEdition());
+			String bookPublicationYear = new SimpleDateFormat("yyyy").format(book.getBookPublicationYear());
+			ps.setString(8, bookPublicationYear);
+			ps.setInt(9, book.getId());
+			
+			ps.execute();
+			
+			ps.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

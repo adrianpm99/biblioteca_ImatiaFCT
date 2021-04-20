@@ -26,4 +26,9 @@ public class BookController {
 		
 		bd.addBook(book);
 	}
+	
+	public void modifyBook(Book book) {
+		
+		bd.modifyBook(book);
+	}
 }
