@@ -133,18 +133,22 @@ public class BookDao {
 
 		return book;
 	}
-	
+
+	/**
+	 * method to insert a book in database
+	 * 
+	 * @param book
+	 */
 	public void addBook(Book book) {
 
-
-		String consulta = "INSERT INTO book (title, description, author, numberOfSheets, ISBN, editorial, edition, bookPublicationYear) "
+		String query = "INSERT INTO book (title, description, author, numberOfSheets, ISBN, editorial, edition, bookPublicationYear) "
 				+ "VALUES (?,?,?,?,?,?,?,?) ";
 
 		Connection con;
 		try {
 			con = connectionSQLite.getConnection();
 
-			PreparedStatement ps = con.prepareStatement(consulta);
+			PreparedStatement ps = con.prepareStatement(query);
 
 			ps.setString(1, book.getTitle());
 			ps.setString(2, book.getDescription());
@@ -167,16 +171,21 @@ public class BookDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
+	/**
+	 * method to edit a book
+	 * 
+	 * @param book
+	 */
 	public void modifyBook(Book book) {
-		String consulta = "UPDATE book SET title=  ?, description = ?, author = ?, numberOfSheets = ?, ISBN = ?, editorial = ?, edition = ?, bookPublicationYear= ? WHERE id = ?;";
+		String query = "UPDATE book SET title=  ?, description = ?, author = ?, numberOfSheets = ?, ISBN = ?, editorial = ?, edition = ?, bookPublicationYear= ? WHERE id = ?;";
 
 		try {
 			Connection con = connectionSQLite.getConnection();
-			
-			PreparedStatement ps = con.prepareStatement(consulta);
+
+			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, book.getTitle());
 			ps.setString(2, book.getDescription());
 			ps.setString(3, book.getAuthor());
@@ -187,9 +196,9 @@ public class BookDao {
 			String bookPublicationYear = new SimpleDateFormat("yyyy").format(book.getBookPublicationYear());
 			ps.setString(8, bookPublicationYear);
 			ps.setInt(9, book.getId());
-			
+
 			ps.execute();
-			
+
 			ps.close();
 
 		} catch (ClassNotFoundException e) {
