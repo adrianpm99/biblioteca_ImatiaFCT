@@ -9,30 +9,29 @@ public class Book {
 	String title;
 	String description;
 	String author;
-	String hashtag;
 	int numberOfSheets;
 	String ISBN;
 	String editorial;
 	int edition;
-	Year bookPublication;
-	String genre;
+	Year bookPublicationYear;
+
 	
 	
 	
-	public Book(int id, String title, String description, String author, String hashtag, int numberOfSheets, String ISBN,
-			String editorial, int edition, Year bookPublication, String genre) {
+	public Book(int id, String title, String description, String author, int numberOfSheets, String ISBN,
+			String editorial, int edition, Year bookPublicationYear) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.author = author;
-		this.hashtag = hashtag;
+		
 		this.numberOfSheets = numberOfSheets;
 		this.ISBN = ISBN;
 		this.editorial = editorial;
 		this.edition = edition;
-		this.bookPublication = bookPublication;
-		this.genre = genre;
+		this.bookPublicationYear = bookPublicationYear;
+		
 	}
 	public int getId() {
 		return id;
@@ -58,12 +57,7 @@ public class Book {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	public String getHashtag() {
-		return hashtag;
-	}
-	public void setHashtag(String hashtag) {
-		this.hashtag = hashtag;
-	}
+	
 	public int getNumberOfSheets() {
 		return numberOfSheets;
 	}
@@ -88,25 +82,19 @@ public class Book {
 	public void setEdition(int edition) {
 		this.edition = edition;
 	}
-	public Year getBookPublication() {
-		return bookPublication;
+	public Year getBookPublicationYear() {
+		return bookPublicationYear;
 	}
-	public void setBookPublication(Year bookPublication) {
-		this.bookPublication = bookPublication;
-	}
-	public String getGenre() {
-		return genre;
-	}
-	public void setGenre(String genre) {
-		this.genre = genre;
+	public void setBookPublicationYear(Year bookPublicationYear) {
+		this.bookPublicationYear = bookPublicationYear;
 	}
 	
 
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", title=" + title + ", description=" + description + ", author=" + author
-				+ ", hashtag=" + hashtag + ", numberOfSheets=" + numberOfSheets + ", ISBN=" + ISBN + ", editorial="
-				+ editorial + ", edition=" + edition + ", bookPublication=" + bookPublication + ", genre=" + genre
+				 + ", numberOfSheets=" + numberOfSheets + ", ISBN=" + ISBN + ", editorial="
+				+ editorial + ", edition=" + edition + ", bookPublicationYear=" + bookPublicationYear 
 				+ "]";
 	}
 
