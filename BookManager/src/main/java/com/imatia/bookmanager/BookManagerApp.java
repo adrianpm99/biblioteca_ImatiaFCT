@@ -1,5 +1,8 @@
 package com.imatia.bookmanager;
 
+import com.imatia.bookmanager.view.menus.CreditsInitialView;
+import com.imatia.bookmanager.view.menus.StartMenu;
+
 /**
  * BookManagerApp
  *
@@ -7,7 +10,8 @@ package com.imatia.bookmanager;
 
 public class BookManagerApp {
 	public static void main(String[] args) {
-		System.out.println("AdiosMundo");
-
+		
+		CreditsInitialView.showCredits();
+		StartMenu.showStartMenu();
 	}
 }
