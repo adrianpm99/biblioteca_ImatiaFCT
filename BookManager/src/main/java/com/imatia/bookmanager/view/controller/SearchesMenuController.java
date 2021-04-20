@@ -17,13 +17,13 @@ public class SearchesMenuController {
 				StartMenu.showStartMenu();
 				break;
 			case 1:
-				ResultsByMethodMenu.showResultsByMehod("AUTOR");
+				ResultsByMethodMenu.showResultsView("AUTOR");
 				break;
 			case 2:
-				ResultsByMethodMenu.showResultsByMehod("TITULO");
+				ResultsByMethodMenu.showResultsView("TITULO");
 				break;
 			case 3:
-				ResultsByMethodMenu.showResultsByMehod("ISBN");
+				ResultsByMethodMenu.showResultsView("ISBN");
 				break;
 			}
 		} while (option != 0 && option != 1 && option != 2 && option != 3);

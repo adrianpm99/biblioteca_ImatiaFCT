@@ -8,9 +8,8 @@ import com.imatia.bookmanager.model.entities.Book;
  */
 public class BookDetails
 {
-	public static void main(String[] args)
+	public static void showBookDetails(Book b)
 	{
-		Book b= new Book();
 		System.out.println(
 				"*********************\r\n" + 
 				"** DATOS DEL LIBRO **\r\n" + 
