@@ -1,7 +1,6 @@
 package com.imatia.bookmanager.view.menus;
 
 
-import com.imatia.bookmanager.view.controller.ResultsByMethodMenuController;
 
 
 /**
@@ -14,13 +13,13 @@ public class ResultsByMethodMenu
 	public static void showResultsView(String searchMethod)
 	{		
 		System.out.println(
-				"***************************************\r\n" + 
+				"\n***************************************\r\n" + 
 				"** BUSCAR POR "+searchMethod+"\t- RESULTADOS **\r\n" + 
 				"***************************************\r\n" + 
 				"------------------------------------------------------------\r\n" + 
 				"|| 1- Seleccionar libro || 0- Volver al menu de busquedas ||\r\n" + 
 				"------------------------------------------------------------");
 		
-		ResultsByMethodMenuController.showResultsByMethodMenuOptions();
+
 	}//showResultsView()
 }//class ResultsByMethodMenu

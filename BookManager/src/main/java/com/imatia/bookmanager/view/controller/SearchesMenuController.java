@@ -24,22 +24,26 @@ public class SearchesMenuController {
 			case 1:
 				System.out.print("Introduzca el autor: ");
 				filter = InputUserData.checkUserInput("author");
-				BookRenderers.renderAuthorListBooks(bc.getBooksByAuthor(filter));
+				
 				ResultsByMethodMenu.showResultsView("AUTOR");
+				BookRenderers.renderAuthorListBooks(bc.getBooksByAuthor(filter));
 				
-				
+				ResultsByMethodMenuController.showResultsByMethodMenuOptions();	
 				break;
 			case 2:
 				System.out.print("Introduzca el titulo: ");
 				filter = InputUserData.checkUserInput("title");
-				BookRenderers.renderTitleListBooks(bc.getBookByTitle(filter));
 				ResultsByMethodMenu.showResultsView("TITULO");
+				BookRenderers.renderTitleListBooks(bc.getBookByTitle(filter));
+				ResultsByMethodMenuController.showResultsByMethodMenuOptions();	
+				
 				break;
 			case 3:
 				System.out.print("Introduzca el ISBN: ");
 				filter = InputUserData.checkUserInput("ISBN");
-				BookRenderers.renderISBNListBooks(bc.getBookByIsbn(filter));
 				ResultsByMethodMenu.showResultsView("ISBN");
+				BookRenderers.renderISBNListBooks(bc.getBookByIsbn(filter));
+				ResultsByMethodMenuController.showResultsByMethodMenuOptions();	
 				break;
 			}
 		} while (option != 0 && option != 1 && option != 2 && option != 3);

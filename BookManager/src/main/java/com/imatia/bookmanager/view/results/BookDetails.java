@@ -11,7 +11,7 @@ public class BookDetails
 	public static void showBookDetails(Book b)
 	{
 		System.out.println(
-				"*********************\r\n" + 
+				"\n*********************\r\n" + 
 				"** DATOS DEL LIBRO **\r\n" + 
 				"*********************\r\n" + 
 				"----------------------------------------------------------\r\n" + 
