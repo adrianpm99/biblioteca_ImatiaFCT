@@ -1,5 +1,6 @@
 package com.imatia.bookmanager.view.controller;
 
+import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.menus.SearchesMenu;
 
 public class StartMenuController {
@@ -8,7 +9,7 @@ public class StartMenuController {
 		int option;
 
 		do {
-			option = 1;// getInput
+			option = Integer.parseInt(InputUserData.checkUserInput("option"));
 
 			switch (option) {
 
