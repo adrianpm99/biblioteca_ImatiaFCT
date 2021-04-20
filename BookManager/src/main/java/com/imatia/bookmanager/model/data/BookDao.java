@@ -20,6 +20,60 @@ import com.imatia.bookmanager.model.entities.Book;
 public class BookDao {
 
 	ConnectionSQLite connectionSQLite = new ConnectionSQLite();
+	
+	/**
+	 * method to get a book filter by id
+	 * @param id
+	 * @return book
+	 */
+	public Book getBookById(int id) {
+		
+		String query = "SELECT * FROM book WHERE id = ?";
+		Book book = new Book();
+
+		try {
+
+			Connection con = connectionSQLite.getConnection();
+
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setInt(1, id);
+			ps.execute();
+			ResultSet rs = ps.getResultSet();
+			rs.next();
+
+			int bookId = rs.getInt("id");
+			String bookTitle = rs.getString("title");
+			String description = rs.getString("description");
+			String author = rs.getString("autor");
+			int pagesNumber = rs.getInt("numberOfSheets");
+			String bookIsbn = rs.getString("isbn");
+			String editorial = rs.getString("editorial");
+			int edition = rs.getInt("edition");
+			Year bookPublicationYear = Year.parse(rs.getString("bookPublicationYear"));
+
+			book = new Book(bookId, bookTitle, description, author, pagesNumber, bookIsbn, editorial, edition,
+					bookPublicationYear);
+
+			ps.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return book;
+	}
 
 	/**
 	 * method to get a list of books filter by title
