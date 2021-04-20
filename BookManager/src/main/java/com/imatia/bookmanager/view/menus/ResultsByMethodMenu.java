@@ -7,7 +7,7 @@ package com.imatia.bookmanager.view.menus;
  */
 public class ResultsByMethodMenu
 {
-	public static void main(String[] args)
+	public static void showResultsByMehod(String method)
 	{
 		String searchMethod= "AUTOR";
 		
