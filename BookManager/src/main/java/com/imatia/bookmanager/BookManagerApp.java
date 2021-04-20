@@ -1,9 +1,6 @@
 package com.imatia.bookmanager;
 
-<<<<<<< HEAD
-=======
 
->>>>>>> refs/heads/develop_jose
 /**
  * BookManagerApp
  *
