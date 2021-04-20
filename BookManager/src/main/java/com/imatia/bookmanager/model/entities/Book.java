@@ -68,7 +68,7 @@ public class Book {
 		return ISBN;
 	}
 	public void setISBN(String ISBN) {
-		ISBN = ISBN;
+		this.ISBN = ISBN;
 	}
 	public String getEditorial() {
 		return editorial;
