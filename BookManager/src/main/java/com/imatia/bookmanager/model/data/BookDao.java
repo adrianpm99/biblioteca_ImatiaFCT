@@ -276,14 +276,14 @@ public class BookDao {
 	 */
 	public void deleteBook (int id) {
 
-		String consulta = "DELETE * FROM book WHERE id = ?";
+		String query = "DELETE * FROM book WHERE id = ?";
 		
 
 		try {
 
 			Connection con = connectionSQLite.getConnection();
 
-			PreparedStatement ps = con.prepareStatement(consulta);
+			PreparedStatement ps = con.prepareStatement(query);
 
 			ps.setInt(1, id);
 			ps.execute();
