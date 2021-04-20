@@ -21,7 +21,7 @@ public class BookDetails
 				"||	\r\n" + 
 				"|| Autor: "+b.getAuthor()+"\r\n" + 
 				"||	\r\n" + 
-				"|| ISBN: "+b.getISBN()+"	|| Año: "+b.getBookPublicationYear()+ "	|| Edicion: "+b.getEditorial()+"ª\r\n" + 
+				"|| ISBN: "+b.getISBN()+"	|| Año: "+b.getBookPublicationYear()+ "	|| Edicion: "+b.getEdition()+"ª\r\n" + 
 				"|| \r\n" + 
 				"|| Editorial: "+b.getEditorial()+"	|| Hojas: "+b.getNumberOfSheets()+"\r\n" + 
 				"==========================================================\r\n" + 
