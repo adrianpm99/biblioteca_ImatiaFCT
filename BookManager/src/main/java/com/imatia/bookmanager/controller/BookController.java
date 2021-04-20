@@ -22,4 +22,8 @@ public class BookController {
 		return book;
 	}
 
+	public void addBook(Book book) {
+		
+		bd.addBook(book);
+	}
 }
