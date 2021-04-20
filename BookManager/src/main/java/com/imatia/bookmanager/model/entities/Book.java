@@ -20,8 +20,8 @@ public class Book {
 	
 	
 	public Book(int id, String title, String description, String author, String hashtag, int numberOfSheets, String ISBN,
-			String editorial, int edition, Year bookPublication, String genre) {
-		super();
+			String editorial, int edition, Year bookPublication) {
+		
 		this.id = id;
 		this.title = title;
 		this.description = description;
@@ -32,8 +32,12 @@ public class Book {
 		this.editorial = editorial;
 		this.edition = edition;
 		this.bookPublication = bookPublication;
-		this.genre = genre;
+	
 	}
+	public Book() {
+		
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -74,7 +78,7 @@ public class Book {
 		return ISBN;
 	}
 	public void setISBN(String ISBN) {
-		ISBN = ISBN;
+		this.ISBN = ISBN;
 	}
 	public String getEditorial() {
 		return editorial;
