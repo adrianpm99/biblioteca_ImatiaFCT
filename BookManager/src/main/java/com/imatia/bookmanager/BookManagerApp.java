@@ -1,12 +1,5 @@
 package com.imatia.bookmanager;
 
-
-
-import java.sql.SQLException;
-
-import com.imatia.bookmanager.model.data.ConnectionSQLite;
-
-
 /**
  * BookManagerApp
  *
