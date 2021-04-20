@@ -9,9 +9,6 @@ public class BookManagerApp
 {
     public static void main( String[] args )
     {
-<<<<<<< HEAD
 
-=======
->>>>>>> refs/heads/vDevelopment
     }
 }
