@@ -268,4 +268,44 @@ public class BookDao {
 		return bookList;
 	}
 
+	
+	/**
+	 * method to delete a book by id
+	 * 
+	 * @param id
+	 */
+	public void deleteBook (int id) {
+
+		String consulta = "DELETE * FROM book WHERE id = ?";
+		
+
+		try {
+
+			Connection con = connectionSQLite.getConnection();
+
+			PreparedStatement ps = con.prepareStatement(consulta);
+
+			ps.setInt(1, id);
+			ps.execute();
+			
+			ps.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+	}
+	
+	
 }
