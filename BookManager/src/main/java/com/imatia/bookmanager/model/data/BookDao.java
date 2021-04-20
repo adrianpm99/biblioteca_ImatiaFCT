@@ -35,15 +35,14 @@ public class BookDao {
 			String bookTitle = rs.getString("title");
 			String description = rs.getString("description");
 			String author = rs.getString("autor");
-			String tag = rs.getString("hashtag");
 			int pagesNumber = rs.getInt("numberOfSheets");
 			String isbn = rs.getString("isbn");
 			String editorial = rs.getString("editorial");
 			int edition = rs.getInt("edition");
-			Year bookPublication = Year.parse(rs.getString("bookPublication"));
+			Year bookPublicationYear = Year.parse(rs.getString("bookPublicationYear"));
 
-			book = new Book(id, bookTitle, description, author, tag, pagesNumber, isbn, editorial, edition,
-					bookPublication);
+			book = new Book(id, bookTitle, description, author,pagesNumber, isbn, editorial, edition,
+					bookPublicationYear);
 			bookList.add(book);
 			
 			}
@@ -87,15 +86,14 @@ public class BookDao {
 			String bookTitle = rs.getString("title");
 			String description = rs.getString("description");
 			String author = rs.getString("autor");
-			String tag = rs.getString("hashtag");
 			int pagesNumber = rs.getInt("numberOfSheets");
 			String bookIsbn = rs.getString("isbn");
 			String editorial = rs.getString("editorial");
 			int edition = rs.getInt("edition");
-			Year bookPublication = Year.parse(rs.getString("bookPublication"));
+			Year bookPublicationYear = Year.parse(rs.getString("bookPublicationYear"));
 
-			book = new Book(id, bookTitle, description, author, tag, pagesNumber, bookIsbn, editorial, edition,
-					bookPublication);
+			book = new Book(id, bookTitle, description, author,pagesNumber, bookIsbn, editorial, edition,
+					bookPublicationYear);
 
 			ps.close();
 
