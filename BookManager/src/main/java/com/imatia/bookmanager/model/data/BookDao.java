@@ -38,7 +38,7 @@ public class BookDao {
 
 			PreparedStatement ps = con.prepareStatement(query);
 
-			ps.setString(1, "%" + title + "%");
+			ps.setString(1, title + "%");
 			ps.execute();
 			ResultSet rs = ps.getResultSet();
 			while (rs.next()) {
@@ -80,12 +80,13 @@ public class BookDao {
 
 	/**
 	 * method to get a book filter by isbn
+	 * 
 	 * @param isbn
 	 * @return book
 	 */
 	public Book getBookByIsbn(String isbn) {
 
-		String query = "SELECT * FROM book WHERE ISBN=?";
+		String query = "SELECT * FROM book WHERE ISBN = ?";
 		Book book = new Book();
 
 		try {
@@ -134,6 +135,7 @@ public class BookDao {
 
 	/**
 	 * method to get a list of books filter by author
+	 * 
 	 * @param author
 	 * @return bookList
 	 */
@@ -149,7 +151,7 @@ public class BookDao {
 
 			PreparedStatement ps = con.prepareStatement(query);
 
-			ps.setString(1, "%" + author + "%");
+			ps.setString(1, author + "%");
 			ps.execute();
 			ResultSet rs = ps.getResultSet();
 			while (rs.next()) {
