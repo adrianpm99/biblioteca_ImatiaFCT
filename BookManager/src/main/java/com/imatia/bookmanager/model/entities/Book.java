@@ -16,16 +16,17 @@ public class Book {
 	Year bookPublicationYear;
 
 	
-	
+	public Book() {
+		
+	}
 	
 	public Book(int id, String title, String description, String author, int numberOfSheets, String ISBN,
 			String editorial, int edition, Year bookPublicationYear) {
-		super();
+		
 		this.id = id;
 		this.title = title;
 		this.description = description;
-		this.author = author;
-		
+		this.author = author;	
 		this.numberOfSheets = numberOfSheets;
 		this.ISBN = ISBN;
 		this.editorial = editorial;
@@ -95,6 +96,7 @@ public class Book {
 		return "Book [id=" + id + ", title=" + title + ", description=" + description + ", author=" + author
 				 + ", numberOfSheets=" + numberOfSheets + ", ISBN=" + ISBN + ", editorial="
 				+ editorial + ", edition=" + edition + ", bookPublicationYear=" + bookPublicationYear 
+
 				+ "]";
 	}
 
