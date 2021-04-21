@@ -1,6 +1,6 @@
 package com.imatia.bookmanager.view.menus;
 
-import com.imatia.bookmanager.model.data.BookDao;
+import com.imatia.bookmanager.controller.BookController;
 import com.imatia.bookmanager.model.entities.Book;
 import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.results.BookDetails;
@@ -24,7 +24,7 @@ public class ResultsByMethodMenu {
 			case 1:
 				System.out.print("Introduzca el id del libro: ");
 				bookId = Integer.parseInt(InputUserData.checkUserInput("id"));
-				Book book = new BookDao().getBookById(bookId);
+				Book book = new BookController().getBookById(bookId);
 				BookDetails.showBookDetails(book);
 				break;
 			}
