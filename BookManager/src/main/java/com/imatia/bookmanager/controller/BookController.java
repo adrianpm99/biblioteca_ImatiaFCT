@@ -78,4 +78,12 @@ public class BookController {
 		
 		bd.modifyBook(book);
 	}
+	
+//	/**
+//	 * method to delete a book
+//	 * @param id
+//	 */
+//	public void deleteBook(int id) {
+//		bd.deleteBook(id);
+//	}
 }

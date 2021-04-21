@@ -11,7 +11,7 @@ public class StartMenuUI
 	public static void showStartMenuUi()
 	{
 		System.out.println(
-				"==Seleccione una opcion==\r\n" + 
+				"\n==Seleccione una opcion==\r\n" + 
 				"\r\n" + 
 				"	1 - BUSQUEDAS\r\n" + 
 				"	\r\n" + 

@@ -191,14 +191,14 @@ public class BookDao {
 	public void addBook(Book book) {
 
 
-		String consulta = "INSERT INTO book (title, description, author, pageNumber, ISBN, editorial, edition, bookPublicationYear) "
+		String query = "INSERT INTO book (title, description, author, pageNumber, ISBN, editorial, edition, bookPublicationYear) "
 				+ "VALUES (?,?,?,?,?,?,?,?) ";
 
 		Connection con;
 		try {
 			con = connectionSQLite.getConnection();
 
-			PreparedStatement ps = con.prepareStatement(consulta);
+			PreparedStatement ps = con.prepareStatement(query);
 
 			ps.setString(1, book.getTitle());
 			ps.setString(2, book.getDescription());
@@ -207,12 +207,13 @@ public class BookDao {
 			ps.setString(5, book.getISBN());
 			ps.setString(6, book.getEditorial());
 			ps.setInt(7, book.getEdition());
-			String bookPublicationYear = new SimpleDateFormat("yyyy").format(book.getBookPublicationYear());
-			ps.setString(8, bookPublicationYear);
+			ps.setString(8, book.getBookPublicationYear().toString());
 
 			ps.execute();
 
 			ps.close();
+			
+			System.out.println("El libro se ha añadido correctamente");
 
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -225,12 +226,12 @@ public class BookDao {
 	}
 	
 	public void modifyBook(Book book) {
-		String consulta = "UPDATE book SET title=  ?, description = ?, author = ?, pageNumber = ?, ISBN = ?, editorial = ?, edition = ?, bookPublicationYear= ? WHERE id = ?;";
+		String query = "UPDATE book SET title=  ?, description = ?, author = ?, pageNumber = ?, ISBN = ?, editorial = ?, edition = ?, bookPublicationYear= ? WHERE id = ?;";
 
 		try {
 			Connection con = connectionSQLite.getConnection();
 			
-			PreparedStatement ps = con.prepareStatement(consulta);
+			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, book.getTitle());
 			ps.setString(2, book.getDescription());
 			ps.setString(3, book.getAuthor());
