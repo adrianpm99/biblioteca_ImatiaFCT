@@ -1,7 +1,7 @@
 package com.imatia.bookmanager;
 
-import com.imatia.bookmanager.view.menus.CreditsInitialView;
-import com.imatia.bookmanager.view.menus.StartMenu;
+import com.imatia.bookmanager.view.ui.CreditsInitialView;
+import com.imatia.bookmanager.view.ui.StartMenu;
 
 /**
  * BookManagerApp
