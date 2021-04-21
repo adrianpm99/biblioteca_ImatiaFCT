@@ -1,10 +1,10 @@
-package com.imatia.bookmanager.view.controller;
+package com.imatia.bookmanager.view.menus;
 
 import com.imatia.bookmanager.model.data.BookDao;
 import com.imatia.bookmanager.model.entities.Book;
 import com.imatia.bookmanager.view.inputs.InputUserData;
-import com.imatia.bookmanager.view.menus.SearchesMenu;
 import com.imatia.bookmanager.view.results.BookDetails;
+import com.imatia.bookmanager.view.ui.SearchesMenu;
 
 
 public class ResultsByMethodMenuController {

@@ -1,4 +1,4 @@
-package com.imatia.bookmanager.view.menus;
+package com.imatia.bookmanager.view.ui;
 
 
 
