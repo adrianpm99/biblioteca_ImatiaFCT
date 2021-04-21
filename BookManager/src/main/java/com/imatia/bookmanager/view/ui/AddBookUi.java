@@ -5,7 +5,7 @@ package com.imatia.bookmanager.view.ui;
  */
 public class AddBookUi
 {
-	public static void showAddBookMenu()
+	public static void showAddBookUi()
 	{
 		System.out.println(
 				"\n******************\r\n" + 

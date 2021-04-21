@@ -19,13 +19,13 @@ public class SearchesMenu {
 			switch (option) {
 
 			case 0:
-				StartMenuUI.showStartMenu();
+				StartMenuUI.showStartMenuUi();
 				break;
 			case 1:
 				System.out.print("Introduzca el autor: ");
 				filter = InputUserData.checkUserInput("author");
 				
-				ResultsByMethodUi.showResultsView("AUTOR");
+				ResultsByMethodUi.showResultsUi("AUTOR");
 				BookRenderers.renderAuthorListBooks(bc.getBooksByAuthor(filter));
 				
 				ResultsByMethodMenu.showResultsByMethodMenuOptions();	
@@ -33,7 +33,7 @@ public class SearchesMenu {
 			case 2:
 				System.out.print("Introduzca el titulo: ");
 				filter = InputUserData.checkUserInput("title");
-				ResultsByMethodUi.showResultsView("TITULO");
+				ResultsByMethodUi.showResultsUi("TITULO");
 				BookRenderers.renderTitleListBooks(bc.getBookByTitle(filter));
 				ResultsByMethodMenu.showResultsByMethodMenuOptions();	
 				
@@ -41,7 +41,7 @@ public class SearchesMenu {
 			case 3:
 				System.out.print("Introduzca el ISBN: ");
 				filter = InputUserData.checkUserInput("ISBN");
-				ResultsByMethodUi.showResultsView("ISBN");
+				ResultsByMethodUi.showResultsUi("ISBN");
 				BookRenderers.renderISBNListBooks(bc.getBookByIsbn(filter));
 				ResultsByMethodMenu.showResultsByMethodMenuOptions();	
 				break;

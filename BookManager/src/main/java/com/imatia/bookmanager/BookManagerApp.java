@@ -12,7 +12,7 @@ public class BookManagerApp {
 	public static void main(String[] args) {
 		
 		CreditsInitialView.showCredits();
-		StartMenuUI.showStartMenu();
+		StartMenuUI.showStartMenuUi();
 		
 	
 	}

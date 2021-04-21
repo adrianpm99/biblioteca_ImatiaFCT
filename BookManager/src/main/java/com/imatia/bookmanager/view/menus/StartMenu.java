@@ -18,12 +18,12 @@ public class StartMenu {
 				System.out.println("\nFinalizando la ejecución del programa");
 				System.exit(0);
 			case 1:
-				SearchesUi.showSearchesMenu();
+				SearchesUi.showSearchesUi();
 				break;
 			case 2:
 				// Not implemented yet
 			case 3:
-				AddBookUi.showAddBookMenu();
+				AddBookUi.showAddBookUi();
 			}
 
 		} while (option != 0 && option != 1 && option != 2 && option != 3);

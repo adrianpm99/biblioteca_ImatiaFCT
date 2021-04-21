@@ -10,7 +10,7 @@ package com.imatia.bookmanager.view.ui;
  */
 public class ResultsByMethodUi
 {
-	public static void showResultsView(String searchMethod)
+	public static void showResultsUi(String searchMethod)
 	{		
 		System.out.println(
 				"\n***************************************\r\n" + 

@@ -19,7 +19,7 @@ public class ResultsByMethodMenu {
 			switch (option) {
 
 			case 0:
-				SearchesUi.showSearchesMenu();
+				SearchesUi.showSearchesUi();
 				break;
 			case 1:
 				System.out.print("Introduzca el id del libro: ");

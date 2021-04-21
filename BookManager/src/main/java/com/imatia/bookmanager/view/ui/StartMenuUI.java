@@ -8,7 +8,7 @@ import com.imatia.bookmanager.view.menus.StartMenu;
  */
 public class StartMenuUI
 {
-	public static void showStartMenu()
+	public static void showStartMenuUi()
 	{
 		System.out.println(
 				"==Seleccione una opcion==\r\n" + 

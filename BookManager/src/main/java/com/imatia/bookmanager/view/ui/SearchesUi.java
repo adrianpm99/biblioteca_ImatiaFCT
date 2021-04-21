@@ -7,7 +7,7 @@ import com.imatia.bookmanager.view.menus.SearchesMenu;
  */
 public class SearchesUi
 {
-	public static void showSearchesMenu()
+	public static void showSearchesUi()
 	{
 		System.out.println(
 				"***************\r\n" + 
