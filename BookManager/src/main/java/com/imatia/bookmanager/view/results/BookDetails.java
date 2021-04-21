@@ -1,6 +1,7 @@
 package com.imatia.bookmanager.view.results;
 
 import com.imatia.bookmanager.model.entities.Book;
+import com.imatia.bookmanager.view.menus.BookDetailsMenu;
 
 /**
  * This view shows the information details
@@ -29,5 +30,7 @@ public class BookDetails
 				"Descripcion:\r\n"+ 
 				b.getDescription()+"\r\n" +
 				"==========================================================");
+		
+		BookDetailsMenu.showBookDetailsOptions(b.getId());
 	}//showBookDetails()
 }//class BookDetails

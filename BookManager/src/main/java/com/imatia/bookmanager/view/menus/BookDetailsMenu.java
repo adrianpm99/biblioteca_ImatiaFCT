@@ -4,7 +4,7 @@ import com.imatia.bookmanager.view.inputs.InputUserData;
 
 public class BookDetailsMenu {
 
-	public static void showBookDetailsOptions() {
+	public static void showBookDetailsOptions(int id) {
 
 		int option;
 
@@ -19,7 +19,7 @@ public class BookDetailsMenu {
 			case 1: 
 				//Not implemented yet
 			case 2:
-				//Not implemented yet
+				DeleteBookMenu.showDeleteBookMenu(id);
 
 			}
 
