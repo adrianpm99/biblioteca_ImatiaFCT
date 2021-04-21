@@ -101,8 +101,8 @@ public class BookDao {
 				int id = rs.getInt("id");
 				String bookTitle = rs.getString("title");
 				String description = rs.getString("description");
-				String author = rs.getString("autor");
-				int pagesNumber = rs.getInt("numberOfSheets");
+				String author = rs.getString("author");
+				int pagesNumber = rs.getInt("pageNumber");
 				String isbn = rs.getString("isbn");
 				String editorial = rs.getString("editorial");
 				int edition = rs.getInt("edition");
@@ -158,8 +158,8 @@ public class BookDao {
 			int id = rs.getInt("id");
 			String bookTitle = rs.getString("title");
 			String description = rs.getString("description");
-			String author = rs.getString("autor");
-			int pagesNumber = rs.getInt("numberOfSheets");
+			String author = rs.getString("author");
+			int pagesNumber = rs.getInt("pageNumber");
 			String bookIsbn = rs.getString("isbn");
 			String editorial = rs.getString("editorial");
 			int edition = rs.getInt("edition");
@@ -263,7 +263,7 @@ public class BookDao {
 	 */
 	public List<Book> getBooksByAuthor(String author) {
 
-		String query = "SELECT * FROM book WHERE autor LIKE ?";
+		String query = "SELECT * FROM book WHERE author LIKE ?";
 		List<Book> bookList = new ArrayList<>();
 		Book book = new Book();
 
@@ -281,8 +281,8 @@ public class BookDao {
 				int id = rs.getInt("id");
 				String bookTitle = rs.getString("title");
 				String description = rs.getString("description");
-				String bookAuthor = rs.getString("autor");
-				int pagesNumber = rs.getInt("numberOfSheets");
+				String bookAuthor = rs.getString("author");
+				int pagesNumber = rs.getInt("pageNumber");
 				String isbn = rs.getString("isbn");
 				String editorial = rs.getString("editorial");
 				int edition = rs.getInt("edition");
