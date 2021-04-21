@@ -1,6 +1,5 @@
 package com.imatia.bookmanager.view.ui;
 
-import com.imatia.bookmanager.view.menus.AddBookMenu;
 
 /**
  * This is the UI for the Edit Book menu.
