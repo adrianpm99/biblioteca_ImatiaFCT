@@ -13,6 +13,7 @@ public class BookManagerApp {
 		
 		CreditsInitialView.showCredits();
 		StartMenu.showStartMenu();
+		
 	
 	}
 }
