@@ -1,13 +1,13 @@
 package com.imatia.bookmanager.view.ui;
 
-import com.imatia.bookmanager.view.menus.SearchesMenuController;
+import com.imatia.bookmanager.view.menus.SearchesMenu;
 
 /**
  * Searches Menu, to search by author, title or ISBN
  */
-public class SearchesMenu
+public class SearchesUi
 {
-	public static void showSearchesMenu()
+	public static void showSearchesUi()
 	{
 		System.out.println(
 				"***************\r\n" + 
@@ -17,6 +17,6 @@ public class SearchesMenu
 				"|| 1- Buscar por autor || 2- Buscar por titulo || 3- Buscar por ISBN || 0- Volver al menu principal ||\r\n" + 
 				"------------------------------------------------------------------------------------------------------");
 		
-		SearchesMenuController.showSearchesMenuOptions();
+		SearchesMenu.showSearchesMenuOptions();
 	}//showSearchesMenu()
 }//class SearchesMenu
