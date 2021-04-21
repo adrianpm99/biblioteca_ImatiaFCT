@@ -1,10 +1,9 @@
 package com.imatia.bookmanager.view.menus;
 
 import com.imatia.bookmanager.view.inputs.InputUserData;
-import com.imatia.bookmanager.view.ui.AddBookUi;
-import com.imatia.bookmanager.view.ui.SearchesUi;
+import com.imatia.bookmanager.view.ui.SearchesMenu;
 
-public class StartMenu {
+public class StartMenuController {
 
 	public static void showStartMenuOption() {
 		int option;
@@ -18,12 +17,12 @@ public class StartMenu {
 				System.out.println("\nFinalizando la ejecución del programa");
 				System.exit(0);
 			case 1:
-				SearchesUi.showSearchesUi();
+				SearchesMenu.showSearchesMenu();
 				break;
 			case 2:
 				// Not implemented yet
 			case 3:
-				AddBookUi.showAddBookUi();
+				// Not implemented yet
 			}
 
 		} while (option != 0 && option != 1 && option != 2 && option != 3);
