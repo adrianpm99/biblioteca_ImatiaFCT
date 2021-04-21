@@ -2,7 +2,7 @@ package com.imatia.bookmanager.model.entities;
 
 import java.time.LocalDate;
 
-public class Lendig {
+public class Lending {
 	
 	
 
@@ -13,12 +13,12 @@ public class Lendig {
 	LocalDate lendingDeadLine;
 	
 		
-	public Lendig() {
+	public Lending() {
 		super();
 	}
 
 
-	public Lendig(int id, int idCopy, int idUser, LocalDate lendingDate, LocalDate lendingDeadLine) {
+	public Lending(int id, int idCopy, int idUser, LocalDate lendingDate, LocalDate lendingDeadLine) {
 		super();
 		this.id = id;
 		this.idCopy = idCopy;
