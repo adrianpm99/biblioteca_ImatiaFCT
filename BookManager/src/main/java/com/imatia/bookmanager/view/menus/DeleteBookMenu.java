@@ -2,6 +2,7 @@ package com.imatia.bookmanager.view.menus;
 
 import com.imatia.bookmanager.controller.BookController;
 import com.imatia.bookmanager.view.inputs.UtilityInputs;
+import com.imatia.bookmanager.view.ui.SearchesUi;
 
 public class DeleteBookMenu {
 	
@@ -14,7 +15,7 @@ public class DeleteBookMenu {
 			//bc.deleteBook(id);
 
 		}else {
-			//Not implemented yet
+			SearchesUi.showSearchesUi();
 		}
 		
 		
