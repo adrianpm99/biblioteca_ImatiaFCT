@@ -21,7 +21,6 @@ public class AddBookMenu {
 		int edition;
 		Year bookPublicationYear;
 
-		System.out.println("Introduzca los datos para añadir del libro");
 		System.out.print("Titulo: ");
 		title = InputUserData.checkUserInput("title");
 		System.out.print("Descripcion: ");
