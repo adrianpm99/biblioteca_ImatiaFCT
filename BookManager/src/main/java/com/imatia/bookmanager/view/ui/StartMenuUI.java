@@ -1,12 +1,12 @@
 package com.imatia.bookmanager.view.ui;
 
-import com.imatia.bookmanager.view.menus.StartMenuController;
+import com.imatia.bookmanager.view.menus.StartMenu;
 
 /**
  * Start menu with tha main functions: 
  * (searches, loans, add books and exit).
  */
-public class StartMenu
+public class StartMenuUI
 {
 	public static void showStartMenu()
 	{
@@ -22,6 +22,6 @@ public class StartMenu
 				"	0 - SALIR\r\n");
 		
 		
-		StartMenuController.showStartMenuOption();
+		StartMenu.showStartMenuOption();
 	}//showStartMenu()
 }//class StartMenu

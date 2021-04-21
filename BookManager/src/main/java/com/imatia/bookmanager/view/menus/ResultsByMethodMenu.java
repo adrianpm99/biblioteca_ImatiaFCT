@@ -4,10 +4,10 @@ import com.imatia.bookmanager.model.data.BookDao;
 import com.imatia.bookmanager.model.entities.Book;
 import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.results.BookDetails;
-import com.imatia.bookmanager.view.ui.SearchesMenu;
+import com.imatia.bookmanager.view.ui.SearchesUi;
 
 
-public class ResultsByMethodMenuController {
+public class ResultsByMethodMenu {
 	
 	public static void showResultsByMethodMenuOptions() {
 		
@@ -19,7 +19,7 @@ public class ResultsByMethodMenuController {
 			switch (option) {
 
 			case 0:
-				SearchesMenu.showSearchesMenu();
+				SearchesUi.showSearchesMenu();
 				break;
 			case 1:
 				System.out.print("Introduzca el id del libro: ");

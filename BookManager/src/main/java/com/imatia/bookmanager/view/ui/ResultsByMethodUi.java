@@ -8,7 +8,7 @@ package com.imatia.bookmanager.view.ui;
  * in the results when searching by author, title, or ISBN
  * (searching method is passed as argument)
  */
-public class ResultsByMethodMenu
+public class ResultsByMethodUi
 {
 	public static void showResultsView(String searchMethod)
 	{		
