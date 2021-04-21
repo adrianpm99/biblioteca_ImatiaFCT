@@ -9,7 +9,7 @@ public class Book {
 	String title;
 	String description;
 	String author;
-	int numberOfSheets;
+	int pageNumber;
 	String ISBN;
 	String editorial;
 	int edition;
@@ -20,14 +20,14 @@ public class Book {
 		
 	}
 	
-	public Book(int id, String title, String description, String author, int numberOfSheets, String ISBN,
+	public Book(int id, String title, String description, String author, int pageNumber, String ISBN,
 			String editorial, int edition, Year bookPublicationYear) {
 		
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.author = author;	
-		this.numberOfSheets = numberOfSheets;
+		this.pageNumber = pageNumber;
 		this.ISBN = ISBN;
 		this.editorial = editorial;
 		this.edition = edition;
@@ -59,11 +59,11 @@ public class Book {
 		this.author = author;
 	}
 	
-	public int getNumberOfSheets() {
-		return numberOfSheets;
+	public int getPageNumber() {
+		return pageNumber;
 	}
-	public void setNumberOfSheets(int numberOfSheets) {
-		this.numberOfSheets = numberOfSheets;
+	public void setPageNumber(int pageNumber) {
+		this.pageNumber = pageNumber;
 	}
 	public String getISBN() {
 		return ISBN;
@@ -88,16 +88,6 @@ public class Book {
 	}
 	public void setBookPublicationYear(Year bookPublicationYear) {
 		this.bookPublicationYear = bookPublicationYear;
-	}
-	
-
-	@Override
-	public String toString() {
-		return "Book [id=" + id + ", title=" + title + ", description=" + description + ", author=" + author
-				 + ", numberOfSheets=" + numberOfSheets + ", ISBN=" + ISBN + ", editorial="
-				+ editorial + ", edition=" + edition + ", bookPublicationYear=" + bookPublicationYear 
-
-				+ "]";
 	}
 
 }
