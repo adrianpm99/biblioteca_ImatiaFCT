@@ -34,6 +34,21 @@ public class Book {
 		this.bookPublicationYear = bookPublicationYear;
 		
 	}
+	
+	
+	public Book(String title, String description, String author, int pageNumber, String iSBN, String editorial,
+			int edition, Year bookPublicationYear) {
+		super();
+		this.title = title;
+		this.description = description;
+		this.author = author;
+		this.pageNumber = pageNumber;
+		ISBN = iSBN;
+		this.editorial = editorial;
+		this.edition = edition;
+		this.bookPublicationYear = bookPublicationYear;
+	}
+
 	public int getId() {
 		return id;
 	}
