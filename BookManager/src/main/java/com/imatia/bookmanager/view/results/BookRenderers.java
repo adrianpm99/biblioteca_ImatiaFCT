@@ -20,7 +20,7 @@ public class BookRenderers
 		for(Book b: bookList)
 		{
 			System.out.println("===========================================================================================\n");
-			System.out.println("Id: "+b.getId()+"\t|| Titulo: "+b.getTitle()+ 
+			System.out.println("Id: "+b.getId()+"/t|| Titulo: "+b.getTitle()+ 
 								"\t|| Autor: "+b.getAuthor()+"\t|| ISBN: "+b.getISBN()+"\n");
 		}
 	}//renderTitleLisBooks()
@@ -35,7 +35,7 @@ public class BookRenderers
 		for(Book b: bookList)
 		{
 			System.out.println("===========================================================================================\n");
-			System.out.println("Id: "+b.getId()+"\t|| Titulo: "+b.getTitle()+"\t|| ISBN: "+b.getISBN()+"\n");
+			System.out.println("Id: "+b.getId()+"/t|| Titulo: "+b.getTitle()+"\t|| ISBN: "+b.getISBN()+"\n");
 		}
 	}//renderAuthorListBooks()
 	
@@ -49,7 +49,7 @@ public class BookRenderers
 		for(Book b: bookList)
 		{
 			System.out.println("===========================================================================================\n");
-			System.out.println("Id: "+b.getId()+"\t|| Titulo: "+b.getTitle()+"\t|| Autor: "+b.getAuthor()+"\n");
+			System.out.println("Id: "+b.getId()+"/t|| Titulo: "+b.getTitle()+"\t|| Autor: "+b.getAuthor()+"\n");
 		}
 	}//renderISBNListBooks()
 
