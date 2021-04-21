@@ -1,10 +1,10 @@
-package com.imatia.bookmanager.view.controller;
+package com.imatia.bookmanager.view.menus;
 
 import com.imatia.bookmanager.controller.BookController;
 import com.imatia.bookmanager.view.inputs.InputUserData;
-import com.imatia.bookmanager.view.menus.ResultsByMethodMenu;
-import com.imatia.bookmanager.view.menus.StartMenu;
 import com.imatia.bookmanager.view.results.BookRenderers;
+import com.imatia.bookmanager.view.ui.ResultsByMethodMenu;
+import com.imatia.bookmanager.view.ui.StartMenu;
 
 public class SearchesMenuController {
 
