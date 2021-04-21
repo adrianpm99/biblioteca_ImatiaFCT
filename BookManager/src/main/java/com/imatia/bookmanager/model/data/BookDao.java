@@ -45,8 +45,8 @@ public class BookDao {
 			int bookId = rs.getInt("id");
 			String bookTitle = rs.getString("title");
 			String description = rs.getString("description");
-			String author = rs.getString("autor");
-			int pagesNumber = rs.getInt("numberOfSheets");
+			String author = rs.getString("author");
+			int pagesNumber = rs.getInt("pageNumber");
 			String bookIsbn = rs.getString("isbn");
 			String editorial = rs.getString("editorial");
 			int edition = rs.getInt("edition");
@@ -101,8 +101,8 @@ public class BookDao {
 				int id = rs.getInt("id");
 				String bookTitle = rs.getString("title");
 				String description = rs.getString("description");
-				String author = rs.getString("autor");
-				int pagesNumber = rs.getInt("numberOfSheets");
+				String author = rs.getString("author");
+				int pagesNumber = rs.getInt("pageNumber");
 				String isbn = rs.getString("isbn");
 				String editorial = rs.getString("editorial");
 				int edition = rs.getInt("edition");
@@ -158,8 +158,8 @@ public class BookDao {
 			int id = rs.getInt("id");
 			String bookTitle = rs.getString("title");
 			String description = rs.getString("description");
-			String author = rs.getString("autor");
-			int pagesNumber = rs.getInt("numberOfSheets");
+			String author = rs.getString("author");
+			int pagesNumber = rs.getInt("pageNumber");
 			String bookIsbn = rs.getString("isbn");
 			String editorial = rs.getString("editorial");
 			int edition = rs.getInt("edition");
@@ -195,7 +195,7 @@ public class BookDao {
 	 */
 	public void addBook(Book book) {
 
-		String query = "INSERT INTO book (title, description, author, numberOfSheets, ISBN, editorial, edition, bookPublicationYear) "
+		String query = "INSERT INTO book (title, description, author, pageNumber, ISBN, editorial, edition, bookPublicationYear) "
 				+ "VALUES (?,?,?,?,?,?,?,?) ";
 
 		Connection con;
@@ -207,7 +207,7 @@ public class BookDao {
 			ps.setString(1, book.getTitle());
 			ps.setString(2, book.getDescription());
 			ps.setString(3, book.getAuthor());
-			ps.setInt(4, book.getNumberOfSheets());
+			ps.setInt(4, book.getPageNumber());
 			ps.setString(5, book.getISBN());
 			ps.setString(6, book.getEditorial());
 			ps.setInt(7, book.getEdition());
@@ -234,7 +234,7 @@ public class BookDao {
 	 * @param book
 	 */
 	public void modifyBook(Book book) {
-		String query = "UPDATE book SET title=  ?, description = ?, author = ?, numberOfSheets = ?, ISBN = ?, editorial = ?, edition = ?, bookPublicationYear= ? WHERE id = ?;";
+		String query = "UPDATE book SET title=  ?, description = ?, author = ?, pageNumber = ?, ISBN = ?, editorial = ?, edition = ?, bookPublicationYear= ? WHERE id = ?;";
 
 		try {
 			Connection con = connectionSQLite.getConnection();
@@ -243,7 +243,7 @@ public class BookDao {
 			ps.setString(1, book.getTitle());
 			ps.setString(2, book.getDescription());
 			ps.setString(3, book.getAuthor());
-			ps.setInt(4, book.getNumberOfSheets());
+			ps.setInt(4, book.getPageNumber());
 			ps.setString(5, book.getISBN());
 			ps.setString(6, book.getEditorial());
 			ps.setInt(7, book.getEdition());
@@ -272,7 +272,7 @@ public class BookDao {
 	 */
 	public List<Book> getBooksByAuthor(String author) {
 
-		String query = "SELECT * FROM book WHERE autor LIKE ?";
+		String query = "SELECT * FROM book WHERE author LIKE ?";
 		List<Book> bookList = new ArrayList<>();
 		Book book = new Book();
 
@@ -290,8 +290,8 @@ public class BookDao {
 				int id = rs.getInt("id");
 				String bookTitle = rs.getString("title");
 				String description = rs.getString("description");
-				String bookAuthor = rs.getString("autor");
-				int pagesNumber = rs.getInt("numberOfSheets");
+				String bookAuthor = rs.getString("author");
+				int pagesNumber = rs.getInt("pageNumber");
 				String isbn = rs.getString("isbn");
 				String editorial = rs.getString("editorial");
 				int edition = rs.getInt("edition");
