@@ -14,6 +14,12 @@ import com.imatia.bookmanager.model.entities.Book;
 public class BookController {
 
 	BookDao bd = new BookDao();
+	
+	public Book getBookById(int id) {
+		
+		Book book = bd.getBookById(id);
+		return book;
+	}
 
 	/**
 	 * method to get a list of books filter by title

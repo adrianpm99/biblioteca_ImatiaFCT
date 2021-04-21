@@ -1,6 +1,7 @@
 package com.imatia.bookmanager.view.menus;
 
 import com.imatia.bookmanager.view.inputs.InputUserData;
+import com.imatia.bookmanager.view.ui.AddBookUi;
 
 public class BookDetailsMenu {
 
@@ -19,7 +20,7 @@ public class BookDetailsMenu {
 			case 1: 
 				//Not implemented yet
 			case 2:
-				//Not implemented yet
+				AddBookUi.showAddBookUi();
 
 			}
 
