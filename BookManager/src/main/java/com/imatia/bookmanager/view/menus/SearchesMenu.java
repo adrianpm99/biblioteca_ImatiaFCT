@@ -1,6 +1,6 @@
-package com.imatia.bookmanager.view.ui;
+package com.imatia.bookmanager.view.menus;
 
-import com.imatia.bookmanager.view.menus.SearchesMenuController;
+import com.imatia.bookmanager.view.controller.SearchesMenuController;
 
 /**
  * Searches Menu, to search by author, title or ISBN

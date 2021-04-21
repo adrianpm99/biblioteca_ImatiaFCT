@@ -1,6 +1,6 @@
-package com.imatia.bookmanager.view.ui;
+package com.imatia.bookmanager.view.menus;
 
-import com.imatia.bookmanager.view.menus.StartMenuController;
+import com.imatia.bookmanager.view.controller.StartMenuController;
 
 /**
  * Start menu with tha main functions: 

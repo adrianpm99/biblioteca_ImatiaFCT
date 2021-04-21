@@ -1,7 +1,7 @@
-package com.imatia.bookmanager.view.menus;
+package com.imatia.bookmanager.view.controller;
 
 import com.imatia.bookmanager.view.inputs.InputUserData;
-import com.imatia.bookmanager.view.ui.SearchesMenu;
+import com.imatia.bookmanager.view.menus.SearchesMenu;
 
 public class StartMenuController {
 
