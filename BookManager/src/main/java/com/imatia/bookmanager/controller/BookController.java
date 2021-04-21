@@ -14,6 +14,12 @@ import com.imatia.bookmanager.model.entities.Book;
 public class BookController {
 
 	BookDao bd = new BookDao();
+	
+	public Book getBookById(int id) {
+		
+		Book book = bd.getBookById(id);
+		return book;
+	}
 
 	/**
 	 * method to get a list of books filter by title
@@ -73,11 +79,11 @@ public class BookController {
 		bd.modifyBook(book);
 	}
 	
-	/**
-	 * method to delete a book
-	 * @param id
-	 */
-	public void deleteBook(int id) {
-		bd.deleteBook(id);
-	}
+//	/**
+//	 * method to delete a book
+//	 * @param id
+//	 */
+//	public void deleteBook(int id) {
+//		bd.deleteBook(id);
+//	}
 }

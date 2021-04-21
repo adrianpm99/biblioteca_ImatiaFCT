@@ -19,7 +19,9 @@ public class BookDetailsMenu {
 			case 1: 
 				//Not implemented yet
 			case 2:
+
 				DeleteBookMenu.showDeleteBookMenu(id);
+
 
 			}
 

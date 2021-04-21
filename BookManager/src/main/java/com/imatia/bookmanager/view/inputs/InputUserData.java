@@ -49,7 +49,7 @@ public class InputUserData {
                 return data;
             }
             break;
-        case "numberOfSheets":
+        case "pageNumber":
             pattern = Pattern.compile("^[\\d]{0,5}$");
             matcher = pattern.matcher(data);
             if (matcher.find()) {

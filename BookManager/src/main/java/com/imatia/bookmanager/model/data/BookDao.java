@@ -1,11 +1,14 @@
 package com.imatia.bookmanager.model.data;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+
 import java.time.Year;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,7 +83,7 @@ public class BookDao {
 	 * 
 	 * @param title
 	 * @return bookList
-	 */
+	 */	
 	public List<Book> getBookByTitle(String title) {
 
 		String query = "SELECT * FROM book WHERE title LIKE ?";
@@ -187,13 +190,9 @@ public class BookDao {
 
 		return book;
 	}
-
-	/**
-	 * method to insert a book in database
-	 * 
-	 * @param book
-	 */
+	
 	public void addBook(Book book) {
+
 
 		String query = "INSERT INTO book (title, description, author, pageNumber, ISBN, editorial, edition, bookPublicationYear) "
 				+ "VALUES (?,?,?,?,?,?,?,?) ";
@@ -211,12 +210,13 @@ public class BookDao {
 			ps.setString(5, book.getISBN());
 			ps.setString(6, book.getEditorial());
 			ps.setInt(7, book.getEdition());
-			String bookPublicationYear = new SimpleDateFormat("yyyy").format(book.getBookPublicationYear());
-			ps.setString(8, bookPublicationYear);
+			ps.setString(8, book.getBookPublicationYear().toString());
 
 			ps.execute();
 
 			ps.close();
+			
+			System.out.println("El libro se ha añadido correctamente");
 
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -225,20 +225,15 @@ public class BookDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 	}
-
-	/**
-	 * method to edit a book
-	 * 
-	 * @param book
-	 */
+	
 	public void modifyBook(Book book) {
 		String query = "UPDATE book SET title=  ?, description = ?, author = ?, pageNumber = ?, ISBN = ?, editorial = ?, edition = ?, bookPublicationYear= ? WHERE id = ?;";
 
 		try {
 			Connection con = connectionSQLite.getConnection();
-
+			
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, book.getTitle());
 			ps.setString(2, book.getDescription());
@@ -250,9 +245,9 @@ public class BookDao {
 			String bookPublicationYear = new SimpleDateFormat("yyyy").format(book.getBookPublicationYear());
 			ps.setString(8, bookPublicationYear);
 			ps.setInt(9, book.getId());
-
+			
 			ps.execute();
-
+			
 			ps.close();
 
 		} catch (ClassNotFoundException e) {
@@ -322,44 +317,4 @@ public class BookDao {
 		return bookList;
 	}
 
-	
-	/**
-	 * method to delete a book by id
-	 * 
-	 * @param id
-	 */
-	public void deleteBook (int id) {
-
-		String query = "DELETE * FROM book WHERE id = ?";
-		
-
-		try {
-
-			Connection con = connectionSQLite.getConnection();
-
-			PreparedStatement ps = con.prepareStatement(query);
-
-			ps.setInt(1, id);
-			ps.execute();
-			
-			ps.close();
-
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			try {
-				connectionSQLite.closeConnection();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-	}
-	
-	
 }
