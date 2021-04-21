@@ -1,6 +1,7 @@
 package com.imatia.bookmanager.view.results;
 
 import com.imatia.bookmanager.model.entities.Book;
+import com.imatia.bookmanager.view.menus.BookDetailsMenu;
 
 /**
  * This view shows the information details
@@ -15,9 +16,9 @@ public class BookDetails
 				"\n*********************\r\n" + 
 				"** DATOS DEL LIBRO **\r\n" + 
 				"*********************\r\n" + 
-				"----------------------------------------------------------------------------------\r\n" + 
-				"|| 1- Editar libro || 2- Eliminar libro || 0- Volver al menu de resultados	||\r\n" + 
-				"----------------------------------------------------------------------------------\r\n" + 
+				"-----------------------------------------------------------------------------\r\n" + 
+				"|| 1- Editar libro || 2- Eliminar libro || 0- Volver al menu de busquedas  ||\r\n" + 
+				"-----------------------------------------------------------------------------\r\n" + 
 				"|| Titulo: "+b.getTitle()+"\r\n" + 
 				"||	\r\n" + 
 				"|| Autor: "+b.getAuthor()+"\r\n" + 
@@ -29,5 +30,7 @@ public class BookDetails
 				"Descripcion:\r\n"+ 
 				b.getDescription()+"\r\n" +
 				"==========================================================");
+		
+		BookDetailsMenu.showBookDetailsOptions();
 	}//showBookDetails()
 }//class BookDetails
