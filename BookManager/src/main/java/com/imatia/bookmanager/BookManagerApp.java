@@ -13,5 +13,6 @@ public class BookManagerApp {
 		
 		CreditsInitialView.showCredits();
 		StartMenu.showStartMenu();
+		System.out.println("holamundo");
 	}
 }

@@ -23,7 +23,7 @@ public class BookDetails
 				"||	\r\n" + 
 				"|| ISBN: "+b.getISBN()+"	|| Año: "+b.getBookPublicationYear()+ "	|| Edicion: "+b.getEdition()+"ª\r\n" + 
 				"|| \r\n" + 
-				"|| Editorial: "+b.getEditorial()+"	|| Hojas: "+b.getNumberOfSheets()+"\r\n" + 
+				"|| Editorial: "+b.getEditorial()+"	|| Hojas: "+b.getPageNumber()+"\r\n" + 
 				"==========================================================\r\n" + 
 				"Descripcion:\r\n"+ 
 				b.getDescription()+"\r\n" +
