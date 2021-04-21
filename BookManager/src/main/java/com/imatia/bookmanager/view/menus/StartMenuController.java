@@ -1,7 +1,6 @@
 package com.imatia.bookmanager.view.menus;
 
 import com.imatia.bookmanager.view.inputs.InputUserData;
-import com.imatia.bookmanager.view.ui.SearchesMenu;
 
 public class StartMenuController {
 
@@ -17,7 +16,7 @@ public class StartMenuController {
 				System.out.println("\nFinalizando la ejecución del programa");
 				System.exit(0);
 			case 1:
-				SearchesMenu.showSearchesMenu();
+				SearchesMenu.showSearchesMenuOptions();
 				break;
 			case 2:
 				// Not implemented yet
