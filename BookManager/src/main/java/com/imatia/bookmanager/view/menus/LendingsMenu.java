@@ -36,7 +36,7 @@ import com.imatia.bookmanager.view.ui.StartMenuUI;
 				
 				case 3:
 					// option to delete lendings  
-					//DeleteLendingMenu.showDeleteLendingMenu();
+					DeleteLendingMenu.showDeleteLendingMenu();
 					break;
 				}
 
