@@ -59,8 +59,8 @@ public class AddBookMenu {
 		// add the copys of book to the database
 		for (int i = 0; i <= copyNumber; i++) {
 			Copy copy = new Copy();
-			copy.setIdBook(book.getId());
-			copy.setAvaliable(true);
+			copy.setBookId(book.getId());
+			copy.setCopyAvaiable(true);
 
 			cc.addCopy(copy);
 		}

@@ -25,8 +25,8 @@ public class CopyDao {
 
 			PreparedStatement ps = con.prepareStatement(query);
 
-			ps.setInt(1, copy.getIdBook());
-			ps.setBoolean(2, copy.isAvaliable());	
+			ps.setInt(1, copy.getBookId());
+			ps.setBoolean(2, copy.isCopyAvaiable());
 			ps.execute();
 			
 			ps.close();
