@@ -326,8 +326,8 @@ public class BookDao {
 			// item with id of selected book
 			boolean lendingExist = false;
 		
-			String verify = "SELECT 1 FROM copy c, copyLending cl WHERE c.idBook = ?"
-					+ "AND c.id = cl.copyId";
+			String verify = "SELECT 1 FROM copy c, copyLending cl WHERE c.bookId = ?"
+					+ "AND c.copyId = cl.copyId";
 			
 			try {
 
