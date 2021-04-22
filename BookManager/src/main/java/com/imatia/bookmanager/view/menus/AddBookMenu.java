@@ -28,7 +28,7 @@ public class AddBookMenu {
 		System.out.print("Autor: ");
 		author = InputUserData.checkUserInput("author");
 		System.out.print("Páginas del libro: ");
-		pageNumber = Integer.parseInt(InputUserData.checkUserInput("numberOfSheets"));
+		pageNumber = Integer.parseInt(InputUserData.checkUserInput("pageNumber"));
 		System.out.print("ISBN: ");
 		ISBN = InputUserData.checkUserInput("ISBN");
 		System.out.print("Editorial: ");
