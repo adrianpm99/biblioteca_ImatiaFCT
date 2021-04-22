@@ -9,7 +9,7 @@ public class DeleteBookMenu {
 	public static void showDeleteBookMenu(int id) {
 		
 		BookController bc = new BookController();
-		boolean confirmationDelete= UtilityInputs.getConfirmation("borrar");
+		boolean confirmationDelete= UtilityInputs.getConfirmation("borrar","libro");
 		// get the confirmation of the delete
 		if (confirmationDelete == true) {
 			bc.deleteBook(id);
