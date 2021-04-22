@@ -1,6 +1,7 @@
 package com.imatia.bookmanager.view.menus;
 
 import com.imatia.bookmanager.view.inputs.InputUserData;
+import com.imatia.bookmanager.view.ui.EditBookUi;
 import com.imatia.bookmanager.view.ui.SearchesUi;
 
 
@@ -22,13 +23,13 @@ public class BookDetailsMenu
 				SearchesUi.showSearchesUi();
 				break;
 			case 1: 
-				//Not implemented yet
+
+				EditBookUi.showEditBookUi();
+
+				break;
 			case 2:
-
 				DeleteBookMenu.showDeleteBookMenu(id);
-
-
-
+				break;
 			}
 
 		} while (option != 0 && option != 1 && option != 2);

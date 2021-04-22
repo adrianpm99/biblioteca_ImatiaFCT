@@ -1,4 +1,8 @@
 /target/
 /database.db
 database.db
+<<<<<<< HEAD
 *.db
+=======
+*.db
+>>>>>>> branch 'Development' of https://github.com/adrianpm99/biblioteca_ImatiaFCT.git
