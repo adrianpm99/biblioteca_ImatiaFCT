@@ -24,7 +24,7 @@ public class BookDetailsMenu
 				break;
 			case 1: 
 
-				EditBookUi.showEditBookUi();
+				EditBookUi.showEditBookUi(id);
 
 				break;
 			case 2:

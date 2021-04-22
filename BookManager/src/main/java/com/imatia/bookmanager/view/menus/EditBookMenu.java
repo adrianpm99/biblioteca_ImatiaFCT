@@ -5,7 +5,6 @@ import java.time.Year;
 import com.imatia.bookmanager.controller.BookController;
 import com.imatia.bookmanager.model.entities.Book;
 import com.imatia.bookmanager.view.inputs.InputUserData;
-import com.imatia.bookmanager.view.ui.EditBookUi;
 import com.imatia.bookmanager.view.ui.StartMenuUI;
 
 /**
@@ -28,8 +27,7 @@ public class EditBookMenu
 		
 		Book b= null;
 		
-		//first show the UI
-		EditBookUi.showEditBookUi();
+		
 		
 		//get the book by Id
 		BookController bc = new BookController();
