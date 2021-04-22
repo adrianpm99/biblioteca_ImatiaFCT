@@ -3,6 +3,7 @@ package com.imatia.bookmanager.view.menus;
 import com.imatia.bookmanager.controller.BookController;
 import com.imatia.bookmanager.view.inputs.UtilityInputs;
 import com.imatia.bookmanager.view.ui.SearchesUi;
+import com.imatia.bookmanager.view.ui.StartMenuUI;
 
 public class DeleteBookMenu {
 	
@@ -13,6 +14,7 @@ public class DeleteBookMenu {
 		// get the confirmation of the delete
 		if (confirmationDelete == true) {
 			bc.deleteBook(id);
+			StartMenuUI.showStartMenuUi();
 
 		}else {
 			SearchesUi.showSearchesUi();
