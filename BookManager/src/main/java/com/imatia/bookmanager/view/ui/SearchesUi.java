@@ -10,7 +10,7 @@ public class SearchesUi
 	public static void showSearchesUi()
 	{
 		System.out.println(
-				"***************\r\n" + 
+				"\n***************\r\n" + 
 				"** BUSQUEDAS **\r\n" + 
 				"***************\r\n" + 
 				"------------------------------------------------------------------------------------------------------\r\n" + 
