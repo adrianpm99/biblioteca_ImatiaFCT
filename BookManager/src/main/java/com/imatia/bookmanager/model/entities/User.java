@@ -1,12 +1,5 @@
 package com.imatia.bookmanager.model.entities;
 
-
-/**
- * 
- * class that defines the User object with its attributes, 
- * constructors and getter and setter methods
- *
- */
 public class User {
 
 	
