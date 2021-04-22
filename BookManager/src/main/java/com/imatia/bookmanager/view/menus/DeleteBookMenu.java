@@ -12,8 +12,7 @@ public class DeleteBookMenu {
 		boolean confirmationDelete= UtilityInputs.getConfirmation("borrar");
 		// get the confirmation of the delete
 		if (confirmationDelete == true) {
-			
-			bc.deleteBook(id);
+			//bc.deleteBook(id);
 
 		}else {
 			SearchesUi.showSearchesUi();
