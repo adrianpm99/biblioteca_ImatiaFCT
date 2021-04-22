@@ -314,4 +314,102 @@ public class BookDao {
 		return bookList;
 	}
 
+	/**
+	 * Before proceeding to delete the book, check if any
+	 * copy of this has been loaned
+	 * @param id
+	 * @return
+	 */
+	public boolean existBookLending(int id) {
+			
+			// verify if there are records in the copylending table for some
+			// item with id of selected book
+			boolean lendingExist = false;
+		
+			String verify = "SELECT 1 FROM copy c, copyLending cl WHERE c.idBook = ?"
+					+ "AND c.id = cl.copyId";
+			
+			try {
+
+				Connection con = connectionSQLite.getConnection();
+
+				PreparedStatement ps = con.prepareStatement(verify);
+
+				ps.setInt(1, id);
+				ResultSet rs = ps.executeQuery();
+				if (rs.next()) {
+					// in this case if there are records in the copylending table
+					// therefore the book cannot be deleted
+					
+					lendingExist = true;
+				}else {
+					// in this case if you can proceed to delete the book
+					// and update all its instances as unavailable ???
+					lendingExist = false;
+				}	
+				rs.close();
+				ps.close();
+
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				try {
+					connectionSQLite.closeConnection();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			return lendingExist;
+		}
+	
+	/**
+	 * method to delete a book by id
+	 * 
+	 * @param id
+	 */
+	public void deleteBook (int id) {
+		
+	
+	  if (existBookLending(id)) {
+		
+		  System.out.println("Existen ejemplares prestados, no se puede borrar el libro");
+	  
+	  }else {
+		
+		  String query = "DELETE FROM Book  WHERE id = ?";
+
+		try {
+
+			Connection con = connectionSQLite.getConnection();
+
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setInt(1, id);
+			ps.execute();
+			 System.out.println("libro con el id: "+ id + " borrado");
+			ps.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	  }	
+
+	}
+	
 }
