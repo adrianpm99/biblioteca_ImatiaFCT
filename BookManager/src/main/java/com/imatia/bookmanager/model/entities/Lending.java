@@ -2,12 +2,6 @@ package com.imatia.bookmanager.model.entities;
 
 import java.time.LocalDate;
 
-/**
- * 
- * class that defines the Lending object with its attributes, 
- * constructors and getter and setter methods
- *
- */
 public class Lending {
 	
 	
