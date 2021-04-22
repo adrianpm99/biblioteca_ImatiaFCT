@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.ZoneId;
 
 import com.imatia.bookmanager.model.entities.Copy;
@@ -49,4 +50,42 @@ public class LendingDao {
 
 	}
 
+	/**
+	 * method to modify the Lending return date
+	 * @param lending
+	 * @param dateReturnDate
+	 */
+	public void modifyLendingReturndDate(Lending lending, LocalDate dateReturnDate) {
+		
+		String query = "UPDATE lending SET lendingReturnDate =? WHERE lendingId= ?";
+
+		try {
+			Connection con = connectionSQLite.getConnection();
+
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setDate(1, Date.valueOf(dateReturnDate));
+			ps.setInt(2, lending.getLendingId());
+			
+			ps.executeUpdate();
+
+			ps.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		
+	}
 }

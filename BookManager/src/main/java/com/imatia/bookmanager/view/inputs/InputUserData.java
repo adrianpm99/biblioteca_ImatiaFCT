@@ -72,7 +72,7 @@ public class InputUserData {
 			}
 			break;
 		case "bookPublicationYear":
-			pattern = Pattern.compile("^[012]{1}+[\\d]{3}$|^[\\d]{2}$");
+			pattern = Pattern.compile("^[012]{1}+[\\d]{3}$");
 			matcher = pattern.matcher(data);
 			if (matcher.find()) {
 				return data;
