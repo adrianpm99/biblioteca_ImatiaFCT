@@ -25,7 +25,7 @@ import com.imatia.bookmanager.view.ui.StartMenuUI;
 					
 				case 1:
 				//option to insert lendings
-				//AddLendingMenu.showAddLendingMenu();
+				AddLendingMenu.showAddLendingMenu();
 					break;
 					
 				case 2: 

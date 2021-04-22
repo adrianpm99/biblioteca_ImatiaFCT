@@ -18,7 +18,7 @@ public class LendingDao {
 
 	public void addLending(Lending lending, ArrayList<Integer> listIdCopy) {
 		String queryGetCopy = "SELECT * FROM copy WHERE copyId = ?";
-		String queryLending = "INSERT INTO lending (userId, lendingDate, lendingDeadLine) " + "VALUES (?,?,?,?) ";
+		String queryLending = "INSERT INTO lending (userId, lendingDate, lendingDeadLine,lendingReturnDate) " + "VALUES (?,?,?,?) ";
 		String queryCopyLending = "INSERT INTO copyLending (copyId, lendingId) " + "Values(?,?) ";
 		String updateAvailable = "UPDATE copy SET copyAvailable = ? WHERE id = ?";
 
@@ -44,6 +44,8 @@ public class LendingDao {
 				Date deadLineDate = (Date) Date
 						.from(lending.getLendingDeadLine().atStartOfDay(ZoneId.systemDefault()).toInstant());
 				ps.setDate(3, deadLineDate);
+				
+				ps.setDate(4,null);
 
 				ps.execute();
 
