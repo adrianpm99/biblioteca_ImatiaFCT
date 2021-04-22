@@ -9,8 +9,8 @@ import com.imatia.bookmanager.view.ui.StartMenuUI;
 
 
 
-	public class LendingDetailsMenu {
-		public static void showLendingDetailsOptions() {
+	public class LendingsMenu {
+		public static void showLendingsOptions() {
 
 			int option;
 

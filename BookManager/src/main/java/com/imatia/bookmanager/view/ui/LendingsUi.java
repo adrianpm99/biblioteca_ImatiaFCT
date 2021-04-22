@@ -1,6 +1,6 @@
 package com.imatia.bookmanager.view.ui;
 
-import com.imatia.bookmanager.view.menus.LendingDetailsMenu;
+import com.imatia.bookmanager.view.menus.LendingsMenu;
 
 /**
  * Lendings UI
@@ -18,7 +18,7 @@ public class LendingsUi
 				"------------------------------------------------------------------------------------------------------");
 		
 
-		 LendingDetailsMenu.showLendingDetailsOptions();
+		 LendingsMenu.showLendingsOptions();
 		 
 	}//showLendingsUi()
 }//class LendingsUi
