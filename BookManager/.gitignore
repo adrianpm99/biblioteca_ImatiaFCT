@@ -1,5 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /target/
 =======
 /target/
+>>>>>>> branch 'Development' of https://github.com/adrianpm99/biblioteca_ImatiaFCT
+=======
+/target/
+/database.db
+database.db
+*.db
 >>>>>>> branch 'Development' of https://github.com/adrianpm99/biblioteca_ImatiaFCT
