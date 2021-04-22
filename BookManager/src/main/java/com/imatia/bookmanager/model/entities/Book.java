@@ -2,6 +2,13 @@ package com.imatia.bookmanager.model.entities;
 
 import java.time.Year;
 
+
+/**
+ * 
+ * class that defines the book object with its attributes,
+ * constructors and getter and setter methods
+ *
+ */
 public class Book {
 	
 	
