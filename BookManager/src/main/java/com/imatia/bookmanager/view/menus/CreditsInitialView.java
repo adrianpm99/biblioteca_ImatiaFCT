@@ -1,4 +1,4 @@
-package com.imatia.bookmanager.view.ui;
+package com.imatia.bookmanager.view.menus;
 
 /**
  * Little credits view to show at the beginning of the app,

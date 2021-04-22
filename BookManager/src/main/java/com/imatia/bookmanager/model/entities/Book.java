@@ -2,13 +2,6 @@ package com.imatia.bookmanager.model.entities;
 
 import java.time.Year;
 
-
-/**
- * 
- * class that defines the book object with its attributes,
- * constructors and getter and setter methods
- *
- */
 public class Book {
 	
 	
@@ -16,7 +9,7 @@ public class Book {
 	String title;
 	String description;
 	String author;
-	int pageNumber;
+	int numberOfSheets;
 	String ISBN;
 	String editorial;
 	int edition;
@@ -27,35 +20,20 @@ public class Book {
 		
 	}
 	
-	public Book(int id, String title, String description, String author, int pageNumber, String ISBN,
+	public Book(int id, String title, String description, String author, int numberOfSheets, String ISBN,
 			String editorial, int edition, Year bookPublicationYear) {
 		
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.author = author;	
-		this.pageNumber = pageNumber;
+		this.numberOfSheets = numberOfSheets;
 		this.ISBN = ISBN;
 		this.editorial = editorial;
 		this.edition = edition;
 		this.bookPublicationYear = bookPublicationYear;
 		
 	}
-	
-	
-	public Book(String title, String description, String author, int pageNumber, String iSBN, String editorial,
-			int edition, Year bookPublicationYear) {
-		super();
-		this.title = title;
-		this.description = description;
-		this.author = author;
-		this.pageNumber = pageNumber;
-		ISBN = iSBN;
-		this.editorial = editorial;
-		this.edition = edition;
-		this.bookPublicationYear = bookPublicationYear;
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -81,11 +59,11 @@ public class Book {
 		this.author = author;
 	}
 	
-	public int getPageNumber() {
-		return pageNumber;
+	public int getNumberOfSheets() {
+		return numberOfSheets;
 	}
-	public void setPageNumber(int pageNumber) {
-		this.pageNumber = pageNumber;
+	public void setNumberOfSheets(int numberOfSheets) {
+		this.numberOfSheets = numberOfSheets;
 	}
 	public String getISBN() {
 		return ISBN;
@@ -110,6 +88,16 @@ public class Book {
 	}
 	public void setBookPublicationYear(Year bookPublicationYear) {
 		this.bookPublicationYear = bookPublicationYear;
+	}
+	
+
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", title=" + title + ", description=" + description + ", author=" + author
+				 + ", numberOfSheets=" + numberOfSheets + ", ISBN=" + ISBN + ", editorial="
+				+ editorial + ", edition=" + edition + ", bookPublicationYear=" + bookPublicationYear 
+
+				+ "]";
 	}
 
 }
