@@ -10,7 +10,7 @@ public class Copy {
 	
 	int id;
 	int idBook;
-	boolean avaiable;
+	boolean avaliable;
 	
 	public Copy() {
 		super();
@@ -21,7 +21,7 @@ public class Copy {
 		this.id = id;
 		this.idBook = idBook;
 		
-		this.avaiable = avaiable;
+		this.avaliable = avaiable;
 	}
 	
 	public int getId() {
@@ -41,12 +41,12 @@ public class Copy {
 	}
 
 	
-	public boolean isAvaiable() {
-		return avaiable;
+	public boolean isAvaliable() {
+		return avaliable;
 	}
 
-	public void setAvaiable(boolean avaiable) {
-		this.avaiable = avaiable;
+	public void setAvaliable(boolean avaiable) {
+		this.avaliable = avaiable;
 	}
 
 	

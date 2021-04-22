@@ -381,7 +381,7 @@ public class BookDao {
 	  
 	  }else {
 		
-		  String query = "DELETE FROM Book  WHERE id = ?";
+		  String query = "DELETE FROM Book WHERE id = ?";
 
 		try {
 
@@ -391,7 +391,7 @@ public class BookDao {
 
 			ps.setInt(1, id);
 			ps.execute();
-			 System.out.println("libro con el id: "+ id + " borrado");
+			System.out.println("libro con el id: "+ id + " borrado");
 			ps.close();
 
 		} catch (ClassNotFoundException e) {
