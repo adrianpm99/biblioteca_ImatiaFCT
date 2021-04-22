@@ -9,30 +9,30 @@ public class Book {
 	String title;
 	String description;
 	String author;
+	String hashtag;
 	int numberOfSheets;
 	String ISBN;
 	String editorial;
 	int edition;
-	Year bookPublicationYear;
-
+	Year bookPublication;
+	String genre;
 	
-	public Book() {
-		
-	}
 	
-	public Book(int id, String title, String description, String author, int numberOfSheets, String ISBN,
-			String editorial, int edition, Year bookPublicationYear) {
-		
+	
+	public Book(int id, String title, String description, String author, String hashtag, int numberOfSheets, String ISBN,
+			String editorial, int edition, Year bookPublication, String genre) {
+		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
-		this.author = author;	
+		this.author = author;
+		this.hashtag = hashtag;
 		this.numberOfSheets = numberOfSheets;
 		this.ISBN = ISBN;
 		this.editorial = editorial;
 		this.edition = edition;
-		this.bookPublicationYear = bookPublicationYear;
-		
+		this.bookPublication = bookPublication;
+		this.genre = genre;
 	}
 	public int getId() {
 		return id;
@@ -58,7 +58,12 @@ public class Book {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	
+	public String getHashtag() {
+		return hashtag;
+	}
+	public void setHashtag(String hashtag) {
+		this.hashtag = hashtag;
+	}
 	public int getNumberOfSheets() {
 		return numberOfSheets;
 	}
@@ -69,7 +74,7 @@ public class Book {
 		return ISBN;
 	}
 	public void setISBN(String ISBN) {
-		this.ISBN = ISBN;
+		ISBN = ISBN;
 	}
 	public String getEditorial() {
 		return editorial;
@@ -83,20 +88,25 @@ public class Book {
 	public void setEdition(int edition) {
 		this.edition = edition;
 	}
-	public Year getBookPublicationYear() {
-		return bookPublicationYear;
+	public Year getBookPublication() {
+		return bookPublication;
 	}
-	public void setBookPublicationYear(Year bookPublicationYear) {
-		this.bookPublicationYear = bookPublicationYear;
+	public void setBookPublication(Year bookPublication) {
+		this.bookPublication = bookPublication;
+	}
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
 	
 
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", title=" + title + ", description=" + description + ", author=" + author
-				 + ", numberOfSheets=" + numberOfSheets + ", ISBN=" + ISBN + ", editorial="
-				+ editorial + ", edition=" + edition + ", bookPublicationYear=" + bookPublicationYear 
-
+				+ ", hashtag=" + hashtag + ", numberOfSheets=" + numberOfSheets + ", ISBN=" + ISBN + ", editorial="
+				+ editorial + ", edition=" + edition + ", bookPublication=" + bookPublication + ", genre=" + genre
 				+ "]";
 	}
 
