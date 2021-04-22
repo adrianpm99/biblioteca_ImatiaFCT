@@ -2,6 +2,13 @@ package com.imatia.bookmanager.model.entities;
 
 import java.time.Year;
 
+
+/**
+ * 
+ * class that defines the book object with its attributes,
+ * constructors and getter and setter methods
+ *
+ */
 public class Book {
 	
 	
@@ -9,31 +16,46 @@ public class Book {
 	String title;
 	String description;
 	String author;
-	String hashtag;
-	int numberOfSheets;
+	int pageNumber;
 	String ISBN;
 	String editorial;
 	int edition;
-	Year bookPublication;
-	String genre;
+	Year bookPublicationYear;
+
 	
+	public Book() {
+		
+	}
 	
-	
-	public Book(int id, String title, String description, String author, String hashtag, int numberOfSheets, String ISBN,
-			String editorial, int edition, Year bookPublication, String genre) {
-		super();
+	public Book(int id, String title, String description, String author, int pageNumber, String ISBN,
+			String editorial, int edition, Year bookPublicationYear) {
+		
 		this.id = id;
 		this.title = title;
 		this.description = description;
-		this.author = author;
-		this.hashtag = hashtag;
-		this.numberOfSheets = numberOfSheets;
+		this.author = author;	
+		this.pageNumber = pageNumber;
 		this.ISBN = ISBN;
 		this.editorial = editorial;
 		this.edition = edition;
-		this.bookPublication = bookPublication;
-		this.genre = genre;
+		this.bookPublicationYear = bookPublicationYear;
+		
 	}
+	
+	
+	public Book(String title, String description, String author, int pageNumber, String iSBN, String editorial,
+			int edition, Year bookPublicationYear) {
+		super();
+		this.title = title;
+		this.description = description;
+		this.author = author;
+		this.pageNumber = pageNumber;
+		ISBN = iSBN;
+		this.editorial = editorial;
+		this.edition = edition;
+		this.bookPublicationYear = bookPublicationYear;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -58,23 +80,18 @@ public class Book {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	public String getHashtag() {
-		return hashtag;
+	
+	public int getPageNumber() {
+		return pageNumber;
 	}
-	public void setHashtag(String hashtag) {
-		this.hashtag = hashtag;
-	}
-	public int getNumberOfSheets() {
-		return numberOfSheets;
-	}
-	public void setNumberOfSheets(int numberOfSheets) {
-		this.numberOfSheets = numberOfSheets;
+	public void setPageNumber(int pageNumber) {
+		this.pageNumber = pageNumber;
 	}
 	public String getISBN() {
 		return ISBN;
 	}
 	public void setISBN(String ISBN) {
-		ISBN = ISBN;
+		this.ISBN = ISBN;
 	}
 	public String getEditorial() {
 		return editorial;
@@ -88,26 +105,11 @@ public class Book {
 	public void setEdition(int edition) {
 		this.edition = edition;
 	}
-	public Year getBookPublication() {
-		return bookPublication;
+	public Year getBookPublicationYear() {
+		return bookPublicationYear;
 	}
-	public void setBookPublication(Year bookPublication) {
-		this.bookPublication = bookPublication;
-	}
-	public String getGenre() {
-		return genre;
-	}
-	public void setGenre(String genre) {
-		this.genre = genre;
-	}
-	
-
-	@Override
-	public String toString() {
-		return "Book [id=" + id + ", title=" + title + ", description=" + description + ", author=" + author
-				+ ", hashtag=" + hashtag + ", numberOfSheets=" + numberOfSheets + ", ISBN=" + ISBN + ", editorial="
-				+ editorial + ", edition=" + edition + ", bookPublication=" + bookPublication + ", genre=" + genre
-				+ "]";
+	public void setBookPublicationYear(Year bookPublicationYear) {
+		this.bookPublicationYear = bookPublicationYear;
 	}
 
 }

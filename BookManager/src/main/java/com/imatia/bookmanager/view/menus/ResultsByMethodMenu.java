@@ -1,0 +1,36 @@
+package com.imatia.bookmanager.view.menus;
+
+import com.imatia.bookmanager.controller.BookController;
+import com.imatia.bookmanager.model.entities.Book;
+import com.imatia.bookmanager.view.inputs.InputUserData;
+import com.imatia.bookmanager.view.results.BookDetails;
+import com.imatia.bookmanager.view.ui.SearchesUi;
+
+
+public class ResultsByMethodMenu {
+	
+	public static void showResultsByMethodMenuOptions() {
+		
+		int bookId;
+		int option;
+		do {
+			option = Integer.parseInt(InputUserData.checkUserInput("option"));
+
+			switch (option) {
+
+			case 0:
+				SearchesUi.showSearchesUi();
+				break;
+			case 1:
+				System.out.print("Introduzca el id del libro: ");
+				bookId = Integer.parseInt(InputUserData.checkUserInput("id"));
+				Book book = new BookController().getBookById(bookId);
+				BookDetails.showBookDetails(book);
+				break;
+			}
+			
+		}while (option != 0 && option != 1);
+	}
+	
+	
+}
