@@ -20,7 +20,7 @@ public class LendingDao {
 		String queryGetCopy = "SELECT * FROM copy WHERE copyId = ?";
 		String queryLending = "INSERT INTO lending (userId, lendingDate, lendingDeadLine,lendingReturnDate) " + "VALUES (?,?,?,?) ";
 		String queryCopyLending = "INSERT INTO copyLending (copyId, lendingId) " + "Values(?,?) ";
-		String updateAvailable = "UPDATE copy SET copyAvailable = ? WHERE id = ?";
+		String updateAvailable = "UPDATE copy SET copyAvaliable = ? WHERE copyId = ?";
 
 		try {
 			Connection con = connectionSQLite.getConnection();
@@ -38,14 +38,20 @@ public class LendingDao {
 
 				PreparedStatement ps = con.prepareStatement(queryLending);
 				ps.setInt(1, lending.getUserId());
-				Date lendingDate = (Date) Date
-						.from(lending.getLendingDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+				//esto daba error  (java.lang.ClassCastException: java.util.Date cannot be cast to java.sql.Date)
+			
+			//	Date lendingDate = (Date) Date
+			// 			.from(lending.getLendingDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+				Date lendingDate = Date.valueOf(lending.getLendingDate());
 				ps.setDate(2, lendingDate);
-				Date deadLineDate = (Date) Date
-						.from(lending.getLendingDeadLine().atStartOfDay(ZoneId.systemDefault()).toInstant());
-				ps.setDate(3, deadLineDate);
+			//	Date deadLineDate = (Date) Date
+			//			.from(lending.getLendingDeadLine().atStartOfDay(ZoneId.systemDefault()).toInstant());
+				Date lendingDeadLine = Date.valueOf(lending.getLendingDeadLine());
+				ps.setDate(3, lendingDeadLine);
 				
-				ps.setDate(4,null);
+			
+				ps.setDate(4,lendingDeadLine);
 
 				ps.execute();
 
@@ -53,6 +59,10 @@ public class LendingDao {
 
 				PreparedStatement ps2 = con.prepareStatement(queryCopyLending);
 				ps2.setInt(1, copy.getCopyId());
+				
+				//aquí hay que averiguar el codigo autogenerado para lendingId 
+				//cuando se hizo la inserción en la tabla lending
+				// ahora está poniendo siempre 1
 				ps2.setInt(2, lending.getLendingId());
 
 				ps2.execute();
@@ -72,13 +82,20 @@ public class LendingDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 	}
 
 	public void deleteLending(Lending lending, Copy copy) {
 		String query = "DELETE FROM copyLending WHERE lendingId = ?";
-		String updateAvailable = "UPDATE copy SET copyAvailable = ? WHERE id = ?";
+		String updateAvailable = "UPDATE copy SET copyAvailable = ? WHERE copyId = ?";
 
 		try {
 			Connection con = connectionSQLite.getConnection();
@@ -87,18 +104,26 @@ public class LendingDao {
 
 			ps.setInt(1, lending.getLendingId());
 			ps.execute();
+			ps.close();
 			PreparedStatement ps2 = con.prepareStatement(updateAvailable);
 			ps2.setBoolean(1, true);
 			ps2.setInt(2, copy.getCopyId());
 
 			ps2.execute();
-
+			ps2.close();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
