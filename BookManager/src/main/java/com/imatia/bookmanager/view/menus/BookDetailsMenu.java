@@ -22,13 +22,11 @@ public class BookDetailsMenu
 				SearchesUi.showSearchesUi();
 				break;
 			case 1: 
-				//Not implemented yet
+				EditBookMenu.showEditBookMenu(id);
+				break;
 			case 2:
-
 				DeleteBookMenu.showDeleteBookMenu(id);
-
-
-
+				break;
 			}
 
 		} while (option != 0 && option != 1 && option != 2);
