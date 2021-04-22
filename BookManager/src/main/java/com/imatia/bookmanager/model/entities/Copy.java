@@ -2,54 +2,49 @@ package com.imatia.bookmanager.model.entities;
 
 /**
  * 
- * class that defines the Copy object with its attributes, 
- * constructors and getter and setter methods
+ * class that defines the Copy object with its attributes, constructors and
+ * getter and setter methods
  *
  */
 public class Copy {
-	
-	int id;
-	int idBook;
-	boolean avaiable;
-	
+
+	int copyId;
+	int bookId;
+	boolean copyAvaiable;
+
 	public Copy() {
 		super();
 	}
 
-	public Copy(int id, int idBook, boolean avaiable) {
+	public Copy(int copyId, int bookId, boolean copyAvaiable) {
 		super();
-		this.id = id;
-		this.idBook = idBook;
-		
-		this.avaiable = avaiable;
-	}
-	
-	public int getId() {
-		return id;
+		this.copyId = copyId;
+		this.bookId = bookId;
+		this.copyAvaiable = copyAvaiable;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public int getCopyId() {
+		return copyId;
 	}
 
-	public int getIdBook() {
-		return idBook;
+	public void setCopyId(int copyId) {
+		this.copyId = copyId;
 	}
 
-	public void setIdBook(int idBook) {
-		this.idBook = idBook;
+	public int getBookId() {
+		return bookId;
 	}
 
-	
-	public boolean isAvaiable() {
-		return avaiable;
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
 	}
 
-	public void setAvaiable(boolean avaiable) {
-		this.avaiable = avaiable;
+	public boolean isCopyAvaiable() {
+		return copyAvaiable;
 	}
 
-	
-	
+	public void setCopyAvaiable(boolean copyAvaiable) {
+		this.copyAvaiable = copyAvaiable;
+	}
 
 }

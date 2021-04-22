@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.ArrayList;
@@ -198,7 +199,7 @@ public class BookDao {
 		try {
 			con = connectionSQLite.getConnection();
 
-			PreparedStatement ps = con.prepareStatement(query);
+			PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
 			ps.setString(1, book.getTitle());
 			ps.setString(2, book.getDescription());
@@ -210,6 +211,10 @@ public class BookDao {
 			ps.setString(8, book.getBookPublicationYear().toString());
 
 			ps.execute();
+			ResultSet rs = ps.getGeneratedKeys();
+			rs.next();
+			int id = rs.getInt(1);
+			book.setId(id);
 
 			ps.close();
 			
@@ -326,8 +331,8 @@ public class BookDao {
 			// item with id of selected book
 			boolean lendingExist = false;
 		
-			String verify = "SELECT 1 FROM copy c, copyLending cl WHERE c.idBook = ?"
-					+ "AND c.id = cl.copyId";
+			String verify = "SELECT 1 FROM copy c, copyLending cl WHERE c.bookId = ?"
+					+ "AND c.copyId = cl.copyId";
 			
 			try {
 
@@ -381,7 +386,7 @@ public class BookDao {
 	  
 	  }else {
 		
-		  String query = "DELETE FROM Book  WHERE id = ?";
+		  String query = "DELETE FROM Book WHERE id = ?";
 
 		try {
 
@@ -391,7 +396,7 @@ public class BookDao {
 
 			ps.setInt(1, id);
 			ps.execute();
-			 System.out.println("libro con el id: "+ id + " borrado");
+			System.out.println("libro con el id: "+ id + " borrado");
 			ps.close();
 
 		} catch (ClassNotFoundException e) {

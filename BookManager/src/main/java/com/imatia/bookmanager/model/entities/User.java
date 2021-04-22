@@ -7,50 +7,53 @@ package com.imatia.bookmanager.model.entities;
  * constructors and getter and setter methods
  *
  */
-public class User {
 
 	
-	int id;
-	String name;
-	String surname;
-	
-	public User() {
+	public class User {
+
+		
+		int userId;
+		String userName;
+		String userSurname;
+		
+		public User() {
+			
+		}
+
+		public User(int userId, String userName, String userSurname) {
+			super();
+			this.userId = userId;
+			this.userName = userName;
+			this.userSurname = userSurname;
+		}
+
+		public int getUserId() {
+			return userId;
+		}
+
+		public void setUserId(int userId) {
+			this.userId = userId;
+		}
+
+		public String getUserName() {
+			return userName;
+		}
+
+		public void setUserName(String userName) {
+			this.userName = userName;
+		}
+
+		public String getUserSurname() {
+			return userSurname;
+		}
+
+		public void setUserSurname(String userSurname) {
+			this.userSurname = userSurname;
+		}
+
+		
+		
+
+		
 		
 	}
-
-	public User(int id, String name, String surname) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.surname = surname;
-	}
-	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	
-
-	
-	
-}

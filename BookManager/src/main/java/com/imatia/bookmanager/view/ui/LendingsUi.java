@@ -1,5 +1,7 @@
 package com.imatia.bookmanager.view.ui;
 
+import com.imatia.bookmanager.view.menus.LendingsMenu;
+
 /**
  * Lendings UI
  */
@@ -15,7 +17,8 @@ public class LendingsUi
 				"|| 1- Añadir prestamo || 2- Modificar prestamo || 3- Borrar prestamo || 0- Volver al menu principal ||\r\n" + 
 				"------------------------------------------------------------------------------------------------------");
 		
-		//Laura, te dejo la llamada al metodo de las opciones de menu. borra esto y descomenta lo de abajo
-		//LendingsMenu.showLendingsMenuOptions();
+
+		 LendingsMenu.showLendingsOptions();
+		 
 	}//showLendingsUi()
 }//class LendingsUi
