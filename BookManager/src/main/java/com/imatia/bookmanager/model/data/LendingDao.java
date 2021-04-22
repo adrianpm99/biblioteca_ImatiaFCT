@@ -14,13 +14,13 @@ public class LendingDao {
 	ConnectionSQLite connectionSQLite = new ConnectionSQLite();
 
 	public void addLending(Lending lending, Copy copy) {
-		String queryLending = "INSERT INTO lending (idUser, lendingDate, lendingDeadLine) " + "VALUES (?,?,?,?) ";
+		String queryLending = "INSERT INTO lending (userId, lendingDate, lendingDeadLine) " + "VALUES (?,?,?,?) ";
 		String queryCopyLending = "INSERT INTO copyLending (copyId, lendingId) " + "Values(?,?) ";
 		try {
 			Connection con = connectionSQLite.getConnection();
 
 			PreparedStatement ps = con.prepareStatement(queryLending);
-			ps.setInt(1, lending.getIdUser());
+			ps.setInt(1, lending.getUserId());
 			Date lendingDate = (Date) Date
 					.from(lending.getLendingDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
 			ps.setDate(2, lendingDate);
@@ -33,8 +33,8 @@ public class LendingDao {
 			ps.close();
 
 			PreparedStatement ps2 = con.prepareStatement(queryCopyLending);
-			ps2.setInt(1, copy.getId());
-			ps2.setInt(2, lending.getId());
+			ps2.setInt(1, copy.getCopyId());
+			ps2.setInt(2, lending.getLendingId());
 
 			ps2.execute();
 			ps2.close();

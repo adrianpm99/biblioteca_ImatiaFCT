@@ -12,11 +12,11 @@ public class Lending {
 	
 	
 
-	int id;
-	int idCopy;
-	int idUser;
+	int lendingId;
+	int userId;
 	LocalDate lendingDate;
 	LocalDate lendingDeadLine;
+	LocalDate lendingReturnDate;
 	
 		
 	public Lending() {
@@ -24,43 +24,34 @@ public class Lending {
 	}
 
 
-	public Lending(int id, int idCopy, int idUser, LocalDate lendingDate, LocalDate lendingDeadLine) {
+	public Lending(int lendingId, int userId, LocalDate lendingDate, LocalDate lendingDeadLine,
+			LocalDate lendingReturnDate) {
 		super();
-		this.id = id;
-		this.idCopy = idCopy;
-		this.idUser = idUser;
+		this.lendingId = lendingId;
+		this.userId = userId;
 		this.lendingDate = lendingDate;
 		this.lendingDeadLine = lendingDeadLine;
-	}
-	
-	
-	public int getId() {
-		return id;
+		this.lendingReturnDate = lendingReturnDate;
 	}
 
 
-	public void setId(int id) {
-		this.id = id;
+	public int getLendingId() {
+		return lendingId;
 	}
 
 
-	public int getIdCopy() {
-		return idCopy;
+	public void setLendingId(int lendingId) {
+		this.lendingId = lendingId;
 	}
 
 
-	public void setIdCopy(int idCopy) {
-		this.idCopy = idCopy;
+	public int getUserId() {
+		return userId;
 	}
 
 
-	public int getIdUser() {
-		return idUser;
-	}
-
-
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 
@@ -84,6 +75,15 @@ public class Lending {
 	}
 
 
-	
+	public LocalDate getLendingReturnDate() {
+		return lendingReturnDate;
+	}
 
+
+	public void setLendingReturnDate(LocalDate lendingReturnDate) {
+		this.lendingReturnDate = lendingReturnDate;
+	}
+
+
+	
 }

@@ -8,47 +8,61 @@ package com.imatia.bookmanager.model.entities;
  */
 public class Copy {
 	
-	int id;
-	int idBook;
-	boolean avaiable;
+	int copyId;
+	int bookId;
+	boolean copyAvaiable;
+	
+	
 	
 	public Copy() {
 		super();
 	}
 
-	public Copy(int id, int idBook, boolean avaiable) {
+
+
+	public Copy(int copyId, int bookId, boolean copyAvaiable) {
 		super();
-		this.id = id;
-		this.idBook = idBook;
-		
-		this.avaiable = avaiable;
+		this.copyId = copyId;
+		this.bookId = bookId;
+		this.copyAvaiable = copyAvaiable;
+	}
+
+
+
+	public int getCopyId() {
+		return copyId;
+	}
+
+
+
+	public void setCopyId(int copyId) {
+		this.copyId = copyId;
+	}
+
+
+
+	public int getBookId() {
+		return bookId;
+	}
+
+
+
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
+	}
+
+
+
+	public boolean isCopyAvaiable() {
+		return copyAvaiable;
+	}
+
+
+
+	public void setCopyAvaiable(boolean copyAvaiable) {
+		this.copyAvaiable = copyAvaiable;
 	}
 	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getIdBook() {
-		return idBook;
-	}
-
-	public void setIdBook(int idBook) {
-		this.idBook = idBook;
-	}
-
-	
-	public boolean isAvaiable() {
-		return avaiable;
-	}
-
-	public void setAvaiable(boolean avaiable) {
-		this.avaiable = avaiable;
-	}
-
 	
 	
 
