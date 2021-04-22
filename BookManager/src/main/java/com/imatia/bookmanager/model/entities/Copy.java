@@ -1,5 +1,11 @@
 package com.imatia.bookmanager.model.entities;
 
+/**
+ * 
+ * class that defines the Copy object with its attributes, 
+ * constructors and getter and setter methods
+ *
+ */
 public class Copy {
 	
 	int id;
