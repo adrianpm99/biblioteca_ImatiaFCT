@@ -4,6 +4,7 @@ package com.imatia.bookmanager.view.menus;
 	import com.imatia.bookmanager.view.ui.EditBookUi;
 import com.imatia.bookmanager.view.ui.LendingsUi;
 import com.imatia.bookmanager.view.ui.SearchesUi;
+import com.imatia.bookmanager.view.ui.StartMenuUI;
 
 
 
@@ -19,7 +20,7 @@ import com.imatia.bookmanager.view.ui.SearchesUi;
 				switch (option)
 				{
 				case 0:
-					LendingsUi.showLendingsUi();
+					StartMenuUI.showStartMenuUi();
 					break;
 					
 				case 1:

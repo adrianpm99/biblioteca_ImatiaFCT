@@ -2,6 +2,7 @@ package com.imatia.bookmanager.view.menus;
 
 import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.ui.AddBookUi;
+import com.imatia.bookmanager.view.ui.LendingsUi;
 import com.imatia.bookmanager.view.ui.SearchesUi;
 
 public class StartMenu {
@@ -21,7 +22,8 @@ public class StartMenu {
 				SearchesUi.showSearchesUi();
 				break;
 			case 2:
-				// Not implemented yet
+				LendingsUi.showLendingsUi();
+				break;
 			case 3:
 				AddBookUi.showAddBookUi();
 			}
