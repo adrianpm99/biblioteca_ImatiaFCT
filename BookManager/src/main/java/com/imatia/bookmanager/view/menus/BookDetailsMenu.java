@@ -23,14 +23,21 @@ public class BookDetailsMenu
 				SearchesUi.showSearchesUi();
 				break;
 			case 1: 
+<<<<<<< HEAD
 				EditBookUi.showEditBookUi();
+=======
+				EditBookMenu.showEditBookMenu(id);
+>>>>>>> branch 'Development' of https://github.com/adrianpm99/biblioteca_ImatiaFCT
 				break;
 			case 2:
 				DeleteBookMenu.showDeleteBookMenu(id);
 				break;
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> branch 'Development' of https://github.com/adrianpm99/biblioteca_ImatiaFCT
 			}
 
 		} while (option != 0 && option != 1 && option != 2);
