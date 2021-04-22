@@ -7,6 +7,11 @@ import java.sql.SQLException;
 
 import com.imatia.bookmanager.model.entities.Copy;
 
+/**
+ * class to map the table copy to object copy
+ * @author Grupo2FCTImatia
+ *
+ */
 public class CopyDao {
 
 	ConnectionSQLite connectionSQLite = new ConnectionSQLite();
@@ -100,7 +105,7 @@ public class CopyDao {
 	 */
 	public void deleteCopy(int id) {
 		
-		String query ="DELETE FROM book WHERE id = ?";
+		String query ="DELETE FROM copy WHERE id = ?";
 		
 		try {
 			Connection con = connectionSQLite.getConnection();
