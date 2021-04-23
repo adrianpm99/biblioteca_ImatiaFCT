@@ -9,6 +9,7 @@ import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.imatia.bookmanager.controller.CopyController;
 import com.imatia.bookmanager.model.entities.Book;
 
 /**
@@ -379,7 +380,7 @@ public class BookDao {
 	 */
 	public void deleteBook (int id) {
 		
-	
+		
 	  if (existBookLending(id)) {
 		
 		  System.out.println("Existen ejemplares prestados, no se puede borrar el libro");
@@ -387,6 +388,10 @@ public class BookDao {
 	  }else {
 		
 		  String query = "DELETE FROM Book WHERE id = ?";
+		  
+		  CopyController cc = new CopyController();
+		  
+		  cc.deleteCopyByIdBook(id);
 
 		try {
 

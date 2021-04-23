@@ -41,5 +41,9 @@ public class CopyController {
 		
 		return copy;
 	}
+	
+	public void deleteCopyByIdBook(int id) {
+		cd.deleteCopybyIdBook(id);
+	}
 
 }
