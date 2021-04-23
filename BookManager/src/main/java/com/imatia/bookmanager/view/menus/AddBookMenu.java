@@ -32,33 +32,11 @@ public class AddBookMenu {
 		String copyNumber;
 
 		// get the data from user
-<<<<<<< HEAD
-		System.out.print("Titulo: ");
-		title = InputUserData.checkUserInput("title");
-		System.out.print("Descripcion: ");
-		description = InputUserData.checkUserInput("description");
-		System.out.print("Autor: ");
-		author = InputUserData.checkUserInput("author");
-		do {
-			System.out.print("Páginas del libro: ");
-		}while(InputUserData.checkUserInput("pageNumber").equals(""));
-		
-		System.out.print("ISBN: ");
-		ISBN = InputUserData.checkUserInput("ISBN");
-		System.out.print("Editorial: ");
-		editorial = InputUserData.checkUserInput("editorial");
-		System.out.print("Edicion: ");
-		edition = Integer.parseInt(InputUserData.checkUserInput("edition"));
-		System.out.print("Año de publicación: ");
-		bookPublicationYear = Year.parse(InputUserData.checkUserInput("bookPublicationYear"));
-		System.out.print("Introduzca el numero de ejemplares del libro: ");
-		copyNumber = Integer.parseInt(InputUserData.checkUserInput("copyNumber"));
-=======
+
 		do {
 			System.out.print("Titulo: ");
 			title = InputUserData.checkUserInput("title");
 		} while (title.equals(""));
->>>>>>> branch 'Development' of https://github.com/adrianpm99/biblioteca_ImatiaFCT
 
 		do {
 			System.out.print("Descripcion: ");
