@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
@@ -244,11 +243,12 @@ public class BookDao {
 			ps.setString(5, book.getISBN());
 			ps.setString(6, book.getEditorial());
 			ps.setInt(7, book.getEdition());
-			String bookPublicationYear = new SimpleDateFormat("yyyy").format(book.getBookPublicationYear());
-			ps.setString(8, bookPublicationYear);
+			ps.setString(8, book.getBookPublicationYear().toString());
 			ps.setInt(9, book.getId());
 			
 			ps.execute();
+			
+			System.out.println("El libro con se ha modificado correctamente");
 			
 			ps.close();
 
