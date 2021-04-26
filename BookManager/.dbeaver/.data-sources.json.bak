@@ -1,7 +1,11 @@
 {
 	"folders": {},
 	"connections": {
+<<<<<<< HEAD
 		"sqlite_jdbc-178fa28d047-3479ac778215910b": {
+=======
+		"sqlite_jdbc-178f96e180e-2d5c4415167b2af": {
+>>>>>>> branch 'Development' of https://github.com/adrianpm99/biblioteca_ImatiaFCT
 			"provider": "generic",
 			"driver": "sqlite_jdbc",
 			"name": "database.db",

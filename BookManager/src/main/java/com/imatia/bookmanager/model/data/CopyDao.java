@@ -135,4 +135,44 @@ public class CopyDao {
 		}
 		
 	}
+	
+	/**
+	 * method to delete a copy of book by idBook
+	 * @param id
+	 */
+	public void deleteCopybyIdBook(int id) {
+		
+		String query ="DELETE FROM copy WHERE bookId = ?";
+		
+		try {
+			Connection con = connectionSQLite.getConnection();
+			
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setInt(1, id);
+			ps.execute();
+			
+			System.out.println("Ejemplares del libro con id "+ id +" borrados");
+			
+			ps.close();
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+	}
+	
+	
 }

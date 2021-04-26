@@ -53,7 +53,7 @@ public class AddBookMenu {
 			System.out.print("Páginas del libro: ");
 			pageNumber = InputUserData.checkUserInput("pageNumber");
 		} while (pageNumber.equals(""));
-		
+
 		do {
 			System.out.print("ISBN: ");
 			ISBN = InputUserData.checkUserInput("ISBN");
@@ -84,13 +84,15 @@ public class AddBookMenu {
 			copyNumber = InputUserData.checkUserInput("copyNumber");
 		} while (String.valueOf(copyNumber).equals(""));
 
-		Book book = new Book(title, description, author, Integer.parseInt(pageNumber), ISBN, editorial, Integer.parseInt(edition), Year.parse(bookPublicationYear));
+		Book book = new Book(title, description, author, Integer.parseInt(pageNumber), ISBN, editorial,
+				Integer.parseInt(edition), Year.parse(bookPublicationYear));
 
 		// add the book to the database
 		bc.addBook(book);
 
 		// add the copys of book to the database
 		for (int i = 0; i < Integer.parseInt(copyNumber); i++) {
+
 			Copy copy = new Copy();
 			copy.setBookId(book.getId());
 			copy.setCopyAvaiable(true);
