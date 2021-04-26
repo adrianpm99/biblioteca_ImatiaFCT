@@ -15,15 +15,10 @@ public class DeleteLendingMenu
 		
 		LendingController lc = new LendingController();
 		
-		System.out.println("Introduzca el Id del ejemplar del prestamo para borrar");
-		id= Integer.parseInt(InputUserData.checkUserInput("id"));
+		System.out.println("Introduzca el Id del ejemplar del prestamo para borrar:");
+		id= Integer.parseInt(InputUserData.checkUserInput("id", "Valor de Id incorrecto. Pruebe de nuevo (entero positivo)."));
 		
 		boolean confirmationDelete= UtilityInputs.getConfirmation("borrar", "ejemplar del prestamo");
 		
-		// get the confirmation of the delete
-		//AHORA LLAMARÍA AL MÉTODO DEL LENDINGCONTROLLER PARA BORRAR EL EJEMPLAR
-		
-		//if (confirmationDelete == true) lc.METODO_PARA_BORRAR_EJEMPLAR;
-		//else SearchesUi.showSearchesUi();
 	}//showDeleteLendingMenu()
 }//class DeleteLendingMenu

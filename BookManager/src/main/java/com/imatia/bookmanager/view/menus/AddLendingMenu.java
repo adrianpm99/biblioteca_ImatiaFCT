@@ -32,10 +32,10 @@ public class AddLendingMenu {
 			idcopies.add(Integer.parseInt(idCopy));
 		}
 		//
-		System.out.print("\rId usuario: ");
+		System.out.print("\rId usuario: (entero positivo)");
 		
 		// it should be verified that the user exists in the user table
-		idUser = InputUserData.checkUserInput("id");
+		idUser = InputUserData.checkUserInput("id", "Valor de Id incorrecto. Pruebe de nuevo (entero positivo).");
 		
 		LocalDate dateNow = LocalDate.now();
 		DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/LL/yyyy");
@@ -50,8 +50,7 @@ public class AddLendingMenu {
 		
 		
 		// the lendingId is created automatically when inserting in the database
-		// Here is 1 ???
-		Lending lending = new Lending(1,Integer.parseInt(idUser),  dateNow, dateReturn,null);
+		Lending lending = new Lending(1, Integer.parseInt(idUser), dateNow, dateReturn, null);
 		
 		lc.addLending(lending, idcopies);
 	

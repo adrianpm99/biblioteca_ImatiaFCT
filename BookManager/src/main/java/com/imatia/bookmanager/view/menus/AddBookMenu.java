@@ -33,56 +33,50 @@ public class AddBookMenu {
 
 		// get the data from user
 
-		do {
+		do
+		{
 			System.out.print("Titulo: ");
-			title = InputUserData.checkUserInput("title");
-		} while (title.equals(""));
+			title = InputUserData.checkUserInput("title", "Maximo 50 caracteres.");
+			if(title.equals("")) System.out.println("El titulo es obligatorio. Pruebe de nuevo.");
+		}while(title.equals(""));
 
-		do {
+		do
+		{
 			System.out.print("Descripcion: ");
-			description = InputUserData.checkUserInput("description");
-		} while (description.equals(""));
+			description = InputUserData.checkUserInput("description", "Maximo 300 caracteres");
+			if(description.equals("")) System.out.println("La descripcion es obligatoria. Pruebe de nuevo.");
+		}while(description.equals(""));
+		
 
-		do {
-
+		do
+		{
 			System.out.print("Autor: ");
-			author = InputUserData.checkUserInput("author");
-		} while (author.equals(""));
+			author = InputUserData.checkUserInput("author", "Maximo 50 caracteres.");
+			if(author.equals("")) System.out.println("El autor es obligatorio. Pruebe de nuevo.");
+		}while(author.equals(""));
+		
 
-		do {
-			System.out.print("Páginas del libro: ");
-			pageNumber = InputUserData.checkUserInput("pageNumber");
-		} while (pageNumber.equals(""));
+		System.out.print("Páginas del libro: (numero entero positivo)");
+		pageNumber = InputUserData.checkUserInput("pageNumber", "Valor incorrecto. Pruebe de nuevo (entero positivo).");
 
-		do {
-			System.out.print("ISBN: ");
-			ISBN = InputUserData.checkUserInput("ISBN");
-		} while (ISBN.equals(""));
+		System.out.print("ISBN: (13 caracteres: numeros y letras sin espacios)");
+		ISBN = InputUserData.checkUserInput("ISBN", "\"Valor incorrecto. Pruebe de nuevo (13 caracteres sin espacios).");
 
-		do {
+		do
+		{
 			System.out.print("Editorial: ");
-			editorial = InputUserData.checkUserInput("editorial");
-		} while (editorial.equals(""));
+			editorial = InputUserData.checkUserInput("editorial", "Maximo 50 caracteres.");
+			if(author.equals("")) System.out.println("La editorial es obligoria. Pruebe de nuevo.");
+		}while(editorial.equals(""));
+		
+		System.out.print("Edicion: (numero entero positivo)");
+		edition = InputUserData.checkUserInput("edition", "Valor incorrecto. Pruebe de nuevo (entero positivo).");
+		
+		System.out.print("Año de publicación: (numero 4 cifras entero positivo)");
+		bookPublicationYear = InputUserData.checkUserInput("bookPublicationYear", "Valor incorrecto. Pruebe de nuevo (entero 4 cifras positivo).");
 
-		do {
-
-			System.out.print("Edicion: ");
-			edition = InputUserData.checkUserInput("edition");
-
-		} while (edition.equals(""));
-
-		do {
-
-			System.out.print("Año de publicación: ");
-			bookPublicationYear = InputUserData.checkUserInput("bookPublicationYear");
-
-		} while (bookPublicationYear.equals(""));
-
-		do {
-
-			System.out.print("Introduzca el numero de ejemplares del libro: ");
-			copyNumber = InputUserData.checkUserInput("copyNumber");
-		} while (String.valueOf(copyNumber).equals(""));
+		System.out.print("Introduzca el numero de ejemplares del libro: (numero entero positivo)");
+		copyNumber = InputUserData.checkUserInput("copyNumber", "Valor incorrecto. Pruebe de nuevo (entero positivo).");
 
 		Book book = new Book(title, description, author, Integer.parseInt(pageNumber), ISBN, editorial,
 				Integer.parseInt(edition), Year.parse(bookPublicationYear));
@@ -95,7 +89,6 @@ public class AddBookMenu {
 
 			Copy copy = new Copy();
 			copy.setBookId(book.getId());
-			copy.setCopyAvaiable(true);
 
 			cc.addCopy(copy);
 		}

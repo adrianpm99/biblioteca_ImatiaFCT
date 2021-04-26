@@ -18,16 +18,25 @@ public class UtilityInputs
 		sc = new Scanner(System.in);
 		
 		System.out.println("¿Esta seguro de "+action+" el "+object+"?");
-		System.out.print("Escriba  Si/No para confirmar: ");
+		System.out.print("Escriba  si/no para confirmar: ");
 		
 		String request = sc.nextLine();
 		
-		if(request.equalsIgnoreCase("si")) {
-			confirmation = true;
-		}
-		if(request.equalsIgnoreCase("no")) {
-			confirmation = false;
-		}
+		do
+		{
+			if(request.equalsIgnoreCase("si")) {
+				confirmation = true;
+			}
+			if(request.equalsIgnoreCase("no")) {
+				confirmation = false;
+			}
+			else
+			{
+				System.out.println("Opcion incorrecta. \nEscriba si para borrar el "+object+
+									"\nEscriba no para cancelar el borrado.");
+			}
+		}while(!request.equalsIgnoreCase("si") && !request.equalsIgnoreCase("no"));
+		
 		
 		return confirmation;
 	}//getConfirmation()

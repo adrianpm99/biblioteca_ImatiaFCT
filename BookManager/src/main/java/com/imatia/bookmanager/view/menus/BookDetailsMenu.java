@@ -15,7 +15,7 @@ public class BookDetailsMenu
 		int option;
 
 		do {
-			option = Integer.parseInt(InputUserData.checkUserInput("option"));
+			option = Integer.parseInt(InputUserData.checkUserInput("option", "Opcion no valida. Pruebe de nuevo (entero positivo)"));
 
 			switch (option)
 			{
