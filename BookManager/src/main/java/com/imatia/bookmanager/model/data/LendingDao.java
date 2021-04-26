@@ -8,7 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
+import com.imatia.bookmanager.model.entities.Book;
 import com.imatia.bookmanager.model.entities.Copy;
 import com.imatia.bookmanager.model.entities.Lending;
 import com.imatia.bookmanager.view.ui.SearchLendingUi;
@@ -257,6 +259,60 @@ public class LendingDao {
 		}
 
 		return lending;
+	}
+
+	
+	/**
+	 * method to get a lending filter by UserId
+	 * 
+	 * @param userId
+	 * @return lending
+	 */
+	public List<Lending> getLendingByUserId(int id) {
+
+		Lending lending = new Lending();
+		List<Lending> lendingList = new ArrayList<>();
+
+		String query = "SELECT * FROM lending WHERE UserId = ?";
+
+		try {
+			Connection con = connectionSQLite.getConnection();
+
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setInt(1, id);
+			ps.execute();
+			ResultSet rs = ps.getResultSet();
+			while(rs.next()) {
+
+				int lendingId = rs.getInt("lendingId");
+				int userId = rs.getInt("userId");
+				LocalDate lendingDate = rs.getDate("lendingDate").toLocalDate();
+				LocalDate lendingDeadLine = rs.getDate("lendingDeadLine").toLocalDate();
+				LocalDate lendingReturnDate = rs.getDate("lendingReturnDate").toLocalDate();
+	
+				lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine, lendingReturnDate);
+				lendingList.add(lending);
+			}
+			ps.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			System.out.println("No se ha encontrado ningun prestamo con el id de usuario facilitado");
+			//e.printStackTrace();
+			SearchLendingUi.showSearchLendingUi();
+		} finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return lendingList;
 	}
 
 }

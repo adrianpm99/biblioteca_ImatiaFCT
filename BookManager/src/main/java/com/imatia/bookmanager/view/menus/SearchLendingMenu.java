@@ -3,7 +3,11 @@ package com.imatia.bookmanager.view.menus;
 import com.imatia.bookmanager.controller.LendingController;
 import com.imatia.bookmanager.model.entities.Lending;
 import com.imatia.bookmanager.view.inputs.InputUserData;
+import com.imatia.bookmanager.view.results.BookRenderers;
 import com.imatia.bookmanager.view.results.LendingDetails;
+import com.imatia.bookmanager.view.results.LendingRenderers;
+import com.imatia.bookmanager.view.ui.ResultsByMethodUi;
+import com.imatia.bookmanager.view.ui.ResultsSearchLendingUi;
 import com.imatia.bookmanager.view.ui.SearchLendingUi;
 
 public class SearchLendingMenu {
@@ -24,7 +28,7 @@ public class SearchLendingMenu {
 			break;
 		case 1:
 			do {
-				System.out.print("Introduzca el id del prestamo: ");
+				System.out.print("Introduzca el id del prestamo: (entero positivo) ");
 				filter = InputUserData.checkUserInput("id","Pruebe de nuevo(entero positivo)");
 			} while (filter.equals(""));
 			Lending lending = lc.getLendingById(Integer.valueOf(filter));
@@ -32,8 +36,17 @@ public class SearchLendingMenu {
 
 			break;
 		case 2:
-			// not implemented yet
+			do {
+				System.out.print("Introduzca el id del usuario:  (entero positivo) ");
+				filter = InputUserData.checkUserInput("id","Pruebe de nuevo(entero positivo)");
+			} while (filter.equals(""));
+		//	Lending lendingbyUserId = lc.getLendingByUserId(Integer.valueOf(filter));
+		//	LendingDetails.showLendingDetalis(lending);
+			ResultsSearchLendingUi.showResultsSearchLendingUi("identificador de usuario");
+			LendingRenderers.renderUserIdListLending(lc.getLendingByUserId(Integer.valueOf(filter)));
 
+		//	ResultsSearchLendingMenu.showResultSearchLendingMenuOptions();
+			
 			break;
 		case 3:
 			// not implemented yet

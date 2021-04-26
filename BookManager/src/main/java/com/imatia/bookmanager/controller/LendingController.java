@@ -2,8 +2,10 @@
 package com.imatia.bookmanager.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.imatia.bookmanager.model.data.LendingDao;
+
 import com.imatia.bookmanager.model.entities.Copy;
 import com.imatia.bookmanager.model.entities.Lending;
 
@@ -26,5 +28,19 @@ public class LendingController {
 		Lending lending = ld.getLendingById(id);
 		return lending;
 	}
+	
+	/**
+	 * method to get a list of lendings filter by UserId
+	 * @param UserId
+	 * @return lendingList
+	 */
+	public List<Lending> getLendingByUserId(int id) {
+		
+		List<Lending> lendingList = ld.getLendingByUserId(id);
+		return lendingList;
+	}
+	
+	
+	
 }
 
