@@ -88,6 +88,7 @@ public class InputUserData {
 			case "surname":
 				pattern = Pattern.compile("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]{0,50}$");
 				matcher = pattern.matcher(data);
+				break;
 
 			default:
 				return data;

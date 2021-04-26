@@ -91,6 +91,7 @@ public class UserDao {
 		} catch (SQLException e) {
 			System.out.println("No se ha encontrado ningún usuario con el id facilitado");
 			//e.printStackTrace();
+			SearchUserUi.showSearchUserUi();
 		} finally {
 			try {
 				connectionSQLite.closeConnection();

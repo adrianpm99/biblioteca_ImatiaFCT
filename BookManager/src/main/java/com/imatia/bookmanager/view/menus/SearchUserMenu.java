@@ -10,15 +10,16 @@ public class SearchUserMenu {
 	
 	public static void showSearchUserMenuOptions() {
 		UserController uc = new UserController();
-		int option;
+		String  option;
 		String filter;
 		String filter2;
 		User user = new User();
 
 		do {
-			option = Integer.parseInt(InputUserData.checkUserInput("option"));
+			option = InputUserData.checkUserInput("option","Opcion no válida. Pruebe de nuevo(entero positivo)");
+		}while(option.equals("") && !option.equals("0")  && !option.equals("1") && !option.equals("2"));
 
-			switch (option) {
+			switch (Integer.parseInt(option)) {
 
 			case 0:
 				UserManagementUi.showUserManagementUi();;
@@ -41,7 +42,6 @@ public class SearchUserMenu {
 				break;
 			
 			}
-		} while (option != 0 && option != 1 && option != 2);
 		
 	}
 
