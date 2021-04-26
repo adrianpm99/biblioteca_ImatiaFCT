@@ -3,8 +3,10 @@ package com.imatia.bookmanager.view.menus;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
-
+import javax.annotation.processing.SupportedSourceVersion;
 
 import com.imatia.bookmanager.controller.LendingController;
 
@@ -23,6 +25,8 @@ public class AddLendingMenu {
 		ArrayList<Integer> idcopies = new ArrayList<Integer>();
 		String idCopy; 
 		String idUser;
+		boolean repeated = false;
+		
 		do {
 			
 			System.out.print("\rNumero de ejemplares que se quieren prestar (de 1 a 3): ");
@@ -31,12 +35,30 @@ public class AddLendingMenu {
 		
 		
 		for (int i = 1 ; i <= option ; i ++) {
+			
+		  do {	
+			  repeated = false;
 			System.out.print("\rIdentificador ejemplar num : " + i + " a prestar:  (entero positivo) ");
 
 			//return string
 			idCopy = InputUserData.checkUserInput("id", "Valor de Id incorrecto. Pruebe de nuevo (entero positivo).");
 
-			idcopies.add(Integer.parseInt(idCopy));
+			// the id cannot be repeated
+			for (int numIdCopy : idcopies) {
+				// it goes through the arrayList and compares with the new data, if it is equal to one, it asks for a new entry
+				if (numIdCopy == Integer.parseInt(idCopy)){
+					System.out.println("\rNo se puede insertar un identificador de ejemplar repetido");
+					repeated = true;
+				}
+			}
+			
+						
+		  }while (repeated);
+		 
+		//insert the new idCopy only if it is different from the ones already inserted,
+		 
+		  idcopies.add(Integer.parseInt(idCopy));
+			
 		}	
 		//
 		System.out.print("\rId usuario: (entero positivo) ");
