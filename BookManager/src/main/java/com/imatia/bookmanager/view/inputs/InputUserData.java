@@ -24,7 +24,7 @@ public class InputUserData {
             data = scan.nextLine();
             switch (dataType) {
             case "id":
-                pattern = Pattern.compile("^[\\d]{0,5}$");
+                pattern = Pattern.compile("^(?!0)\\d{0,5}$");
                 matcher = pattern.matcher(data);
                 break;
                 
@@ -45,7 +45,7 @@ public class InputUserData {
                 break;
                 
             case "pageNumber":
-                pattern = Pattern.compile("^[\\d]{0,5}$");
+                pattern = Pattern.compile("^(?!0)\\d{0,3}$");
                 matcher = pattern.matcher(data);
                 break;
                 
@@ -55,7 +55,7 @@ public class InputUserData {
                 break;
                 
             case "edition":
-                pattern = Pattern.compile("^[\\d]{0,3}$");
+                pattern = Pattern.compile("^(?!0)\\d{0,3}$");
                 matcher = pattern.matcher(data);
                 break;
                 
@@ -83,6 +83,12 @@ public class InputUserData {
                         + "))))$|^(?:0?[1-9]|1\\d|2[0-8])(-)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:\\d{4})$");
                 matcher = pattern.matcher(data);
                 break;
+                
+            case "name":
+			case "surname":
+				pattern = Pattern.compile("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]{0,50}$");
+				matcher = pattern.matcher(data);
+				break;
                 
             default:
                 return data;

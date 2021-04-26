@@ -14,7 +14,7 @@ public class SearchesMenu {
 		String filter;
 		int option;
 		do {
-			option = Integer.parseInt(InputUserData.checkUserInput("option"));
+			option = Integer.parseInt(InputUserData.checkUserInput("option", "Opcion no valida. Pruebe de nuevo (entero positivo)"));
 
 			switch (option) {
 
@@ -23,7 +23,7 @@ public class SearchesMenu {
 				break;
 			case 1:
 				System.out.print("Introduzca el autor: ");
-				filter = InputUserData.checkUserInput("author");
+				filter = InputUserData.checkUserInput("author", "Maximo 50 caracteres.");
 				
 				ResultsByMethodUi.showResultsUi("AUTOR");
 				BookRenderers.renderAuthorListBooks(bc.getBooksByAuthor(filter));

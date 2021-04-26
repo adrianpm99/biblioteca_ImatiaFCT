@@ -60,7 +60,7 @@ public class AddBookMenu {
 		pageNumber = InputUserData.checkUserInput("pageNumber", "Valor incorrecto. Pruebe de nuevo (entero positivo).");
 
 		System.out.print("ISBN: (13 caracteres: numeros y letras sin espacios)");
-		ISBN = InputUserData.checkUserInput("ISBN", "\"Valor incorrecto. Pruebe de nuevo (13 caracteres sin espacios).");
+		ISBN = InputUserData.checkUserInput("ISBN", "Valor incorrecto. Pruebe de nuevo (13 caracteres sin espacios).");
 
 		do
 		{

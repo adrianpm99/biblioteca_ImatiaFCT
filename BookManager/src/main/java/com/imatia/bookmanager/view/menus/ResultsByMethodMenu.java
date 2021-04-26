@@ -11,26 +11,29 @@ public class ResultsByMethodMenu {
 	
 	public static void showResultsByMethodMenuOptions() {
 		
-		int bookId;
-		int option;
+		String bookId;
+		String option;
 		do {
-			option = Integer.parseInt(InputUserData.checkUserInput("option"));
-
-			switch (option) {
-
-			case 0:
-				SearchesUi.showSearchesUi();
-				break;
-			case 1:
+			option = InputUserData.checkUserInput("option", "Opcion no valida. Pruebe de nuevo (entero positivo)");
+		}while (option.equals("") && !option.equals("0") && !option.equals("1"));
+		
+		
+		switch (Integer.parseInt(option))
+		{
+		case 0:
+			SearchesUi.showSearchesUi();
+			break;
+		case 1:
+			do
+			{
 				System.out.print("Introduzca el id del libro: ");
-				bookId = Integer.parseInt(InputUserData.checkUserInput("id"));
-				Book book = new BookController().getBookById(bookId);
-				BookDetails.showBookDetails(book);
-				break;
-			}
+				bookId = InputUserData.checkUserInput("id", "Valor de Id incorrecto. Pruebe de nuevo (entero positivo).");
+			}while(bookId.equals(""));
 			
-		}while (option != 0 && option != 1);
+		Book book = new BookController().getBookById(Integer.parseInt(bookId));
+		BookDetails.showBookDetails(book);
+		break;
+		}
+		
 	}
-	
-	
 }
