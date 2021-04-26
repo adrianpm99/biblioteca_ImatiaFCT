@@ -1,6 +1,7 @@
 
 package com.imatia.bookmanager.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +38,17 @@ public class LendingController {
 	public List<Lending> getLendingByUserId(int id) {
 		
 		List<Lending> lendingList = ld.getLendingByUserId(id);
+		return lendingList;
+	}
+	
+	/**
+	 * method to get a list of lendings filter by LendingDeadLine
+	 * @param LendingDeadLine
+	 * @return lendingList
+	 */
+	public List<Lending> getLendingByDeadLine(LocalDate date) {
+		
+		List<Lending> lendingList = ld.getLendingByDeadLine(date);
 		return lendingList;
 	}
 	

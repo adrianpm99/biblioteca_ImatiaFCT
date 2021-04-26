@@ -40,16 +40,22 @@ public class SearchLendingMenu {
 				System.out.print("Introduzca el id del usuario:  (entero positivo) ");
 				filter = InputUserData.checkUserInput("id","Pruebe de nuevo(entero positivo)");
 			} while (filter.equals(""));
-		//	Lending lendingbyUserId = lc.getLendingByUserId(Integer.valueOf(filter));
-		//	LendingDetails.showLendingDetalis(lending);
+		
 			ResultsSearchLendingUi.showResultsSearchLendingUi("identificador de usuario");
 			LendingRenderers.renderUserIdListLending(lc.getLendingByUserId(Integer.valueOf(filter)));
 
-		//	ResultsSearchLendingMenu.showResultSearchLendingMenuOptions();
-			
+			// just pull out a list
 			break;
 		case 3:
-			// not implemented yet
+			do {
+				System.out.print("Introduzca la fecha de devolución: (dd-mm-yyyy) ");
+				filter = InputUserData.checkUserInput("date","Formato fecha(dd-mm-yyyy)");
+			} while (filter.equals(""));
+		
+			ResultsSearchLendingUi.showResultsSearchLendingUi("fecha de devolución");
+			LendingRenderers.renderUserIdListLending(lc.getLendingByUserId(Integer.valueOf(filter)));
+
+			// just pull out a list
 			break;
 		}
 

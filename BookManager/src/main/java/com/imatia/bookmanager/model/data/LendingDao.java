@@ -301,7 +301,60 @@ public class LendingDao {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			System.out.println("No se ha encontrado ningun prestamo con el id de usuario facilitado");
-			//e.printStackTrace();
+		//	e.printStackTrace();
+			SearchLendingUi.showSearchLendingUi();
+		} finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return lendingList;
+	}
+	
+	/**
+	 * method to get a lending filter by UserId
+	 * 
+	 * @param userId
+	 * @return lending
+	 */
+	public List<Lending> getLendingByDeadLine(LocalDate date) {
+
+		Lending lending = new Lending();
+		List<Lending> lendingList = new ArrayList<>();
+
+		String query = "SELECT * FROM lending WHERE lendingDeadLine = ?";
+
+		try {
+			Connection con = connectionSQLite.getConnection();
+
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setDate(1, Date.valueOf(date));
+			ps.execute();
+			ResultSet rs = ps.getResultSet();
+			while(rs.next()) {
+
+				int lendingId = rs.getInt("lendingId");
+				int userId = rs.getInt("userId");
+				LocalDate lendingDate = rs.getDate("lendingDate").toLocalDate();
+				LocalDate lendingDeadLine = rs.getDate("lendingDeadLine").toLocalDate();
+				LocalDate lendingReturnDate = rs.getDate("lendingReturnDate").toLocalDate();
+	
+				lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine, lendingReturnDate);
+				lendingList.add(lending);
+			}
+			ps.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			System.out.println("No se ha encontrado ningun prestamo con la fecha de devolución facilitado");
+		//	e.printStackTrace();
 			SearchLendingUi.showSearchLendingUi();
 		} finally {
 			try {
