@@ -1,15 +1,15 @@
 {
 	"folders": {},
 	"connections": {
-		"sqlite_jdbc-178f09c2e75-43152765cf18cb66": {
+		"sqlite_jdbc-178fa28d047-3479ac778215910b": {
 			"provider": "generic",
 			"driver": "sqlite_jdbc",
 			"name": "database.db",
 			"save-password": true,
 			"read-only": false,
 			"configuration": {
-				"database": "C:\\Users\\USER\\git\\biblioteca_ImatiaFCT\\BookManager\\database.db",
-				"url": "jdbc:sqlite:C:\\Users\\USER\\git\\biblioteca_ImatiaFCT\\BookManager\\database.db",
+				"database": "C:\\Users\\barri\\git\\biblioteca_ImatiaFCT\\BookManager\\database.db",
+				"url": "jdbc:sqlite:C:\\Users\\barri\\git\\biblioteca_ImatiaFCT\\BookManager\\database.db",
 				"type": "dev",
 				"auth-model": "native",
 				"handlers": {}

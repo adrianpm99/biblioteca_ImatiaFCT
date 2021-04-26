@@ -51,7 +51,7 @@ public class InputUserData {
 			}
 			break;
 		case "pageNumber":
-			pattern = Pattern.compile("^[\\d]{0,5}$");
+			pattern = Pattern.compile("^[\\d]{1,5}$");
 			matcher = pattern.matcher(data);
 			if (matcher.find()) {
 				return data;
@@ -93,14 +93,16 @@ public class InputUserData {
 				return data;
 			}
 			break;
+		case "0":
+			pattern = Pattern.compile("0");
+			matcher = pattern.matcher(data);
+			if (matcher.find()) {
+				return data;
+			}
 		default:
 			return data;
 		}
-		pattern = Pattern.compile("0");
-		matcher = pattern.matcher(data);
-		if (matcher.find()) {
-			return data;
-		}
+		
 		System.out.println("\u001B[31m" + "Datos con el formato incorrecto." + "\u001B[0m");
 		return "";
 	}
