@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 
 import com.imatia.bookmanager.model.entities.Copy;
@@ -17,8 +18,11 @@ public class LendingDao {
 
 	public void addLending(Lending lending, ArrayList<Integer> listIdCopy) {
 		String queryGetCopy = "SELECT * FROM copy WHERE copyId = ?";
-		String queryLending = "INSERT INTO lending (userId, lendingDate, lendingDeadLine,lendingReturnDate) " + "VALUES (?,?,?,?) ";
+		String queryLendingCheck = "SELECT * FROM lending WHERE lendingId = ?";
+		String queryLending = "INSERT INTO lending (userId, lendingDate, lendingDeadLine,lendingReturnDate) "
+				+ "VALUES (?,?,?,?) ";
 		String queryCopyLending = "INSERT INTO copyLending (copyId, lendingId) " + "Values(?,?) ";
+		String queryCopyLendingCheck = "SELECT * FROM copyLending WHERE copyId = ?";
 
 		try {
 			Connection con = connectionSQLite.getConnection();
@@ -26,46 +30,69 @@ public class LendingDao {
 				PreparedStatement psGetCopy = con.prepareStatement(queryGetCopy);
 
 				psGetCopy.setInt(1, listIdCopy.get(cont));
-				psGetCopy.execute();
+				if (psGetCopy.execute() == true) { // Compruebo existecia de la copia
 
-				ResultSet rs = psGetCopy.getResultSet();
-				rs.next();
+					ResultSet rs = psGetCopy.getResultSet();
+					rs.next();
 
-				int bookId = rs.getInt("bookId");
-				Copy copy = new Copy(listIdCopy.get(cont), bookId);
+					int bookId = rs.getInt("bookId");
+					Copy copy = new Copy(listIdCopy.get(cont), bookId);
 
-				PreparedStatement ps = con.prepareStatement(queryLending);
-				ps.setInt(1, lending.getUserId());
+					PreparedStatement psCopyLendingCheck = con.prepareCall(queryCopyLendingCheck);
+					psCopyLendingCheck.setInt(1, copy.getCopyId());
+					if (psCopyLendingCheck.execute() == true) { // Compruebo existencia del prestamo de la copia 
+						ResultSet rs2 = psCopyLendingCheck.getResultSet();
+						while (rs2.next()) {
 
-				//esto daba error  (java.lang.ClassCastException: java.util.Date cannot be cast to java.sql.Date)
-			
-			//	Date lendingDate = (Date) Date
-			// 			.from(lending.getLendingDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
-				Date lendingDate = Date.valueOf(lending.getLendingDate());
-				ps.setDate(2, lendingDate);
-			//	Date deadLineDate = (Date) Date
-			//			.from(lending.getLendingDeadLine().atStartOfDay(ZoneId.systemDefault()).toInstant());
-				Date lendingDeadLine = Date.valueOf(lending.getLendingDeadLine());
-				ps.setDate(3, lendingDeadLine);
-				
-			
-				ps.setDate(4,lendingDeadLine);
+							int lendingId = rs2.getInt("lendingId");
+							PreparedStatement psLendingCheck = con.prepareStatement(queryLendingCheck);
+							psLendingCheck.setInt(1, lendingId);
+							
+							if (psLendingCheck.execute() == false) {
+								ResultSet rsLending = psLendingCheck.getResultSet();
+								rsLending.next();
+								Date date;
+								
+								if( (date = rsLending.getDate("lendingReturnDate")) != null) { // si es null == aun esta prestado si != null no esta prestado
+									PreparedStatement ps = con.prepareStatement(queryLending);
+									ps.setInt(1, lending.getUserId());
 
-				ps.execute();
+									// esto daba error (java.lang.ClassCastException: java.util.Date cannot be cast
+									// to java.sql.Date)
 
-				ps.close();
+									// Date lendingDate = (Date) Date
+									// .from(lending.getLendingDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+									Date lendingDate = Date.valueOf(lending.getLendingDate());
+									ps.setDate(2, lendingDate);
+									// Date deadLineDate = (Date) Date
+									// .from(lending.getLendingDeadLine().atStartOfDay(ZoneId.systemDefault()).toInstant());
+									Date lendingDeadLine = Date.valueOf(lending.getLendingDeadLine());
+									ps.setDate(3, lendingDeadLine);
 
-				PreparedStatement ps2 = con.prepareStatement(queryCopyLending);
-				ps2.setInt(1, copy.getCopyId());
-				
-				//aquí hay que averiguar el codigo autogenerado para lendingId 
-				//cuando se hizo la inserción en la tabla lending
-				// ahora está poniendo siempre 1
-				ps2.setInt(2, lending.getLendingId());
+									ps.setDate(4, null);
 
-				ps2.execute();
-				ps2.close();
+									ps.execute();
 
+									ps.close();
+
+									PreparedStatement ps2 = con.prepareStatement(queryCopyLending);
+									ps2.setInt(1, copy.getCopyId());
+
+									// aquí hay que averiguar el codigo autogenerado para lendingId
+									// cuando se hizo la inserción en la tabla lending
+									// ahora está poniendo siempre 1
+									ps2.setInt(2, lending.getLendingId());
+
+									ps2.execute();
+									ps2.close();
+									
+									break;
+								}
+								
+							}
+						}
+					}
+				}
 				
 			}
 
@@ -75,7 +102,7 @@ public class LendingDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
 				connectionSQLite.closeConnection();
 			} catch (SQLException e) {
@@ -88,6 +115,7 @@ public class LendingDao {
 
 	public void deleteLending(Lending lending, Copy copy) {
 		String query = "DELETE FROM copyLending WHERE lendingId = ?";
+		String updateAvailable = "UPDATE copy SET copyAvailable = ? WHERE copyId = ?";
 
 		try {
 			Connection con = connectionSQLite.getConnection();
@@ -97,14 +125,19 @@ public class LendingDao {
 			ps.setInt(1, lending.getLendingId());
 			ps.execute();
 			ps.close();
-			
+			PreparedStatement ps2 = con.prepareStatement(updateAvailable);
+			ps2.setBoolean(1, true);
+			ps2.setInt(2, copy.getCopyId());
+
+			ps2.execute();
+			ps2.close();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
 				connectionSQLite.closeConnection();
 			} catch (SQLException e) {
