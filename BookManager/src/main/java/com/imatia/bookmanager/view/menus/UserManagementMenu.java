@@ -2,6 +2,7 @@ package com.imatia.bookmanager.view.menus;
 
 import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.ui.AddUserUi;
+import com.imatia.bookmanager.view.ui.SearchUserUi;
 import com.imatia.bookmanager.view.ui.StartMenuUI;
 
 public class UserManagementMenu {
@@ -22,7 +23,7 @@ public class UserManagementMenu {
 				AddUserUi.showAddUserUi();
 				break;
 			case 2:
-				//
+				SearchUserUi.showSearchUserUi();
 				break;
 		
 			}
