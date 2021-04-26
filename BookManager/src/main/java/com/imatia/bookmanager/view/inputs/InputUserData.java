@@ -18,8 +18,8 @@ public class InputUserData {
 	 */
 	public static String checkUserInput(String dataType, String errorSentence) {
 		Pattern pattern;
-        Matcher matcher;
-        String data;
+		Matcher matcher;
+		String data;
 		do {
             data = scan.nextLine();
             switch (dataType) {
@@ -104,7 +104,7 @@ public class InputUserData {
 		return data;
     }
 
-    public static String checkUserInput(String dataType) {
-        return checkUserInput(dataType, "");
-    }
+	public static String checkUserInput(String dataType) {
+		return checkUserInput(dataType, "");
+	}
 }

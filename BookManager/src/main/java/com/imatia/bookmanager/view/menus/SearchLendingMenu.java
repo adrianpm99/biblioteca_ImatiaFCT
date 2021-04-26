@@ -10,13 +10,14 @@ public class SearchLendingMenu {
 
 	public static void showSearchLendingMenuOptions() {
 		LendingController lc = new LendingController();
-		int option;
+		String option;
 		String filter;
 
 		do {
-			option = Integer.parseInt(InputUserData.checkUserInput("option"));
-
-			switch (option) {
+			option = InputUserData.checkUserInput("option","Opcion no válida. Pruebe de nuevo(entero positivo)");
+		} while (option.equals("") && !option.equals("0")  && !option.equals("1") && !option.equals("2")
+				&& !option.equals("3"));
+			switch (Integer.parseInt(option)) {
 
 			case 0:
 				SearchLendingUi.showSearchLendingUi();
@@ -36,7 +37,7 @@ public class SearchLendingMenu {
 				// not implemented yet
 				break;
 			}
-		} while (option != 0 && option != 1 && option != 2 && option != 3);
+		
 	}
 
 }
