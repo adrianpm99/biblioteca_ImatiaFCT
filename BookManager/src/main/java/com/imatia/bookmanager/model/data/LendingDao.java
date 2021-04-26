@@ -152,5 +152,55 @@ public class LendingDao {
 		}
 
 	}
+	
+	/**
+	 * method to get a lending filter by id
+	 * @param id
+	 * @return lending
+	 */
+	public Lending getLendingById(int id) {
+		
+		Lending lending = new Lending();
+
+		String query = "SELECT * FROM lending WHERE lendingId = ?";
+
+		try {
+			Connection con = connectionSQLite.getConnection();
+
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setInt(1, id);
+			ps.execute();
+			ResultSet rs = ps.getResultSet();
+			rs.next();
+
+			int lendingId = rs.getInt("lendingId");
+			int userId = rs.getInt("userId");
+			LocalDate lendingDate = rs.getDate("lendingDate").toLocalDate();
+			LocalDate lendingDeadLine = rs.getDate("lendingDeadLine").toLocalDate();
+			LocalDate lendingReturnDate = rs.getDate("lendingReturnDate").toLocalDate();
+
+			lending= new Lending(lendingId, userId, lendingDate, lendingDeadLine, lendingReturnDate);
+			
+			ps.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return lending;
+	}
+	
 
 }
