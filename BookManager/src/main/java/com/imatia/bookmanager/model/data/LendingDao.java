@@ -5,24 +5,24 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 
 import com.imatia.bookmanager.model.entities.Copy;
 import com.imatia.bookmanager.model.entities.Lending;
 
 public class LendingDao {
-
 	ConnectionSQLite connectionSQLite = new ConnectionSQLite();
 
-	public void addLending(Lending lending, ArrayList<Integer> listIdCopy) {
+	public String addLending(Lending lending, ArrayList<Integer> listIdCopy) {
 		String queryGetCopy = "SELECT * FROM copy WHERE copyId = ?";
 		String queryLendingCheck = "SELECT * FROM lending WHERE lendingId = ?";
 		String queryLending = "INSERT INTO lending (userId, lendingDate, lendingDeadLine,lendingReturnDate) "
 				+ "VALUES (?,?,?,?) ";
 		String queryCopyLending = "INSERT INTO copyLending (copyId, lendingId) " + "Values(?,?) ";
 		String queryCopyLendingCheck = "SELECT * FROM copyLending WHERE copyId = ?";
+		String error = "";
 
 		try {
 			Connection con = connectionSQLite.getConnection();
@@ -40,21 +40,24 @@ public class LendingDao {
 
 					PreparedStatement psCopyLendingCheck = con.prepareCall(queryCopyLendingCheck);
 					psCopyLendingCheck.setInt(1, copy.getCopyId());
-					if (psCopyLendingCheck.execute() == true) { // Compruebo existencia del prestamo de la copia 
+					if (psCopyLendingCheck.execute() == true) { // Compruebo existencia del prestamo de la copia
 						ResultSet rs2 = psCopyLendingCheck.getResultSet();
 						while (rs2.next()) {
 
 							int lendingId = rs2.getInt("lendingId");
 							PreparedStatement psLendingCheck = con.prepareStatement(queryLendingCheck);
 							psLendingCheck.setInt(1, lendingId);
-							
+
 							if (psLendingCheck.execute() == false) {
 								ResultSet rsLending = psLendingCheck.getResultSet();
 								rsLending.next();
 								Date date;
-								
-								if( (date = rsLending.getDate("lendingReturnDate")) != null) { // si es null == aun esta prestado si != null no esta prestado
-									PreparedStatement ps = con.prepareStatement(queryLending);
+
+								if ((date = rsLending.getDate("lendingReturnDate")) != null) { // si es null == aun esta
+																								// prestado si != null
+																								// no esta prestado
+									//PreparedStatement ps = con.prepareStatement(queryLending);
+									PreparedStatement ps = con.prepareStatement(queryLending, Statement.RETURN_GENERATED_KEYS);
 									ps.setInt(1, lending.getUserId());
 
 									// esto daba error (java.lang.ClassCastException: java.util.Date cannot be cast
@@ -72,6 +75,11 @@ public class LendingDao {
 									ps.setDate(4, null);
 
 									ps.execute();
+									
+									ResultSet rsId = ps.getGeneratedKeys();
+									rsId.next();
+									
+									lending.setLendingId(rsId.getInt(1));
 
 									ps.close();
 
@@ -85,15 +93,21 @@ public class LendingDao {
 
 									ps2.execute();
 									ps2.close();
-									
+
 									break;
 								}
-								
+
+							} else {
+								return error = "El ejemplar ya esta prestado";
 							}
 						}
+					} else {
+						return error = "Ejemplar ya prestado";
 					}
+				} else {
+					return error = "No existe el ejemplar";
 				}
-				
+
 			}
 
 		} catch (ClassNotFoundException e) {
@@ -110,12 +124,11 @@ public class LendingDao {
 				e.printStackTrace();
 			}
 		}
-
+		return error;
 	}
 
 	public void deleteLending(Lending lending, Copy copy) {
 		String query = "DELETE FROM copyLending WHERE lendingId = ?";
-		String updateAvailable = "UPDATE copy SET copyAvailable = ? WHERE copyId = ?";
 
 		try {
 			Connection con = connectionSQLite.getConnection();
@@ -125,12 +138,7 @@ public class LendingDao {
 			ps.setInt(1, lending.getLendingId());
 			ps.execute();
 			ps.close();
-			PreparedStatement ps2 = con.prepareStatement(updateAvailable);
-			ps2.setBoolean(1, true);
-			ps2.setInt(2, copy.getCopyId());
 
-			ps2.execute();
-			ps2.close();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
