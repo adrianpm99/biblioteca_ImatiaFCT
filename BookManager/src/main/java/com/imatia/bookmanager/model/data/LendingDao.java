@@ -48,7 +48,7 @@ public class LendingDao {
 						int bookId = rs.getInt("bookId");
 						Copy copy = new Copy(listIdCopy.get(cont), bookId);
 
-						PreparedStatement psCopyLendingCheck = con.prepareCall(queryCopyLendingCheck);
+						PreparedStatement psCopyLendingCheck = con.prepareStatement(queryCopyLendingCheck);
 						psCopyLendingCheck.setInt(1, copy.getCopyId());
 						if (psCopyLendingCheck.execute() == true) { // Compruebo existencia del prestamo de la copia
 							ResultSet rs2 = psCopyLendingCheck.getResultSet();
