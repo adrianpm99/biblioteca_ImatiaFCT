@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 
 import com.imatia.bookmanager.model.entities.Copy;
@@ -20,7 +19,6 @@ public class LendingDao {
 		String queryGetCopy = "SELECT * FROM copy WHERE copyId = ?";
 		String queryLending = "INSERT INTO lending (userId, lendingDate, lendingDeadLine,lendingReturnDate) " + "VALUES (?,?,?,?) ";
 		String queryCopyLending = "INSERT INTO copyLending (copyId, lendingId) " + "Values(?,?) ";
-		String updateAvailable = "UPDATE copy SET copyAvaliable = ? WHERE copyId = ?";
 
 		try {
 			Connection con = connectionSQLite.getConnection();
@@ -34,7 +32,7 @@ public class LendingDao {
 				rs.next();
 
 				int bookId = rs.getInt("bookId");
-				Copy copy = new Copy(listIdCopy.get(cont), bookId, false);
+				Copy copy = new Copy(listIdCopy.get(cont), bookId);
 
 				PreparedStatement ps = con.prepareStatement(queryLending);
 				ps.setInt(1, lending.getUserId());
@@ -68,12 +66,7 @@ public class LendingDao {
 				ps2.execute();
 				ps2.close();
 
-				PreparedStatement ps3 = con.prepareStatement(updateAvailable);
-				ps3.setBoolean(1, false);
-				ps3.setInt(2, copy.getCopyId());
-
-				ps3.execute();
-				ps3.close();
+				
 			}
 
 		} catch (ClassNotFoundException e) {
@@ -95,7 +88,6 @@ public class LendingDao {
 
 	public void deleteLending(Lending lending, Copy copy) {
 		String query = "DELETE FROM copyLending WHERE lendingId = ?";
-		String updateAvailable = "UPDATE copy SET copyAvailable = ? WHERE copyId = ?";
 
 		try {
 			Connection con = connectionSQLite.getConnection();
@@ -105,12 +97,7 @@ public class LendingDao {
 			ps.setInt(1, lending.getLendingId());
 			ps.execute();
 			ps.close();
-			PreparedStatement ps2 = con.prepareStatement(updateAvailable);
-			ps2.setBoolean(1, true);
-			ps2.setInt(2, copy.getCopyId());
-
-			ps2.execute();
-			ps2.close();
+			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

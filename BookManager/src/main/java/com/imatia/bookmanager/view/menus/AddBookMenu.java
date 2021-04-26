@@ -95,7 +95,6 @@ public class AddBookMenu {
 
 			Copy copy = new Copy();
 			copy.setBookId(book.getId());
-			copy.setCopyAvaiable(true);
 
 			cc.addCopy(copy);
 		}
