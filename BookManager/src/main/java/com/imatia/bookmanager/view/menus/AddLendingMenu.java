@@ -21,48 +21,48 @@ public class AddLendingMenu {
 
 		LendingController lc = new LendingController();
 		
-		int option;
+		String option;
 		ArrayList<Integer> idcopies = new ArrayList<Integer>();
 		String idCopy; 
 		String idUser;
 		boolean repeated = false;
 		
 		do {
-			
 			System.out.print("\rNumero de ejemplares que se quieren prestar (de 1 a 3): ");
-			option = Integer.parseInt(InputUserData.checkUserInput("option"));
-		} while (option != 1 && option != 2 && option != 3);
-		
-		
-		for (int i = 1 ; i <= option ; i ++) {
+			option = InputUserData.checkUserInput("option", "Opcion no valida. Pruebe de nuevo (entero positivo)");
 			
-		  do {	
-			  repeated = false;
+		} while (option.equals("") && !option.equals("1") && !option.equals("2") && !option.equals("3"));
+		
+		
+		for (int i = 1 ; i <= Integer.parseInt(option) ; i ++)
+		{	
+		  do
+		  {	
+			repeated = false;
 			System.out.print("\rIdentificador ejemplar num : " + i + " a prestar:  (entero positivo) ");
 
 			//return string
 			idCopy = InputUserData.checkUserInput("id", "Valor de Id incorrecto. Pruebe de nuevo (entero positivo).");
 
 			// the id cannot be repeated
-			for (int numIdCopy : idcopies) {
+			for (int numIdCopy : idcopies)
+			{
 				// it goes through the arrayList and compares with the new data, if it is equal to one, it asks for a new entry
-				if (numIdCopy == Integer.parseInt(idCopy)){
+				if (numIdCopy == Integer.parseInt(idCopy))
+				{
 					System.out.println("\rNo se puede insertar un identificador de ejemplar repetido");
 					repeated = true;
 				}
-			}
-			
-						
+			}//for			
 		  }while (repeated);
 		 
 		//insert the new idCopy only if it is different from the ones already inserted,
 		 
 		  idcopies.add(Integer.parseInt(idCopy));
 			
-		}	
-		//
-		System.out.print("\rId usuario: (entero positivo) ");
+		}//for	
 		
+		System.out.print("\rId usuario: (entero positivo) ");
 		// it should be verified that the user exists in the user table
 		
 		//return string
@@ -79,11 +79,8 @@ public class AddLendingMenu {
 		// automatically see the return date that is 15 days later
 		System.out.println("\rFecha de devolución del préstamo : " + formatoFecha.format(dateReturn)); 
 		
-		
 		// the lendingId is created automatically when inserting in the database
-		
-		Lending lending = new Lending(1,Integer.parseInt(idUser),  dateNow, dateReturn,null);
-		
+		Lending lending = new Lending(1, Integer.parseInt(idUser), dateNow, dateReturn, null);
 		
 		// idCopy and idUser existence checks are done at insert time
 		// if it returns "" it is correct, if it returns a message it means that the insertion has not been made
@@ -97,6 +94,5 @@ public class AddLendingMenu {
 		}
 		LendingsUi.showLendingsUi();
 
-	}
-
-}
+	}//showAddLendingMenu()
+}//class AddLendingMenu
