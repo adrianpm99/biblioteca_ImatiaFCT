@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import com.imatia.bookmanager.model.entities.User;
+import com.imatia.bookmanager.view.ui.SearchUserUi;
 
 /**
  * class to map the table user to object user
@@ -88,8 +89,9 @@ public class UserDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("No se ha encontrado ningún usuario con el id facilitado");
+			//e.printStackTrace();
+			SearchUserUi.showSearchUserUi();
 		} finally {
 			try {
 				connectionSQLite.closeConnection();
@@ -159,7 +161,7 @@ public class UserDao {
 			ps.setInt(1, id);
 			ps.execute();
 
-			System.out.println("Usuario con id: " + id + " borrado");
+			System.out.println("Usuario con id " + id + " borrado");
 
 			ps.close();
 
@@ -215,8 +217,9 @@ public class UserDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("No se ha encontrado ningun usuario con los datos facilitados");
+			//e.printStackTrace();
+			SearchUserUi.showSearchUserUi();
 		}
 
 		return user;

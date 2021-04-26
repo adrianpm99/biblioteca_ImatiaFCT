@@ -10,13 +10,16 @@ public class SearchUserMenu {
 	
 	public static void showSearchUserMenuOptions() {
 		UserController uc = new UserController();
-		int option;
+		String  option;
 		String filter;
+		String filter2;
+		User user = new User();
 
 		do {
-			option = Integer.parseInt(InputUserData.checkUserInput("option"));
+			option = InputUserData.checkUserInput("option","Opcion no válida. Pruebe de nuevo(entero positivo)");
+		}while(option.equals("") && !option.equals("0")  && !option.equals("1") && !option.equals("2"));
 
-			switch (option) {
+			switch (Integer.parseInt(option)) {
 
 			case 0:
 				UserManagementUi.showUserManagementUi();;
@@ -24,19 +27,21 @@ public class SearchUserMenu {
 			case 1:
 				System.out.print("Introduzca el id del usuario: ");
 				filter = InputUserData.checkUserInput("id");
-				User user =uc.getUserById(Integer.valueOf(filter));
+				user =uc.getUserById(Integer.valueOf(filter));
 				UserDetails.showUserDetails(user);
 				
 				break;
 			case 2:
-				// not implemented yet
-
+				System.out.print("Introduzca el nombre: ");
+				filter= InputUserData.checkUserInput("name");
+				System.out.print("Introduzca el apellido: ");
+				filter2 = InputUserData.checkUserInput("surname");
+				user = uc.getUserByNameAndSurname(filter, filter2);
+				UserDetails.showUserDetails(user);
+						
 				break;
-			case 3:
-				// not implemented yet
-				break;
+			
 			}
-		} while (option != 0 && option != 1 && option != 2 && option != 3);
 		
 	}
 
