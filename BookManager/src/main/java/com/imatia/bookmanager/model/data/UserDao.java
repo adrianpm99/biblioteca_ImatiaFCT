@@ -34,6 +34,7 @@ public class UserDao {
 			ps.setString(2, user.getUserSurname());
 			ps.execute();
 
+			System.out.println("El usuario se ha añadido correctamente");
 			ps.close();
 
 		} catch (ClassNotFoundException e) {

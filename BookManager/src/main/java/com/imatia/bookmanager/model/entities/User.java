@@ -21,8 +21,15 @@ package com.imatia.bookmanager.model.entities;
 		}
 
 		public User(int userId, String userName, String userSurname) {
-			super();
+			
 			this.userId = userId;
+			this.userName = userName;
+			this.userSurname = userSurname;
+		}
+		
+		
+		public User(String userName, String userSurname) {
+			super();
 			this.userName = userName;
 			this.userSurname = userSurname;
 		}
