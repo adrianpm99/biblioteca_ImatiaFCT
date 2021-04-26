@@ -136,6 +136,10 @@ public class CopyDao {
 		
 	}
 	
+	/**
+	 * method to delete a copy of book by idBook
+	 * @param id
+	 */
 	public void deleteCopybyIdBook(int id) {
 		
 		String query ="DELETE FROM copy WHERE bookId = ?";
@@ -148,7 +152,7 @@ public class CopyDao {
 			ps.setInt(1, id);
 			ps.execute();
 			
-			System.out.println("Ejemplar con id: "+ id +" borrado");
+			System.out.println("Ejemplares del libro con id "+ id +" borrados");
 			
 			ps.close();
 			
