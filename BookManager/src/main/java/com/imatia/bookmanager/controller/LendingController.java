@@ -1,3 +1,4 @@
+
 package com.imatia.bookmanager.controller;
 
 import java.util.ArrayList;
@@ -19,4 +20,11 @@ public class LendingController {
 		
 		ld.deleteLending(lending, copy);
 	}
+	
+	public Lending getLendingById(int id) {
+		
+		Lending lending = ld.getLendingById(id);
+		return lending;
+	}
 }
+
