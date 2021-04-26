@@ -30,6 +30,8 @@ public class InputUserData {
                     return data;
                 }
                 break;
+            case "name":
+            case "surname":
             case "title":
                 pattern = Pattern.compile("^.{0,50}$");
                 matcher = pattern.matcher(data);
