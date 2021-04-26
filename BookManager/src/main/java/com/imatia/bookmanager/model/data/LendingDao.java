@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import com.imatia.bookmanager.model.entities.Copy;
 import com.imatia.bookmanager.model.entities.Lending;
+import com.imatia.bookmanager.view.ui.SearchLendingUi;
 
 public class LendingDao {
 	ConnectionSQLite connectionSQLite = new ConnectionSQLite();
@@ -243,8 +244,9 @@ public class LendingDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("No se ha encontrado ningun prestamo con el id facilitado");
+			//e.printStackTrace();
+			SearchLendingUi.showSearchLendingUi();
 		} finally {
 			try {
 				connectionSQLite.closeConnection();
