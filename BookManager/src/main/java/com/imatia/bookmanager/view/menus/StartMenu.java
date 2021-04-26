@@ -9,12 +9,14 @@ import com.imatia.bookmanager.view.ui.UserManagementUi;
 public class StartMenu {
 
 	public static void showStartMenuOption() {
-		int option;
+		String option;
 
 		do {
-			option = Integer.parseInt(InputUserData.checkUserInput("option"));
+			option = InputUserData.checkUserInput("option", "Opcion no valida. Pruebe de nuevo (entero positivo)");
+		} while (option.equals("") && !option.equals("0") && !option.equals("1") && !option.equals("2") && 
+				!option.equals("3") && !option.equals("4"));
 
-			switch (option) {
+			switch (Integer.parseInt(option)) {
 
 			case 0:
 				System.out.println("\nFinalizando la ejecución del programa");
@@ -33,7 +35,7 @@ public class StartMenu {
 				break;
 			}
 
-		} while (option != 0 && option != 1 && option != 2 && option != 3 && option != 4);
+		
 
 	}
 

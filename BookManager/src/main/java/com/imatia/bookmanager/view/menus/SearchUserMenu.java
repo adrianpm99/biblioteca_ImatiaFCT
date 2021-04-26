@@ -28,7 +28,7 @@ public class SearchUserMenu {
 		case 1:
 			do {
 				System.out.print("Introduzca el id del usuario: ");
-				filter = InputUserData.checkUserInput("id", "Numero entero positivo");
+				filter = InputUserData.checkUserInput("id", "Pruebe de nuevo(entero positivo)");
 			} while (filter.equals(""));
 			user = uc.getUserById(Integer.valueOf(filter));
 			UserDetails.showUserDetails(user);

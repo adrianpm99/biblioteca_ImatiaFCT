@@ -14,30 +14,32 @@ public class SearchLendingMenu {
 		String filter;
 
 		do {
-			option = InputUserData.checkUserInput("option","Opcion no válida. Pruebe de nuevo(entero positivo)");
-		} while (option.equals("") && !option.equals("0")  && !option.equals("1") && !option.equals("2")
+			option = InputUserData.checkUserInput("option", "Opcion no válida. Pruebe de nuevo(entero positivo)");
+		} while (option.equals("") && !option.equals("0") && !option.equals("1") && !option.equals("2")
 				&& !option.equals("3"));
-			switch (Integer.parseInt(option)) {
+		switch (Integer.parseInt(option)) {
 
-			case 0:
-				SearchLendingUi.showSearchLendingUi();
-				break;
-			case 1:
+		case 0:
+			SearchLendingUi.showSearchLendingUi();
+			break;
+		case 1:
+			do {
 				System.out.print("Introduzca el id del prestamo: ");
-				filter = InputUserData.checkUserInput("id");
-				Lending lending =lc.getLendingById(Integer.valueOf(filter));
-				LendingDetails.showLendingDetalis(lending);
-				
-				break;
-			case 2:
-				// not implemented yet
+				filter = InputUserData.checkUserInput("id","Pruebe de nuevo(entero positivo)");
+			} while (filter.equals(""));
+			Lending lending = lc.getLendingById(Integer.valueOf(filter));
+			LendingDetails.showLendingDetalis(lending);
 
-				break;
-			case 3:
-				// not implemented yet
-				break;
-			}
-		
+			break;
+		case 2:
+			// not implemented yet
+
+			break;
+		case 3:
+			// not implemented yet
+			break;
+		}
+
 	}
 
 }
