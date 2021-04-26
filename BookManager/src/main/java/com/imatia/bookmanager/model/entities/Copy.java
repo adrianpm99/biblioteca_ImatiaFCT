@@ -10,17 +10,17 @@ public class Copy {
 
 	int copyId;
 	int bookId;
-	boolean copyAvaiable;
+
 
 	public Copy() {
 		super();
 	}
 
-	public Copy(int copyId, int bookId, boolean copyAvaiable) {
+	public Copy(int copyId, int bookId) {
 		super();
 		this.copyId = copyId;
 		this.bookId = bookId;
-		this.copyAvaiable = copyAvaiable;
+		
 	}
 
 	public int getCopyId() {
@@ -37,14 +37,6 @@ public class Copy {
 
 	public void setBookId(int bookId) {
 		this.bookId = bookId;
-	}
-
-	public boolean isCopyAvaiable() {
-		return copyAvaiable;
-	}
-
-	public void setCopyAvaiable(boolean copyAvaiable) {
-		this.copyAvaiable = copyAvaiable;
-	}
+	}	
 
 }

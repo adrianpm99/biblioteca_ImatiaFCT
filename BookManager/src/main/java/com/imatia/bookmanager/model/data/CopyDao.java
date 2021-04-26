@@ -23,7 +23,7 @@ public class CopyDao {
 	 */
 	public void addCopy(Copy copy) {
 
-		String query = "INSERT INTO copy (bookId, copyAvaliable) VALUES (?,?)";
+		String query = "INSERT INTO copy (bookId) VALUES (?)";
 
 		try {
 			Connection con = connectionSQLite.getConnection();
@@ -31,7 +31,6 @@ public class CopyDao {
 			PreparedStatement ps = con.prepareStatement(query);
 
 			ps.setInt(1, copy.getBookId());
-			ps.setBoolean(2, copy.isCopyAvaiable());
 			ps.execute();
 			
 			ps.close();
@@ -75,9 +74,8 @@ public class CopyDao {
 
 			int copyId = rs.getInt("copyId");
 			int bookId = rs.getInt("bookId");
-			Boolean avaliable = rs.getBoolean("avaliable");
 
-			copy = new Copy(copyId, bookId, avaliable);
+			copy = new Copy(copyId, bookId);
 			
 			ps.close();
 

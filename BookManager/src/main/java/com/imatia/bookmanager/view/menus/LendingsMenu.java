@@ -1,9 +1,7 @@
 package com.imatia.bookmanager.view.menus;
 
-	import com.imatia.bookmanager.view.inputs.InputUserData;
-	import com.imatia.bookmanager.view.ui.EditBookUi;
-import com.imatia.bookmanager.view.ui.LendingsUi;
-import com.imatia.bookmanager.view.ui.SearchesUi;
+import com.imatia.bookmanager.view.inputs.InputUserData;
+import com.imatia.bookmanager.view.ui.SearchLendingUi;
 import com.imatia.bookmanager.view.ui.StartMenuUI;
 
 
@@ -29,8 +27,8 @@ import com.imatia.bookmanager.view.ui.StartMenuUI;
 					break;
 					
 				case 2: 
-				// option to modify / edit lendings
-				//	EditLendingUi.showEditLendingUi();
+				// option to search lendings
+				SearchLendingUi.showSearchLendingUi();
 
 					break;
 				
