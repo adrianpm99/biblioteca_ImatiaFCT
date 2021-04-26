@@ -22,8 +22,8 @@ public class AddUserMenu {
 
 		do {
 			System.out.print("Apellidos: ");
-			surName = InputUserData.checkUserInput("surname","Maximo 50 caracteres");
-			if(name.equals("")) System.out.println("El apellido es obligatorio. Pruebe de nuevo.");
+			surName = InputUserData.checkUserInput("surname","Maximo 50 caracteres.");
+			if(surName.equals("")) System.out.println("El apellido es obligatorio. Pruebe de nuevo.");
 		} while (surName.equals(""));
 		
 		User user = new User(name, surName);
