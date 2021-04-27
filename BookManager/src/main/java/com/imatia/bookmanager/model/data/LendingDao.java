@@ -19,8 +19,6 @@ public class LendingDao {
 
 	public String addLending(Lending lending, ArrayList<Integer> listIdCopy) {
 
-		String queryLendingCheck = "SELECT * FROM copy c, copyLending cl, lending l WHERE c.copyId = ? AND c.copyId = cl.copyId "
-				+ "AND l.lendingId = cl.lendingId AND l.lendingReturndate is null";
 		String queryGetUser = "SELECT * FROM user WHERE userId = ?";
 		String error = "";
 
