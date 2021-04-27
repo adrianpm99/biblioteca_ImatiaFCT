@@ -1,5 +1,7 @@
 package com.imatia.bookmanager.view.ui;
 
+import com.imatia.bookmanager.view.menus.AddReservationMenu;
+
 //import com.imatia.bookmanager.view.menus.AddReservationMenu;
 
 public class AddReservationUi {
@@ -8,11 +10,11 @@ public class AddReservationUi {
 				"\n**************************\r\n" + 
 				"** AÑADIR NUEVA RESERVA **\r\n" + 
 				"**************************\r\n" + 
-				"----------------------------------------\r\n" + 
-				"|| Introduzca los datos de la reserva ||\r\n" + 
-				"----------------------------------------");
+				"--------------------------------\r\n" + 
+				"|| Introduzca el id del libro ||\r\n" + 
+				"--------------------------------");
 		
-		//AddReservationMenu.showAddReservationMenu();
+		AddReservationMenu.showAddReservationMenu();
 		
 	}//showAddReservationUi()
 }//AddReservationUi
