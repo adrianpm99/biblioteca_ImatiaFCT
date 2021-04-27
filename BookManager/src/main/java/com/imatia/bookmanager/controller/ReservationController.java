@@ -1,9 +1,14 @@
 package com.imatia.bookmanager.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.imatia.bookmanager.model.data.ReservationDao;
+import com.imatia.bookmanager.view.ui.AddReservationUi;
+import com.imatia.bookmanager.view.ui.StartMenuUI;
+
+//import java.util.ArrayList;
+//import java.util.List;
+
 //import com.imatia.bookmanager.model.data.ReservationDao;
-import com.imatia.bookmanager.model.entities.Reservation;
+//import com.imatia.bookmanager.model.entities.Reservation;
 
 /**
  * class to implement the methods to connect views with data
@@ -12,13 +17,40 @@ import com.imatia.bookmanager.model.entities.Reservation;
  */
 public class ReservationController {
 	
-	/*ReservationDao rd = new ReservationDao();
+	ReservationDao rd = new ReservationDao();
 	
-	public Reservation getReservationById(int reservationId) {
+	
+	public void createNewReservation(int bookId) //bookId asked before on the menu
+	{
+		/* In order to create a new reservation, first it is necessary
+		 * to check if is there any reservation of that book.*/
+		boolean reservationExist;
 		
-		Reservation reservation = rd.getReservationById(reservationId);
-		return reservation;
-	}*/
+		//ReservationUi.showReservationUi();
+		
+		reservationExist= rd.checkReservationExist(bookId);
+		if(reservationExist==true)
+		{
+			System.out.println("No se puede realizar la reserva.\n"
+							+ "El libro ya está reservado por otra persona.\n");
+			//ReservationUi.showReservationUi();
+		}
+		else if(reservationExist==false)
+		{
+			//proceed with creating reservation process (not implemented yet)
+		}
+	}//createNewReservation()
+	
+	
+	
+	
+	
+	
+//	public Reservation getReservationById(int reservationId) {
+//		
+//		Reservation reservation = rd.getReservationById(reservationId);
+//		return reservation;
+//	}
 
 	/**
 	 * method to get a list of reservations filter by idCopy

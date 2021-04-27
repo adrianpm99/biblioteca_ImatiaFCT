@@ -52,6 +52,10 @@ public class LendingController {
 		return lendingList;
 	}
 	
+	public void modifyLendingReturnDate(int id, LocalDate lendingReturnDate) {
+		ld.modifyLendingReturndDate(id, lendingReturnDate);
+	}
+	
 	
 	
 }
