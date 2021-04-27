@@ -1,93 +1,51 @@
 package com.imatia.bookmanager.model.entities;
 
-import java.time.LocalDate;
-
 /**
  * 
- * class that defines the reservation object with its attributes,
- * constructors and getter and setter methods
+ * class that defines the reservation object with its attributes, constructors
+ * and getter and setter methods
  *
  */
 public class Reservation {
-	
-	
+
 	int reservationId;
-	int copyId;
+	int bookId;
 	int userId;
-	boolean reservationReservated;
-	LocalDate reservationDate;
-	
-	
+
 	public Reservation() {
-		super();
+
 	}
 
+	public Reservation(int reservationId, int bookId, int userId) {
 
-	public Reservation(int reservationId, int copyId, int userId, boolean reservationReservated,
-			LocalDate reservationDate) {
-		super();
 		this.reservationId = reservationId;
-		this.copyId = copyId;
+		this.bookId = bookId;
 		this.userId = userId;
-		this.reservationReservated = reservationReservated;
-		this.reservationDate = reservationDate;
-	}
 
+	}
 
 	public int getReservationId() {
 		return reservationId;
 	}
 
-
 	public void setReservationId(int reservationId) {
 		this.reservationId = reservationId;
 	}
 
-
-	public int getCopyId() {
-		return copyId;
+	public int getBookId() {
+		return bookId;
 	}
 
-
-	public void setCopyId(int copyId) {
-		this.copyId = copyId;
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
 	}
-
 
 	public int getUserId() {
 		return userId;
 	}
 
-
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-
-
-	public boolean isReservationReservated() {
-		return reservationReservated;
-	}
-
-
-	public void setReservationReservated(boolean reservationReservated) {
-		this.reservationReservated = reservationReservated;
-	}
-
-
-	public LocalDate getReservationDate() {
-		return reservationDate;
-	}
-
-
-	public void setReservationDate(LocalDate reservationDate) {
-		this.reservationDate = reservationDate;
-	}
-	
-	
-	
-	
-	
-	
-	
 
 }
