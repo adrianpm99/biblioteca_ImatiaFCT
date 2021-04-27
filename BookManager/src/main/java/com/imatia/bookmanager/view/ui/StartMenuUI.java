@@ -22,6 +22,10 @@ public class StartMenuUI
 				"\r\n" + 
 				"	4 - GESTION DE USUARIOS\r\n" + 
 				"\r\n" + 
+				"	5 - VISUALIZAR LIBRO POR ID\r\n" + 
+				"\r\n" +
+				"	6 - RESERVAS\r\n" + 
+				"\r\n" +
 				"	0 - SALIR\r\n");
 		
 		
