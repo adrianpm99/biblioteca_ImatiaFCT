@@ -321,13 +321,13 @@ public class BookDao {
 	 */
 	public boolean existBookLending(int id) {
 			
-			// verify if there are records in the copylending table for some
+			// verify if there are records in the copylending table and de lending.lendingReturnDate is null for some
 			// item with id of selected book
 			boolean lendingExist = false;
 		
 			String verify = "SELECT 1 FROM copy c, copyLending cl, lending l WHERE c.bookId = ?"
-					+ "AND c.copyId = cl.copyId";
-				//	+ "AND l.lendingReturnDate!= null";
+					+ "AND c.copyId = cl.copyId"
+					+ "AND l.lendingReturnDate is null";
 			
 			try {
 
