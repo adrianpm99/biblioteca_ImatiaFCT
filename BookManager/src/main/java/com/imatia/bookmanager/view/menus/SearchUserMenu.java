@@ -1,10 +1,15 @@
 package com.imatia.bookmanager.view.menus;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.imatia.bookmanager.controller.UserController;
 import com.imatia.bookmanager.model.entities.User;
 import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.results.UserDetails;
+import com.imatia.bookmanager.view.results.UserRenderers;
 import com.imatia.bookmanager.view.ui.UserManagementUi;
+import com.imatia.bookmanager.view.ui.UserResultsByMethodUI;
 
 public class SearchUserMenu {
 
@@ -14,6 +19,7 @@ public class SearchUserMenu {
 		String filter;
 		String filter2;
 		User user = new User();
+		List<User> userList = new ArrayList<>();
 
 		do {
 			option = InputUserData.checkUserInput("option", "Opcion no válida. Pruebe de nuevo(entero positivo)");
@@ -37,15 +43,18 @@ public class SearchUserMenu {
 		case 2:
 			do {
 				System.out.print("Introduzca el nombre: ");
-				filter = InputUserData.checkUserInput("name","Maximo 50 carácteres");
+				filter = InputUserData.checkUserInput("name", "Maximo 50 carácteres");
 			} while (filter.equals(""));
 			do {
 
 				System.out.print("Introduzca el apellido: ");
 				filter2 = InputUserData.checkUserInput("surname", "Máximo 50 carácteres");
 			} while (filter2.equals(""));
-			user = uc.getUserByNameAndSurname(filter, filter2);
-			UserDetails.showUserDetails(user);
+			userList = uc.getUserByNameAndSurname(filter, filter2);
+			UserResultsByMethodUI.showUserResultsUi("NOMBRE Y APELLIDOS");
+			UserRenderers.renderListUsers(userList);
+
+			UserResultsByMethodMenu.showUserResultsByMethodMenuOptions();
 
 			break;
 

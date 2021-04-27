@@ -1,5 +1,8 @@
 package com.imatia.bookmanager.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.imatia.bookmanager.model.data.UserDao;
 import com.imatia.bookmanager.model.entities.User;
 
@@ -26,16 +29,17 @@ public class UserController {
 	}
 	
 	/**
-	 * method to get a user filter by name and surname
+	 * method to get a list of users filter by name and surname
 	 * @param name
 	 * @param surname
-	 * @return user
+	 * @return userList
 	 */
-	public User getUserByNameAndSurname(String name, String surname) {
+	public List<User> getUserByNameAndSurname(String name, String surname) {
 		
-		User user = ud.getUserByNameAndSurname(name, surname);
+		List<User> userList = new ArrayList<>();
+		userList = ud.getUserByNameAndSurname(name, surname);
 		
-		return user;
+		return userList;
 	}
 
 	/**
