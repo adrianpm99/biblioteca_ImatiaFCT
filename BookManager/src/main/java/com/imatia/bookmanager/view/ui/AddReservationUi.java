@@ -8,9 +8,9 @@ public class AddReservationUi {
 				"\n**************************\r\n" + 
 				"** AÑADIR NUEVA RESERVA **\r\n" + 
 				"**************************\r\n" + 
-				"--------------------------------------------\r\n" + 
+				"----------------------------------------\r\n" + 
 				"|| Introduzca los datos de la reserva ||\r\n" + 
-				"--------------------------------------------");
+				"----------------------------------------");
 		
 		//AddReservationMenu.showAddReservationMenu();
 		
