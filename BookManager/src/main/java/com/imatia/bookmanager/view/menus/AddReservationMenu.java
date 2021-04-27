@@ -8,7 +8,7 @@ public class AddReservationMenu {
 	public static void showAddReservationMenu() {
 		String id;
 		do {
-			id = InputUserData.checkUserInput("id", "Inserte un id valido)");
+			id = InputUserData.checkUserInput("id", "Inserte un id valido");
 		}while(id.equals(""));
 		ReservationController.createNewReservation(Integer.parseInt(id));
 		
