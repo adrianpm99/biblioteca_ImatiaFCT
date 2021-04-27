@@ -14,7 +14,7 @@ public class StartMenuUI
 
 				"\n==Seleccione una opcion==\r\n" + 
 				"\r\n" + 
-				"	1 - BUSQUEDAS\r\n" + 
+				"	1 - BUSQUEDA DE LIBROS\r\n" + 
 				"	\r\n" + 
 				"	2 - PRESTAMOS\r\n" + 
 				"\r\n" + 

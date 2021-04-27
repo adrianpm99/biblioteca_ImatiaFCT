@@ -127,6 +127,8 @@ public class UserDao {
 			ps.setInt(3, user.getUserId());
 
 			ps.executeUpdate();
+			
+			System.out.println("Los datos del usuario se han actualizado correctamente");
 
 			ps.close();
 

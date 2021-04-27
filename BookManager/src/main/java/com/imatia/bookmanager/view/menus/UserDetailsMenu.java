@@ -1,6 +1,7 @@
 package com.imatia.bookmanager.view.menus;
 
 import com.imatia.bookmanager.view.inputs.InputUserData;
+import com.imatia.bookmanager.view.ui.EditUserUi;
 import com.imatia.bookmanager.view.ui.SearchUserUi;
 import com.imatia.bookmanager.view.ui.UserManagementUi;
 
@@ -19,8 +20,7 @@ public class UserDetailsMenu {
 			SearchUserUi.showSearchUserUi();
 			break;
 		case 1:
-			// Not implemented yet
-			// modifyUserUi
+			EditUserUi.showEditUserUi(id);
 			break;
 		case 2:
 			DeleteUserMenu.showDeleteUserMenu(id);
