@@ -25,14 +25,16 @@ public class LendingDao {
 		String queryGetUser = "SELECT * FROM user WHERE userId = ?";
 		String error = "";
 
-		try {
-			Connection con = connectionSQLite.getConnection();
+		try (Connection con = connectionSQLite.getConnection();
+				PreparedStatement psGetUser = con.prepareStatement(queryGetUser);
+				){
+			
 
-			PreparedStatement psGetUser = con.prepareStatement(queryGetUser);
+			
 			psGetUser.setInt(1, lending.getUserId());
 
 			if (psGetUser.execute() == true) {
-
+				psGetUser.close();
 				for (int cont = 0; cont < listIdCopy.size(); cont++) {
 					PreparedStatement psGetCopy = con.prepareStatement(queryGetCopy);
 
@@ -45,13 +47,23 @@ public class LendingDao {
 						int bookId = rs.getInt("bookId");
 						Copy copy = new Copy(listIdCopy.get(cont), bookId);
 
-						PreparedStatement psCopyLendingCheck = con.prepareCall(queryCopyLendingCheck);
+						rs.close();
+						psGetCopy.close();
+
+						PreparedStatement psCopyLendingCheck = con.prepareStatement(queryCopyLendingCheck);
 						psCopyLendingCheck.setInt(1, copy.getCopyId());
 						if (psCopyLendingCheck.execute() == true) { // Compruebo existencia del prestamo de la copia
 							ResultSet rs2 = psCopyLendingCheck.getResultSet();
-							while (rs2.next()) {
+							if (rs2.next()) {
+								rs2.afterLast();
+
+								// while(rs2.next()) {
 
 								int lendingId = rs2.getInt("lendingId");
+
+								rs2.close();
+								psCopyLendingCheck.close();
+
 								PreparedStatement psLendingCheck = con.prepareStatement(queryLendingCheck);
 								psLendingCheck.setInt(1, lendingId);
 
@@ -65,6 +77,9 @@ public class LendingDao {
 																									// prestado si !=
 																									// null
 																									// no esta prestado
+										rsLending.close();
+										psLendingCheck.close();
+
 										// PreparedStatement ps = con.prepareStatement(queryLending);
 										PreparedStatement ps = con.prepareStatement(queryLending,
 												Statement.RETURN_GENERATED_KEYS);
@@ -110,16 +125,62 @@ public class LendingDao {
 								} else {
 									return error = "El ejemplar ya esta prestado";
 								}
+								// }
+
+							} else {
+								rs2.close();
+								psCopyLendingCheck.close();
+								PreparedStatement ps = con.prepareStatement(queryLending,
+										Statement.RETURN_GENERATED_KEYS);
+								ps.setInt(1, lending.getUserId());
+
+								// esto daba error (java.lang.ClassCastException: java.util.Date cannot be cast
+								// to java.sql.Date)
+
+								// Date lendingDate = (Date) Date
+								// .from(lending.getLendingDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+								Date lendingDate = Date.valueOf(lending.getLendingDate());
+								ps.setDate(2, lendingDate);
+								// Date deadLineDate = (Date) Date
+								// .from(lending.getLendingDeadLine().atStartOfDay(ZoneId.systemDefault()).toInstant());
+								Date lendingDeadLine = Date.valueOf(lending.getLendingDeadLine());
+								ps.setDate(3, lendingDeadLine);
+
+								ps.setDate(4, null);
+
+								ps.execute();
+
+								ResultSet rsId = ps.getGeneratedKeys();
+								rsId.next();
+
+								lending.setLendingId(rsId.getInt(1));
+
+								ps.close();
+
+								PreparedStatement ps2 = con.prepareStatement(queryCopyLending);
+								ps2.setInt(1, copy.getCopyId());
+
+								// aquí hay que averiguar el codigo autogenerado para lendingId
+								// cuando se hizo la inserción en la tabla lending
+								// ahora está poniendo siempre 1
+								ps2.setInt(2, lending.getLendingId());
+
+								ps2.execute();
+								ps2.close();
+								
+								
+
+								return error = "";
 							}
 						} else {
 							return error = "Ejemplar ya prestado";
+
 						}
 					} else {
-						return error = "No existe el ejemplar";
+						return error = "No existe la copia";
 					}
-
 				}
-			}else {
+			} else {
 				return error = "No existe el usuario";
 			}
 
