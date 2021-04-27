@@ -3,8 +3,7 @@ package com.imatia.bookmanager.view.ui;
 import com.imatia.bookmanager.view.menus.ReservationMenu;
 
 public class AddReservationUi {
-public static void showAddUserUi() {
-		
+	public static void showAddReservationUi() {
 		System.out.println(
 				"\n**************************\r\n" + 
 				"** AÑADIR NUEVA RESERVA **\r\n" + 
@@ -13,6 +12,7 @@ public static void showAddUserUi() {
 				"|| Introduzca los datos de la reserva ||\r\n" + 
 				"--------------------------------------------");
 		
-		//ReservationMenu.showAddUserMenu();
-	}
-}
+		//AddReservationMenu.showAddReservationMenu();
+		
+	}//showAddReservationUi()
+}//AddReservationUi
