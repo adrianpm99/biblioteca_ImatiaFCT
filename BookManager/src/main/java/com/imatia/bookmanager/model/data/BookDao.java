@@ -30,51 +30,44 @@ public class BookDao {
 	public Book getBookById(int id) {
 		
 		String query = "SELECT * FROM book WHERE id = ?";
-		Book book = new Book();
+		Book book = null;
 
 		try {
-
 			Connection con = connectionSQLite.getConnection();
-
 			PreparedStatement ps = con.prepareStatement(query);
 
 			ps.setInt(1, id);
 			ps.execute();
 			ResultSet rs = ps.getResultSet();
-			rs.next();
+			
+			if(rs.next()) //if there is any result
+			{
+				int bookId = rs.getInt("id");
+				String bookTitle = rs.getString("title");
+				String description = rs.getString("description");
+				String author = rs.getString("author");
+				int pagesNumber = rs.getInt("pageNumber");
+				String bookIsbn = rs.getString("isbn");
+				String editorial = rs.getString("editorial");
+				int edition = rs.getInt("edition");
+				Year bookPublicationYear = Year.parse(rs.getString("bookPublicationYear"));
 
-			int bookId = rs.getInt("id");
-			String bookTitle = rs.getString("title");
-			String description = rs.getString("description");
-			String author = rs.getString("author");
-			int pagesNumber = rs.getInt("pageNumber");
-			String bookIsbn = rs.getString("isbn");
-			String editorial = rs.getString("editorial");
-			int edition = rs.getInt("edition");
-			Year bookPublicationYear = Year.parse(rs.getString("bookPublicationYear"));
-
-			book = new Book(bookId, bookTitle, description, author, pagesNumber, bookIsbn, editorial, edition,
-					bookPublicationYear);
+				book = new Book(bookId, bookTitle, description, author, pagesNumber, bookIsbn, 
+						editorial, edition, bookPublicationYear);
+			}
 
 			ps.close();
-
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			try {
-				connectionSQLite.closeConnection();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-		return book;
-	}
+		}//try
+		catch (ClassNotFoundException e) {e.printStackTrace();} 
+		catch (SQLException e) {e.printStackTrace();}
+		finally {
+			try {connectionSQLite.closeConnection();}
+			catch (SQLException e) {e.printStackTrace();}
+		}//finally
+		
+		return book; //returns the book if exists, returns null if doesn't
+	}//getBookById()
+	
 
 	/**
 	 * method to get a list of books filter by title

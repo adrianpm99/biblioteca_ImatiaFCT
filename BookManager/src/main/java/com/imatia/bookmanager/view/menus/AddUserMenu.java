@@ -15,7 +15,7 @@ public class AddUserMenu {
 		String surName;
 		
 		do {
-			System.out.print("Nommbre: ");
+			System.out.print("Nombre: ");
 			name = InputUserData.checkUserInput("name","Maximo 50 caracteres.");
 			if(name.equals("")) System.out.println("El nombre es obligatorio. Pruebe de nuevo.");
 		} while (name.equals(""));

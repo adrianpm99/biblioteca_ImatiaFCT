@@ -6,31 +6,29 @@ import com.imatia.bookmanager.view.ui.SearchUserUi;
 import com.imatia.bookmanager.view.ui.StartMenuUI;
 
 public class UserManagementMenu {
-	
+
 	public static void showUserManagementMenuOptions() {
-		
-		int option;
+
+		String option;
 
 		do {
-			option = Integer.parseInt(InputUserData.checkUserInput("option"));
+			option = InputUserData.checkUserInput("option", "Opcion no válida. Pruebe de nuevo(entero positivo)");
+		} while (option.equals("") && !option.equals("0") && !option.equals("1") && !option.equals("2"));
 
-			switch (option) {
+		switch (Integer.parseInt(option)) {
 
-			case 0:
-				StartMenuUI.showStartMenuUi();
-				break;
-			case 1:
-				AddUserUi.showAddUserUi();
-				break;
-			case 2:
-				SearchUserUi.showSearchUserUi();
-				break;
-		
-			}
+		case 0:
+			StartMenuUI.showStartMenuUi();
+			break;
+		case 1:
+			AddUserUi.showAddUserUi();
+			break;
+		case 2:
+			SearchUserUi.showSearchUserUi();
+			break;
 
-		} while (option != 0 && option != 1 && option != 2 );
+		}
 
-	
 	}
 
 }

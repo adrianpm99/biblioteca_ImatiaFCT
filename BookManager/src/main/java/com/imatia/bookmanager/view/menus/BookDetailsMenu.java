@@ -9,30 +9,26 @@ import com.imatia.bookmanager.view.ui.SearchesUi;
 
 public class BookDetailsMenu
 {
-
 	public static void showBookDetailsOptions(int id) {
 
-		int option;
+		String option;
 
-		do {
-			option = Integer.parseInt(InputUserData.checkUserInput("option", "Opcion no valida. Pruebe de nuevo (entero positivo)"));
-
-			switch (option)
-			{
-			case 0:
-				SearchesUi.showSearchesUi();
-				break;
-			case 1: 
-
-				EditBookUi.showEditBookUi(id);
-
-				break;
-			case 2:
-				DeleteBookMenu.showDeleteBookMenu(id);
-				break;
-			}
-
-		} while (option != 0 && option != 1 && option != 2);
+		do
+		{
+			option = InputUserData.checkUserInput("option", "Opcion no valida. Pruebe de nuevo (entero positivo)");
+		} while (option.equals("") && !option.equals("0") && !option.equals("1") && !option.equals("2"));
 		
+		switch (Integer.parseInt(option))
+		{
+		case 0:
+			SearchesUi.showSearchesUi();
+			break;
+		case 1: 
+			EditBookUi.showEditBookUi(id);
+			break;
+		case 2:
+			DeleteBookMenu.showDeleteBookMenu(id);
+			break;
+		}
 	}//showBookDetailsOptions()
 }//class BookDetailsMenu
