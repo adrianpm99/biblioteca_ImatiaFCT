@@ -1,6 +1,6 @@
 package com.imatia.bookmanager.view.ui;
 
-import com.imatia.bookmanager.view.menus.ReservationMenu;
+//import com.imatia.bookmanager.view.menus.AddReservationMenu;
 
 public class AddReservationUi {
 	public static void showAddReservationUi() {
