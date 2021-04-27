@@ -46,7 +46,7 @@ public class LendingController {
 	 * @param LendingDeadLine
 	 * @return lendingList
 	 */
-	public List<Lending> getLendingByDeadLine(LocalDate date) {
+	public List<Lending> getLendingByDeadLine(String date) {
 		
 		List<Lending> lendingList = ld.getLendingByDeadLine(date);
 		return lendingList;

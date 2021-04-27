@@ -6,7 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -373,7 +376,7 @@ public class LendingDao {
 	 * @param userId
 	 * @return lending
 	 */
-	public List<Lending> getLendingByDeadLine(LocalDate date) {
+	public List<Lending> getLendingByDeadLine(String date) {
 
 		Lending lending = new Lending();
 		List<Lending> lendingList = new ArrayList<>();
@@ -385,7 +388,10 @@ public class LendingDao {
 
 			PreparedStatement ps = con.prepareStatement(query);
 
-			ps.setDate(1, Date.valueOf(date));
+			 DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			 LocalDate datef = LocalDate.parse(date, format);
+			 ps.setDate(1, Date.valueOf(date));  
+		//	ps.setDate(1, Date.valueOf(date));
 			ps.execute();
 			ResultSet rs = ps.getResultSet();
 			while (rs.next()) {
