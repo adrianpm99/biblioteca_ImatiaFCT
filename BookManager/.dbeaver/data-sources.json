@@ -2,6 +2,7 @@
 	"folders": {},
 	"connections": {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		"sqlite_jdbc-1790e991d76-7e78f99df5b51008": {
 			"provider": "generic",
 			"driver": "sqlite_jdbc",
@@ -22,6 +23,17 @@
 				"database": "C:\\Users\\i5-10600KF\\git\\biblioteca_ImatiaFCT\\BookManager\\database.db",
 				"url": "jdbc:sqlite:C:\\Users\\i5-10600KF\\git\\biblioteca_ImatiaFCT\\BookManager\\database.db",
 >>>>>>> branch 'Development' of https://github.com/adrianpm99/biblioteca_ImatiaFCT
+=======
+		"sqlite_jdbc-179122fc0a8-74869191cedad893": {
+			"provider": "generic",
+			"driver": "sqlite_jdbc",
+			"name": "database.db",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"database": "C:\\Users\\USER\\git\\biblioteca_ImatiaFCT\\BookManager\\database.db",
+				"url": "jdbc:sqlite:C:\\Users\\USER\\git\\biblioteca_ImatiaFCT\\BookManager\\database.db",
+>>>>>>> refs/heads/feature/changeUserSearchByNameAndSurname
 				"type": "dev",
 				"auth-model": "native",
 				"handlers": {}

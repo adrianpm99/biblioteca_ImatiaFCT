@@ -1,19 +1,15 @@
 {
 	"folders": {},
 	"connections": {
-<<<<<<< HEAD
-		"sqlite_jdbc-178fa28d047-3479ac778215910b": {
-=======
-		"sqlite_jdbc-178f96e180e-2d5c4415167b2af": {
->>>>>>> branch 'Development' of https://github.com/adrianpm99/biblioteca_ImatiaFCT
+		"sqlite_jdbc-179122fc0a8-74869191cedad893": {
 			"provider": "generic",
 			"driver": "sqlite_jdbc",
 			"name": "database.db",
 			"save-password": true,
 			"read-only": false,
 			"configuration": {
-				"database": "C:\\Users\\barri\\git\\biblioteca_ImatiaFCT\\BookManager\\database.db",
-				"url": "jdbc:sqlite:C:\\Users\\barri\\git\\biblioteca_ImatiaFCT\\BookManager\\database.db",
+				"database": "C:\\Users\\USER\\git\\biblioteca_ImatiaFCT\\BookManager\\database.db",
+				"url": "jdbc:sqlite:C:\\Users\\USER\\git\\biblioteca_ImatiaFCT\\BookManager\\database.db",
 				"type": "dev",
 				"auth-model": "native",
 				"handlers": {}
