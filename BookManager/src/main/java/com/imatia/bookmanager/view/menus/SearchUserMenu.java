@@ -41,15 +41,14 @@ public class SearchUserMenu {
 
 			break;
 		case 2:
-			do {
+			
 				System.out.print("Introduzca el nombre: ");
 				filter = InputUserData.checkUserInput("name", "Maximo 50 carácteres");
-			} while (filter.equals(""));
-			do {
+				if(filter.equals("")) filter= "";
 
 				System.out.print("Introduzca el apellido: ");
 				filter2 = InputUserData.checkUserInput("surname", "Máximo 50 carácteres");
-			} while (filter2.equals(""));
+			if (filter2.equals("")) filter2="";
 			userList = uc.getUserByNameAndSurname(filter, filter2);
 			UserResultsByMethodUI.showUserResultsUi("NOMBRE Y APELLIDOS");
 			UserRenderers.renderListUsers(userList);

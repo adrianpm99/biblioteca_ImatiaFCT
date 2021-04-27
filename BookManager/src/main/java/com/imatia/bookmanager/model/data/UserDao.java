@@ -205,8 +205,8 @@ public class UserDao {
 
 			PreparedStatement ps = con.prepareStatement(query);
 
-			ps.setString(1, name + "%");
-			ps.setString(2, surname + "%");
+			ps.setString(1, name );
+			ps.setString(2, surname);
 			ps.execute();
 			ResultSet rs = ps.getResultSet();
 			while(rs.next()) {

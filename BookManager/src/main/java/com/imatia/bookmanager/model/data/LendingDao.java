@@ -18,91 +18,20 @@ public class LendingDao {
 	ConnectionSQLite connectionSQLite = new ConnectionSQLite();
 
 	public String addLending(Lending lending, ArrayList<Integer> listIdCopy) {
-		String queryGetCopy = "SELECT * FROM copy WHERE copyId = ?";
-		String queryLendingCheck = "SELECT * FROM lending WHERE lendingId = ?";
-		String queryLending = "INSERT INTO lending (userId, lendingDate, lendingDeadLine,lendingReturnDate) "
-				+ "VALUES (?,?,?,?) ";
-		String queryCopyLending = "INSERT INTO copyLending (copyId, lendingId) " + "Values(?,?) ";
-		String queryCopyLendingCheck = "SELECT * FROM copyLending WHERE copyId = ?";
+
 		String queryGetUser = "SELECT * FROM user WHERE userId = ?";
 		String error = "";
 
 		try (Connection con = connectionSQLite.getConnection();
 				PreparedStatement psGetUser = con.prepareStatement(queryGetUser);) {
+			if (checkUser(lending, con)) {
 
-			psGetUser.setInt(1, lending.getUserId());
-
-			if (psGetUser.execute() == true) {
-				psGetUser.close();
 				for (int cont = 0; cont < listIdCopy.size(); cont++) {
-					PreparedStatement psGetCopy = con.prepareStatement(queryGetCopy);
-
-					psGetCopy.setInt(1, listIdCopy.get(cont));
-					if (psGetCopy.execute() == true) { // Compruebo existecia de la copia
-
-						ResultSet rs = psGetCopy.getResultSet();
-						rs.next();
-
-						int bookId = rs.getInt("bookId");
-						Copy copy = new Copy(listIdCopy.get(cont), bookId);
-
-						rs.close();
-						psGetCopy.close();
-
-						PreparedStatement psCopyLendingCheck = con.prepareStatement(queryCopyLendingCheck);
-						psCopyLendingCheck.setInt(1, copy.getCopyId());
-
-						if (psCopyLendingCheck.execute() == true) { // Compruebo existencia del prestamo de la copia
-							ResultSet rs2 = psCopyLendingCheck.getResultSet();
-
-							boolean added = false;
-
-							while (rs2.next()) {
-
-								// while(rs2.next()) {
-
-								int lendingId = rs2.getInt("lendingId");
-
-								rs2.close();
-								psCopyLendingCheck.close();
-
-								PreparedStatement psLendingCheck = con.prepareStatement(queryLendingCheck);
-								psLendingCheck.setInt(1, lendingId);
-
-								if (psLendingCheck.execute() == false) {
-									ResultSet rsLending = psLendingCheck.getResultSet();
-									rsLending.next();
-									Date date;
-
-									if ((date = rsLending.getDate("lendingReturnDate")) != null) { // si es null == aun
-																									// esta
-																									// prestado si !=
-																									// null
-																									// no esta prestado
-										rsLending.close();
-										psLendingCheck.close();
-										addLendingMethod(lending, con, copy);
-
-										added = true;
-										break;
-									}
-
-								} else {
-									return error = "El ejemplar ya esta prestado";
-								}
-								// }
-
-							}
-							if (added == false) {
-								rs2.close();
-								psCopyLendingCheck.close();
-								addLendingMethod(lending, con, copy);
-								return error = "";
-							}
-
+					if (checkCopy(lending, con, listIdCopy.get(cont))) {
+						if (checkLending(lending, con, listIdCopy.get(cont))) {
+							addLendingMethod(lending, con, listIdCopy.get(cont));
 						} else {
-							return error = "Ejemplar ya prestado";
-
+							return error = "El ejemplar ya esta prestado";
 						}
 					} else {
 						return error = "No existe la copia";
@@ -111,7 +40,6 @@ public class LendingDao {
 			} else {
 				return error = "No existe el usuario";
 			}
-
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -129,7 +57,84 @@ public class LendingDao {
 		return error;
 	}
 
-	private void addLendingMethod(Lending lending, Connection con, Copy copy) {
+	private boolean checkUser(Lending lending, Connection con) {
+		String queryGetUser = "SELECT * FROM user WHERE userId = ?";
+		boolean check = false;
+		try {
+			PreparedStatement psGetUser = con.prepareStatement(queryGetUser);
+			psGetUser.setInt(1, lending.getUserId());
+
+			psGetUser.execute();
+
+			ResultSet rsUser = psGetUser.getResultSet();
+
+			if (rsUser.next()) {
+				psGetUser.close();
+				rsUser.close();
+				return check = true;
+			} else {
+				return check = false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return check;
+	}
+
+	private boolean checkCopy(Lending lending, Connection con, int idCopy) {
+		String queryGetCopy = "SELECT * FROM copy WHERE copyId = ?";
+		boolean check = false;
+		try {
+			PreparedStatement psGetCopy = con.prepareStatement(queryGetCopy);
+
+			psGetCopy.setInt(1, idCopy);
+			psGetCopy.execute();
+			ResultSet rs = psGetCopy.getResultSet();
+			if (rs.next()) { // Compruebo existecia de la copia
+				rs.close();
+				psGetCopy.close();
+
+				return check = true;
+			} else {
+				return check = false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return check;
+	}
+
+	private boolean checkLending(Lending lending, Connection con, int copyId) {
+		String queryLendingCheck = "SELECT * FROM copy c, copyLending cl, lending l WHERE c.copyId = ? AND c.copyId = cl.copyId "
+				+ "AND l.lendingId = cl.lendingId AND l.lendingReturndate is null";
+		boolean check = true;
+		PreparedStatement psLendingCheck;
+		try {
+			psLendingCheck = con.prepareStatement(queryLendingCheck);
+
+			psLendingCheck.setInt(1, copyId);
+
+			psLendingCheck.execute();
+			ResultSet rs = psLendingCheck.getResultSet();
+			if (rs.next()) {
+
+				rs.close();
+				psLendingCheck.close();
+
+				return check = false;
+			} else {
+				return check = true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return check;
+	}
+
+	private void addLendingMethod(Lending lending, Connection con, int copyId) {
 		String queryLending = "INSERT INTO lending (userId, lendingDate, lendingDeadLine,lendingReturnDate) "
 				+ "VALUES (?,?,?,?) ";
 		String queryCopyLending = "INSERT INTO copyLending (copyId, lendingId) " + "Values(?,?) ";
@@ -164,11 +169,8 @@ public class LendingDao {
 			ps.close();
 
 			PreparedStatement ps2 = con.prepareStatement(queryCopyLending);
-			ps2.setInt(1, copy.getCopyId());
+			ps2.setInt(1, copyId);
 
-			// aquí hay que averiguar el codigo autogenerado para lendingId
-			// cuando se hizo la inserción en la tabla lending
-			// ahora está poniendo siempre 1
 			ps2.setInt(2, lending.getLendingId());
 
 			ps2.execute();
