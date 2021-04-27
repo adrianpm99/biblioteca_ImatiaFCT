@@ -216,7 +216,7 @@ public class LendingDao {
 	 * @param lending
 	 * @param dateReturnDate
 	 */
-	public void modifyLendingReturndDate(Lending lending, LocalDate dateReturnDate) {
+	public void modifyLendingReturndDate(int id, LocalDate dateReturnDate) {
 
 		String query = "UPDATE lending SET lendingReturnDate =? WHERE lendingId= ?";
 
@@ -226,7 +226,9 @@ public class LendingDao {
 			PreparedStatement ps = con.prepareStatement(query);
 
 			ps.setDate(1, Date.valueOf(dateReturnDate));
-			ps.setInt(2, lending.getLendingId());
+			ps.setInt(2, id);
+			
+			System.out.println("Fecha de devolucion: "+ dateReturnDate);
 
 			ps.executeUpdate();
 
