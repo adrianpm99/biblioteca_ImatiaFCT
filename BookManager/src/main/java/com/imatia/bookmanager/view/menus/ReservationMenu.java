@@ -20,8 +20,7 @@ public class ReservationMenu {
 			break;
 			
 		case 1:
-			//option to list by copy 
-			//ReservationRenderers(by Copy)
+			//Add reservation
 			break;
 		}
 	}//showReservationMenuOptions()
