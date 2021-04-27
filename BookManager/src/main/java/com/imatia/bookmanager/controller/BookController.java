@@ -85,5 +85,6 @@ public class BookController {
 	 */
 	public void deleteBook(int id) {
 		bd.deleteBook(id);
+		
 	}
 }

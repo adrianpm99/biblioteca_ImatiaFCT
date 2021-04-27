@@ -52,8 +52,16 @@ public class LendingController {
 		return lendingList;
 	}
 	
+	
 	public void modifyLendingReturnDate(int id, LocalDate lendingReturnDate) {
-		ld.modifyLendingReturndDate(id, lendingReturnDate);
+		
+		Lending lending = ld.getLendingById(id);
+		if(lending.getLendingReturnDate() == null) {
+			ld.modifyLendingReturndDate(id, lendingReturnDate);
+		}
+		else {
+			System.out.println("El prestamo con id " + id + " ya está cerrado");
+			}
 	}
 	
 	
