@@ -5,7 +5,7 @@ import com.imatia.bookmanager.model.entities.Book;
 import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.results.BookDetails;
 import com.imatia.bookmanager.view.ui.AddBookUi;
-import com.imatia.bookmanager.view.ui.AddReservationUi;
+import com.imatia.bookmanager.view.ui.ReservationUi;
 import com.imatia.bookmanager.view.ui.LendingsUi;
 import com.imatia.bookmanager.view.ui.SearchesUi;
 import com.imatia.bookmanager.view.ui.UserManagementUi;
@@ -49,7 +49,7 @@ public class StartMenu {
 			BookDetails.showBookDetails(book);
 			break;
 		case 6:
-			AddReservationUi.showAddReservationUi();
+			ReservationUi.showReservationUi();
 			break;
 		}
 
