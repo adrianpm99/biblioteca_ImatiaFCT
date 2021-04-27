@@ -119,14 +119,13 @@ public class LendingDao {
 			psLendingCheck.execute();
 			ResultSet rs = psLendingCheck.getResultSet();
 			if (rs.next()) {
-				rs.next();
 
 				rs.close();
 				psLendingCheck.close();
 
-				return check = true;
-			} else {
 				return check = false;
+			} else {
+				return check = true;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
