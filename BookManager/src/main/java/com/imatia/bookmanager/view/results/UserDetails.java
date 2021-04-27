@@ -22,6 +22,7 @@ public class UserDetails {
 				"==========================================================\r\n");
 		
 		UserDetailsMenu.showUserDetailsMenuOptions(u.getUserId());
+		
 	}
 
 }

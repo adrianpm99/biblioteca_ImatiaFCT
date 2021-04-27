@@ -19,15 +19,14 @@ public class UtilityInputs
 		
 		System.out.println("¿Esta seguro de "+action+" el "+object+"?");
 		System.out.print("Escriba  si/no para confirmar: ");
-		
-		String request = sc.nextLine();
-		
+		String request;
 		do
 		{
+			request = sc.nextLine();
 			if(request.equalsIgnoreCase("si")) {
 				confirmation = true;
 			}
-			if(request.equalsIgnoreCase("no")) {
+			else if(request.equalsIgnoreCase("no")) {
 				confirmation = false;
 			}
 			else

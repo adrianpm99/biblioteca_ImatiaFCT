@@ -2,6 +2,7 @@ package com.imatia.bookmanager.view.menus;
 
 import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.ui.SearchUserUi;
+import com.imatia.bookmanager.view.ui.UserManagementUi;
 
 public class UserDetailsMenu {
 
@@ -18,14 +19,12 @@ public class UserDetailsMenu {
 			SearchUserUi.showSearchUserUi();
 			break;
 		case 1:
-
 			// Not implemented yet
 			// modifyUserUi
 			break;
 		case 2:
-			// Not implemented yet
-			// deleteUserUi
-
+			DeleteUserMenu.showDeleteUserMenu(id);
+			UserManagementUi.showUserManagementUi();
 		}
 
 	}
