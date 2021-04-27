@@ -2,7 +2,7 @@ package com.imatia.bookmanager.view.ui;
 
 public class ResultsSearchLendingUi {
 
-	public void showResultsSearchLendingUi(String searchMethod) {
+	public static void showResultsSearchLendingUi(String searchMethod) {
 		
 		System.out.println(
 				"\n***************************************\r\n" + 
