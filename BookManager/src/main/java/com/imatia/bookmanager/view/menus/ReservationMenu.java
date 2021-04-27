@@ -1,8 +1,8 @@
 package com.imatia.bookmanager.view.menus;
 
 import com.imatia.bookmanager.view.inputs.InputUserData;
+import com.imatia.bookmanager.view.ui.AddReservationUi;
 import com.imatia.bookmanager.view.ui.StartMenuUI;
-import com.imatia.bookmanager.controller.ReservationController;
 
 public class ReservationMenu {
 	public static void showReservationOptions() {
@@ -20,7 +20,7 @@ public class ReservationMenu {
 			break;
 			
 		case 1:
-			//Add reservation
+			AddReservationUi.showAddReservationUi();
 			break;
 		}
 	}//showReservationMenuOptions()
