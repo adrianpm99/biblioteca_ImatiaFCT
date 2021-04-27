@@ -2,7 +2,6 @@ package com.imatia.bookmanager.view.results;
 
 import java.util.List;
 
-import com.imatia.bookmanager.model.entities.Book;
 import com.imatia.bookmanager.model.entities.Lending;
 
 /**

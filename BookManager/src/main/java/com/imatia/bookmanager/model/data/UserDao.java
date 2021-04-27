@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.imatia.bookmanager.model.entities.User;
 import com.imatia.bookmanager.view.ui.SearchUserUi;
 
@@ -90,7 +93,7 @@ public class UserDao {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			System.out.println("No se ha encontrado ningún usuario con el id facilitado");
-			//e.printStackTrace();
+			// e.printStackTrace();
 			SearchUserUi.showSearchUserUi();
 		} finally {
 			try {
@@ -124,6 +127,8 @@ public class UserDao {
 			ps.setInt(3, user.getUserId());
 
 			ps.executeUpdate();
+			
+			System.out.println("Los datos del usuario se han actualizado correctamente");
 
 			ps.close();
 
@@ -189,9 +194,10 @@ public class UserDao {
 	 * @param surname
 	 * @return user
 	 */
-	public User getUserByNameAndSurname(String name, String surname) {
+	public List<User> getUserByNameAndSurname(String name, String surname) {
 
-		String query = "SELECT * FROM user WHERE userName = ? AND userSurname=? ";
+		String query = "SELECT * FROM user WHERE userName LIKE ? OR userSurname LIKE ? ";
+		List<User> userList = new ArrayList<>();
 		User user = new User();
 
 		try {
@@ -199,18 +205,19 @@ public class UserDao {
 
 			PreparedStatement ps = con.prepareStatement(query);
 
-			ps.setString(1, name);
-			ps.setString(2, surname);
+			ps.setString(1, name + "%");
+			ps.setString(2, surname + "%");
 			ps.execute();
 			ResultSet rs = ps.getResultSet();
-			rs.next();
+			while(rs.next()) {
 
 			int userId = rs.getInt("userId");
 			String userName = rs.getString("userName");
 			String userSurname = rs.getString("userSurname");
 
 			user = new User(userId, userName, userSurname);
-
+			userList.add(user);
+		}
 			ps.close();
 
 		} catch (ClassNotFoundException e) {
@@ -218,11 +225,11 @@ public class UserDao {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			System.out.println("No se ha encontrado ningun usuario con los datos facilitados");
-			//e.printStackTrace();
+			// e.printStackTrace();
 			SearchUserUi.showSearchUserUi();
 		}
 
-		return user;
+		return userList;
 	}
 
 }
