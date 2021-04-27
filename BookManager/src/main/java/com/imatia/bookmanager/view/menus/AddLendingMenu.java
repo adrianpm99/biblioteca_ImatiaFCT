@@ -71,14 +71,8 @@ public class AddLendingMenu {
 		LocalDate dateNow = LocalDate.now();
 		DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/LL/yyyy");
 		
-		// Today's date is automatically seen
-		System.out.print("\rFecha del préstamo: " + formatoFecha.format(dateNow)); 
-		
 		LocalDate dateReturn = dateNow.plusDays(15);
-
-		// automatically see the return date that is 15 days later
-		System.out.println("\rFecha de devolución del préstamo : " + formatoFecha.format(dateReturn)); 
-		
+				
 		// the lendingId is created automatically when inserting in the database
 		Lending lending = new Lending(1, Integer.parseInt(idUser), dateNow, dateReturn, null);
 		
@@ -87,6 +81,10 @@ public class AddLendingMenu {
 		String mensajeAddLending = lc.addLending(lending, idcopies);
 		if (mensajeAddLending.equals("")) {
 			//correct
+			// Today's date is automatically seen
+			System.out.print("\rFecha del préstamo: " + formatoFecha.format(dateNow)); 
+			// automatically see the return date that is 15 days later
+			System.out.println("\rFecha de devolución del préstamo : " + formatoFecha.format(dateReturn)); 
 			System.out.print("\rPréstamo añadido correctamente "); 
 			
 		}else {
