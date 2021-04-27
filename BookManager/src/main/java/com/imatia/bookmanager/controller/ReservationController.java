@@ -17,10 +17,10 @@ import com.imatia.bookmanager.view.ui.StartMenuUI;
  */
 public class ReservationController {
 	
-	ReservationDao rd = new ReservationDao();
+	static ReservationDao rd = new ReservationDao();
 	
 	
-	public void createNewReservation(int bookId) //bookId asked before on the menu
+	public static void createNewReservation(int bookId) //bookId asked before on the menu
 	{
 		/* In order to create a new reservation, first it is necessary
 		 * to check if is there any reservation of that book.*/
