@@ -3,10 +3,7 @@ package com.imatia.bookmanager.view.menus;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.annotation.processing.SupportedSourceVersion;
 
 import com.imatia.bookmanager.controller.LendingController;
 
@@ -39,10 +36,12 @@ public class AddLendingMenu {
 		  do
 		  {	
 			repeated = false;
-			System.out.print("\rIdentificador ejemplar num : " + i + " a prestar:  (entero positivo) ");
-
-			//return string
-			idCopy = InputUserData.checkUserInput("id", "Valor de Id incorrecto. Pruebe de nuevo (entero positivo).");
+			do {
+				System.out.print("\rIdentificador ejemplar num : " + i + " a prestar:  (entero positivo) ");
+	
+				//return string
+				idCopy = InputUserData.checkUserInput("id", "Valor de Id incorrecto. Pruebe de nuevo (entero positivo).");
+			} while (idCopy.equals(""));
 
 			// the id cannot be repeated
 			for (int numIdCopy : idcopies)
@@ -61,13 +60,14 @@ public class AddLendingMenu {
 		  idcopies.add(Integer.parseInt(idCopy));
 			
 		}//for	
-		
-		System.out.print("\rId usuario: (entero positivo) ");
-		// it should be verified that the user exists in the user table
-		
-		//return string
-		idUser = InputUserData.checkUserInput("id", "Valor de Id incorrecto. Pruebe de nuevo (entero positivo).");
+		do {
+			System.out.print("\rId usuario: (entero positivo) ");
+			// it should be verified that the user exists in the user table
 			
+			//return string
+			idUser = InputUserData.checkUserInput("id", "Valor de Id incorrecto. Pruebe de nuevo (entero positivo).");
+		} while (idUser.equals(""));	
+	
 		LocalDate dateNow = LocalDate.now();
 		DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/LL/yyyy");
 		

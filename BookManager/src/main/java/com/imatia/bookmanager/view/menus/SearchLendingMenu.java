@@ -1,5 +1,7 @@
 package com.imatia.bookmanager.view.menus;
 
+import java.time.LocalDate;
+
 import com.imatia.bookmanager.controller.LendingController;
 import com.imatia.bookmanager.model.entities.Lending;
 import com.imatia.bookmanager.view.inputs.InputUserData;
@@ -53,7 +55,7 @@ public class SearchLendingMenu {
 			} while (filter.equals(""));
 		
 			ResultsSearchLendingUi.showResultsSearchLendingUi("fecha de devolución");
-			LendingRenderers.renderUserIdListLending(lc.getLendingByUserId(Integer.valueOf(filter)));
+		//	LendingRenderers.renderUserIdListLending(lc.getLendingByDeadLine(filter.toLocalDate));
 
 			// just pull out a list
 			break;

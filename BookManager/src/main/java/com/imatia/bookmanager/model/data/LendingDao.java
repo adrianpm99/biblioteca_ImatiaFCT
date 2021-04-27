@@ -394,9 +394,15 @@ public class LendingDao {
 				int userId = rs.getInt("userId");
 				LocalDate lendingDate = rs.getDate("lendingDate").toLocalDate();
 				LocalDate lendingDeadLine = rs.getDate("lendingDeadLine").toLocalDate();
-				// LocalDate lendingReturnDate = rs.getDate("lendingReturnDate").toLocalDate();
+				if (rs.getDate("lendingReturnDate") != null) {
 
-				lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine);
+					LocalDate lendingReturnDate = rs.getDate("lendingReturnDate").toLocalDate();
+					lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine, lendingReturnDate);
+
+				} else {
+
+					lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine);
+				}
 				lendingList.add(lending);
 			}
 			ps.close();
