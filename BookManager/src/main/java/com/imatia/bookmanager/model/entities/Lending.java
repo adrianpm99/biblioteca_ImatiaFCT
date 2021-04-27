@@ -22,6 +22,15 @@ public class Lending {
 	public Lending() {
 		super();
 	}
+	
+
+	public Lending(int lendingId, int userId, LocalDate lendingDate, LocalDate lendingDeadLine) {
+		super();
+		this.lendingId = lendingId;
+		this.userId = userId;
+		this.lendingDate = lendingDate;
+		this.lendingDeadLine = lendingDeadLine;
+	}
 
 
 	public Lending(int lendingId, int userId, LocalDate lendingDate, LocalDate lendingDeadLine,
