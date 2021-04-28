@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.imatia.bookmanager.model.data.UserDao;
 import com.imatia.bookmanager.model.entities.User;
+import com.imatia.bookmanager.view.ui.SearchUserUi;
 
 /**
  * class to implement the methods to connect views with data
@@ -23,8 +24,11 @@ public class UserController {
 	 * @return user
 	 */
 	public User getUserById(int id) {
-
+		
 		User user = ud.getUserById(id);
+		if(user == null) {
+			SearchUserUi.showSearchUserUi();
+		}
 		return user;
 	}
 	
@@ -37,6 +41,10 @@ public class UserController {
 	public List<User> getUserByNameAndSurname(String name, String surname) {
 		
 		List<User> userList = new ArrayList<>();
+		if(userList.isEmpty()) {
+			System.out.println("No se ha encontrado ninún usuario con los datos facilitados");
+			SearchUserUi.showSearchUserUi();
+		}
 		userList = ud.getUserByNameAndSurname(name, surname);
 		
 		return userList;
