@@ -13,7 +13,10 @@ public class UserDetailsMenu {
 
 		do {
 			option = InputUserData.checkUserInput("option", "Opcion no valida. Pruebe de nuevo (entero positivo)");
-		} while (option.equals("") && !option.equals("0") && !option.equals("1") && !option.equals("2"));
+			if(!option.equals("") && !option.equals("0") && !option.equals("1") && !option.equals("2")) {
+				System.out.println("Opcion no valida. Pruebe de nuevo (entero positivo)");
+			}
+		} while (!option.equals("0") && !option.equals("1") && !option.equals("2"));
 
 		switch (Integer.parseInt(option)) {
 		case 0:

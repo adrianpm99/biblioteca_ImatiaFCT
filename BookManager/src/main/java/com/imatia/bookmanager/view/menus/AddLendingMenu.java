@@ -28,8 +28,11 @@ public class AddLendingMenu {
 		do {
 			System.out.print("\rNumero de ejemplares que se quieren prestar (de 1 a 3): ");
 			option = InputUserData.checkUserInput("option", "Opcion no valida. Pruebe de nuevo (entero positivo)");
+			if(!option.equals("") && !option.equals("1") && !option.equals("2") && !option.equals("3")) {
+				System.out.println("Opcion no valida. Pruebe de nuevo (entero positivo)");
+			}
 			
-		} while (option.equals("") && !option.equals("1") && !option.equals("2") && !option.equals("3"));
+		} while (!option.equals("1") && !option.equals("2") && !option.equals("3"));
 		
 		
 		for (int i = 1 ; i <= Integer.parseInt(option) ; i ++)

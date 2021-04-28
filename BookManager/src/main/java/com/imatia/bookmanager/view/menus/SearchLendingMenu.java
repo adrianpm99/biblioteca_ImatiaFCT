@@ -1,20 +1,14 @@
 package com.imatia.bookmanager.view.menus;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-
 import com.imatia.bookmanager.controller.LendingController;
 import com.imatia.bookmanager.model.entities.Lending;
 import com.imatia.bookmanager.view.inputs.InputUserData;
 
 import com.imatia.bookmanager.view.results.LendingDetails;
 import com.imatia.bookmanager.view.results.LendingRenderers;
-
+import com.imatia.bookmanager.view.ui.LendingsUi;
 import com.imatia.bookmanager.view.ui.ResultsSearchLendingUi;
-import com.imatia.bookmanager.view.ui.SearchLendingUi;
+
 
 public class SearchLendingMenu {
 
@@ -26,12 +20,16 @@ public class SearchLendingMenu {
 
 		do {
 			option = InputUserData.checkUserInput("option", "Opcion no válida. Pruebe de nuevo(entero positivo)");
-		} while (option.equals("") && !option.equals("0") && !option.equals("1") && !option.equals("2")
+			if(!option.equals("") && !option.equals("0") && !option.equals("1") && !option.equals("2")
+				&& !option.equals("3")){
+					System.out.println("Opcion no válida. Pruebe de nuevo(entero positivo)");
+				}
+		} while (!option.equals("0") && !option.equals("1") && !option.equals("2")
 				&& !option.equals("3"));
 		switch (Integer.parseInt(option)) {
 
 		case 0:
-			SearchLendingUi.showSearchLendingUi();
+			LendingsUi.showLendingsUi();
 			break;
 		case 1:
 			do {

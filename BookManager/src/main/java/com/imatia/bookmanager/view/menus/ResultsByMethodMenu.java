@@ -15,7 +15,10 @@ public class ResultsByMethodMenu {
 		String option;
 		do {
 			option = InputUserData.checkUserInput("option", "Opcion no valida. Pruebe de nuevo (entero positivo)");
-		}while (option.equals("") && !option.equals("0") && !option.equals("1"));
+			if(!option.equals("") && !option.equals("0") && !option.equals("1")) {
+				System.out.println("Opcion no valida. Pruebe de nuevo (entero positivo)");
+			}
+		}while (!option.equals("0") && !option.equals("1"));
 		
 		
 		switch (Integer.parseInt(option))

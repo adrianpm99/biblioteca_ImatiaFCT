@@ -18,7 +18,12 @@ public class StartMenu {
 
 		do {
 			option = InputUserData.checkUserInput("option", "Opcion no valida. Pruebe de nuevo (entero positivo)");
-		} while (option.equals("") && !option.equals("0") && !option.equals("1") && !option.equals("2")
+			
+			if(!option.equals("") && !option.equals("0") && !option.equals("1") && !option.equals("2")
+				&& !option.equals("3") && !option.equals("4") && !option.equals("5") && !option.equals("6")) {
+				System.out.println("Opcion no valida. Pruebe de nuevo (entero positivo)");
+			}
+		} while (!option.equals("0") && !option.equals("1") && !option.equals("2")
 				&& !option.equals("3") && !option.equals("4") && !option.equals("5") && !option.equals("6"));
 
 		switch (Integer.parseInt(option)) {
