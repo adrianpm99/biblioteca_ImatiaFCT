@@ -6,9 +6,9 @@ import com.imatia.bookmanager.view.inputs.InputUserData;
 
 import com.imatia.bookmanager.view.results.LendingDetails;
 import com.imatia.bookmanager.view.results.LendingRenderers;
-
+import com.imatia.bookmanager.view.ui.LendingsUi;
 import com.imatia.bookmanager.view.ui.ResultsSearchLendingUi;
-import com.imatia.bookmanager.view.ui.SearchLendingUi;
+
 
 public class SearchLendingMenu {
 
@@ -29,7 +29,7 @@ public class SearchLendingMenu {
 		switch (Integer.parseInt(option)) {
 
 		case 0:
-			SearchLendingUi.showSearchLendingUi();
+			LendingsUi.showLendingsUi();
 			break;
 		case 1:
 			do {
