@@ -55,7 +55,8 @@ public class ReservationDao
 	 */
 	public ArrayList<String> getReservationAdditionalData(int id) {
 
-		String query = "SELECT r.reservationId, b.id, b.title, u.userId, u.userName, u.userSurname  FROM reservation r, user u, book b WHERE r.userId = u.userId AND r.bookId = b.id = ?;";
+		String query = "SELECT r.reservationId, b.id, b.title, u.userId, u.userName, u.userSurname "
+				+ " FROM reservation r, user u, book b WHERE r.userId = u.userId AND r.bookId = b.id AND b.id = ?;";
 		ArrayList<String> al = new ArrayList<String>();
 		
 		try {
@@ -66,12 +67,12 @@ public class ReservationDao
 			ps.execute();
 			ResultSet rs = ps.getResultSet();
 			rs.next();
-			String reservationId = String.valueOf(rs.getInt("r.reservationId"));
-			String bookId = String.valueOf(rs.getInt("b.id"));
-			String title  = rs.getString("b.title");
-			String userId = String.valueOf(rs.getInt("u.userId"));
-			String name = rs.getString("u.userName");
-			String surname = rs.getString("u.userSurname");
+			String reservationId = String.valueOf(rs.getInt("reservationId"));
+			String bookId = String.valueOf(rs.getInt("id"));
+			String title  = rs.getString("title");
+			String userId = String.valueOf(rs.getInt("userId"));
+			String name = rs.getString("userName");
+			String surname = rs.getString("userSurname");
 
 			ps.close();
 			al.add(reservationId);

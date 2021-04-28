@@ -16,6 +16,9 @@ import java.util.List;
 import com.imatia.bookmanager.model.entities.Copy;
 import com.imatia.bookmanager.model.entities.Lending;
 import com.imatia.bookmanager.view.ui.SearchLendingUi;
+import com.imatia.bookmanager.model.entities.Reservation;
+
+
 
 public class LendingDao {
 	ConnectionSQLite connectionSQLite = new ConnectionSQLite();
@@ -465,4 +468,66 @@ public class LendingDao {
 		return lendingList;
 	}
 
+	
+	/**
+	 * )returns a reservation object with user and book information
+	 * @param id
+	 * @return object Reservation
+	 */
+		public Reservation checkIfReservatedBook(int id) { // id  (lendingId)
+
+			Reservation reservation = new Reservation();
+
+			String query = "SELECT  r.reservationId, r.bookId, r.userId"
+					+ " FROM copyLending cl,copy c, reservation r"
+					+ " WHERE lendingId = ?"
+					+ " AND c.copyId = cl.copyId"
+					+ " AND r.bookId = c.bookId";
+
+			try {
+				Connection con = connectionSQLite.getConnection();
+
+				PreparedStatement ps = con.prepareStatement(query);
+
+				ps.setInt(1, id);
+				ps.execute();
+				ResultSet rs = ps.getResultSet();
+				if (rs.next()) { // coge los datos de la primera reserva que haya sobre ese libro
+
+					int reservationId = rs.getInt("reservationId");
+					int bookId = rs.getInt("bookId");
+					int userId = rs.getInt("userId");
+					
+					reservation = new Reservation (reservationId, bookId, userId);
+				}else {
+					//no hay reserva de ese libro
+					// devuelve un null
+					reservation = null;
+				}
+				ps.close();
+
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				System.out.println("No se ha encontrado ningun prestamo con el id facilitado");
+				// e.printStackTrace();
+				SearchLendingUi.showSearchLendingUi();
+			} finally {
+				try {
+					connectionSQLite.closeConnection();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			return reservation;
+		}
+
+		
+		
+	
+	
+	
 }

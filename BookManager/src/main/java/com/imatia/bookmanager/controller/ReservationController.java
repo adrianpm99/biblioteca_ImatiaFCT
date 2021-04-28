@@ -46,7 +46,7 @@ public class ReservationController {
 	
 	/**
 	 * Get the reservationData
-	 * @param rd
+	 * @param bookId
 	 */
 	public void getReservationData(int id) {
 		
