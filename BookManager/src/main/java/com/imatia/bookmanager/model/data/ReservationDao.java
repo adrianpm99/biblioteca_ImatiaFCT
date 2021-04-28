@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 /**
@@ -47,4 +48,54 @@ public class ReservationDao
 		
 		return reservationExists;
 	}//checkReservationExist()
+	/**
+	 * method to get the data to the result of the ReservationResult
+	 * 
+	 * @param id Returned book id from lending
+	 */
+	public ArrayList<String> getReservationAdditionalData(int id) {
+
+		String query = "SELECT r.reservationId, b.id, b.title, u.userId, u.userName, u.userSurname  FROM reservation r, user u, book b WHERE r.userId = u.userId AND r.bookId = b.id = ?;";
+		ArrayList<String> al = new ArrayList<String>();
+		
+		try {
+			Connection con = connectionSQLite.getConnection();
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setLong(1, id);
+			ps.execute();
+			ResultSet rs = ps.getResultSet();
+			rs.next();
+			String reservationId = String.valueOf(rs.getInt("r.reservationId"));
+			String bookId = String.valueOf(rs.getInt("b.id"));
+			String title  = rs.getString("b.title");
+			String userId = String.valueOf(rs.getInt("u.userId"));
+			String name = rs.getString("u.userName");
+			String surname = rs.getString("u.userSurname");
+
+			ps.close();
+			al.add(reservationId);
+			al.add(bookId);
+			al.add(title);
+			al.add(userId);
+			al.add(name);
+			al.add(surname);
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return al;
+		
+	}//getReservationAdditionalData
 }//class ReservationDao

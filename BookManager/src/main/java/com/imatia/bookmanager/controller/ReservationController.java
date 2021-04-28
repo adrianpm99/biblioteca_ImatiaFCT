@@ -1,6 +1,9 @@
 package com.imatia.bookmanager.controller;
 
+import java.util.ArrayList;
+
 import com.imatia.bookmanager.model.data.ReservationDao;
+import com.imatia.bookmanager.view.results.ReservationDetails;
 import com.imatia.bookmanager.view.ui.AddReservationUi;
 import com.imatia.bookmanager.view.ui.StartMenuUI;
 
@@ -17,10 +20,10 @@ import com.imatia.bookmanager.view.ui.StartMenuUI;
  */
 public class ReservationController {
 	
-	static ReservationDao rd = new ReservationDao();
+	ReservationDao rd = new ReservationDao();
 	
 	
-	public static void createNewReservation(int bookId) //bookId asked before on the menu
+	public void createNewReservation(int bookId) //bookId asked before on the menu
 	{
 		/* In order to create a new reservation, first it is necessary
 		 * to check if is there any reservation of that book.*/
@@ -41,6 +44,17 @@ public class ReservationController {
 		}
 	}//createNewReservation()
 	
+	/**
+	 * Get the reservationData
+	 * @param rd
+	 */
+	public void getReservationData(int id) {
+		
+		ReservationDao rd = new ReservationDao();
+		ArrayList<String> al;
+		al = rd.getReservationAdditionalData(id);
+		ReservationDetails.showReservationDetails(al);
+	}
 	
 	
 	
