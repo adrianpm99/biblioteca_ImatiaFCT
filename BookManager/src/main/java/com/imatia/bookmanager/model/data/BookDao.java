@@ -168,8 +168,8 @@ public class BookDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("La consulta no ha devuelto ningún resultado");
+			//e.printStackTrace();
 		} finally {
 			try {
 				connectionSQLite.closeConnection();
