@@ -94,4 +94,12 @@ public class BookController {
 		bd.deleteBook(id);
 
 	}
+	
+	public List<Integer> getListIdBookByCopysInLendingCopy(int lendingId) {
+		
+		List<Integer> listIdBook = bd.getListIdBookByCopysInLendingCopy(lendingId);
+				
+		return listIdBook;
+	
+	}
 }

@@ -416,5 +416,46 @@ public class BookDao {
 
 	}
 	
+	public List<Integer> getListIdBookByCopysInLendingCopy(int lendingId) {
+		
+		String query ="SELECT bookId FROM Copy WHERE copyId IN(SELECT copyId FROM copyLending WHERE lendingId = ?)";
+		List<Integer> listIdBooks = new ArrayList<>();
+
+		try {
+
+			Connection con = connectionSQLite.getConnection();
+
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setInt(1, lendingId );
+			ps.execute();
+			ResultSet rs = ps.getResultSet();
+			while (rs.next()) {
+
+				int idBook = rs.getInt("bookId");
+				listIdBooks.add(idBook);		
+
+			}
+			ps.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		
+		return listIdBooks;
+	}
+	
 	
 }
