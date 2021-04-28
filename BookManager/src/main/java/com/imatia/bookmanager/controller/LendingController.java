@@ -46,14 +46,22 @@ public class LendingController {
 	 * @param LendingDeadLine
 	 * @return lendingList
 	 */
-	public List<Lending> getLendingByDeadLine(LocalDate date) {
+	public List<Lending> getLendingByDeadLine(String date) {
 		
 		List<Lending> lendingList = ld.getLendingByDeadLine(date);
 		return lendingList;
 	}
 	
+	
 	public void modifyLendingReturnDate(int id, LocalDate lendingReturnDate) {
-		ld.modifyLendingReturndDate(id, lendingReturnDate);
+		
+		Lending lending = ld.getLendingById(id);
+		if(lending.getLendingReturnDate() == null) {
+			ld.modifyLendingReturndDate(id, lendingReturnDate);
+		}
+		else {
+			System.out.println("El prestamo con id " + id + " ya está cerrado");
+			}
 	}
 	
 	

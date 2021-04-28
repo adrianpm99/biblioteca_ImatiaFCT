@@ -6,7 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -227,8 +230,8 @@ public class LendingDao {
 
 			ps.setDate(1, Date.valueOf(dateReturnDate));
 			ps.setInt(2, id);
-			
-			System.out.println("Fecha de devolucion: "+ dateReturnDate);
+
+			System.out.println("Fecha de devolucion: " + dateReturnDate);
 
 			ps.executeUpdate();
 
@@ -277,10 +280,16 @@ public class LendingDao {
 			int userId = rs.getInt("userId");
 			LocalDate lendingDate = rs.getDate("lendingDate").toLocalDate();
 			LocalDate lendingDeadLine = rs.getDate("lendingDeadLine").toLocalDate();
-			//LocalDate lendingReturnDate = rs.getDate("lendingReturnDate").toLocalDate();
 
-			lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine);
+			if (rs.getDate("lendingReturnDate") != null) {
 
+				LocalDate lendingReturnDate = rs.getDate("lendingReturnDate").toLocalDate();
+				lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine, lendingReturnDate);
+
+			} else {
+
+				lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine);
+			}
 			ps.close();
 
 		} catch (ClassNotFoundException e) {
@@ -329,9 +338,15 @@ public class LendingDao {
 				int userId = rs.getInt("userId");
 				LocalDate lendingDate = rs.getDate("lendingDate").toLocalDate();
 				LocalDate lendingDeadLine = rs.getDate("lendingDeadLine").toLocalDate();
-				//LocalDate lendingReturnDate = rs.getDate("lendingReturnDate").toLocalDate();
+				if (rs.getDate("lendingReturnDate") != null) {
 
-				lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine);
+					LocalDate lendingReturnDate = rs.getDate("lendingReturnDate").toLocalDate();
+					lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine, lendingReturnDate);
+
+				} else {
+
+					lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine);
+				}
 				lendingList.add(lending);
 			}
 			ps.close();
@@ -361,7 +376,7 @@ public class LendingDao {
 	 * @param userId
 	 * @return lending
 	 */
-	public List<Lending> getLendingByDeadLine(LocalDate date) {
+	public List<Lending> getLendingByDeadLine(String date) {
 
 		Lending lending = new Lending();
 		List<Lending> lendingList = new ArrayList<>();
@@ -373,7 +388,10 @@ public class LendingDao {
 
 			PreparedStatement ps = con.prepareStatement(query);
 
-			ps.setDate(1, Date.valueOf(date));
+			 DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			 LocalDate datef = LocalDate.parse(date, format);
+			 ps.setDate(1, Date.valueOf(date));  
+		//	ps.setDate(1, Date.valueOf(date));
 			ps.execute();
 			ResultSet rs = ps.getResultSet();
 			while (rs.next()) {
@@ -382,9 +400,15 @@ public class LendingDao {
 				int userId = rs.getInt("userId");
 				LocalDate lendingDate = rs.getDate("lendingDate").toLocalDate();
 				LocalDate lendingDeadLine = rs.getDate("lendingDeadLine").toLocalDate();
-				//LocalDate lendingReturnDate = rs.getDate("lendingReturnDate").toLocalDate();
+				if (rs.getDate("lendingReturnDate") != null) {
 
-				lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine);
+					LocalDate lendingReturnDate = rs.getDate("lendingReturnDate").toLocalDate();
+					lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine, lendingReturnDate);
+
+				} else {
+
+					lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine);
+				}
 				lendingList.add(lending);
 			}
 			ps.close();

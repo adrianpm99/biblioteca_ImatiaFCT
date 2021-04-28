@@ -1,12 +1,18 @@
 package com.imatia.bookmanager.view.menus;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 import com.imatia.bookmanager.controller.LendingController;
 import com.imatia.bookmanager.model.entities.Lending;
 import com.imatia.bookmanager.view.inputs.InputUserData;
-import com.imatia.bookmanager.view.results.BookRenderers;
+
 import com.imatia.bookmanager.view.results.LendingDetails;
 import com.imatia.bookmanager.view.results.LendingRenderers;
-import com.imatia.bookmanager.view.ui.ResultsByMethodUi;
+
 import com.imatia.bookmanager.view.ui.ResultsSearchLendingUi;
 import com.imatia.bookmanager.view.ui.SearchLendingUi;
 
@@ -16,6 +22,7 @@ public class SearchLendingMenu {
 		LendingController lc = new LendingController();
 		String option;
 		String filter;
+		Lending lending;
 
 		do {
 			option = InputUserData.checkUserInput("option", "Opcion no válida. Pruebe de nuevo(entero positivo)");
@@ -31,7 +38,7 @@ public class SearchLendingMenu {
 				System.out.print("Introduzca el id del prestamo: (entero positivo) ");
 				filter = InputUserData.checkUserInput("id","Pruebe de nuevo(entero positivo)");
 			} while (filter.equals(""));
-			Lending lending = lc.getLendingById(Integer.valueOf(filter));
+			lending = lc.getLendingById(Integer.valueOf(filter));
 			LendingDetails.showLendingDetalis(lending);
 
 			break;
@@ -42,9 +49,15 @@ public class SearchLendingMenu {
 			} while (filter.equals(""));
 		
 			ResultsSearchLendingUi.showResultsSearchLendingUi("identificador de usuario");
-			LendingRenderers.renderUserIdListLending(lc.getLendingByUserId(Integer.valueOf(filter)));
-
 			// just pull out a list
+			LendingRenderers.renderUserIdListLending(lc.getLendingByUserId(Integer.valueOf(filter)));
+			//Details
+			do {
+				System.out.print("Introduzca el id del prestamo: (entero positivo) ");
+				filter = InputUserData.checkUserInput("id","Pruebe de nuevo(entero positivo)");
+			} while (filter.equals(""));
+			lending = lc.getLendingById(Integer.valueOf(filter));
+			LendingDetails.showLendingDetalis(lending);
 			break;
 		case 3:
 			do {
@@ -53,9 +66,27 @@ public class SearchLendingMenu {
 			} while (filter.equals(""));
 		
 			ResultsSearchLendingUi.showResultsSearchLendingUi("fecha de devolución");
-			LendingRenderers.renderUserIdListLending(lc.getLendingByUserId(Integer.valueOf(filter)));
-
-			// just pull out a list
+		
+			
+			//to pass the date as localDate it has to have this format
+			String year = filter.substring(6, 10);
+			String month = filter.substring(3, 5);
+			String day =filter.substring(0, 2);
+			String newDate = year +"-"+month +"-"+day;
+			
+			
+			
+			// newDate is a string
+			 LendingRenderers.renderDateListLending(lc.getLendingByDeadLine(newDate));
+		
+			//Details
+			do {
+				System.out.print("Introduzca el id del prestamo: (entero positivo) ");
+				filter = InputUserData.checkUserInput("id","Pruebe de nuevo(entero positivo)");
+			} while (filter.equals(""));
+			lending = lc.getLendingById(Integer.valueOf(filter));
+			LendingDetails.showLendingDetalis(lending);
+			
 			break;
 		}
 

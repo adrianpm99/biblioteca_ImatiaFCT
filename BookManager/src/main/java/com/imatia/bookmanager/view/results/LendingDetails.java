@@ -2,6 +2,10 @@ package com.imatia.bookmanager.view.results;
 
 import com.imatia.bookmanager.model.entities.Lending;
 
+import com.imatia.bookmanager.view.menus.LendingDetailsMenu;
+
+import com.imatia.bookmanager.view.ui.LendingsUi;
+
 public class LendingDetails {
 	
 	
@@ -23,5 +27,10 @@ public class LendingDetails {
 			"|| \r\n" + 
 			"|| Fecha de devolucion: "+l.getLendingReturnDate()+"\r\n" + 
 			"==========================================================\r\n");
+		
+
+		LendingDetailsMenu.showLendingDetailsMenuOptions(l.getLendingId());
+
+
 	}
 }
