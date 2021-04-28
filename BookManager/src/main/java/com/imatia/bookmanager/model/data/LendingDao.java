@@ -470,13 +470,15 @@ public class LendingDao {
 
 	
 	/**
-	 * )returns a reservation object with user and book information
+	 * )returns a List of reservation object with user and book information, or null
 	 * @param id
 	 * @return object Reservation
 	 */
-		public Reservation checkIfReservatedBook(int id) { // id  (lendingId)
+		public ArrayList<Reservation> checkIfReservatedBook(int id) { // id  (lendingId)
 
 			Reservation reservation = new Reservation();
+			ArrayList<Reservation> reservationList = new ArrayList<Reservation>();
+		//	reservationList = null;
 
 			String query = "SELECT  r.reservationId, r.bookId, r.userId"
 					+ " FROM copyLending cl,copy c, reservation r"
@@ -492,17 +494,14 @@ public class LendingDao {
 				ps.setInt(1, id);
 				ps.execute();
 				ResultSet rs = ps.getResultSet();
-				if (rs.next()) { // coge los datos de la primera reserva que haya sobre ese libro
+				while (rs.next()) { // reservationList
 
 					int reservationId = rs.getInt("reservationId");
 					int bookId = rs.getInt("bookId");
 					int userId = rs.getInt("userId");
 					
 					reservation = new Reservation (reservationId, bookId, userId);
-				}else {
-					//no hay reserva de ese libro
-					// devuelve un null
-					reservation = null;
+					reservationList.add(reservation);
 				}
 				ps.close();
 
@@ -522,7 +521,7 @@ public class LendingDao {
 				}
 			}
 			
-			return reservation;
+			return reservationList;
 		}
 
 		

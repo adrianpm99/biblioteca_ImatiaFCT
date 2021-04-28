@@ -115,7 +115,7 @@ public class SearchLendingMenu {
 			lendingList = lc.getLendingByDeadLine(newDate);
 			if (lendingList.isEmpty()) {
 				System.out.println("No se ha encontrado ningún prestamo con la fecha de devolución facilitada");
-				SearchesUi.showSearchesUi();
+				SearchLendingUi.showSearchLendingUi();
 			} else {
 				ResultsSearchLendingUi.showResultsSearchLendingUi("FECHA DE DEVOLUCIÓN");
 				LendingRenderers.renderDateListLending(lendingList);
