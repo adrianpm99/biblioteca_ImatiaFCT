@@ -24,7 +24,7 @@ public class LendingDao {
 
 		String queryGetUser = "SELECT * FROM user WHERE userId = ?";
 		String error = "";
-
+		int lendingId = 0;
 		try (Connection con = connectionSQLite.getConnection();
 				PreparedStatement psGetUser = con.prepareStatement(queryGetUser);) {
 			if (checkUser(lending, con)) {
@@ -32,7 +32,7 @@ public class LendingDao {
 				for (int cont = 0; cont < listIdCopy.size(); cont++) {
 					if (checkCopy(lending, con, listIdCopy.get(cont))) {
 						if (checkLending(lending, con, listIdCopy.get(cont))) {
-							addLendingMethod(lending, con, listIdCopy.get(cont));
+							lendingId = addLendingMethod(lending, con, listIdCopy.get(cont), cont, lendingId);
 						} else {
 							return error = "El ejemplar ya esta prestado";
 						}
@@ -137,52 +137,85 @@ public class LendingDao {
 		return check;
 	}
 
-	private void addLendingMethod(Lending lending, Connection con, int copyId) {
+	private int addLendingMethod(Lending lending, Connection con, int copyId, int cont, int lendingId) {
 		String queryLending = "INSERT INTO lending (userId, lendingDate, lendingDeadLine,lendingReturnDate) "
 				+ "VALUES (?,?,?,?) ";
-		String queryCopyLending = "INSERT INTO copyLending (copyId, lendingId) " + "Values(?,?) ";
+
 		// PreparedStatement ps = con.prepareStatement(queryLending);
-		PreparedStatement ps;
 		try {
-			ps = con.prepareStatement(queryLending, Statement.RETURN_GENERATED_KEYS);
+			if (cont == 0) {
+				PreparedStatement ps = con.prepareStatement(queryLending, Statement.RETURN_GENERATED_KEYS);
 
-			ps.setInt(1, lending.getUserId());
+				ps.setInt(1, lending.getUserId());
 
-			// esto daba error (java.lang.ClassCastException: java.util.Date cannot be cast
-			// to java.sql.Date)
+				// esto daba error (java.lang.ClassCastException: java.util.Date cannot be cast
+				// to java.sql.Date)
 
-			// Date lendingDate = (Date) Date
-			// .from(lending.getLendingDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
-			Date lendingDate = Date.valueOf(lending.getLendingDate());
-			ps.setDate(2, lendingDate);
-			// Date deadLineDate = (Date) Date
-			// .from(lending.getLendingDeadLine().atStartOfDay(ZoneId.systemDefault()).toInstant());
-			Date lendingDeadLine = Date.valueOf(lending.getLendingDeadLine());
-			ps.setDate(3, lendingDeadLine);
+				// Date lendingDate = (Date) Date
+				// .from(lending.getLendingDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+				Date lendingDate = Date.valueOf(lending.getLendingDate());
+				ps.setDate(2, lendingDate);
+				// Date deadLineDate = (Date) Date
+				// .from(lending.getLendingDeadLine().atStartOfDay(ZoneId.systemDefault()).toInstant());
+				Date lendingDeadLine = Date.valueOf(lending.getLendingDeadLine());
+				ps.setDate(3, lendingDeadLine);
 
-			ps.setDate(4, null);
+				ps.setDate(4, null);
 
-			ps.execute();
+				ps.execute();
 
-			ResultSet rsId = ps.getGeneratedKeys();
-			rsId.next();
+				lendingId = addCopyLendingMethod(ps, lending, con, cont, copyId, lendingId);
 
-			lending.setLendingId(rsId.getInt(1));
+				return lendingId;
+			} else {
+				addCopyLendingMethod(null, lending, con, cont, copyId, lendingId);
+			}
 
-			ps.close();
-
-			PreparedStatement ps2 = con.prepareStatement(queryCopyLending);
-			ps2.setInt(1, copyId);
-
-			ps2.setInt(2, lending.getLendingId());
-
-			ps2.execute();
-			ps2.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return lendingId;
+	}
 
+	public int addCopyLendingMethod(PreparedStatement ps, Lending lending, Connection con, int cont, int copyId,
+			int lendingId) {
+		String queryCopyLending = "INSERT INTO copyLending (copyId, lendingId) " + "Values(?,?) ";
+		ResultSet rsId;
+		try {
+			if (cont == 0) {
+				rsId = ps.getGeneratedKeys();
+
+				rsId.next();
+
+				lending.setLendingId(rsId.getInt(1));
+
+				ps.close();
+
+				PreparedStatement ps2 = con.prepareStatement(queryCopyLending);
+				ps2.setInt(1, copyId);
+
+				ps2.setInt(2, lending.getLendingId());
+
+				ps2.execute();
+				ps2.close();
+				lendingId = lending.getLendingId();
+				return lending.getLendingId();
+			} else {
+				PreparedStatement ps2 = con.prepareStatement(queryCopyLending);
+				ps2.setInt(1, copyId);
+
+				ps2.setInt(2, lendingId);
+
+				ps2.execute();
+				ps2.close();
+				return lendingId;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lendingId;
 	}
 
 	public void deleteLending(Lending lending, Copy copy) {
@@ -388,10 +421,10 @@ public class LendingDao {
 
 			PreparedStatement ps = con.prepareStatement(query);
 
-			 DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			 LocalDate datef = LocalDate.parse(date, format);
-			 ps.setDate(1, Date.valueOf(date));  
-		//	ps.setDate(1, Date.valueOf(date));
+			DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			LocalDate datef = LocalDate.parse(date, format);
+			ps.setDate(1, Date.valueOf(date));
+			// ps.setDate(1, Date.valueOf(date));
 			ps.execute();
 			ResultSet rs = ps.getResultSet();
 			while (rs.next()) {
