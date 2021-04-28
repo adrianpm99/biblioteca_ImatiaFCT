@@ -41,7 +41,8 @@ public class BookRenderers {
 			System.out.println(
 					"===========================================================================================\n");
 			System.out
-					.println("Id: " + b.getId() + "\t|| Titulo: " + b.getTitle() + "\t|| ISBN: " + b.getISBN() + "\n");
+					.println("Id: " + b.getId() +  "\t||Autor: " + b.getAuthor() +"\t|| Titulo: " + b.getTitle() 
+					+ "\t|| ISBN: " + b.getISBN() + "\n");
 		}
 	}// renderAuthorListBooks()
 
