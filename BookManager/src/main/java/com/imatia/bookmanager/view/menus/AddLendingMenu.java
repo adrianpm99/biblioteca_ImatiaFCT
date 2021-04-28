@@ -41,7 +41,7 @@ public class AddLendingMenu {
 		  {	
 			repeated = false;
 			do {
-				System.out.print("\rIdentificador ejemplar num : " + i + " a prestar:  (entero positivo) ");
+				System.out.print("\rIdentificador ejemplar numero " + i + " a prestar:  (entero positivo) ");
 	
 				//return string
 				idCopy = InputUserData.checkUserInput("id", "Valor de Id incorrecto. Pruebe de nuevo (entero positivo).");

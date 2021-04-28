@@ -34,10 +34,10 @@ public class LendingDao {
 						if (checkLending(lending, con, listIdCopy.get(cont))) {
 							lendingId = addLendingMethod(lending, con, listIdCopy.get(cont), cont, lendingId);
 						} else {
-							return error = "El ejemplar ya esta prestado";
+							return error = "El ejemplar con id "+ listIdCopy.get(cont)+ " ya esta prestado";
 						}
 					} else {
-						return error = "No existe la copia";
+						return error = "No existe el ejemplar";
 					}
 				}
 			} else {
