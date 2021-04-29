@@ -35,8 +35,9 @@ public class LendingRenderers {
 			System.out.println(
 					"===========================================================================================\n");
 			System.out.println(
-					"Id Prestamo: " + l.getLendingId() + "\t|| Id Usuario: " + l.getUserId() + "\t|| Fecha Préstamo: "
-							+ l.getLendingDate() + "\t|| Fecha Devuelto: " + l.getLendingReturnDate() + "\n");
+					"Id Prestamo: " + l.getLendingId() + "\t|| Id Usuario: " + l.getUserId()
+					+ "\t|| Fecha Préstamo: " + l.getLendingDate() + "\t|| Fecha Devolución: " + l.getLendingDeadLine()
+					+ "\t|| Fecha Devuelto: " + l.getLendingReturnDate() + "\n");
 		}
 	}// renderDateListLending()
 

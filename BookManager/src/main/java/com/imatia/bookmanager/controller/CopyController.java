@@ -1,5 +1,8 @@
 package com.imatia.bookmanager.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.imatia.bookmanager.model.data.CopyDao;
 import com.imatia.bookmanager.model.entities.Copy;
 
@@ -46,4 +49,11 @@ public class CopyController {
 		cd.deleteCopybyIdBook(id);
 	}
 
+	public List<Integer> getCopyIdInLendingByBook(int lendingId, int bookId){
+		List<Integer> listIdCopys = new ArrayList<>();
+		
+		listIdCopys = cd.getCopyIdInLendingByBook(lendingId, bookId);
+		
+		return listIdCopys;
+	}
 }
