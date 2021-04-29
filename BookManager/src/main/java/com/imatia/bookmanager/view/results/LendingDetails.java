@@ -4,7 +4,9 @@ import com.imatia.bookmanager.model.entities.Lending;
 import com.imatia.bookmanager.model.entities.User;
 import com.imatia.bookmanager.view.menus.LendingDetailsMenu;
 
-
+/*
+ * class to show a lending details
+ */
 public class LendingDetails {
 	
 	
@@ -29,9 +31,9 @@ public class LendingDetails {
 			"|| Fecha de devolucion: "+l.getLendingReturnDate()+"\r\n" + 
 			"==========================================================\r\n");
 		
-
+		//show the lending details menu
 		LendingDetailsMenu.showLendingDetailsMenuOptions(l.getLendingId());
 
 
-	}
+	}//showLendingDetails
 }

@@ -2,6 +2,9 @@ package com.imatia.bookmanager.view.ui;
 
 import com.imatia.bookmanager.view.menus.AddUserMenu;
 
+/*
+ * this is the UI to show the add user view
+ */
 public class AddUserUi {
 	
 	public static void showAddUserUi() {
@@ -13,8 +16,8 @@ public class AddUserUi {
 				"--------------------------------------------\r\n" + 
 				"|| Introduzca los datos del nuevo usuario ||\r\n" + 
 				"--------------------------------------------");
-		
+		//show the add user menu
 		AddUserMenu.showAddUserMenu();
-	}
+	}//showAddUserUi
 
 }

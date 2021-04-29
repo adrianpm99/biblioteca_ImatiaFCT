@@ -10,6 +10,9 @@ import com.imatia.bookmanager.view.ui.LendingsUi;
 import com.imatia.bookmanager.view.ui.SearchesUi;
 import com.imatia.bookmanager.view.ui.UserManagementUi;
 
+/*
+ * this is the start menu options
+ */
 public class StartMenu {
 
 	public static void showStartMenuOption() {

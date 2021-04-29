@@ -6,7 +6,9 @@ import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.results.BookDetails;
 import com.imatia.bookmanager.view.ui.SearchesUi;
 
-
+/*
+ * this is the class to show the menu options of results by method
+ */
 public class ResultsByMethodMenu {
 	
 	public static void showResultsByMethodMenuOptions() {
@@ -38,5 +40,5 @@ public class ResultsByMethodMenu {
 		break;
 		}
 		
-	}
+	}//showResultsByMethodMenuOptions
 }

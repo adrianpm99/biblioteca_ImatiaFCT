@@ -5,6 +5,9 @@ import com.imatia.bookmanager.view.inputs.UtilityInputs;
 import com.imatia.bookmanager.view.ui.SearchesUi;
 import com.imatia.bookmanager.view.ui.StartMenuUI;
 
+/*
+ * class to show a delete book menu
+ */
 public class DeleteBookMenu {
 	
 	public static void showDeleteBookMenu(int id) {
@@ -21,6 +24,6 @@ public class DeleteBookMenu {
 		}
 		
 		
-	}
+	}//showDeleteBookMenu
 
 }

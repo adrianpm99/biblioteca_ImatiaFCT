@@ -16,7 +16,9 @@ import com.imatia.bookmanager.view.ui.SearchLendingUi;
 import com.imatia.bookmanager.model.entities.Reservation;
 
 
-
+/*
+ * class to map the table lending to object lending
+ */
 public class LendingDao {
 	ConnectionSQLite connectionSQLite = new ConnectionSQLite();
 
