@@ -41,11 +41,12 @@ public class UserController {
 	public List<User> getUserByNameAndSurname(String name, String surname) {
 		
 		List<User> userList = new ArrayList<>();
+		userList = ud.getUserByNameAndSurname(name, surname);
 		if(userList.isEmpty()) {
 			System.out.println("No se ha encontrado ninún usuario con los datos facilitados");
 			SearchUserUi.showSearchUserUi();
 		}
-		userList = ud.getUserByNameAndSurname(name, surname);
+		
 		
 		return userList;
 	}

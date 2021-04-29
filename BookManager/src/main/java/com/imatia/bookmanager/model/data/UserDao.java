@@ -205,8 +205,8 @@ public class UserDao {
 
 			PreparedStatement ps = con.prepareStatement(query);
 
-			ps.setString(1,"%" + name + "%" );
-			ps.setString(2, "%" + surname + "%");
+			ps.setString(1,name +"%");
+			ps.setString(2,surname +"%");
 			ps.execute();
 			ResultSet rs = ps.getResultSet();
 			while(rs.next()) {
@@ -224,8 +224,8 @@ public class UserDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			System.out.println("No se ha encontrado ningun usuario con los datos facilitados");
-			// e.printStackTrace();
+			//System.out.println("No se ha encontrado ningun usuario con los datos facilitados");
+			e.printStackTrace();
 			SearchUserUi.showSearchUserUi();
 		}
 
