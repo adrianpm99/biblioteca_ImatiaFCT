@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+
+import com.imatia.bookmanager.model.entities.Reservation;
 
 
 /**
@@ -97,6 +100,37 @@ public class ReservationDao
 		
 		return copyDataList;
 	}//getAvailableCopies()
+	
+	
+	/**
+	 * Method to add a new reservation into the bbdd
+	 * @param bookId
+	 * @param userId
+	 */
+	public void addReservation(Reservation reserv)
+	{
+		String query= "INSERT INTO reservation (bookId, userId) VALUES (?,?)";
+		
+		try(Connection con= connectionSQLite.getConnection(); 
+			PreparedStatement ps= con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS))
+		{
+			ps.setInt(1, reserv.getBookId());
+			ps.setInt(2, reserv.getUserId());
+			ps.execute();
+					
+			ResultSet rs = ps.getGeneratedKeys();
+			rs.next();
+			int id = rs.getInt(1);
+			reserv.setReservationId(id);
+		}
+		catch (SQLException e) {e.printStackTrace();}
+		catch (ClassNotFoundException e1) {e1.printStackTrace();}
+		finally
+		{
+			try {connectionSQLite.closeConnection();}
+			catch (SQLException e) {e.printStackTrace();}
+		}
+	}//addReservation
 	
 	
 	
