@@ -174,10 +174,16 @@ public class CopyDao {
 		
 	}
 	
+	/**
+	 * method to get a list of idCopys in lending by book
+	 * @param lendingId
+	 * @param bookId
+	 * @return
+	 */
 	public List<Integer> getCopyIdInLendingByBook(int lendingId, int bookId){
 		List<Integer> listIdCopys = new ArrayList<>();
 		
-		String query = "SELECT copyId FROM copyLending WHERE lendingId= ? AND copyId =(SELECT copyId FROM copy WHERE bookId=?)";
+		String query = "SELECT copyId FROM copyLending WHERE lendingId= ? AND copyId =(SELECT copyId FROM copy WHERE bookId= ?)";
 
 		try {
 			Connection con = connectionSQLite.getConnection();
