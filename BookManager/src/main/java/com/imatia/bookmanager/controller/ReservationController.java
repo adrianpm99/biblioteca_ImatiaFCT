@@ -49,11 +49,14 @@ public class ReservationController {
 				do 
 				{
 					userId = InputUserData.checkUserInput("id", "Inserte un id valido (entero positivo)");
+					if(!userId.equals("")) System.out.println("Opcion no valida. Pruebe de nuevo (entero positivo)");
 				}while(userId.equals(""));
 				
 				//Insert the reservation on the bbdd
 				Reservation reserv= new Reservation(1, bookId, Integer.parseInt(userId));
 				rd.addReservation(reserv);
+				
+				System.out.println("La reserva se ha realizado con exito.");
 				
 				//Back to the main menu
 				StartMenuUI.showStartMenuUi();
@@ -70,45 +73,29 @@ public class ReservationController {
 		}//else if
 	}//createNewReservation()
 	
+	
+	
 	/**
 	 * Get the reservationData
 	 * @param bookId
 	 */
-	public void getReservationData(int id) {
-		
+	public void getReservationData(int id)
+	{	
 		ReservationDao rd = new ReservationDao();
 		ArrayList<String> al;
 		al = rd.getReservationAdditionalData(id);
 		ReservationDetails.showReservationDetails(al);
-	}
+	}//getReservationData()
 	
-	
-	
-	
-	
-//	public Reservation getReservationById(int reservationId) {
-//		
-//		Reservation reservation = rd.getReservationById(reservationId);
-//		return reservation;
-//	}
-
-	/**
-	 * method to get a list of reservations filter by idCopy
-	 * @param idCopy
-	 * @return reservationList
-	 */
-	/*public List<Reservation> getReservationByIdCopy(String idCopy) {
-
-		List<Reservation> reservationList = rd.getReservationByIdCopy(idCopy);
-		return reservationList;
-	}*/
 	
 	
 	/**
 	 * method to delete a reservation
 	 * @param id
 	 */
-	/*public void deleteReservation(int id) {
-		rd.deleteReservation(id);
-	}*/
-}
+	public void deleteReservation(int reservationId)
+	{
+		//rd.deleteReservation(id); NOT IMPLEMENTED YET
+	}//deleteReservation()
+	
+}//class ReservationController
