@@ -60,7 +60,7 @@ public class SearchLendingMenu {
 			lending = lc.getLendingById(Integer.valueOf(filter));
 			//if there are no results
 			if (lending == null) {
-				System.out.println("No se ha econtrando ningún prestamo con el id facilitado");
+				System.out.println("No se ha encontrando ningún prestamo con el id facilitado");
 				SearchLendingUi.showSearchLendingUi();
 			} else {
 				//get the user of the lending
