@@ -131,6 +131,47 @@ public class ReservationDao
 		return copyDataList;
 	}//getAvailableCopies()
 	
+	/**
+	 * Method to search and get a list whith data about
+	 * the availables copies of a book (if there are)
+	 * @param the id of the book
+	 * @return Strings with the title of the book, the id of the book,
+	 * and the id of every copy of the book which is not reservated yet.
+	 */
+	public ArrayList<String> getAvailableCopiesAlternative(int bookId)
+	{
+		ArrayList<String> copyDataList= new ArrayList<String>();
+		String copyData;
+		
+		String query= "SELECT id, title , c.copyId FROM book b, copy c WHERE b.id = c.bookId AND b.id = ?";
+		
+		try(Connection con= connectionSQLite.getConnection(); 
+			PreparedStatement ps= con.prepareStatement(query); )
+		{
+			ps.setInt(1, bookId);
+			ps.execute();
+			ResultSet rs= ps.getResultSet();
+			
+			while(rs.next())
+			{
+				String bookTitle= rs.getString("title");
+				int idBook= rs.getInt("id");
+				int copyId= rs.getInt("copyId");
+				
+				copyData= "||Titulo: "+bookTitle+" ||Id del libro: "+idBook+" ||Id de la copia: "+copyId;
+				copyDataList.add(copyData);
+			}
+		}
+		catch (SQLException e) {e.printStackTrace();}
+		catch (ClassNotFoundException e1) {e1.printStackTrace();}
+		finally
+		{
+			try {connectionSQLite.closeConnection();}
+			catch (SQLException e) {e.printStackTrace();}
+		}
+		
+		return copyDataList;
+	}//getAvailableCopies()
 	
 	/**
 	 * Method to add a new reservation into the bbdd
