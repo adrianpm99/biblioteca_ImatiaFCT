@@ -98,13 +98,17 @@ public class BookController {
 	public void deleteBook(int id) {
 		bd.deleteBook(id);
 
-	}
-	
+	}//deleteBook
+	/**
+	 * method to get a list of id books by copys in copylending table
+	 * @param lendingId
+	 * @return listIdBook
+	 */
 	public List<Integer> getListIdBookByCopysInLendingCopy(int lendingId) {
 		
 		List<Integer> listIdBook = bd.getListIdBookByCopysInLendingCopy(lendingId);
 				
 		return listIdBook;
 	
-	}
+	}//getListIdBookByCopysInLendingCopy
 }

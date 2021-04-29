@@ -3,6 +3,9 @@ package com.imatia.bookmanager.view.menus;
 import com.imatia.bookmanager.controller.UserController;
 import com.imatia.bookmanager.view.inputs.UtilityInputs;
 
+/*
+ * class for show a deleter user menu
+ */
 public class DeleteUserMenu {
 	public static void showDeleteUserMenu(int id) {
 		

@@ -4,7 +4,9 @@ import com.imatia.bookmanager.controller.UserController;
 import com.imatia.bookmanager.model.entities.User;
 import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.ui.StartMenuUI;
-
+/*
+ * class to show the add user menu options
+ */
 public class AddUserMenu {
 	
 	public static void showAddUserMenu() {
@@ -29,8 +31,8 @@ public class AddUserMenu {
 		User user = new User(name, surName);
 		
 		uc.addUser(user);
-		
+		//show the start menu
 		StartMenuUI.showStartMenuUi();
-	}
+	}//showAddUserMenu
 
 }

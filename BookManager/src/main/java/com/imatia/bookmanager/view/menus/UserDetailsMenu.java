@@ -4,7 +4,9 @@ import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.ui.EditUserUi;
 import com.imatia.bookmanager.view.ui.SearchUserUi;
 
-
+/*
+ * class to show the user details menu options
+ */
 public class UserDetailsMenu {
 
 	public static void showUserDetailsMenuOptions(int id) {
@@ -28,6 +30,6 @@ public class UserDetailsMenu {
 		
 		}
 
-	}
+	}//showUserDetailsMenuOptions
 
 }

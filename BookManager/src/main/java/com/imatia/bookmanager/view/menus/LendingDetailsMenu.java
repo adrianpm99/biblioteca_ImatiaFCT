@@ -3,6 +3,9 @@ package com.imatia.bookmanager.view.menus;
 import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.ui.SearchLendingUi;
 
+/*
+ * this is the class to show menu options of lending details
+ */
 public class LendingDetailsMenu {
 	public static void showLendingDetailsMenuOptions(int id) {
 
@@ -25,6 +28,6 @@ public class LendingDetailsMenu {
 		
 		}
 
-	}
+	}//showLendingDetailsMenuOptions
 
 }

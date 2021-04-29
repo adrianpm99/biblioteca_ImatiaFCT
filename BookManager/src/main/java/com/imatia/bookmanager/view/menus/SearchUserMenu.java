@@ -11,6 +11,9 @@ import com.imatia.bookmanager.view.results.UserRenderers;
 import com.imatia.bookmanager.view.ui.UserManagementUi;
 import com.imatia.bookmanager.view.ui.UserResultsByMethodUI;
 
+/*
+ * this is the search user menu options
+ */
 public class SearchUserMenu {
 
 	public static void showSearchUserMenuOptions() {
@@ -62,6 +65,6 @@ public class SearchUserMenu {
 
 		}
 
-	}
+	}//showSearchUserMenuOptions
 
 }

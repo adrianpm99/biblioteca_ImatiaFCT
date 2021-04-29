@@ -3,6 +3,9 @@ package com.imatia.bookmanager.view.menus;
 import com.imatia.bookmanager.controller.ReservationController;
 import com.imatia.bookmanager.view.inputs.InputUserData;
 
+/*
+ * class to show the add reservation menu
+ */
 public class AddReservationMenu {
 
 	@SuppressWarnings("static-access")

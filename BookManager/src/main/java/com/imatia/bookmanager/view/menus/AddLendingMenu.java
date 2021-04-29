@@ -11,7 +11,9 @@ import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.ui.LendingsUi;
 
 
-
+/*
+ * class to show the add lending menu options
+ */
 public class AddLendingMenu {
 
 	public static void showAddLendingMenu() {

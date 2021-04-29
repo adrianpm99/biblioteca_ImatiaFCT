@@ -45,15 +45,25 @@ public class CopyController {
 		return copy;
 	}
 	
+	/**
+	 * method to delete a copy
+	 * @param id
+	 */
 	public void deleteCopyByIdBook(int id) {
 		cd.deleteCopybyIdBook(id);
 	}
 
+	/**
+	 * method to get a list of idcopy in lending by book
+	 * @param lendingId
+	 * @param bookId
+	 * @return
+	 */
 	public List<Integer> getCopyIdInLendingByBook(int lendingId, int bookId){
 		List<Integer> listIdCopys = new ArrayList<>();
 		
 		listIdCopys = cd.getCopyIdInLendingByBook(lendingId, bookId);
 		
 		return listIdCopys;
-	}
+	}//getCopyInLendingByBook
 }

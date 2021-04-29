@@ -5,9 +5,13 @@ import com.imatia.bookmanager.model.entities.User;
 import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.results.UserDetails;
 import com.imatia.bookmanager.view.ui.SearchUserUi;
-
+/*
+ * this is the menu options for the user search results by method
+ */
 public class UserResultsByMethodMenu {
-
+	/**
+	 * method to show the menu options for the user search results by method
+	 */
 	public static void showUserResultsByMethodMenuOptions() {
 
 		String userId;
@@ -33,7 +37,7 @@ public class UserResultsByMethodMenu {
 			User user = new UserController().getUserById(Integer.parseInt(userId));
 			UserDetails.showUserDetails(user);
 			break;
-		}
+		}//showUserResultsByMethodMenuOptions
 	}
 
 }

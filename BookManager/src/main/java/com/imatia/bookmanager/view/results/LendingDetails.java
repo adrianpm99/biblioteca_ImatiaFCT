@@ -4,7 +4,9 @@ import com.imatia.bookmanager.model.entities.Lending;
 import com.imatia.bookmanager.model.entities.User;
 import com.imatia.bookmanager.view.menus.LendingDetailsMenu;
 
-
+/*
+ * class to show a lending details
+ */
 public class LendingDetails {
 	
 	
@@ -18,9 +20,9 @@ public class LendingDetails {
 			"-----------------------------------------------------------\r\n" + 
 			"|| 1- Cerrar prestamo || 0- Volver al menu de busquedas  ||\r\n" + 
 			"-----------------------------------------------------------\r\n" + 
-			"|| Nombre y Apellidos Usuario: "+u.getUserName()+" "+u.getUserSurname()+"\r\n" + 
+			"|| Usuario: "+u.getUserName()+" "+u.getUserSurname()+"\r\n" + 
 			"||	\r\n" + 
-			"|| Libros prestados: "+bookTitles+"\r\n" +
+			"|| Libros: "+bookTitles+"\r\n" +
 			"||	\r\n" + 
 			"|| Fecha de Prestamo: "+l.getLendingDate()+"\r\n" + 
 			"||	\r\n" + 
@@ -29,9 +31,9 @@ public class LendingDetails {
 			"|| Fecha de devolucion: "+l.getLendingReturnDate()+"\r\n" + 
 			"==========================================================\r\n");
 		
-
+		//show the lending details menu
 		LendingDetailsMenu.showLendingDetailsMenuOptions(l.getLendingId());
 
 
-	}
+	}//showLendingDetails
 }

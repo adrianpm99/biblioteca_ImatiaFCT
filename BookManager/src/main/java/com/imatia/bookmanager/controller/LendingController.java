@@ -11,7 +11,11 @@ import com.imatia.bookmanager.model.entities.Copy;
 import com.imatia.bookmanager.model.entities.Lending;
 import com.imatia.bookmanager.model.entities.Reservation;
 
-
+/**
+ * class to implements the methods to connect views with data
+ * @author Grupo2FCTImatia
+ *
+ */
 public class LendingController {
 	LendingDao ld = new LendingDao();
 	

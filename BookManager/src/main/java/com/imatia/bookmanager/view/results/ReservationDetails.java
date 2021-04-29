@@ -1,9 +1,15 @@
 package com.imatia.bookmanager.view.results;
 
 import java.util.ArrayList;
-
+/*
+ * class to show the Reservation details
+ */
 public class ReservationDetails {
 	
+	/**
+	 * method to print a Reservation details
+	 * @param al
+	 */
 	public static void showReservationDetails(ArrayList<String> al) {
 	
 		System.out.println(

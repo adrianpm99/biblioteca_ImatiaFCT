@@ -4,9 +4,9 @@ import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.ui.EditBookUi;
 import com.imatia.bookmanager.view.ui.SearchesUi;
 
-
-
-
+/*
+ * class to show the book details menu options
+ */
 public class BookDetailsMenu
 {
 	public static void showBookDetailsOptions(int id) {

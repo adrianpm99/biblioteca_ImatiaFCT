@@ -11,6 +11,9 @@ import com.imatia.bookmanager.view.ui.ResultsByMethodUi;
 import com.imatia.bookmanager.view.ui.SearchesUi;
 import com.imatia.bookmanager.view.ui.StartMenuUI;
 
+/*
+ * this is the search book menu options
+ */
 public class SearchesMenu {
 
 	public static void showSearchesMenuOptions() {
@@ -37,15 +40,19 @@ public class SearchesMenu {
 				System.out.print("Introduzca el autor: ");
 				filter = InputUserData.checkUserInput("author", "Maximo 50 caracteres.");
 			} while (filter.equals(""));
-
+			//get the books by filter
 			bookList = bc.getBooksByAuthor(filter);
+			//if there are no results
 			if (bookList.isEmpty()) {
 				System.out.println("No se ha econtrando ningun libro del autor facilitado");
+				//back to the searches UI
 				SearchesUi.showSearchesUi();
 			} else {
+				//show the resultsUI by method
 				ResultsByMethodUi.showResultsUi("AUTOR");
+				//render the books
 				BookRenderers.renderAuthorListBooks(bookList);
-
+				//show results by method
 				ResultsByMethodMenu.showResultsByMethodMenuOptions();
 			}
 			break;
@@ -81,6 +88,6 @@ public class SearchesMenu {
 			break;
 		}
 
-	}
+	}//show searchesMenuOptions
 
 }
