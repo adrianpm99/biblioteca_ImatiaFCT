@@ -196,7 +196,7 @@ public class UserDao {
 	 */
 	public List<User> getUserByNameAndSurname(String name, String surname) {
 
-		String query = "SELECT * FROM user WHERE userName LIKE ? OR userSurname LIKE ? ";
+		String query = "SELECT * FROM user WHERE userName LIKE ? AND userSurname LIKE ? ";
 		List<User> userList = new ArrayList<>();
 		User user = new User();
 
@@ -205,8 +205,8 @@ public class UserDao {
 
 			PreparedStatement ps = con.prepareStatement(query);
 
-			ps.setString(1, name );
-			ps.setString(2, surname);
+			ps.setString(1,"%" + name + "%" );
+			ps.setString(2, "%" + surname + "%");
 			ps.execute();
 			ResultSet rs = ps.getResultSet();
 			while(rs.next()) {
