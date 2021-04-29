@@ -83,32 +83,11 @@ public class ReservationController {
 	}
 	
 	
-	
-	
-	
-//	public Reservation getReservationById(int reservationId) {
-//		
-//		Reservation reservation = rd.getReservationById(reservationId);
-//		return reservation;
-//	}
-
-	/**
-	 * method to get a list of reservations filter by idCopy
-	 * @param idCopy
-	 * @return reservationList
-	 */
-	/*public List<Reservation> getReservationByIdCopy(String idCopy) {
-
-		List<Reservation> reservationList = rd.getReservationByIdCopy(idCopy);
-		return reservationList;
-	}*/
-	
-	
 	/**
 	 * method to delete a reservation
 	 * @param id
 	 */
-	/*public void deleteReservation(int id) {
+	public void deleteReservation(int id) {	
 		rd.deleteReservation(id);
-	}*/
-}
+	}
+}//class ReservationController

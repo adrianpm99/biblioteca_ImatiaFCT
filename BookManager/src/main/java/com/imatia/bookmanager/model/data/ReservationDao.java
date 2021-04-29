@@ -185,5 +185,35 @@ public class ReservationDao
 		return al;
 	}//getReservationAdditionalData
 	
+	public void deleteReservation(int id) {
+		String query = "DELETE FROM reservation WHERE reservationId = ?";
+
+		try {
+			Connection con = connectionSQLite.getConnection();
+
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setInt(1, id);
+			ps.execute();
+
+			System.out.println("Reserva con id " + id + " borrada");
+
+			ps.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}//deleteReservation
 	
 }//class ReservationDao

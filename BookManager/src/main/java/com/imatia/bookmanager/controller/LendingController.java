@@ -77,7 +77,7 @@ public class LendingController {
 				for (Reservation r:reservationList) {
 					rc.getReservationData(r.getBookId());
 				
-					//rc.deleteReservation(r.getReservationId()) ;
+					rc.deleteReservation(r.getReservationId()) ;
 				}	
 		}
 		else {
