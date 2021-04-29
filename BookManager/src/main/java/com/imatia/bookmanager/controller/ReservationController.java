@@ -4,14 +4,11 @@ import java.util.ArrayList;
 
 import com.imatia.bookmanager.model.data.ReservationDao;
 import com.imatia.bookmanager.view.results.ReservationDetails;
-import com.imatia.bookmanager.view.ui.AddReservationUi;
+import com.imatia.bookmanager.model.entities.Reservation;
+import com.imatia.bookmanager.view.inputs.InputUserData;
+import com.imatia.bookmanager.view.ui.ReservationUi;
 import com.imatia.bookmanager.view.ui.StartMenuUI;
 
-//import java.util.ArrayList;
-//import java.util.List;
-
-//import com.imatia.bookmanager.model.data.ReservationDao;
-//import com.imatia.bookmanager.model.entities.Reservation;
 
 /**
  * class to implement the methods to connect views with data
@@ -26,22 +23,51 @@ public class ReservationController {
 	public void createNewReservation(int bookId) //bookId asked before on the menu
 	{
 		/* In order to create a new reservation, first it is necessary
-		 * to check if is there any reservation of that book.*/
+		 * to check out if there is any reservation of that book.*/
 		boolean reservationExist;
-		
-		//ReservationUi.showReservationUi();
-		
+		ArrayList<String> copyDataList;
+		String userId;
+				
 		reservationExist= rd.checkReservationExist(bookId);
 		if(reservationExist==true)
 		{
 			System.out.println("No se puede realizar la reserva.\n"
 							+ "El libro ya está reservado por otra persona.\n");
-			//ReservationUi.showReservationUi();
+			
+			ReservationUi.showReservationUi();
 		}
 		else if(reservationExist==false)
 		{
-			//proceed with creating reservation process (not implemented yet)
-		}
+			//At this point, there's no previous reservation of the book, 
+			//so proceed with creating reservation process
+			copyDataList= rd.getAvailableCopies(bookId);
+			if (copyDataList.isEmpty())
+			{
+				//Reservation can be done!
+				//Only rest to ask for the user id
+				System.out.println("Introduzca el id del ususario: ");
+				do 
+				{
+					userId = InputUserData.checkUserInput("id", "Inserte un id valido (entero positivo)");
+				}while(userId.equals(""));
+				
+				//Insert the reservation on the bbdd
+				Reservation reserv= new Reservation(1, bookId, Integer.parseInt(userId));
+				rd.addReservation(reserv);
+				
+				//Back to the main menu
+				StartMenuUI.showStartMenuUi();
+			}
+			else
+			{
+				System.out.println("No se puede realizar la reserva.\n"
+				+ "El libro tiene todavía los siguientes ejemplares disponibles:\n");
+				for(String s: copyDataList) System.out.println(s);
+				System.out.println("\nTiene que pedir un préstamo.\n");
+				
+				StartMenuUI.showStartMenuUi();
+			}
+		}//else if
 	}//createNewReservation()
 	
 	/**
@@ -77,14 +103,6 @@ public class ReservationController {
 		return reservationList;
 	}*/
 	
-	/**
-	 * method to insert a reservation in database
-	 * @param reservation
-	 */
-	/*public void addReservation(Reservation reservation) {
-		
-		rd.addReservation(reservation);
-	}*/
 	
 	/**
 	 * method to delete a reservation

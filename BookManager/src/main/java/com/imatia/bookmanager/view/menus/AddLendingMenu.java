@@ -1,4 +1,3 @@
-
 package com.imatia.bookmanager.view.menus;
 
 import java.time.LocalDate;
