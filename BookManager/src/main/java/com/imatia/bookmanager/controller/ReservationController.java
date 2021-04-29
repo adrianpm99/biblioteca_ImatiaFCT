@@ -43,11 +43,14 @@ public class ReservationController {
 		}
 		else if(!lendingBookExist) 
 		{
+			//Get Copies to show
 			copyDataList= rd.getAvailableCopiesAlternative(bookId);
 			System.out.println("No se puede realizar la reserva.\n"
 							+ "El libro esta disponible para su prestamo.\n");
+			//Show copies
 			for(String s: copyDataList) System.out.println(s);
 			System.out.println("\nTiene que pedir un préstamo.\n");
+			//Go to leading menu
 			LendingsUi.showLendingsUi();
 		}
 		else if(reservationExist==false)
