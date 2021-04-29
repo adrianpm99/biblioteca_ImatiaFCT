@@ -2,6 +2,9 @@ package com.imatia.bookmanager.view.results;
 
 import java.util.List;
 import com.imatia.bookmanager.model.entities.Lending;
+import com.imatia.bookmanager.view.inputs.UtilityDates;
+
+
 
 /**
  * These utils receive a list of lending and then, according to the search
@@ -19,8 +22,9 @@ public class LendingRenderers {
 			System.out.println(
 					"===========================================================================================\n");
 			System.out.println("Id Prestamo: " + l.getLendingId() + "\t|| Id Usuario: " + l.getUserId()
-					+ "\t|| Fecha Préstamo: " + l.getLendingDate() + "\t|| Fecha Devolución: " + l.getLendingDeadLine()
-					+ "\t|| Fecha Devuelto: " + l.getLendingReturnDate() + "\n");
+					+ "\t|| Fecha Préstamo: " + UtilityDates.formatDayMonthYear(l.getLendingDate()) 
+					+ "\t|| Fecha Devolución: " + UtilityDates.formatDayMonthYear(l.getLendingDeadLine())
+					+ "\t|| Fecha Devuelto: " + UtilityDates.formatDayMonthYear(l.getLendingReturnDate()) + "\n");
 		}
 	}// renderUserIdListLending()
 
@@ -36,8 +40,9 @@ public class LendingRenderers {
 					"===========================================================================================\n");
 			System.out.println(
 					"Id Prestamo: " + l.getLendingId() + "\t|| Id Usuario: " + l.getUserId()
-					+ "\t|| Fecha Préstamo: " + l.getLendingDate() + "\t|| Fecha Devolución: " + l.getLendingDeadLine()
-					+ "\t|| Fecha Devuelto: " + l.getLendingReturnDate() + "\n");
+					+ "\t|| Fecha Préstamo: " + UtilityDates.formatDayMonthYear(l.getLendingDate()) 
+					+ "\t|| Fecha Devolución: " + UtilityDates.formatDayMonthYear( l.getLendingDeadLine())
+					+ "\t|| Fecha Devuelto: " + UtilityDates.formatDayMonthYear(l.getLendingReturnDate()) + "\n");
 		}
 	}// renderDateListLending()
 

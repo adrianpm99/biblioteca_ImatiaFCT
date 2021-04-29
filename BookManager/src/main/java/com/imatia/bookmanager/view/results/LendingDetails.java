@@ -2,7 +2,10 @@ package com.imatia.bookmanager.view.results;
 
 import com.imatia.bookmanager.model.entities.Lending;
 import com.imatia.bookmanager.model.entities.User;
+import com.imatia.bookmanager.view.inputs.UtilityDates;
 import com.imatia.bookmanager.view.menus.LendingDetailsMenu;
+
+
 
 /*
  * class to show a lending details
@@ -24,11 +27,11 @@ public class LendingDetails {
 			"||	\r\n" + 
 			"|| Libros: "+bookTitles+"\r\n" +
 			"||	\r\n" + 
-			"|| Fecha de Prestamo: "+l.getLendingDate()+"\r\n" + 
+			"|| Fecha de Prestamo: "+UtilityDates.formatDayMonthYear(l.getLendingDate())+"\r\n" + 
 			"||	\r\n" + 
-			"|| Fecha de vencimiento: "+l.getLendingDeadLine()+"\r\n" + 
+			"|| Fecha de vencimiento: "+UtilityDates.formatDayMonthYear(l.getLendingDeadLine())+"\r\n" + 
 			"|| \r\n" + 
-			"|| Fecha de devolucion: "+l.getLendingReturnDate()+"\r\n" + 
+			"|| Fecha de devolucion: "+UtilityDates.formatDayMonthYear(l.getLendingReturnDate())+"\r\n" + 
 			"==========================================================\r\n");
 		
 		//show the lending details menu
