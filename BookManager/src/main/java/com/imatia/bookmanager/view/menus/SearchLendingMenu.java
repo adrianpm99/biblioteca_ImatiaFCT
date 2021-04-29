@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.imatia.bookmanager.controller.BookController;
+import com.imatia.bookmanager.controller.CopyController;
 import com.imatia.bookmanager.controller.LendingController;
 import com.imatia.bookmanager.controller.UserController;
 import com.imatia.bookmanager.model.entities.Lending;
@@ -14,7 +15,7 @@ import com.imatia.bookmanager.view.results.LendingRenderers;
 import com.imatia.bookmanager.view.ui.LendingsUi;
 import com.imatia.bookmanager.view.ui.ResultsSearchLendingUi;
 import com.imatia.bookmanager.view.ui.SearchLendingUi;
-import com.imatia.bookmanager.view.ui.SearchesUi;
+
 
 public class SearchLendingMenu {
 
@@ -22,11 +23,15 @@ public class SearchLendingMenu {
 		LendingController lc = new LendingController();
 		UserController uc = new UserController();
 		BookController bc = new BookController();
+		CopyController cc = new CopyController();
 		String option;
 		String filter;
+		String filter2;
 		Lending lending;
+		String bookCopys="";
 		User user;
 		List<Integer> bookList = new ArrayList<>();
+		List<Integer> copyList = new ArrayList<>();
 		List<Lending> lendingList = new ArrayList<>();
 
 		String bookTitles = "";
@@ -55,11 +60,15 @@ public class SearchLendingMenu {
 			} else {
 				user = uc.getUserById(lending.getUserId());
 				bookList = bc.getListIdBookByCopysInLendingCopy(lending.getLendingId());
+				
 
 				for (Integer i : bookList) {
 
 					String bookTitle = bc.getBookById(i).getTitle();
-					bookTitles = bookTitles + bookTitle + ", ";
+					copyList = cc.getCopyIdInLendingByBook(lending.getLendingId(),bc.getBookById(i).getId());
+					
+					bookCopys = copyList.toString();
+					bookTitles = bookTitles + bookTitle + "(Ejemplar:"+ bookCopys+"), ";
 				}
 
 				LendingDetails.showLendingDetails(lending, user, bookTitles);
@@ -98,21 +107,34 @@ public class SearchLendingMenu {
 			}
 			break;
 		case 3:
+			System.out.println("Introduzca un rango de fechas: ");
 			do {
-				System.out.print("Introduzca la fecha de devolución: (dd-mm-yyyy) ");
+				System.out.print("Introduzca la primera fecha: (dd-mm-yyyy) ");
 				filter = InputUserData.checkUserInput("date", "Formato fecha(dd-mm-yyyy)");
+			} while (filter.equals(""));
+			
+			do {
+				System.out.print("Introduzca la segunda fecha: (dd-mm-yyyy) ");
+				filter2= InputUserData.checkUserInput("date", "Formato fecha(dd-mm-yyyy)");
 			} while (filter.equals(""));
 
 			
 
-			// to pass the date as localDate it has to have this format
+			// to pass the first date as localDate it has to have this format
 			String year = filter.substring(6, 10);
 			String month = filter.substring(3, 5);
 			String day = filter.substring(0, 2);
-			String newDate = year + "-" + month + "-" + day;
+			String firtsDate = year + "-" + month + "-" + day;
+			
+			// to pass the second date as localDate it has to have this format
+			year = filter2.substring(6, 10);
+			month = filter2.substring(3, 5);
+			day = filter2.substring(0, 2);
+			String secondDate = year + "-" + month + "-" + day;
+			
 
-			// newDate is a string
-			lendingList = lc.getLendingByDeadLine(newDate);
+			// firtsDate and secondDate are a string
+			lendingList = lc.getLendingByDeadLine(firtsDate, secondDate);
 			if (lendingList.isEmpty()) {
 				System.out.println("No se ha encontrado ningún prestamo con la fecha de devolución facilitada");
 				SearchLendingUi.showSearchLendingUi();
