@@ -114,5 +114,15 @@ public class ReservationController {
 	{
 		rd.deleteReservation(reservationId);
 	}//deleteReservation()
+	
+	/**
+	 * method to get a reservation by id
+	 * @param id
+	 */
+	public Reservation getReservationById(int id) {
+		Reservation reservation = new Reservation();
+		reservation = rd.getReservationById(id);
+		return reservation;
+	}//getReservationById
 		
 }//class ReservationController

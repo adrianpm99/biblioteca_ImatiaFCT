@@ -286,5 +286,46 @@ public class ReservationDao
 			}
 		}
 	}//deleteReservation
+
+	public Reservation getReservationById(int id) {
+		
+		Reservation reservation= null;
+		String query ="SELECT * FROM reservation WHERE reservationId = ?";
+		
+		try {
+			Connection con = connectionSQLite.getConnection();
+
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setInt(1, id);
+			ps.execute();
+
+			ResultSet rs = ps.getResultSet();
+			rs.next();
+
+			int reservationId = rs.getInt("reservationId");
+			int bookId = rs.getInt("bookId");
+			int userId = rs.getInt("userId");
+
+			reservation = new Reservation(reservationId, bookId, userId);
+
+			ps.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			System.out.println("La consulta no ha devuelto ningún resultado");
+			//e.printStackTrace();
+		} finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return reservation;
+	}//getReservationById
 	
 }//class ReservationDao
