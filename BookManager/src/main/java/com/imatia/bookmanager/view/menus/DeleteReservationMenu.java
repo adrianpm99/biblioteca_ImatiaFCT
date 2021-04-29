@@ -4,6 +4,7 @@ import com.imatia.bookmanager.controller.ReservationController;
 import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.inputs.UtilityInputs;
 import com.imatia.bookmanager.view.ui.ReservationUi;
+import com.imatia.bookmanager.view.ui.StartMenuUI;
 
 public class DeleteReservationMenu
 {
@@ -21,6 +22,6 @@ public class DeleteReservationMenu
 		boolean confirmationDelete= UtilityInputs.getConfirmation("cancelar","reserva");
 		// get the confirmation of the delete
 		if (confirmationDelete == true) rc.deleteReservation(Integer.parseInt(reservationId));
-		else {ReservationUi.showReservationUi();}
+		StartMenuUI.showStartMenuUi();
 	}//showDeleteBookMenu()
 }//class DeleteReservationMenu

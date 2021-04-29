@@ -6,6 +6,7 @@ import com.imatia.bookmanager.model.data.ReservationDao;
 import com.imatia.bookmanager.view.results.ReservationDetails;
 import com.imatia.bookmanager.model.entities.Reservation;
 import com.imatia.bookmanager.view.inputs.InputUserData;
+import com.imatia.bookmanager.view.ui.LendingsUi;
 import com.imatia.bookmanager.view.ui.ReservationUi;
 import com.imatia.bookmanager.view.ui.StartMenuUI;
 
@@ -32,17 +33,20 @@ public class ReservationController {
 		lendingBookExist = rd.checkLendingBookExist(bookId);
 		reservationExist= rd.checkReservationExist(bookId);
 		
-		if(!lendingBookExist) 
-		{
-			System.out.println("No se puede realizar la reserva.\n"
-					+ "El libro esta disponible para su prestamo.\n");
-		}
-		else if(reservationExist==true)
+		
+		if(reservationExist==true)
 		{
 			System.out.println("No se puede realizar la reserva.\n"
 							+ "El libro ya está reservado por otra persona.\n");
 			
 			ReservationUi.showReservationUi();
+		}
+		else if(!lendingBookExist) 
+		{
+			System.out.println("No se puede realizar la reserva.\n"
+					+ "El libro esta disponible para su prestamo.\n");
+			
+			LendingsUi.showLendingsUi();
 		}
 		else if(reservationExist==false)
 		{
@@ -57,7 +61,7 @@ public class ReservationController {
 				do 
 				{
 					userId = InputUserData.checkUserInput("id", "Inserte un id valido (entero positivo)");
-					if(!userId.equals("")) System.out.println("Opcion no valida. Pruebe de nuevo (entero positivo)");
+					if(userId.equals("")) System.out.println("Opcion no valida. Pruebe de nuevo (entero positivo)");
 				}while(userId.equals(""));
 				
 				//Insert the reservation on the bbdd
@@ -103,7 +107,7 @@ public class ReservationController {
 	 */
 	public void deleteReservation(int reservationId)
 	{
-		//rd.deleteReservation(id); NOT IMPLEMENTED YET
+		rd.deleteReservation(reservationId);
 	}//deleteReservation()
 		
 }//class ReservationController
