@@ -50,7 +50,37 @@ public class ReservationDao
 		
 		return reservationExists;
 	}//checkReservationExist()
-
+	
+	/**
+	 * Method to check if a book exists in the copyLending table
+	 * @param bookId (the id of the book)
+	 * @return true if exists, false if doesn't
+	 */
+	public boolean checkLendingBookExist(int bookId)
+	{
+		boolean reservationExists= false;
+		
+		String query= "SELECT * FROM copy c,copyLending cl WHERE c.copyId = cl.copyId AND c.bookId = ?";
+		
+		try(Connection con= connectionSQLite.getConnection(); 
+			PreparedStatement ps= con.prepareStatement(query))
+		{
+			ps.setInt(1, bookId);
+			ps.execute();
+			ResultSet rs= ps.getResultSet();
+					
+			if(rs.next()) reservationExists= true;
+		}
+		catch (SQLException e) {e.printStackTrace();}
+		catch (ClassNotFoundException e1) {e1.printStackTrace();}
+		finally
+		{
+			try {connectionSQLite.closeConnection();}
+			catch (SQLException e) {e.printStackTrace();}
+		}
+		
+		return reservationExists;
+	}//checkLendingBookExist()
 	
 	
 	/**
@@ -185,5 +215,35 @@ public class ReservationDao
 		return al;
 	}//getReservationAdditionalData
 	
+	public void deleteReservation(int id) {
+		String query = "DELETE FROM reservation WHERE reservationId = ?";
+
+		try {
+			Connection con = connectionSQLite.getConnection();
+
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setInt(1, id);
+			ps.execute();
+
+			System.out.println("Reserva con id " + id + " borrada");
+
+			ps.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}//deleteReservation
 	
 }//class ReservationDao

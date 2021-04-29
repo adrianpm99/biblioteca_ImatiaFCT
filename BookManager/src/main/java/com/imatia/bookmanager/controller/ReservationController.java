@@ -24,12 +24,20 @@ public class ReservationController {
 	{
 		/* In order to create a new reservation, first it is necessary
 		 * to check out if there is any reservation of that book.*/
+		boolean lendingBookExist;
 		boolean reservationExist;
 		ArrayList<String> copyDataList;
 		String userId;
-				
+		
+		lendingBookExist = rd.checkLendingBookExist(bookId);
 		reservationExist= rd.checkReservationExist(bookId);
-		if(reservationExist==true)
+		
+		if(!lendingBookExist) 
+		{
+			System.out.println("No se puede realizar la reserva.\n"
+					+ "El libro esta disponible para su prestamo.\n");
+		}
+		else if(reservationExist==true)
 		{
 			System.out.println("No se puede realizar la reserva.\n"
 							+ "El libro ya está reservado por otra persona.\n");
@@ -97,5 +105,5 @@ public class ReservationController {
 	{
 		//rd.deleteReservation(id); NOT IMPLEMENTED YET
 	}//deleteReservation()
-	
+		
 }//class ReservationController
