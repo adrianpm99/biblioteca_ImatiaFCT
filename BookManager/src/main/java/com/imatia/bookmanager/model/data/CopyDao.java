@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.imatia.bookmanager.model.entities.Copy;
 
@@ -170,6 +172,50 @@ public class CopyDao {
 		}
 		
 		
+	}
+	
+	public List<Integer> getCopyIdInLendingByBook(int lendingId, int bookId){
+		List<Integer> listIdCopys = new ArrayList<>();
+		
+		String query = "SELECT copyId FROM copyLending WHERE lendingId= ? AND copyId =(SELECT copyId FROM copy WHERE bookId=?)";
+
+		try {
+			Connection con = connectionSQLite.getConnection();
+
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setInt(1, lendingId);
+			ps.setInt(2, bookId);
+			ps.execute();
+			ResultSet rs = ps.getResultSet();
+			while(rs.next()) {
+
+			int idCopy = rs.getInt("copyId");
+			
+			listIdCopys.add(idCopy);
+			
+			}
+			
+			
+			ps.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		
+		return listIdCopys;
 	}
 	
 	

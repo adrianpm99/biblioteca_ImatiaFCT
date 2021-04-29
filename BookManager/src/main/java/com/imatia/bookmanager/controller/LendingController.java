@@ -45,12 +45,13 @@ public class LendingController {
 	
 	/**
 	 * method to get a list of lendings filter by LendingDeadLine
+	 * @param secondDate 
 	 * @param LendingDeadLine
 	 * @return lendingList
 	 */
-	public List<Lending> getLendingByDeadLine(String date) {
+	public List<Lending> getLendingByDeadLine(String firstDate, String secondDate) {
 		
-		List<Lending> lendingList = ld.getLendingByDeadLine(date);
+		List<Lending> lendingList = ld.getLendingByDeadLine(firstDate, secondDate);
 		return lendingList;
 	}
 	

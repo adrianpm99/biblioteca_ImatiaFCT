@@ -6,10 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -151,15 +148,10 @@ public class LendingDao {
 
 				ps.setInt(1, lending.getUserId());
 
-				// esto daba error (java.lang.ClassCastException: java.util.Date cannot be cast
-				// to java.sql.Date)
-
-				// Date lendingDate = (Date) Date
-				// .from(lending.getLendingDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+				
 				Date lendingDate = Date.valueOf(lending.getLendingDate());
 				ps.setDate(2, lendingDate);
-				// Date deadLineDate = (Date) Date
-				// .from(lending.getLendingDeadLine().atStartOfDay(ZoneId.systemDefault()).toInstant());
+				
 				Date lendingDeadLine = Date.valueOf(lending.getLendingDeadLine());
 				ps.setDate(3, lendingDeadLine);
 
@@ -220,7 +212,7 @@ public class LendingDao {
 		}
 		return lendingId;
 	}
-
+ 
 	public void deleteLending(Lending lending, Copy copy) {
 		String query = "DELETE FROM copyLending WHERE lendingId = ?";
 
@@ -408,26 +400,26 @@ public class LendingDao {
 
 	/**
 	 * method to get a lending filter by UserId
+	 * @param secondDate 
 	 * 
 	 * @param userId
 	 * @return lending
 	 */
-	public List<Lending> getLendingByDeadLine(String date) {
+	public List<Lending> getLendingByDeadLine(String firstDate, String secondDate) {
 
 		Lending lending = new Lending();
 		List<Lending> lendingList = new ArrayList<>();
 
-		String query = "SELECT * FROM lending WHERE lendingDeadLine = ?";
+		String query = "SELECT * FROM lending WHERE lendingDeadLine BETWEEN ? AND ?";
 
 		try {
 			Connection con = connectionSQLite.getConnection();
 
 			PreparedStatement ps = con.prepareStatement(query);
 
-			DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			LocalDate datef = LocalDate.parse(date, format);
-			ps.setDate(1, Date.valueOf(date));
-			// ps.setDate(1, Date.valueOf(date));
+			ps.setDate(1, Date.valueOf(firstDate));
+			ps.setDate(2, Date.valueOf(secondDate));
+	
 			ps.execute();
 			ResultSet rs = ps.getResultSet();
 			while (rs.next()) {
@@ -453,8 +445,8 @@ public class LendingDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			System.out.println("No se ha encontrado ningun prestamo con la fecha de devolución facilitado");
-			// e.printStackTrace();
+			System.out.println("La consulta no ha devuelto ningún resultado");
+			//e.printStackTrace();
 			SearchLendingUi.showSearchLendingUi();
 		} finally {
 			try {

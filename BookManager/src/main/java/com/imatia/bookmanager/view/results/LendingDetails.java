@@ -20,7 +20,7 @@ public class LendingDetails {
 			"-----------------------------------------------------------\r\n" + 
 			"|| Nombre y Apellidos Usuario: "+u.getUserName()+" "+u.getUserSurname()+"\r\n" + 
 			"||	\r\n" + 
-			"|| Libros prestados: "+bookTitles+"\r\n" + 
+			"|| Libros prestados: "+bookTitles+"\r\n" +
 			"||	\r\n" + 
 			"|| Fecha de Prestamo: "+l.getLendingDate()+"\r\n" + 
 			"||	\r\n" + 
