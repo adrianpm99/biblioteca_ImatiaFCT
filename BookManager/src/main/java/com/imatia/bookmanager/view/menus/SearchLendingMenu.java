@@ -10,11 +10,13 @@ import com.imatia.bookmanager.controller.UserController;
 import com.imatia.bookmanager.model.entities.Lending;
 import com.imatia.bookmanager.model.entities.User;
 import com.imatia.bookmanager.view.inputs.InputUserData;
+import com.imatia.bookmanager.view.inputs.UtilityDates;
 import com.imatia.bookmanager.view.results.LendingDetails;
 import com.imatia.bookmanager.view.results.LendingRenderers;
 import com.imatia.bookmanager.view.ui.LendingsUi;
 import com.imatia.bookmanager.view.ui.ResultsSearchLendingUi;
 import com.imatia.bookmanager.view.ui.SearchLendingUi;
+
 
 /*
  * this is the search lending menu options
@@ -127,18 +129,13 @@ public class SearchLendingMenu {
 				System.out.print("Introduzca la segunda fecha: (dd-mm-yyyy) ");
 				filter2 = InputUserData.checkUserInput("date", "Formato fecha(dd-mm-yyyy)");
 			} while (filter.equals(""));
-
+			
 			// to pass the first date as localDate it has to have this format
-			String year = filter.substring(6, 10);
-			String month = filter.substring(3, 5);
-			String day = filter.substring(0, 2);
-			String firtsDate = year + "-" + month + "-" + day;
-
+			String firtsDate = UtilityDates.formatYearMonthDay(filter);
 			// to pass the second date as localDate it has to have this format
-			year = filter2.substring(6, 10);
-			month = filter2.substring(3, 5);
-			day = filter2.substring(0, 2);
-			String secondDate = year + "-" + month + "-" + day;
+			String secondDate = UtilityDates.formatYearMonthDay(filter2);
+		
+			
 
 			// firtsDate and secondDate are a string
 			lendingList = lc.getLendingByDeadLine(firtsDate, secondDate);
