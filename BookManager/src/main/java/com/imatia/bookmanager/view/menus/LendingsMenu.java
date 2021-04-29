@@ -14,7 +14,11 @@ import com.imatia.bookmanager.view.ui.StartMenuUI;
 
 			do {
 				option = InputUserData.checkUserInput("option", "Opcion no valida. Pruebe de nuevo (entero positivo)");
-			} while (option.equals("") && !option.equals("0") && !option.equals("1") && !option.equals("2") && 
+				if(!option.equals("") && !option.equals("0") && !option.equals("1") && !option.equals("2") && 
+						!option.equals("3")) {
+					System.out.println("Opcion no valida. Pruebe de nuevo (entero positivo)");
+				}
+			} while (!option.equals("0") && !option.equals("1") && !option.equals("2") && 
 					!option.equals("3"));
 			
 				switch (Integer.parseInt(option))

@@ -3,7 +3,7 @@ package com.imatia.bookmanager.view.menus;
 import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.ui.EditUserUi;
 import com.imatia.bookmanager.view.ui.SearchUserUi;
-import com.imatia.bookmanager.view.ui.UserManagementUi;
+
 
 public class UserDetailsMenu {
 
@@ -13,7 +13,10 @@ public class UserDetailsMenu {
 
 		do {
 			option = InputUserData.checkUserInput("option", "Opcion no valida. Pruebe de nuevo (entero positivo)");
-		} while (option.equals("") && !option.equals("0") && !option.equals("1") && !option.equals("2"));
+			if(!option.equals("") && !option.equals("0") && !option.equals("1")) {
+				System.out.println("Opcion no valida. Pruebe de nuevo (entero positivo)");
+			}
+		} while (!option.equals("0") && !option.equals("1"));
 
 		switch (Integer.parseInt(option)) {
 		case 0:
@@ -22,9 +25,7 @@ public class UserDetailsMenu {
 		case 1:
 			EditUserUi.showEditUserUi(id);
 			break;
-		case 2:
-			DeleteUserMenu.showDeleteUserMenu(id);
-			UserManagementUi.showUserManagementUi();
+		
 		}
 
 	}

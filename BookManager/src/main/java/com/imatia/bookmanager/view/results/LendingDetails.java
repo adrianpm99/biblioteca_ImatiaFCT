@@ -1,15 +1,14 @@
 package com.imatia.bookmanager.view.results;
 
 import com.imatia.bookmanager.model.entities.Lending;
-
+import com.imatia.bookmanager.model.entities.User;
 import com.imatia.bookmanager.view.menus.LendingDetailsMenu;
 
-import com.imatia.bookmanager.view.ui.LendingsUi;
 
 public class LendingDetails {
 	
 	
-	public static void showLendingDetalis(Lending l) {
+	public static void showLendingDetails(Lending l, User u, String bookTitles) {
 	
 		System.out.println(
 	
@@ -19,7 +18,9 @@ public class LendingDetails {
 			"-----------------------------------------------------------\r\n" + 
 			"|| 1- Cerrar prestamo || 0- Volver al menu de busquedas  ||\r\n" + 
 			"-----------------------------------------------------------\r\n" + 
-			"|| Id Usuario: "+l.getUserId()+"\r\n" + 
+			"|| Nombre y Apellidos Usuario: "+u.getUserName()+" "+u.getUserSurname()+"\r\n" + 
+			"||	\r\n" + 
+			"|| Libros prestados: "+bookTitles+"\r\n" + 
 			"||	\r\n" + 
 			"|| Fecha de Prestamo: "+l.getLendingDate()+"\r\n" + 
 			"||	\r\n" + 

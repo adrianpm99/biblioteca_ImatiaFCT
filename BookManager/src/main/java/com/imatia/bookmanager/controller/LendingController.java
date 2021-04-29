@@ -9,6 +9,8 @@ import com.imatia.bookmanager.model.data.LendingDao;
 
 import com.imatia.bookmanager.model.entities.Copy;
 import com.imatia.bookmanager.model.entities.Lending;
+import com.imatia.bookmanager.model.entities.Reservation;
+
 
 public class LendingController {
 	LendingDao ld = new LendingDao();
@@ -53,11 +55,30 @@ public class LendingController {
 	}
 	
 	
+	
+	/**
+	 * method that closes a loan by modifying its lendingReturnDate and gives a notice to the user
+	 * if there is a reservation on the returned book
+	 * @param  lendingId, LendingDeadLine
+	 * 
+	 */
 	public void modifyLendingReturnDate(int id, LocalDate lendingReturnDate) {
 		
+		ReservationController rc = new ReservationController();
+		
 		Lending lending = ld.getLendingById(id);
+		
 		if(lending.getLendingReturnDate() == null) {
 			ld.modifyLendingReturndDate(id, lendingReturnDate);
+						
+			//return a reservation list
+			ArrayList<Reservation> reservationList = ld.checkIfReservatedBook(id); //LendingID
+		
+				for (Reservation r:reservationList) {
+					rc.getReservationData(r.getBookId());
+				
+					//rc.deleteReservation(r.getReservationId()) ;
+				}	
 		}
 		else {
 			System.out.println("El prestamo con id " + id + " ya está cerrado");
