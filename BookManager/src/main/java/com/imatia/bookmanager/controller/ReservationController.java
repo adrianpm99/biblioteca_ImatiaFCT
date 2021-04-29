@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.imatia.bookmanager.model.data.ReservationDao;
 import com.imatia.bookmanager.view.results.ReservationDetails;
+import com.imatia.bookmanager.model.entities.Reservation;
 import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.ui.ReservationUi;
 import com.imatia.bookmanager.view.ui.StartMenuUI;
@@ -42,7 +43,6 @@ public class ReservationController {
 			copyDataList= rd.getAvailableCopies(bookId);
 			if (copyDataList.isEmpty())
 			{
-				System.out.println("ESTA VACIO!");
 				//Reservation can be done!
 				//Only rest to ask for the user id
 				System.out.println("Introduzca el id del ususario: ");
@@ -52,7 +52,11 @@ public class ReservationController {
 				}while(userId.equals(""));
 				
 				//Insert the reservation on the bbdd
-				//rd.addReservation(bookId, Integer.parseInt(userId)); NOT IMPLEMENTED YET
+				Reservation reserv= new Reservation(1, bookId, Integer.parseInt(userId));
+				rd.addReservation(reserv);
+				
+				//Back to the main menu
+				StartMenuUI.showStartMenuUi();
 			}
 			else
 			{
@@ -99,14 +103,6 @@ public class ReservationController {
 		return reservationList;
 	}*/
 	
-	/**
-	 * method to insert a reservation in database
-	 * @param reservation
-	 */
-	/*public void addReservation(Reservation reservation) {
-		
-		rd.addReservation(reservation);
-	}*/
 	
 	/**
 	 * method to delete a reservation
