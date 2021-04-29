@@ -327,7 +327,7 @@ public class BookDao {
 		
 			String verify = "SELECT 1 FROM copy c, copyLending cl, lending l WHERE c.bookId = ?"
 					+ " AND c.copyId = cl.copyId"
-					+ " 1AND l.lendingReturnDate ISNULL";
+					+ " AND l.lendingReturnDate ISNULL";
 			
 			try {
 
