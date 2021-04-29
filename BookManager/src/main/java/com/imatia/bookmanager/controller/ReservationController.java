@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.imatia.bookmanager.model.data.ReservationDao;
 import com.imatia.bookmanager.view.inputs.InputUserData;
-import com.imatia.bookmanager.view.ui.AddReservationUi;
 import com.imatia.bookmanager.view.ui.ReservationUi;
 import com.imatia.bookmanager.view.ui.StartMenuUI;
 
@@ -39,7 +38,7 @@ public class ReservationController {
 		{
 			//At this point, there's no previous reservation of the book, 
 			//so proceed with creating reservation process
-			copyDataList= rd.getAvailablesCopies(bookId);
+			copyDataList= rd.getAvailableCopies(bookId);
 			if (copyDataList.isEmpty())
 			{
 				System.out.println("ESTA VACIO!");

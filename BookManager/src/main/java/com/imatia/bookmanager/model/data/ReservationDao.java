@@ -57,7 +57,7 @@ public class ReservationDao
 	 * @return Strings with the title of the book, the id of the book,
 	 * and the id of every copy of the book which is not reservated yet.
 	 */
-	public ArrayList<String> getAvailablesCopies(int bookId)
+	public ArrayList<String> getAvailableCopies(int bookId)
 	{
 		ArrayList<String> copyDataList= new ArrayList<String>();
 		String copyData;
@@ -96,7 +96,60 @@ public class ReservationDao
 		}
 		
 		return copyDataList;
-	}//getAvailablesCopies()
+	}//getAvailableCopies()
+	
+	
+	
+	/**
+	* method to get the data to the result of the ReservationResult
+	* 
+	* @param id Returned book id from lending
+	*/
+	public ArrayList<String> getReservationAdditionalData(int id) {
+
+		String query = "SELECT r.reservationId, b.id, b.title, u.userId, u.userName, u.userSurname "
+				+ " FROM reservation r, user u, book b WHERE r.userId = u.userId AND r.bookId = b.id AND b.id = ?;";
+		ArrayList<String> al = new ArrayList<String>();
+		
+		try {
+			Connection con = connectionSQLite.getConnection();
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setLong(1, id);
+			ps.execute();
+			ResultSet rs = ps.getResultSet();
+			rs.next();
+			String reservationId = String.valueOf(rs.getInt("reservationId"));
+			String bookId = String.valueOf(rs.getInt("id"));
+			String title  = rs.getString("title");
+			String userId = String.valueOf(rs.getInt("userId"));
+			String name = rs.getString("userName");
+			String surname = rs.getString("userSurname");
+
+			ps.close();
+			al.add(reservationId);
+			al.add(bookId);
+			al.add(title);
+			al.add(userId);
+			al.add(name);
+			al.add(surname);
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return al;
+	}//getReservationAdditionalData
 	
 	
 }//class ReservationDao
