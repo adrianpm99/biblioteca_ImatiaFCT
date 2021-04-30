@@ -129,7 +129,7 @@ public class ReservationDao
 				ResultSet rs2 = ps2.getResultSet();
 				if(!rs2.next()) {
 				
-					////////////////////////////
+				
 					copyData= "||Titulo: "+bookTitle+" ||Id del libro: "+idBook+" ||Id de la copia: "+copyId;
 					copyDataList.add(copyData);
 				}
