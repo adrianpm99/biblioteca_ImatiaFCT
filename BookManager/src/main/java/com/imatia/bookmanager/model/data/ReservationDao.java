@@ -61,7 +61,7 @@ public class ReservationDao
 		boolean reservationExists= false;
 		
 		String query= "SELECT * FROM copy c,copyLending cl WHERE c.copyId = cl.copyId AND c.bookId = ?";
-	//	String query = "Select * from t1 where not exists (select 1 from t2 where t2.id = t1.id)
+	//	String query = "SELECT * FROM copy c,copyLending cl WHERE c.copyId = cl.copyId and c.bookId = ? not exists ()
 		
 		try(Connection con= connectionSQLite.getConnection(); 
 			PreparedStatement ps= con.prepareStatement(query))
