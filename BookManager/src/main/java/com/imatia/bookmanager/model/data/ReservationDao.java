@@ -396,4 +396,51 @@ public class ReservationDao
 		
 	}
 	
+	
+	
+	/**
+	 * method to get a reservation list by idUser
+	 * @param id
+	 * @return reservationList
+	 */
+	public List<Reservation> getReservationsByIdUser(int id)
+	{	
+		Reservation reservation= null;
+		List<Reservation> reservationList = new ArrayList<>();
+		
+		String query ="SELECT * FROM reservation WHERE userId = ?";
+		
+		try
+		{
+			Connection con = connectionSQLite.getConnection();
+
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setInt(1, id);
+			ps.execute();
+
+			ResultSet rs = ps.getResultSet();
+			while(rs.next()) {
+
+			int reservationId = rs.getInt("reservationId");
+			int bookId = rs.getInt("bookId");
+			int userId = rs.getInt("userId");
+
+			reservation = new Reservation(reservationId, bookId, userId);
+			reservationList.add(reservation);
+			}
+			ps.close();
+
+		}
+		catch (ClassNotFoundException e) {e.printStackTrace();}
+		catch (SQLException e) {System.out.println("La consulta no ha devuelto ningún resultado");}
+		finally
+		{
+			try {connectionSQLite.closeConnection();}
+			catch (SQLException e) {e.printStackTrace();}
+		}
+		
+		return reservationList;
+	}//getReservationsByIdUser()
+	
 }//class ReservationDao

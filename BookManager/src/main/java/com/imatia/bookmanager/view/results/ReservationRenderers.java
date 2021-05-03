@@ -5,19 +5,20 @@ import java.util.List;
 import com.imatia.bookmanager.model.entities.Reservation;
 
 /*
- * this is the class that receiving a list of reservation
- * print specific data
+ * method which receives a list of reservations
+ * and prints its data
  */
-public class ReservationRenderers {
-	public static void renderListReservations(List<Reservation> reservationList)
+public class ReservationRenderers
+{
+	public static void renderReservationsList(List<Reservation> reservationList)
 	{
 		for(Reservation r: reservationList)
 		{
 			System.out.println("===========================================================================================\n");
-			System.out.println("Id Reserva: "+r.getReservationId()+
-								"\t|| Id Usuario: "+r.getUserId()+"\n"); 
-					
+			System.out.println("Id de la Reserva: "+r.getReservationId()+
+								"\t|| Id del Libro: "+r.getBookId()+
+								"\t|| Id del Usuario: "+r.getUserId()+"\n"); 		
 		}
-	}//renderListUsers
-
-}
+	}//renderReservationsList
+	
+}//class ReservationRenderers

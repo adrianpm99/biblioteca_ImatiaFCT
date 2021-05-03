@@ -50,19 +50,36 @@ public class SearchReservationMenu {
 				//show the resultsUI by method
 				ReservationResultsByMethodUi.showReservationResultsUi("LIBRO");
 				//render the reservations
-				ReservationRenderers.renderListReservations(reservationList);
+				ReservationRenderers.renderReservationsList(reservationList);
 				//show results by method
 				ReservationResultsByMethodMenu.showReservationResultsByMethodMenuOptions();
 			}
 			break;
 			
 		case 2:
-			//Not implemented yet
+			do {
+				System.out.print("Introduzca el id del usuario: ");
+				filter = InputUserData.checkUserInput("id", "Pruebe de nuevo(entero positivo)");
+			} while (filter.equals(""));
 			
+			reservationList = rc.getReservationsByIdUser(Integer.parseInt(filter));
+			
+			if(reservationList.isEmpty())
+			{
+				System.out.println("Este libro no tiene ninguna reserva");
+				SearchReservationUi.showSearchReservationUi();
+			}
+			else
+			{
+				//show the resultsUI by method
+				ReservationResultsByMethodUi.showReservationResultsUi("USUARIO");
+				//render the reservations
+				ReservationRenderers.renderReservationsList(reservationList);
+				//show results by method
+				ReservationResultsByMethodMenu.showReservationResultsByMethodMenuOptions();
+			}			
 			break;
-		
-		
-		}
-	}
+		}//switch
+	}//showSeachReservationMenuOptions()
 
-}
+}//class SearchReservationMenu

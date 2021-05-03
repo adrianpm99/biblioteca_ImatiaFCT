@@ -143,5 +143,19 @@ public class ReservationController {
 		
 		return reservationList;
 	}//getReservationListByIdBook
+	
+	
+	
+	/**
+	 * method to get a reservation list by idUser
+	 * @param id of the user
+	 * @return reservationList
+	 */
+	public List<Reservation> getReservationsByIdUser(int id)
+	{	
+		List<Reservation> reservationList = rd.getReservationsByIdUser(id);	
+		return reservationList;
+	}//getReservationListByIdUser
 		
+	
 }//class ReservationController
