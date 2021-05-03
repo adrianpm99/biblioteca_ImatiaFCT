@@ -76,7 +76,7 @@ public class SearchLendingMenu {
 					//get the copys of the book lending
 					copyList = cc.getCopyIdInLendingByBook(lending.getLendingId(), bc.getBookById(i).getId());
 					//building the strings to show the results
-					bookCopys = "(Ejemplar:" + copyList.toString() + ")";
+					bookCopys = "(Id Ejemplar:" + copyList.toString() + ")";
 					bookTitles = bookTitles + bookTitle + bookCopys + " || ";
 				}
 				//show the lending details
