@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.imatia.bookmanager.model.entities.Lending;
 import com.imatia.bookmanager.model.entities.User;
 import com.imatia.bookmanager.view.ui.SearchUserUi;
 
@@ -230,6 +231,36 @@ public class UserDao {
 		}
 
 		return userList;
+	}
+	
+	public boolean checkUserId(int userId) {
+		String queryGetUser = "SELECT * FROM user WHERE userId = ?";
+		boolean check = false;
+		try {
+			Connection con = connectionSQLite.getConnection();
+			PreparedStatement psGetUser = con.prepareStatement(queryGetUser);
+			psGetUser.setInt(1, userId);
+
+			psGetUser.execute();
+
+			ResultSet rsUser = psGetUser.getResultSet();
+
+			if (rsUser.next()) {
+				psGetUser.close();
+				rsUser.close();
+				return check = true;
+			} else {
+				return check = false;
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			//System.out.println("No se ha encontrado ningun usuario con los datos facilitados");
+			e.printStackTrace();
+			SearchUserUi.showSearchUserUi();
+		}
+		return check;
 	}
 
 }
