@@ -26,10 +26,9 @@ public class ReservationDao
 	 * @param bookId (the id of the book)
 	 * @return true if reservation exists, false if doesn't
 	 */
-	public boolean checkReservationExist(int bookId)
+	public List checkReservationExist(int bookId)
 	{
-		boolean reservationExists= false;
-		
+		List<String> reservationExists= new ArrayList<String>();
 		String query= "SELECT * FROM reservation WHERE bookId= ?";
 		
 		try(Connection con= connectionSQLite.getConnection(); 
@@ -39,7 +38,9 @@ public class ReservationDao
 			ps.execute();
 			ResultSet rs= ps.getResultSet();
 					
-			if(rs.next()) reservationExists= true;
+			while (rs.next()) {
+				reservationExists.add("id del usuario: "+rs.getString(3));
+			}
 		}
 		catch (SQLException e) {e.printStackTrace();}
 		catch (ClassNotFoundException e1) {e1.printStackTrace();}

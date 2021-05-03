@@ -27,22 +27,22 @@ public class ReservationController {
 		/* In order to create a new reservation, first it is necessary
 		 * to check out if there is any reservation of that book.*/
 		boolean lendingBookExist;
-		boolean reservationExist;
+		//boolean reservationExist;
 		ArrayList<String> copyDataList;
 		String userId;
 		
 		lendingBookExist = rd.checkLendingBookExist(bookId);
-		reservationExist= rd.checkReservationExist(bookId);
+		//reservationExist= rd.checkReservationExist(bookId);
 		
 		
-		if(reservationExist==true)
+		/*if(reservationExist==true)
 		{
 			System.out.println("No se puede realizar la reserva.\n"
 							+ "El libro ya está reservado por otra persona.\n");
 			
 			ReservationUi.showReservationUi();
-		}
-		else if(!lendingBookExist) 
+		}*/
+		if(!lendingBookExist) 
 		{
 			//Get Copies to show
 			copyDataList= rd.getAvailableCopiesAlternative(bookId);
@@ -54,7 +54,7 @@ public class ReservationController {
 			//Go to leading menu
 			LendingsUi.showLendingsUi();
 		}
-		else if(reservationExist==false)
+		else
 		{
 			//At this point, there's no previous reservation of the book, 
 			//so proceed with creating reservation process
@@ -85,7 +85,7 @@ public class ReservationController {
 				//Back to the main menu
 				StartMenuUI.showStartMenuUi();
 			}
-			else
+			/*else
 			{
 				System.out.println("No se puede realizar la reserva.\n"
 				+ "El libro tiene todavía los siguientes ejemplares disponibles:\n");
@@ -93,7 +93,7 @@ public class ReservationController {
 				System.out.println("\nTiene que pedir un préstamo.\n");
 				
 				StartMenuUI.showStartMenuUi();
-			}
+			}*/
 		}//else if
 	}//createNewReservation()
 	
