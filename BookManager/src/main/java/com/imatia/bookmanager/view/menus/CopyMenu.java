@@ -1,6 +1,7 @@
 package com.imatia.bookmanager.view.menus;
 
 import com.imatia.bookmanager.view.inputs.InputUserData;
+import com.imatia.bookmanager.view.ui.AddCopyUi;
 import com.imatia.bookmanager.view.ui.StartMenuUI;
 
 public class CopyMenu {
@@ -23,7 +24,7 @@ public class CopyMenu {
 
 		case 1:
 			// option to insert Copy
-			// Add copy
+			AddCopyUi.showAddCopyUi();
 			break;
 
 		case 2:

@@ -25,7 +25,7 @@ public class CopyDao {
 	 */
 	public void addCopy(Copy copy) {
 
-		String query = "INSERT INTO copy (bookId) VALUES (?)";
+		String query = "INSERT INTO copy (bookId,copyNotes) VALUES (?,?)";
 
 		try {
 			Connection con = connectionSQLite.getConnection();
@@ -33,6 +33,7 @@ public class CopyDao {
 			PreparedStatement ps = con.prepareStatement(query);
 
 			ps.setInt(1, copy.getBookId());
+			ps.setString(2, copy.getcopyNotes());
 			ps.execute();
 			
 			ps.close();

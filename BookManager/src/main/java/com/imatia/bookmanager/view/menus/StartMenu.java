@@ -5,6 +5,7 @@ import com.imatia.bookmanager.model.entities.Book;
 import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.results.BookDetails;
 import com.imatia.bookmanager.view.ui.AddBookUi;
+import com.imatia.bookmanager.view.ui.CopyUi;
 import com.imatia.bookmanager.view.ui.ReservationUi;
 import com.imatia.bookmanager.view.ui.LendingsUi;
 import com.imatia.bookmanager.view.ui.SearchesUi;
@@ -23,11 +24,13 @@ public class StartMenu {
 			option = InputUserData.checkUserInput("option", "Opcion no valida. Pruebe de nuevo (entero positivo)");
 			
 			if(!option.equals("") && !option.equals("0") && !option.equals("1") && !option.equals("2")
-				&& !option.equals("3") && !option.equals("4") && !option.equals("5") && !option.equals("6")) {
+				&& !option.equals("3") && !option.equals("4") && !option.equals("5") && !option.equals("6")
+				&& !option.equals("7")) {
 				System.out.println("Opcion no valida. Pruebe de nuevo (entero positivo)");
 			}
 		} while (!option.equals("0") && !option.equals("1") && !option.equals("2")
-				&& !option.equals("3") && !option.equals("4") && !option.equals("5") && !option.equals("6"));
+				&& !option.equals("3") && !option.equals("4") && !option.equals("5") && !option.equals("6")
+				&& !option.equals("7"));
 
 		switch (Integer.parseInt(option)) {
 
@@ -59,6 +62,10 @@ public class StartMenu {
 		case 6:
 			ReservationUi.showReservationUi();
 			break;
+		case 7:
+			CopyUi.showCopyUi();
+			break;
+			
 		}
 
 	}
