@@ -1,5 +1,8 @@
 package com.imatia.bookmanager.view.ui;
 
+/*
+ * this is the class to show the user results by method ui
+ */
 public class UserResultsByMethodUI {
 	
 	public static void showUserResultsUi(String searchMethod)
@@ -11,8 +14,7 @@ public class UserResultsByMethodUI {
 				"*******************************************************\r\n" + 
 				"--------------------------------------------------------------\r\n" + 
 				"|| 1- Seleccionar usuario || 0- Volver al menu de busquedas ||\r\n" + 
-				"--------------------------------------------------------------");
-		
+				"--------------------------------------------------------------");		
 
 	}
 
