@@ -28,18 +28,16 @@ public class InputUserData {
                 matcher = pattern.matcher(data);
                 break;
                 
-            case "title":
-                pattern = Pattern.compile("^.{0,50}$");
-                matcher = pattern.matcher(data);
-                break;
-                
             case "description":
+            case "lendingNotes":
                 pattern = Pattern.compile("^.{0,200}$");
                 matcher = pattern.matcher(data);
                 break;
                 
+            case "title":
             case "author":
             case "editorial":
+            case "copyNotes":
                 pattern = Pattern.compile("^.{0,50}$");
                 matcher = pattern.matcher(data);
                 break;

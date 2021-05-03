@@ -76,8 +76,9 @@ public class CopyDao {
 
 			int copyId = rs.getInt("copyId");
 			int bookId = rs.getInt("bookId");
+			String copyNotes = rs.getString("copyNotes");
 
-			copy = new Copy(copyId, bookId);
+			copy = new Copy(copyId, bookId, copyNotes);
 			
 			ps.close();
 

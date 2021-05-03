@@ -10,16 +10,17 @@ public class Copy {
 
 	int copyId;
 	int bookId;
-
+	String copyNotes;
 
 	public Copy() {
 		super();
 	}
 
-	public Copy(int copyId, int bookId) {
+	public Copy(int copyId, int bookId, String copyNotes) {
 		super();
 		this.copyId = copyId;
 		this.bookId = bookId;
+		this.copyNotes = copyNotes;
 		
 	}
 
@@ -37,6 +38,13 @@ public class Copy {
 
 	public void setBookId(int bookId) {
 		this.bookId = bookId;
-	}	
+	}
+	public String getcopyNotes() {
+		return copyNotes;
+	}
+
+	public void setcopyNotes(String copyNotes) {
+		this.copyNotes = copyNotes;
+	}
 
 }
