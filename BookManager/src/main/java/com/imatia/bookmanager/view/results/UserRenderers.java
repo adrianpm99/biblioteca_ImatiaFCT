@@ -9,7 +9,7 @@ import com.imatia.bookmanager.model.entities.User;
  */
 public class UserRenderers {
 	/**
-	 * method to print a list os users
+	 * method to print a list of users
 	 * @param userList
 	 */
 	public static void renderListUsers(List<User> userList)

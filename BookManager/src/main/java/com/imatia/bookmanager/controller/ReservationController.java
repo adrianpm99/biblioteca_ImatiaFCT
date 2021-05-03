@@ -1,6 +1,7 @@
 package com.imatia.bookmanager.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.imatia.bookmanager.model.data.ReservationDao;
 import com.imatia.bookmanager.view.results.ReservationDetails;
@@ -124,5 +125,17 @@ public class ReservationController {
 		reservation = rd.getReservationById(id);
 		return reservation;
 	}//getReservationById
+	
+	/**
+	 * method to get a reservation list by idBook
+	 * @param id
+	 * @return reservationList
+	 */
+	public List<Reservation> getReservationsByIdBook(int id) {
+		
+		List<Reservation> reservationList = rd.getReservationsByIdBook(id);
+		
+		return reservationList;
+	}//getReservationListByIdBook
 		
 }//class ReservationController
