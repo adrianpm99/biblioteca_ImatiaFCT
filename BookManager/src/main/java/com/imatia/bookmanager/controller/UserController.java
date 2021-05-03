@@ -79,4 +79,11 @@ public class UserController {
 		ud.deleteUser(id);
 	}
 
+	
+	public boolean checkUserId(int userId) {
+	
+		return ud.checkUserId(userId);
+				
+	}
+	
 }

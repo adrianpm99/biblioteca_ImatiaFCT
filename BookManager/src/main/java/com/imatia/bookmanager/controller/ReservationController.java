@@ -3,6 +3,7 @@ package com.imatia.bookmanager.controller;
 import java.util.ArrayList;
 
 import com.imatia.bookmanager.model.data.ReservationDao;
+import com.imatia.bookmanager.model.data.UserDao;
 import com.imatia.bookmanager.view.results.ReservationDetails;
 import com.imatia.bookmanager.model.entities.Reservation;
 import com.imatia.bookmanager.view.inputs.InputUserData;
@@ -67,6 +68,12 @@ public class ReservationController {
 				{
 					userId = InputUserData.checkUserInput("id", "Inserte un id valido (entero positivo)");
 					if(userId.equals("")) System.out.println("Opcion no valida. Pruebe de nuevo (entero positivo)");
+				// check User exist
+					UserController uc = new UserController();
+					if (!uc.checkUserId(Integer.parseInt(userId))) {
+						System.out.println("Este usuario no existe. Introduzca un usuario válido");
+						userId= "";
+					}
 				}while(userId.equals(""));
 				
 				//Insert the reservation on the bbdd

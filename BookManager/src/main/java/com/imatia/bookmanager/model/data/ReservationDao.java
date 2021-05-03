@@ -61,6 +61,7 @@ public class ReservationDao
 		boolean reservationExists= false;
 		
 		String query= "SELECT * FROM copy c,copyLending cl WHERE c.copyId = cl.copyId AND c.bookId = ?";
+	//	String query = "SELECT * FROM copy c,copyLending cl WHERE c.copyId = cl.copyId and c.bookId = ? not exists ()
 		
 		try(Connection con= connectionSQLite.getConnection(); 
 			PreparedStatement ps= con.prepareStatement(query))
@@ -95,13 +96,17 @@ public class ReservationDao
 		ArrayList<String> copyDataList= new ArrayList<String>();
 		String copyData;
 		
-		String query= "SELECT book.id AS 'bookId', book.title AS 'title', copyLending.copyId AS 'copyId' " + 
+		String query= "SELECT  book.id AS 'bookId', book.title AS 'title', copyLending.copyId AS 'copyId' " + 
 						"FROM book, copy, copyLending, lending " + 
 						"WHERE book.id = ? " + 
 						"AND book.id = copy.bookId " + 
 						"AND copy.copyId = copyLending.copyId " + 
 						"AND copyLending.lendingId = lending.lendingId " + 
 						"AND lending.lendingReturnDate NOT NULL";
+		
+		String queryLendingCheck = "SELECT * FROM copy c, copyLending cl, lending l WHERE c.copyId = ? AND c.copyId = cl.copyId "
+				+ "AND l.lendingId = cl.lendingId AND l.lendingReturndate IS NULL";
+	
 		
 		try(Connection con= connectionSQLite.getConnection(); 
 			PreparedStatement ps= con.prepareStatement(query); )
@@ -116,8 +121,18 @@ public class ReservationDao
 				int idBook= rs.getInt("bookId");
 				int copyId= rs.getInt("copyId");
 				
-				copyData= "||Titulo: "+bookTitle+" ||Id del libro: "+idBook+" ||Id de la copia: "+copyId;
-				copyDataList.add(copyData);
+				//other query with copyID
+				PreparedStatement ps2 = con.prepareStatement(queryLendingCheck);
+				ps2.setInt(1, copyId);
+				ps2.execute();
+				
+				ResultSet rs2 = ps2.getResultSet();
+				if(!rs2.next()) {
+				
+				
+					copyData= "||Titulo: "+bookTitle+" ||Id del libro: "+idBook+" ||Id de la copia: "+copyId;
+					copyDataList.add(copyData);
+				}
 			}
 		}
 		catch (SQLException e) {e.printStackTrace();}
