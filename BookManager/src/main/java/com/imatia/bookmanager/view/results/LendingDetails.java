@@ -23,7 +23,7 @@ public class LendingDetails {
 			"-----------------------------------------------------------\r\n" + 
 			"|| 1- Cerrar prestamo || 0- Volver al menu de busquedas  ||\r\n" + 
 			"-----------------------------------------------------------\r\n" + 
-			"|| Usuario: "+u.getUserName()+" "+u.getUserSurname()+"\r\n" + 
+			"|| Usuario: "+u.getUserName()+" "+u.getUserSurname()+ "(Id:[" + u.getUserId() + "])" +"\r\n" + 
 			"||	\r\n" + 
 			"|| Libros: "+bookTitles+"\r\n" +
 			"||	\r\n" + 
