@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.imatia.bookmanager.model.entities.Reservation;
 
@@ -342,5 +343,57 @@ public class ReservationDao
 		}
 		return reservation;
 	}//getReservationById
+	
+	/**
+	 * method to get a reservation list by idBook
+	 * @param id
+	 * @return reservationList
+	 */
+	public List<Reservation> getReservationsByIdBook(int id) {
+		
+		Reservation reservation= null;
+		List<Reservation> reservationList = new ArrayList<>();
+		
+		String query ="SELECT * FROM reservation WHERE bookId = ?";
+		
+		try {
+			Connection con = connectionSQLite.getConnection();
+
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setInt(1, id);
+			ps.execute();
+
+			ResultSet rs = ps.getResultSet();
+			while(rs.next()) {
+
+			int reservationId = rs.getInt("reservationId");
+			int bookId = rs.getInt("bookId");
+			int userId = rs.getInt("userId");
+
+			reservation = new Reservation(reservationId, bookId, userId);
+			reservationList.add(reservation);
+			
+			}
+			ps.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			System.out.println("La consulta no ha devuelto ningún resultado");
+			//e.printStackTrace();
+		} finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return reservationList;
+		
+	}
 	
 }//class ReservationDao

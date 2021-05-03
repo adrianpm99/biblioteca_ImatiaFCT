@@ -3,6 +3,7 @@ package com.imatia.bookmanager.view.menus;
 import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.ui.AddReservationUi;
 import com.imatia.bookmanager.view.ui.DeleteReservationUi;
+import com.imatia.bookmanager.view.ui.SearchReservationUi;
 import com.imatia.bookmanager.view.ui.StartMenuUI;
 
 /**
@@ -14,11 +15,11 @@ public class ReservationMenu {
 		//Option
 		do {
 			option = InputUserData.checkUserInput("option", "Opcion no valida. Pruebe de nuevo (entero positivo)");
-			if(!option.equals("") && !option.equals("0") && !option.equals("1") && !option.equals("2"))
+			if(!option.equals("") && !option.equals("0") && !option.equals("1") && !option.equals("2") && !option.equals("3"))
 			{
 				System.out.println("Opcion no valida. Pruebe de nuevo (entero positivo)");
 			}
-		} while (!option.equals("0") && !option.equals("1") && !option.equals("2"));
+		} while (!option.equals("0") && !option.equals("1") && !option.equals("2") && !option.equals("3"));
 		
 		switch (Integer.parseInt(option))
 		{
@@ -35,6 +36,11 @@ public class ReservationMenu {
 		case 2:
 			//Show the cancel reservation ui
 			DeleteReservationUi.showDeleteReservationUi();
+			break;
+		
+		case 3: 
+			//Shpw the search reservation ui
+			SearchReservationUi.showSearchReservationUi();
 			break;
 		}
 	}//showReservationMenuOptions()

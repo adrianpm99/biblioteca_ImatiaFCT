@@ -13,9 +13,9 @@ public class ReservationUi
 				"**************\r\n" + 
 				"** RESERVAS **\r\n" + 
 				"**************\r\n" + 
-				"-----------------------------------------------------------------------------\r\n" + 
-				"|| 1- Añadir Reserva || 2- Cancelar Reserva || 0- Volver al menu principal ||\r\n" + 
-				"-----------------------------------------------------------------------------");
+				"---------------------------------------------------------------------------------------------------\r\n" + 
+				"|| 1- Añadir Reserva || 2- Cancelar Reserva || 3- Buscar Reservas || 0- Volver al menu principal ||\r\n" + 
+				"---------------------------------------------------------------------------------------------------");
 		
 		ReservationMenu.showReservationOptions();
 	}//showReservationUiUi()

@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.imatia.bookmanager.model.entities.Lending;
 import com.imatia.bookmanager.model.entities.User;
 import com.imatia.bookmanager.view.ui.SearchUserUi;
 
