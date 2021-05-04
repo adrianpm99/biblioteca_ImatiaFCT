@@ -10,7 +10,7 @@ public class ReservationUi
 	public static void showReservationUi()
 	{
 		System.out.println(
-				"**************\r\n" + 
+				"\n**************\r\n" + 
 				"** RESERVAS **\r\n" + 
 				"**************\r\n" + 
 				"---------------------------------------------------------------------------------------------------\r\n" + 

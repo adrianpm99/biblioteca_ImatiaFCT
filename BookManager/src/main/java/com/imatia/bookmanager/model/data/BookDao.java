@@ -59,7 +59,7 @@ public class BookDao {
 			ps.close();
 		}//try
 		catch (ClassNotFoundException e) {e.printStackTrace();} 
-		catch (SQLException e) {e.printStackTrace();}
+		catch (SQLException e) {System.out.println("La consulta no ha devuelto ningún resultado");}
 		finally {
 			try {connectionSQLite.closeConnection();}
 			catch (SQLException e) {e.printStackTrace();}
