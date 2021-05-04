@@ -55,7 +55,7 @@ public class CopyDao {
 	}
 
 	/**
-	 * method to get a copy filte by id
+	 * method to get a copy filter by id
 	 * @param id
 	 * @return copy
 	 */
@@ -87,8 +87,8 @@ public class CopyDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("La consulta no ha devuelto ningún resultado");
+			//e.printStackTrace();
 		}finally {
 			try {
 				connectionSQLite.closeConnection();
@@ -224,6 +224,45 @@ public class CopyDao {
 
 		
 		return listIdCopys;
+	}
+	
+	/*
+	 * method to edit copyNotes of a Copy
+	 */
+	public void editCopyNotes(int id, String copyNote) {
+		
+		String query = "UPDATE copy SET copyNotes =? WHERE copyId= ?";
+
+		try {
+			Connection con = connectionSQLite.getConnection();
+
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setString(1, copyNote);
+			ps.setInt(2, id);
+
+			System.out.println("La nota se ha actualizado");
+
+			ps.executeUpdate();
+
+			ps.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+
 	}
 	
 	

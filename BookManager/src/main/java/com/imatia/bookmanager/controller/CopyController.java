@@ -66,4 +66,12 @@ public class CopyController {
 		
 		return listIdCopys;
 	}//getCopyInLendingByBook
+	
+	/*
+	 * method to edit copyNotes of a Copy
+	 */
+	public void editCopyNotes(int id, String copyNote) {
+		
+		cd.editCopyNotes(id, copyNote);
+	}//editCopyNotes
 }
