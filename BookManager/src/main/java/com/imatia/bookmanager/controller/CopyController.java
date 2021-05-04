@@ -28,8 +28,15 @@ public class CopyController {
 	 * method to delete a copy to database
 	 * @param id
 	 */
-	public void deleteCopy(int id) {
-		cd.deleteCopy(id);
+	public void deleteCopy(int copyId) {
+		
+		if(!cd.checkIfCopyIsLended(copyId)) {
+			//Delete the copy
+			cd.deleteCopy(copyId);
+		}else {
+			//Do not delete the copy
+			System.out.println("No se puede borrar, el ejemplar está prestado");
+		}
 	}
 	
 	/**

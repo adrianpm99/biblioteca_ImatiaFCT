@@ -226,5 +226,50 @@ public class CopyDao {
 		return listIdCopys;
 	}
 	
+	/**
+	 * Before proceeding to delete the copy, check if it is leaded
+	 * @param id
+	 * @return true if the copy is lended
+	 */
+	public boolean checkIfCopyIsLended(int copyId) {
+		
+		boolean lendingExist = false;
 	
-}
+		String verify = "SELECT * FROM copyLending cl ,lending l WHERE l.lendingReturnDate ISNULL AND l.lendingId = cl.lendingId AND cl.copyId = ?";
+		
+		try {
+
+			Connection con = connectionSQLite.getConnection();
+
+			PreparedStatement ps = con.prepareStatement(verify);
+
+			ps.setInt(1, copyId);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				//if there is a record, the copy is lended
+				lendingExist = true;
+			}else {
+				//if there is not a record, the copy is not lended
+				lendingExist = false;
+			}
+			rs.close();
+			ps.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return lendingExist;
+	}//checkIfCopyIsLended()
+	
+}//class CopyDao
