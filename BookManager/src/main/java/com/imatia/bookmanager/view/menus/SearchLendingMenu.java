@@ -76,12 +76,10 @@ public class SearchLendingMenu {
 					//get the copys of the book lending
 					copyList = cc.getCopyIdInLendingByBook(lending.getLendingId(), bc.getBookById(i).getId());
 					//building the strings to show the results
-				//	for (Integer j : copyList) {
-			//			bookCopys =  " (Id Ejemplar:["+ cc.getCopyById(j).getCopyId() + "]"
-				//				+ " Estado:["+cc.getCopyById(j).getcopyNotes()+"]) ";
+			
 						bookCopys = "(Id Ejemplar:" + copyList.toString() 
 									+ " Estado:["+cc.getCopyById(copyList.get(0)).getcopyNotes()+"]) ";
-				//	}
+	
 					bookTitles = bookTitles + bookTitle + bookCopys + " || ";
 				}
 				//show the lending details
