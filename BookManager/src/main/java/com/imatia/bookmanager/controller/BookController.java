@@ -20,10 +20,6 @@ public class BookController {
 	public Book getBookById(int id) {
 		
 		Book book = bd.getBookById(id);
-		if(book == null) {
-			System.out.println("No se ha encontrado ningún libro con el id facilitado");
-			SearchesUi.showSearchesUi();
-		}
 		return book;
 	}
 
