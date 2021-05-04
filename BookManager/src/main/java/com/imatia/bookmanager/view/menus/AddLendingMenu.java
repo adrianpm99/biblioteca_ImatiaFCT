@@ -77,7 +77,7 @@ public class AddLendingMenu {
 		LocalDate dateReturn = dateNow.plusDays(15);
 
 		// the lendingId is created automatically when inserting in the database
-		Lending lending = new Lending(1, Integer.parseInt(idUser), dateNow, dateReturn, null);
+		Lending lending = new Lending(1, Integer.parseInt(idUser), dateNow, dateReturn, null, null);
 
 		ArrayList<Copy> copyList = cc.getCopiesLists(idcopies);
 		// idCopy and idUser existence checks are done at insert time

@@ -26,7 +26,7 @@ public class ReservationDao
 	 * @param bookId (the id of the book)
 	 * @return true if reservation exists, false if doesn't
 	 */
-	public List checkReservationExist(int bookId)
+	public List<String> checkReservationExist(int bookId)
 	{
 		List<String> reservationExists= new ArrayList<String>();
 		String query= "SELECT * FROM reservation WHERE bookId= ?";

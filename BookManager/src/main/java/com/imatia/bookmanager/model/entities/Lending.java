@@ -51,6 +51,18 @@ public class Lending
 		this.lendingReturnDate = lendingReturnDate;
 		this.lendingNotes= lendingNotes;
 	}
+	
+	
+
+
+	public Lending(int lendingId, int userId, LocalDate lendingDate, LocalDate lendingDeadLine, String lendingNotes) {
+		super();
+		this.lendingId = lendingId;
+		this.userId = userId;
+		this.lendingDate = lendingDate;
+		this.lendingDeadLine = lendingDeadLine;
+		this.lendingNotes = lendingNotes;
+	}
 
 
 	public int getLendingId() {

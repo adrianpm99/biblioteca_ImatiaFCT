@@ -384,15 +384,16 @@ public class LendingDao {
 			int userId = rs.getInt("userId");
 			LocalDate lendingDate = rs.getDate("lendingDate").toLocalDate();
 			LocalDate lendingDeadLine = rs.getDate("lendingDeadLine").toLocalDate();
+			String lendingNotes = rs.getString("lendingNotes");
 
 			if (rs.getDate("lendingReturnDate") != null) {
 
 				LocalDate lendingReturnDate = rs.getDate("lendingReturnDate").toLocalDate();
-				lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine, lendingReturnDate);
+				lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine, lendingReturnDate, lendingNotes);
 
 			} else {
 
-				lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine);
+				lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine, lendingNotes);
 			}
 			ps.close();
 
@@ -442,14 +443,16 @@ public class LendingDao {
 				int userId = rs.getInt("userId");
 				LocalDate lendingDate = rs.getDate("lendingDate").toLocalDate();
 				LocalDate lendingDeadLine = rs.getDate("lendingDeadLine").toLocalDate();
+				String lendingNotes = rs.getString("lendingNotes");
+
 				if (rs.getDate("lendingReturnDate") != null) {
 
 					LocalDate lendingReturnDate = rs.getDate("lendingReturnDate").toLocalDate();
-					lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine, lendingReturnDate);
+					lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine, lendingReturnDate, lendingNotes);
 
 				} else {
 
-					lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine);
+					lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine, lendingNotes);
 				}
 				lendingList.add(lending);
 			}
@@ -505,14 +508,16 @@ public class LendingDao {
 				int userId = rs.getInt("userId");
 				LocalDate lendingDate = rs.getDate("lendingDate").toLocalDate();
 				LocalDate lendingDeadLine = rs.getDate("lendingDeadLine").toLocalDate();
+				String lendingNotes = rs.getString("lendingNotes");
+
 				if (rs.getDate("lendingReturnDate") != null) {
 
 					LocalDate lendingReturnDate = rs.getDate("lendingReturnDate").toLocalDate();
-					lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine, lendingReturnDate);
+					lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine, lendingReturnDate, lendingNotes);
 
 				} else {
 
-					lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine);
+					lending = new Lending(lendingId, userId, lendingDate, lendingDeadLine, lendingNotes);
 				}
 				lendingList.add(lending);
 			}
