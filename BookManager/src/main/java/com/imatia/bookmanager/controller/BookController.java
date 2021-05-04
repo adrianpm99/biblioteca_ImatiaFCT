@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.imatia.bookmanager.model.data.BookDao;
 import com.imatia.bookmanager.model.entities.Book;
-import com.imatia.bookmanager.view.ui.SearchesUi;
+
 
 /**
  * class to implement the methods to connect views with data
