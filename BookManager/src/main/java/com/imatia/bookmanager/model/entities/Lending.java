@@ -3,20 +3,17 @@ package com.imatia.bookmanager.model.entities;
 import java.time.LocalDate;
 
 /**
- * 
  * class that defines the Lending object with its attributes, 
  * constructors and getter and setter methods
- *
  */
-public class Lending {
-	
-	
-
+public class Lending
+{
 	int lendingId;
 	int userId;
 	LocalDate lendingDate;
 	LocalDate lendingDeadLine;
 	LocalDate lendingReturnDate;
+	String lendingNotes;
 	
 		
 	public Lending() {
@@ -41,6 +38,30 @@ public class Lending {
 		this.lendingDate = lendingDate;
 		this.lendingDeadLine = lendingDeadLine;
 		this.lendingReturnDate = lendingReturnDate;
+	}
+	
+	
+	public Lending(int lendingId, int userId, LocalDate lendingDate, LocalDate lendingDeadLine,
+			LocalDate lendingReturnDate, String lendingNotes) {
+		super();
+		this.lendingId = lendingId;
+		this.userId = userId;
+		this.lendingDate = lendingDate;
+		this.lendingDeadLine = lendingDeadLine;
+		this.lendingReturnDate = lendingReturnDate;
+		this.lendingNotes= lendingNotes;
+	}
+	
+	
+
+
+	public Lending(int lendingId, int userId, LocalDate lendingDate, LocalDate lendingDeadLine, String lendingNotes) {
+		super();
+		this.lendingId = lendingId;
+		this.userId = userId;
+		this.lendingDate = lendingDate;
+		this.lendingDeadLine = lendingDeadLine;
+		this.lendingNotes = lendingNotes;
 	}
 
 
@@ -94,5 +115,13 @@ public class Lending {
 	}
 
 
+	public String getLendingNotes() {
+		return lendingNotes;
+	}
+
+
+	public void setLendingNotes(String lendingNotes) {
+		this.lendingNotes = lendingNotes;
+	}
 	
-}
+}//class Lending

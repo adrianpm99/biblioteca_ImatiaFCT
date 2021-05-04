@@ -8,7 +8,6 @@ import com.imatia.bookmanager.view.results.ReservationDetails;
 import com.imatia.bookmanager.model.entities.Reservation;
 import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.ui.LendingsUi;
-import com.imatia.bookmanager.view.ui.ReservationUi;
 import com.imatia.bookmanager.view.ui.StartMenuUI;
 
 

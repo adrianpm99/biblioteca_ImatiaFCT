@@ -73,4 +73,38 @@ public class CopyController {
 		
 		return listIdCopys;
 	}//getCopyInLendingByBook
+
+
+	/*
+	 * method to edit copyNotes of a Copy
+	 */
+	public void editCopyNotes(int id, String copyNote) {
+		
+		cd.editCopyNotes(id, copyNote);
+	}//editCopyNotes
+
+	public ArrayList<Copy> getCopiesLists( ArrayList<Integer> listIdCopy) {
+		ArrayList<Copy> copyList = new ArrayList<Copy>();
+		for(int cont = 0 ; cont < listIdCopy.size() ; cont ++ ) {
+			Copy copy =  cd.getCopyById(listIdCopy.get(cont));
+			copyList.add(copy);
+		}
+		return copyList;
+	}
+
+
+	
+	/**
+	 * method to get a list of copies of a book
+	 * @param BookId
+	 * @return
+	 */
+	
+	public List<Copy> getCopyByBookId(int BookId) {
+		
+		List<Copy> copyList = cd.getCopyByBookId(BookId);
+		
+		return copyList;
+	}
+
 }

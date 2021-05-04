@@ -32,6 +32,8 @@ public class LendingDetails {
 			"|| Fecha de vencimiento: "+UtilityDates.formatDayMonthYear(l.getLendingDeadLine())+"\r\n" + 
 			"|| \r\n" + 
 			"|| Fecha de devolucion: "+UtilityDates.formatDayMonthYear(l.getLendingReturnDate())+"\r\n" + 
+			"|| \r\n" +
+			"|| Notas: " + l.getLendingNotes() +"\r\n" +
 			"==========================================================\r\n");
 		
 		//show the lending details menu

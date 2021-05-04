@@ -19,6 +19,9 @@ import com.imatia.bookmanager.model.entities.Reservation;
 public class LendingController {
 	LendingDao ld = new LendingDao();
 	
+	
+
+	
 	public String addLending(Lending lending, ArrayList<Integer> listIdCopy) {
 		
 		String error = ld.addLending(lending, listIdCopy);
@@ -62,35 +65,38 @@ public class LendingController {
 	
 	
 	/**
-	 * method that closes a loan by modifying its lendingReturnDate and gives a notice to the user
-	 * if there is a reservation on the returned book
-	 * @param  lendingId, LendingDeadLine
-	 * 
+	 * method that closes a lending.
+	 * It modifies its lendingReturnDate and add some optional comments
+	 * then gives a notice to the user if there is a reservation on the returned book
+	 * @param  lendingId, lendingReturnDate, lendingNotes
 	 */
-	public void modifyLendingReturnDate(int id, LocalDate lendingReturnDate) {
+	public void modifyLendingReturnDate(int id, LocalDate lendingReturnDate, String lendingNotes) {
 		
 		ReservationController rc = new ReservationController();
 		
 		Lending lending = ld.getLendingById(id);
 		
+		//change lendingReturnDate
 		if(lending.getLendingReturnDate() == null) {
 			ld.modifyLendingReturndDate(id, lendingReturnDate);
-						
-			//return a reservation list
-			ArrayList<Reservation> reservationList = ld.checkIfReservatedBook(id); //LendingID
 		
-				for (Reservation r:reservationList) {
-					rc.getReservationData(r.getBookId());
-				
-					rc.deleteReservation(r.getReservationId()) ;
-				}	
+		//add lendingNotes
+		ld.addLendingNotes(id, lendingNotes);
+						
+		//return a reservation list
+		ArrayList<Reservation> reservationList = ld.checkIfReservatedBook(id); //LendingID
+	
+			for (Reservation r:reservationList) {
+				rc.getReservationData(r.getBookId());
+			
+				rc.deleteReservation(r.getReservationId()) ;
+			}	
 		}
 		else {
 			System.out.println("El prestamo con id " + id + " ya está cerrado");
 			}
-	}
+	}//modifyLendingReturnDate()
 	
 	
 	
-}
-
+}//class LendingController

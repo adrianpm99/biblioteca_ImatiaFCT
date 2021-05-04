@@ -24,6 +24,11 @@ public class Copy {
 		
 	}
 
+	public Copy(int copyId, String copyNotes) {
+		this.copyId = copyId;
+		this.copyNotes = copyNotes;
+	}
+
 	public int getCopyId() {
 		return copyId;
 	}

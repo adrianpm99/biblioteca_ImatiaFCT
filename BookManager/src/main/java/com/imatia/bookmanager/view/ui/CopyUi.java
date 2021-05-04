@@ -2,6 +2,9 @@ package com.imatia.bookmanager.view.ui;
 
 import com.imatia.bookmanager.view.menus.CopyMenu;
 
+/*
+ * this is the class to show the CopyUi
+ */
 public class CopyUi {
 	public static void showCopyUi()
 	{

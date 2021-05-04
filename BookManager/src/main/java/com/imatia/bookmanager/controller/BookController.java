@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.imatia.bookmanager.model.data.BookDao;
 import com.imatia.bookmanager.model.entities.Book;
-import com.imatia.bookmanager.view.ui.SearchesUi;
+
 
 /**
  * class to implement the methods to connect views with data
@@ -20,10 +20,6 @@ public class BookController {
 	public Book getBookById(int id) {
 		
 		Book book = bd.getBookById(id);
-		if(book == null) {
-			System.out.println("No se ha encontrado ningún libro con el id facilitado");
-			SearchesUi.showSearchesUi();
-		}
 		return book;
 	}
 

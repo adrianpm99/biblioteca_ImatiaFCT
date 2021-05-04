@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.imatia.bookmanager.model.entities.Copy;
+import com.imatia.bookmanager.view.ui.SearchLendingUi;
 
 /**
  * class to map the table copy to object copy
@@ -55,7 +56,7 @@ public class CopyDao {
 	}
 
 	/**
-	 * method to get a copy filte by id
+	 * method to get a copy filter by id
 	 * @param id
 	 * @return copy
 	 */
@@ -87,8 +88,8 @@ public class CopyDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("La consulta no ha devuelto ningún resultado");
+			//e.printStackTrace();
 		}finally {
 			try {
 				connectionSQLite.closeConnection();
@@ -224,6 +225,92 @@ public class CopyDao {
 
 		
 		return listIdCopys;
+	}
+
+	/**
+	 * method to get a List of all copies of a book
+	 * @param bookId
+	 * @return
+	 */
+	
+	public List<Copy> getCopyByBookId(int bookId) {
+		
+		Copy copy = new Copy();
+		List<Copy> copyList = new ArrayList<>();
+		
+		String query = "SELECT * FROM copy WHERE bookId = ?";
+		
+		try {
+			Connection con = connectionSQLite.getConnection();
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, bookId);
+			ps.execute();
+			ResultSet rs = ps.getResultSet();
+			while(rs.next()) {
+				int copyId = rs.getInt("copyId");
+				String copyNotes = rs.getString("CopyNotes");
+				
+				//There is no else as copyNotes is NOT NULL in the db
+				copy = new Copy(copyId, copyNotes);
+				copyList.add(copy);
+			}
+			
+			ps.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			System.out.println("No se ha encontrado ningun prestamo con el id de usuario facilitado");
+			// e.printStackTrace();
+			SearchLendingUi.showSearchLendingUi();
+		} finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		};
+		return copyList;
+	}
+	
+	/*
+	 * method to edit copyNotes of a Copy
+	 */
+	public void editCopyNotes(int id, String copyNote) {
+		
+		String query = "UPDATE copy SET copyNotes =? WHERE copyId= ?";
+
+		try {
+			Connection con = connectionSQLite.getConnection();
+
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setString(1, copyNote);
+			ps.setInt(2, id);
+
+			System.out.println("La nota se ha actualizado");
+
+			ps.executeUpdate();
+
+			ps.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+
 	}
 	
 	/**
