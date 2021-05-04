@@ -2,11 +2,12 @@ package com.imatia.bookmanager.view.menus;
 
 import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.ui.AddCopyUi;
+import com.imatia.bookmanager.view.ui.EditCopyUi;
 import com.imatia.bookmanager.view.ui.StartMenuUI;
 
 public class CopyMenu {
 	public static void showCopyOptions() {
-
+		String idCopy;
 		String option;
 
 		do {
@@ -36,6 +37,11 @@ public class CopyMenu {
 		case 3:
 			// option to modify the Notes of the Copy
 			// Modify CopyNotes
+			do {
+				System.out.print("Introduzca el id del ejemplar: ");
+				idCopy = InputUserData.checkUserInput("id", "Pruebe de nuevo(entero positivo)");
+			} while (idCopy.equals(""));
+			EditCopyUi.showEditCopyUi(Integer.parseInt(idCopy));
 			break;
 		case 4:
 			// option to delete Copy
