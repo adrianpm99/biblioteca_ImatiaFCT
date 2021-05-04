@@ -15,7 +15,6 @@ import com.imatia.bookmanager.model.entities.Lending;
 import com.imatia.bookmanager.view.ui.SearchLendingUi;
 import com.imatia.bookmanager.model.entities.Reservation;
 
-
 /*
  * class to map the table lending to object lending
  */
@@ -30,17 +29,21 @@ public class LendingDao {
 		try (Connection con = connectionSQLite.getConnection();
 				PreparedStatement psGetUser = con.prepareStatement(queryGetUser);) {
 			if (checkUser(lending, con)) {
-
-				for (int cont = 0; cont < listIdCopy.size(); cont++) {
-					if (checkCopy(lending, con, listIdCopy.get(cont))) {
-						if (checkLending(lending, con, listIdCopy.get(cont))) {
-							lendingId = addLendingMethod(lending, con, listIdCopy.get(cont), cont, lendingId);
+				Integer duplicatedBook = checkDuplicateBookLending(listIdCopy, con);  
+				if (duplicatedBook == null) {
+					for (int cont = 0; cont < listIdCopy.size(); cont++) {
+						if (checkCopy(lending, con, listIdCopy.get(cont))) {
+							if (checkLending(lending, con, listIdCopy.get(cont))) {
+								lendingId = addLendingMethod(lending, con, listIdCopy.get(cont), cont, lendingId);
+							} else {
+								return error = "El ejemplar con id " + listIdCopy.get(cont) + " ya esta prestado";
+							}
 						} else {
-							return error = "El ejemplar con id "+ listIdCopy.get(cont)+ " ya esta prestado";
+							return error = "No existe el ejemplar";
 						}
-					} else {
-						return error = "No existe el ejemplar";
 					}
+				} else {
+					return error = "Error en el ejemplar con id " + duplicatedBook + ", dos ejemplares del mismo libro";
 				}
 			} else {
 				return error = "No existe el usuario";
@@ -60,6 +63,50 @@ public class LendingDao {
 			}
 		}
 		return error;
+	}
+
+	private Integer checkDuplicateBookLending(ArrayList<Integer> listIdCopy, Connection con) { //Return duplicatedBook = null if not duplicated
+		//boolean checkDuplicated = true;
+		Integer duplicatedBook = null;
+		String queryGetCopy = "SELECT * FROM copy WHERE copyId = ?";
+		ArrayList<Integer> listIdBook = new ArrayList<Integer>();
+		try {
+			for (int cont = 0; cont < listIdCopy.size(); cont++) {
+				PreparedStatement psGetCopy = con.prepareStatement(queryGetCopy);
+
+				psGetCopy.setInt(1, listIdCopy.get(cont));
+				psGetCopy.execute();
+
+				ResultSet rs = psGetCopy.getResultSet();
+				rs.next();
+
+				int bookId = rs.getInt("bookId");
+				listIdBook.add(bookId);
+				for (int cont2 = 0; cont2 < listIdBook.size(); cont2++) {
+					if (cont2 != cont) {
+						if(bookId == listIdBook.get(cont2)) {
+							duplicatedBook = listIdCopy.get(cont);
+							//checkDuplicated = false;
+							//System.out.println("Error en el ejemplar con id " + listIdCopy.get(cont));
+							break;
+						}
+					}
+				}
+//				if(checkDuplicated == false) {
+//					break;
+//				}
+				if(duplicatedBook != null) {
+					break;
+				}
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return duplicatedBook;
+
 	}
 
 	private boolean checkUser(Lending lending, Connection con) {
@@ -150,10 +197,9 @@ public class LendingDao {
 
 				ps.setInt(1, lending.getUserId());
 
-				
 				Date lendingDate = Date.valueOf(lending.getLendingDate());
 				ps.setDate(2, lendingDate);
-				
+
 				Date lendingDeadLine = Date.valueOf(lending.getLendingDeadLine());
 				ps.setDate(3, lendingDeadLine);
 
@@ -214,7 +260,7 @@ public class LendingDao {
 		}
 		return lendingId;
 	}
- 
+
 	public void deleteLending(Lending lending, Copy copy) {
 		String query = "DELETE FROM copyLending WHERE lendingId = ?";
 
@@ -402,7 +448,8 @@ public class LendingDao {
 
 	/**
 	 * method to get a lending filter by UserId
-	 * @param secondDate 
+	 * 
+	 * @param secondDate
 	 * 
 	 * @param userId
 	 * @return lending
@@ -421,7 +468,7 @@ public class LendingDao {
 
 			ps.setDate(1, Date.valueOf(firstDate));
 			ps.setDate(2, Date.valueOf(secondDate));
-	
+
 			ps.execute();
 			ResultSet rs = ps.getResultSet();
 			while (rs.next()) {
@@ -448,7 +495,7 @@ public class LendingDao {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			System.out.println("La consulta no ha devuelto ningún resultado");
-			//e.printStackTrace();
+			// e.printStackTrace();
 			SearchLendingUi.showSearchLendingUi();
 		} finally {
 			try {
@@ -462,65 +509,57 @@ public class LendingDao {
 		return lendingList;
 	}
 
-	
 	/**
 	 * )returns a List of reservation object with user and book information, or null
+	 * 
 	 * @param id
 	 * @return object Reservation
 	 */
-		public ArrayList<Reservation> checkIfReservatedBook(int id) { // id  (lendingId)
+	public ArrayList<Reservation> checkIfReservatedBook(int id) { // id (lendingId)
 
-			Reservation reservation = new Reservation();
-			ArrayList<Reservation> reservationList = new ArrayList<Reservation>();
-		//	reservationList = null;
+		Reservation reservation = new Reservation();
+		ArrayList<Reservation> reservationList = new ArrayList<Reservation>();
+		// reservationList = null;
 
-			String query = "SELECT  r.reservationId, r.bookId, r.userId"
-					+ " FROM copyLending cl,copy c, reservation r"
-					+ " WHERE lendingId = ?"
-					+ " AND c.copyId = cl.copyId"
-					+ " AND r.bookId = c.bookId";
+		String query = "SELECT  r.reservationId, r.bookId, r.userId" + " FROM copyLending cl,copy c, reservation r"
+				+ " WHERE lendingId = ?" + " AND c.copyId = cl.copyId" + " AND r.bookId = c.bookId";
 
+		try {
+			Connection con = connectionSQLite.getConnection();
+
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setInt(1, id);
+			ps.execute();
+			ResultSet rs = ps.getResultSet();
+			while (rs.next()) { // reservationList
+
+				int reservationId = rs.getInt("reservationId");
+				int bookId = rs.getInt("bookId");
+				int userId = rs.getInt("userId");
+
+				reservation = new Reservation(reservationId, bookId, userId);
+				reservationList.add(reservation);
+			}
+			ps.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			System.out.println("No se ha encontrado ningun prestamo con el id facilitado");
+			// e.printStackTrace();
+			SearchLendingUi.showSearchLendingUi();
+		} finally {
 			try {
-				Connection con = connectionSQLite.getConnection();
-
-				PreparedStatement ps = con.prepareStatement(query);
-
-				ps.setInt(1, id);
-				ps.execute();
-				ResultSet rs = ps.getResultSet();
-				while (rs.next()) { // reservationList
-
-					int reservationId = rs.getInt("reservationId");
-					int bookId = rs.getInt("bookId");
-					int userId = rs.getInt("userId");
-					
-					reservation = new Reservation (reservationId, bookId, userId);
-					reservationList.add(reservation);
-				}
-				ps.close();
-
-			} catch (ClassNotFoundException e) {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (SQLException e) {
-				System.out.println("No se ha encontrado ningun prestamo con el id facilitado");
-				// e.printStackTrace();
-				SearchLendingUi.showSearchLendingUi();
-			} finally {
-				try {
-					connectionSQLite.closeConnection();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 			}
-			
-			return reservationList;
 		}
 
-		
-		
-	
-	
-	
+		return reservationList;
+	}
+
 }
