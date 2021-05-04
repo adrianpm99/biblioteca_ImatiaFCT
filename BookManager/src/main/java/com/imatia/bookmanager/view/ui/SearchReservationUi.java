@@ -5,10 +5,10 @@ import com.imatia.bookmanager.view.menus.SearchReservationMenu;
 /*
  * this is the class to show the search Reservation Ui
  */
-public class SearchReservationUi {
-	
-	public static void showSearchReservationUi() {
-
+public class SearchReservationUi
+{
+	public static void showSearchReservationUi()
+	{
 		System.out.println(
 				
 				"\n*********************\r\n" + 
@@ -19,6 +19,5 @@ public class SearchReservationUi {
 				"---------------------------------------------------------------------------------");
 		
 		SearchReservationMenu.showSeachReservationMenuOptions();
-	}
-
-}
+	}//showSearchReservationUi()
+}//class SearchReservationUi

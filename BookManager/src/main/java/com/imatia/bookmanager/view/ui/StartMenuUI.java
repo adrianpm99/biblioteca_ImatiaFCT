@@ -26,6 +26,8 @@ public class StartMenuUI
 				"\r\n" +
 				"	6 - RESERVAS\r\n" + 
 				"\r\n" +
+				"	7 - GESTION DE EJEMPLARES\r\n" + 
+				"\r\n" +
 				"	0 - SALIR\r\n");
 		
 		
