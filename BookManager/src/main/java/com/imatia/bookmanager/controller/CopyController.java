@@ -66,7 +66,7 @@ public class CopyController {
 		
 		return listIdCopys;
 	}//getCopyInLendingByBook
-	
+
 	/*
 	 * method to edit copyNotes of a Copy
 	 */
@@ -74,4 +74,14 @@ public class CopyController {
 		
 		cd.editCopyNotes(id, copyNote);
 	}//editCopyNotes
+
+	public ArrayList<Copy> getCopiesLists( ArrayList<Integer> listIdCopy) {
+		ArrayList<Copy> copyList = new ArrayList<Copy>();
+		for(int cont = 0 ; cont < listIdCopy.size() ; cont ++ ) {
+			Copy copy =  cd.getCopyById(listIdCopy.get(cont));
+			copyList.add(copy);
+		}
+		return copyList;
+	}
+
 }

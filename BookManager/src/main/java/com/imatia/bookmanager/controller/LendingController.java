@@ -19,6 +19,9 @@ import com.imatia.bookmanager.model.entities.Reservation;
 public class LendingController {
 	LendingDao ld = new LendingDao();
 	
+	
+
+	
 	public String addLending(Lending lending, ArrayList<Integer> listIdCopy) {
 		
 		String error = ld.addLending(lending, listIdCopy);
