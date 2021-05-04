@@ -281,9 +281,37 @@ public class LendingDao {
 				e.printStackTrace();
 			}
 		}
-
 	}
+	
+	
+	
+	
+	/**
+	 * Method to add notes about a lending into the bbdd.
+	 * This is the final action to close a lending
+	 * @param lendingId, lendingNotes
+	 */
+	public void addLendingNotes(int lendingId, String lendingNotes)
+	{
+		String query = "UPDATE lending SET lendingNotes =? WHERE lendingId= ?";
+		try(Connection con = connectionSQLite.getConnection(); PreparedStatement ps = con.prepareStatement(query))
+		{
+			ps.setString(1, lendingNotes);
+			ps.setInt(2, lendingId);
+			ps.executeUpdate();
+		}
+		catch (ClassNotFoundException e) {e.printStackTrace();} 
+		catch (SQLException e) {e.printStackTrace();}
+		finally
+		{
+			try {connectionSQLite.closeConnection();}
+			catch (SQLException e) {e.printStackTrace();}
+		}
+	}//addLendingNotes()
+		
 
+	
+	
 	/**
 	 * method to get a lending filter by id
 	 * 
@@ -518,9 +546,5 @@ public class LendingDao {
 			return reservationList;
 		}
 
-		
-		
 	
-	
-	
-}
+}//class LendingDao
