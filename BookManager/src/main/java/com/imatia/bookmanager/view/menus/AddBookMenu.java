@@ -83,7 +83,7 @@ public class AddBookMenu {
 
 		// add the book to the database
 		bc.addBook(book);
-
+		if(!copyNumber.equals("")) 
 		// add the copys of book to the database
 		for (int i = 0; i < Integer.parseInt(copyNumber); i++) {
 
