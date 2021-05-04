@@ -2,6 +2,7 @@ package com.imatia.bookmanager.view.menus;
 
 import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.ui.AddCopyUi;
+import com.imatia.bookmanager.view.ui.DeleteCopyUi;
 import com.imatia.bookmanager.view.ui.StartMenuUI;
 
 public class CopyMenu {
@@ -39,7 +40,7 @@ public class CopyMenu {
 			break;
 		case 4:
 			// option to delete Copy
-			// DeleteCopy
+			DeleteCopyUi.showDeleteCopyUi();
 			break;
 		}
 

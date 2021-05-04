@@ -61,7 +61,7 @@ public class CopyDao {
 	 */
 	public Copy getCopyById(int id) {
 
-		Copy copy = new Copy();
+		Copy copy = null;
 
 		String query = "SELECT * FROM copy WHERE copyId = ?";
 
@@ -73,13 +73,13 @@ public class CopyDao {
 			ps.setInt(1, id);
 			ps.execute();
 			ResultSet rs = ps.getResultSet();
-			rs.next();
+			if(rs.next()) {
+				int copyId = rs.getInt("copyId");
+				int bookId = rs.getInt("bookId");
+				String copyNotes = rs.getString("copyNotes");
 
-			int copyId = rs.getInt("copyId");
-			int bookId = rs.getInt("bookId");
-			String copyNotes = rs.getString("copyNotes");
-
-			copy = new Copy(copyId, bookId, copyNotes);
+				copy = new Copy(copyId, bookId, copyNotes);
+			}
 			
 			ps.close();
 
@@ -107,7 +107,7 @@ public class CopyDao {
 	 */
 	public void deleteCopy(int id) {
 		
-		String query ="DELETE FROM copy WHERE id = ?";
+		String query ="DELETE FROM copy WHERE copyId = ?";
 		
 		try {
 			Connection con = connectionSQLite.getConnection();
