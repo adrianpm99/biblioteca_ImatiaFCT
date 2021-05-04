@@ -66,4 +66,17 @@ public class CopyController {
 		
 		return listIdCopys;
 	}//getCopyInLendingByBook
+	
+	/**
+	 * method to get a list of copies of a book
+	 * @param BookId
+	 * @return
+	 */
+	
+	public List<Copy> getCopyByBookId(int BookId) {
+		
+		List<Copy> copyList = cd.getCopyByBookId(BookId);
+		
+		return copyList;
+	}
 }
