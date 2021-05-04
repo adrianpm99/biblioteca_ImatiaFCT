@@ -14,6 +14,7 @@ import com.imatia.bookmanager.view.ui.LendingsUi;
 public class CloseLendingMenu
 {	
 	static LendingController lc= new LendingController();
+	static Scanner sc = new Scanner(System.in);
 	
 	public static void showCloseLendingMenu()
 	{
@@ -28,7 +29,6 @@ public class CloseLendingMenu
 		
 		//second, add (if wanted) some annotations to the lending
 		System.out.println("Añada comentarios sobre el prestamo\n(Pulse enter solamente para omitir)");
-		Scanner sc= new Scanner(System.in);
 		lendingNotes= sc.nextLine();
 		
 		//finally, close the lending, adding the current date and comments
@@ -43,7 +43,6 @@ public class CloseLendingMenu
 	public static void showCloseLendingMenu(int id)
 	{	
 		System.out.println("Añada comentarios sobre el prestamo\n(Pulse enter solamente para omitir)");
-		Scanner sc= new Scanner(System.in);
 		String lendingNotes= sc.nextLine();
 		lc.modifyLendingReturnDate(id, LocalDate.now(), lendingNotes);
 		LendingsUi.showLendingsUi();

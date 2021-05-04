@@ -24,7 +24,8 @@ public class LendingRenderers {
 			System.out.println("Id Prestamo: " + l.getLendingId() + "\t|| Id Usuario: " + l.getUserId()
 					+ "\t|| Fecha Préstamo: " + UtilityDates.formatDayMonthYear(l.getLendingDate()) 
 					+ "\t|| Fecha Devolución: " + UtilityDates.formatDayMonthYear(l.getLendingDeadLine())
-					+ "\t|| Fecha Devuelto: " + UtilityDates.formatDayMonthYear(l.getLendingReturnDate()) + "\n");
+					+ "\t|| Fecha Devuelto: " + UtilityDates.formatDayMonthYear(l.getLendingReturnDate())
+					+ "\t|| Notas: " + l.getLendingNotes() +"\n");
 		}
 	}// renderUserIdListLending()
 
@@ -42,7 +43,8 @@ public class LendingRenderers {
 					"Id Prestamo: " + l.getLendingId() + "\t|| Id Usuario: " + l.getUserId()
 					+ "\t|| Fecha Préstamo: " + UtilityDates.formatDayMonthYear(l.getLendingDate()) 
 					+ "\t|| Fecha Devolución: " + UtilityDates.formatDayMonthYear( l.getLendingDeadLine())
-					+ "\t|| Fecha Devuelto: " + UtilityDates.formatDayMonthYear(l.getLendingReturnDate()) + "\n");
+					+ "\t|| Fecha Devuelto: " + UtilityDates.formatDayMonthYear(l.getLendingReturnDate()) 
+					+ "\t|| Notas: " + l.getLendingNotes() +"\n");
 		}
 	}// renderDateListLending()
 

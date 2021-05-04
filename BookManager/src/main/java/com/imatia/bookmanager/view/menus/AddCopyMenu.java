@@ -1,8 +1,6 @@
 package com.imatia.bookmanager.view.menus;
 
 
-import java.util.ArrayList;
-
 import com.imatia.bookmanager.controller.BookController;
 import com.imatia.bookmanager.controller.CopyController;
 
