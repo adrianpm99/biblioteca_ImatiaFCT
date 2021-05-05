@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.imatia.bookmanager.controller.CopyController;
 import com.imatia.bookmanager.model.entities.Book;
+import com.imatia.bookmanager.controller.ShelvingController;
 
 /**
  * class to map the book table to book object
@@ -406,7 +407,9 @@ public class BookDao {
 			String query = "DELETE FROM Book WHERE id = ?";
 			 
 			CopyController cc = new CopyController();
-			  
+			ShelvingController sc = new ShelvingController();
+			
+			sc.deleteShelving(id);  
 			cc.deleteCopyByIdBook(id);
 	
 			try {

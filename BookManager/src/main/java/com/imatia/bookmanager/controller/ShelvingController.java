@@ -46,6 +46,10 @@ public class ShelvingController {
 			Shelving shelving = sd.getShelvingById(id);
 			return shelving;
 		}// getShelvingById
+		
+		public void deleteShelving(int bookId) {
+			sd.deleteShelving(bookId);
+		}
 
 	
 }//class ShelvingController

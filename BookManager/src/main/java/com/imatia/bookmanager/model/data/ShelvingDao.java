@@ -4,8 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+
 
 import com.imatia.bookmanager.model.entities.Shelving;
+import com.imatia.bookmanager.model.entities.Copy;
+import com.imatia.bookmanager.controller.CopyController; 
 
 /**
  * class to map the table shelving to object shelving
@@ -177,6 +181,39 @@ public class ShelvingDao {
 		
 		return shelving;
 		
-	}//Shelving getShelvingByCopyId(int copyId){
+	}//Shelving getShelvingByCopyId(int copyId)
+	
+	
+	/**
+	 * Delete all shelving by idBook
+	 * @param idBook
+	 * @return 
+	 */
+	public void deleteShelving(int bookId) {
+		CopyController cc = new CopyController();
+		String query = "DELETE FROM shelving s, copyShelving cs WHERE s.shelvingId = cs.shelvingId AND cs.copyId = ?";
+		
+		try {
+			Connection con = connectionSQLite.getConnection();
+			
+			PreparedStatement ps = con.prepareStatement(query);
+			
+			List<Copy> copyList = cc.getCopyByBookId(bookId);
+			
+			for(int cont = 0; cont < copyList.size(); cont++) {
+				ps.setInt(1, copyList.get(cont).getCopyId());
+				ps.execute();
+			}
+			ps.close();
+
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}//deleteSehlving
 	
 }//class ShelvingDao
