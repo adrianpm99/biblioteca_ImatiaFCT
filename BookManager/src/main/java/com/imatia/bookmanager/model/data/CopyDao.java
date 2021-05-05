@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,11 +32,16 @@ public class CopyDao {
 		try {
 			Connection con = connectionSQLite.getConnection();
 
-			PreparedStatement ps = con.prepareStatement(query);
+			PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
 			ps.setInt(1, copy.getBookId());
 			ps.setString(2, copy.getcopyNotes());
 			ps.execute();
+			
+			ResultSet rs = ps.getGeneratedKeys();
+			rs.next();
+			int id = rs.getInt(1);
+			copy.setCopyId(id);
 			
 			ps.close();
 
