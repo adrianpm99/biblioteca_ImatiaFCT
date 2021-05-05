@@ -19,12 +19,17 @@ public class AddCopyMenu {
 	
 		String copyNumber;
 	
-		do
-		{
-			System.out.print("Introduzca el id del libro: ");
-			bookId = InputUserData.checkUserInput("id", "Valor de Id incorrecto. Pruebe de nuevo (entero positivo).");
-		}while(bookId.equals("") || (bc.getBookById(Integer.parseInt(bookId))== null));
 		
+			do
+			{
+				System.out.print("Introduzca el id del libro: ");
+				bookId = InputUserData.checkUserInput("id", "Valor de Id incorrecto. Pruebe de nuevo (entero positivo).");
+				if (bc.getBookById(Integer.parseInt(bookId))== null) {
+					System.out.print("Este libro no existe\r ");
+					bookId = "";
+				}
+			}while(bookId.equals("")); 
+			
 		
 		
 		
