@@ -6,6 +6,7 @@ import com.imatia.bookmanager.controller.CopyController;
 
 import com.imatia.bookmanager.model.entities.Copy;
 import com.imatia.bookmanager.view.inputs.InputUserData;
+import com.imatia.bookmanager.view.ui.CopyUi;
 
 public class AddCopyMenu {
 	
@@ -22,9 +23,9 @@ public class AddCopyMenu {
 		{
 			System.out.print("Introduzca el id del libro: ");
 			bookId = InputUserData.checkUserInput("id", "Valor de Id incorrecto. Pruebe de nuevo (entero positivo).");
-		}while(bookId.equals(""));
+		}while(bookId.equals("") || (bc.getBookById(Integer.parseInt(bookId))== null));
 		
-		bc.getBookById(Integer.parseInt(bookId));
+		
 		
 		
 		do {
@@ -44,7 +45,7 @@ public class AddCopyMenu {
 		}
 		
 		System.out.print( copyNumber +" ejemplares del libro " + bookId + " creados con el estado 'Nuevo'");
-		
+		CopyUi.showCopyUi();
 		
 	}
 }

@@ -57,7 +57,7 @@ public class CopyMenu {
 				CopyRenderers.renderBookIdListCopy(copyList);
 				
 			}
-			CopyMenu.showCopyOptions();
+			CopyUi.showCopyUi();
 			break;
 
 		case 3:
