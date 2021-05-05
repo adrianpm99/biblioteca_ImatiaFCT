@@ -13,16 +13,18 @@ import com.imatia.bookmanager.view.ui.SearchUserUi;
  * @author Grupo2FCTImatia
  *
  */
+
 public class UserController {
 
 	UserDao ud = new UserDao();
 
 	/**
-	 * method to get a user filter by id
+	 * method to get a user filtered by id
 	 * 
 	 * @param id
 	 * @return user
 	 */
+	
 	public User getUserById(int id) {
 		
 		User user = ud.getUserById(id);
@@ -30,14 +32,16 @@ public class UserController {
 			SearchUserUi.showSearchUserUi();
 		}
 		return user;
-	}
+	}//getUserById
 	
 	/**
-	 * method to get a list of users filter by name and surname
+	 * method to get a list of users filtered by name and surname
+	 * 
 	 * @param name
 	 * @param surname
 	 * @return userList
 	 */
+	
 	public List<User> getUserByNameAndSurname(String name, String surname) {
 		
 		List<User> userList = new ArrayList<>();
@@ -45,45 +49,54 @@ public class UserController {
 		if(userList.isEmpty()) {
 			System.out.println("No se ha encontrado ninún usuario con los datos facilitados");
 			SearchUserUi.showSearchUserUi();
-		}
-		
+		}		
 		
 		return userList;
-	}
+	}//getUserByNameAndSurname
 
 	/**
-	 * method to add a user to database
+	 * method to add a user to the database
 	 * 
 	 * @param user
 	 */
+	
 	public void addUser(User user) {
+		
 		ud.addUser(user);
-	}
+	}//addUser
 
 	/**
-	 * method to modify a user in database
+	 * method to modify a user in the database
 	 * 
 	 * @param user
 	 */
+	
 	public void modifyUser(User user) {
+		
 		ud.modifyUser(user);
-
-	}
+	}//modifyUser
 
 	/**
-	 * metho to delete a user in database
+	 * method to delete a user in the database
 	 * 
 	 * @param id
 	 */
+	
 	public void deleteUser(int id) {
+		
 		ud.deleteUser(id);
-	}
-
+	}//deleteUser
+	
+	/**
+	 * method to check an user's information 
+	 * 
+	 * @param userId
+	 */
 	
 	public boolean checkUserId(int userId) {
 	
 		return ud.checkUserId(userId);
 				
-	}
+	}//checkUserId
 	
-}
+}//UserController

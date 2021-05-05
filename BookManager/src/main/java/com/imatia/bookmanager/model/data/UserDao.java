@@ -21,10 +21,11 @@ public class UserDao {
 	ConnectionSQLite connectionSQLite = new ConnectionSQLite();
 
 	/**
-	 * method to add a user to database
+	 * method to add a user to the database
 	 * 
-	 * @param user
+	 * @param userName and userSurname
 	 */
+	
 	public void addUser(User user) {
 
 		String query = "INSERT INTO user (userName, userSurname) VALUES (?,?)";
@@ -56,14 +57,15 @@ public class UserDao {
 			}
 		}
 
-	}
+	}//addUser
 
 	/**
-	 * method to get a user filter by id
+	 * method to get a user filtered by id
 	 * 
 	 * @param id
 	 * @return user
 	 */
+	
 	public User getUserById(int id) {
 
 		User user = new User();
@@ -106,13 +108,14 @@ public class UserDao {
 
 		return user;
 
-	}
+	}//getuserById
 
 	/**
-	 * method to modify a user
+	 * method to modify an existing user
 	 * 
 	 * @param user
 	 */
+	
 	public void modifyUser(User user) {
 
 		String query = "UPDATE user SET userName= ?, userSurname = ? WHERE userId= ?";
@@ -147,13 +150,14 @@ public class UserDao {
 			}
 		}
 
-	}
+	}//modifyUser
 
 	/**
 	 * method to delete a user
 	 * 
 	 * @param id
 	 */
+	
 	public void deleteUser(int id) {
 
 		String query = "DELETE FROM user WHERE userId = ?";
@@ -185,15 +189,16 @@ public class UserDao {
 			}
 		}
 
-	}
+	}//deleteUser
 
 	/**
-	 * method to get a user filter by name and surname
+	 * method to get a user filtered by name and surname
 	 * 
 	 * @param name
 	 * @param surname
 	 * @return user
 	 */
+	
 	public List<User> getUserByNameAndSurname(String name, String surname) {
 
 		String query = "SELECT * FROM user WHERE userName LIKE ? AND userSurname LIKE ? ";
@@ -230,7 +235,13 @@ public class UserDao {
 		}
 
 		return userList;
-	}
+	}//getUserByNameAndSurname
+	
+	/**
+	 * method that checks if an userid corresponds to an existing user
+	 * @param userId
+	 * @return
+	 */
 	
 	public boolean checkUserId(int userId) {
 		String queryGetUser = "SELECT * FROM user WHERE userId = ?";
@@ -260,6 +271,6 @@ public class UserDao {
 			SearchUserUi.showSearchUserUi();
 		}
 		return check;
-	}
+	}//checkUserId
 
-}
+}//UserDao

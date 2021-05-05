@@ -12,14 +12,20 @@ import com.imatia.bookmanager.view.ui.StartMenuUI;
 
 
 /**
- * class to implement the methods to connect views with data
+ * class to implement the methods to connect views with data (regarding Reservations)
  * @author Grupo2FCTImatia
  *
  */
+
 public class ReservationController {
 	
 	ReservationDao rd = new ReservationDao();
 	
+	/**
+	 * method to create a new reservation by bookId
+	 * 
+	 * @param bookId
+	 */
 	
 	public void createNewReservation(int bookId) //bookId asked before on the menu
 	{
@@ -41,11 +47,11 @@ public class ReservationController {
 			System.out.println("\nTiene que pedir un préstamo.\n");
 			//Go to leading menu
 			LendingsUi.showLendingsUi();
-		}
+		}//if
 		else
 		{
 			//At this point, there's no previous reservation of the book, 
-			//so proceed with creating reservation process
+			//so it proceeds with creating reservation process
 			copyDataList= rd.getAvailableCopies(bookId);
 			if (copyDataList.isEmpty())
 			{
@@ -75,28 +81,28 @@ public class ReservationController {
 			}
 			
 		}//else
-	}//createNewReservation()
-	
-	
+	}//createNewReservation()	
 	
 	/**
 	 * Get the reservationData
+	 * 
 	 * @param bookId
 	 */
+	
 	public void getReservationData(int id)
 	{	
 		ReservationDao rd = new ReservationDao();
 		ArrayList<String> al;
 		al = rd.getReservationAdditionalData(id);
 		ReservationDetails.showReservationDetails(al);
-	}//getReservationData()
-	
-	
+	}//getReservationData()	
 	
 	/**
 	 * method to delete a reservation
+	 * 
 	 * @param id
 	 */
+	
 	public void deleteReservation(int reservationId)
 	{
 		rd.deleteReservation(reservationId);
@@ -106,6 +112,7 @@ public class ReservationController {
 	 * method to get a reservation by id
 	 * @param id
 	 */
+	
 	public Reservation getReservationById(int id) {
 		Reservation reservation = new Reservation();
 		reservation = rd.getReservationById(id);
@@ -117,20 +124,21 @@ public class ReservationController {
 	 * @param id
 	 * @return reservationList
 	 */
+	
 	public List<Reservation> getReservationsByIdBook(int id) {
 		
 		List<Reservation> reservationList = rd.getReservationsByIdBook(id);
 		
 		return reservationList;
-	}//getReservationListByIdBook
-	
-	
+	}//getReservationListByIdBook	
 	
 	/**
 	 * method to get a reservation list by idUser
-	 * @param id of the user
+	 * 
+	 * @param user's id
 	 * @return reservationList
 	 */
+	
 	public List<Reservation> getReservationsByIdUser(int id)
 	{	
 		List<Reservation> reservationList = rd.getReservationsByIdUser(id);	
