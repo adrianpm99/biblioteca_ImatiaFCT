@@ -15,30 +15,58 @@ import com.imatia.bookmanager.model.entities.Lending;
 import com.imatia.bookmanager.view.ui.SearchLendingUi;
 import com.imatia.bookmanager.model.entities.Reservation;
 
-/*
+/**
  * class to map the table lending to object lending
+ * 
+ * @author Grupo2FCTImatia
+ * 
  */
-public class LendingDao {
-	ConnectionSQLite connectionSQLite = new ConnectionSQLite();
 
+public class LendingDao {
+	
+	//First we open a connection to the database
+	
+	ConnectionSQLite connectionSQLite = new ConnectionSQLite();
+	
+	/**
+	 * method to add a lending
+	 * 
+	 * @param lending
+	 * @param listIdCopy
+	 * @return
+	 */
+
+	//addLending method does not currently call addLendingNotes, method modifyLendingReturnDate does
 	public String addLending(Lending lending, ArrayList<Integer> listIdCopy) {
 
 		String queryGetUser = "SELECT * FROM user WHERE userId = ?";
 		String error = "";
 		int lendingId = 0;
+		
 		try (Connection con = connectionSQLite.getConnection();
+				//this Prepared Statement selects everything given a certain userId
 				PreparedStatement psGetUser = con.prepareStatement(queryGetUser);) {
+			
+			//checks if the user exists
 			if (checkUser(lending, con)) {
-				Integer duplicatedBook = checkDuplicateBookLending(listIdCopy, con);  
+				
+				Integer duplicatedBook = checkDuplicateBookLending(listIdCopy, con);
+				
+				//checks if a book that has been lent is duplicate
 				if (duplicatedBook == null) {
 					for (int cont = 0; cont < listIdCopy.size(); cont++) {
+						//checks if a copy is existing
 						if (checkCopy(lending, con, listIdCopy.get(cont))) {
+							//checks if a copy is lent
 							if (checkLending(lending, con, listIdCopy.get(cont))) {
+								//el ejemplar existe (checkCopy) y no está prestado (checkLending)
 								lendingId = addLendingMethod(lending, con, listIdCopy.get(cont), cont, lendingId);
 							} else {
+								//el ejemplar existe pero está prestado
 								return error = "El ejemplar con id " + listIdCopy.get(cont) + " ya esta prestado";
 							}
 						} else {
+							//el ejemplar no existe
 							return error = "No existe el ejemplar";
 						}
 					}
@@ -63,17 +91,23 @@ public class LendingDao {
 			}
 		}
 		return error;
-	}
+	}//addLending
 
-	private Integer checkDuplicateBookLending(ArrayList<Integer> listIdCopy, Connection con) { //Return duplicatedBook = null if not duplicated
-		//boolean checkDuplicated = true;
+	/**
+	 * method to check if a copy is doubled (private to addLending)
+	 */
+	
+	private Integer checkDuplicateBookLending(ArrayList<Integer> listIdCopy, Connection con) { 
+		//Returns duplicatedBook = null if not duplicated
+		
 		Integer duplicatedBook = null;
 		String queryGetCopy = "SELECT * FROM copy WHERE copyId = ?";
 		ArrayList<Integer> listIdBook = new ArrayList<Integer>();
+		
 		try {
 			for (int cont = 0; cont < listIdCopy.size(); cont++) {
 				PreparedStatement psGetCopy = con.prepareStatement(queryGetCopy);
-
+				
 				psGetCopy.setInt(1, listIdCopy.get(cont));
 				psGetCopy.execute();
 
@@ -87,14 +121,12 @@ public class LendingDao {
 						if(bookId == listIdBook.get(cont2)) {
 							duplicatedBook = listIdCopy.get(cont);
 							//checkDuplicated = false;
-							//System.out.println("Error en el ejemplar con id " + listIdCopy.get(cont));
+							//System.out.println("Error en el ejemplar con id " + listIdCopy.get(cont)");
 							break;
 						}
 					}
 				}
-//				if(checkDuplicated == false) {
-//					break;
-//				}
+
 				if(duplicatedBook != null) {
 					break;
 				}
@@ -107,15 +139,19 @@ public class LendingDao {
 
 		return duplicatedBook;
 
-	}
+	}//checkDuplicateBookLending
+	
+	/**
+	 * method to check if a user exists (private to addLending)
+	 */
 
 	private boolean checkUser(Lending lending, Connection con) {
 		String queryGetUser = "SELECT * FROM user WHERE userId = ?";
 		boolean check = false;
 		try {
 			PreparedStatement psGetUser = con.prepareStatement(queryGetUser);
+			
 			psGetUser.setInt(1, lending.getUserId());
-
 			psGetUser.execute();
 
 			ResultSet rsUser = psGetUser.getResultSet();
@@ -132,8 +168,12 @@ public class LendingDao {
 			e.printStackTrace();
 		}
 		return check;
-	}
+	}//checkUser
 
+	/**
+	 * method to check if a copy exists (private to addLending)
+	 */
+	
 	private boolean checkCopy(Lending lending, Connection con, int idCopy) {
 		String queryGetCopy = "SELECT * FROM copy WHERE copyId = ?";
 		boolean check = false;
@@ -156,19 +196,24 @@ public class LendingDao {
 			e.printStackTrace();
 		}
 		return check;
-	}
+	}//checkCopy
 
+	/**
+	 * method to check if an existing copy is lent (private to addLending)
+	 */
+	
 	private boolean checkLending(Lending lending, Connection con, int copyId) {
 		String queryLendingCheck = "SELECT * FROM copy c, copyLending cl, lending l WHERE c.copyId = ? AND c.copyId = cl.copyId "
 				+ "AND l.lendingId = cl.lendingId AND l.lendingReturndate is null";
 		boolean check = true;
 		PreparedStatement psLendingCheck;
+		
 		try {
 			psLendingCheck = con.prepareStatement(queryLendingCheck);
-
+			
 			psLendingCheck.setInt(1, copyId);
-
 			psLendingCheck.execute();
+			
 			ResultSet rs = psLendingCheck.getResultSet();
 			if (rs.next()) {
 
@@ -184,25 +229,25 @@ public class LendingDao {
 			e.printStackTrace();
 		}
 		return check;
-	}
+	}//checkLending
 
+	/**
+	 * method to insert a lending of a copy into the lending table
+	 */
+	
 	private int addLendingMethod(Lending lending, Connection con, int copyId, int cont, int lendingId) {
 		String queryLending = "INSERT INTO lending (userId, lendingDate, lendingDeadLine,lendingReturnDate) "
 				+ "VALUES (?,?,?,?) ";
 
-		// PreparedStatement ps = con.prepareStatement(queryLending);
 		try {
 			if (cont == 0) {
 				PreparedStatement ps = con.prepareStatement(queryLending, Statement.RETURN_GENERATED_KEYS);
-
+				
 				ps.setInt(1, lending.getUserId());
-
 				Date lendingDate = Date.valueOf(lending.getLendingDate());
 				ps.setDate(2, lendingDate);
-
 				Date lendingDeadLine = Date.valueOf(lending.getLendingDeadLine());
 				ps.setDate(3, lendingDeadLine);
-
 				ps.setDate(4, null);
 
 				ps.execute();
@@ -219,39 +264,44 @@ public class LendingDao {
 			e.printStackTrace();
 		}
 		return lendingId;
-	}
+	}//addLendingMethod
 
+	/**
+	 * method to insert the lending of a copy into the copyLending table, called by addLendingMethod
+	 */
+	
 	public int addCopyLendingMethod(PreparedStatement ps, Lending lending, Connection con, int cont, int copyId,
 			int lendingId) {
+		
 		String queryCopyLending = "INSERT INTO copyLending (copyId, lendingId) " + "Values(?,?) ";
 		ResultSet rsId;
+		
 		try {
 			if (cont == 0) {
 				rsId = ps.getGeneratedKeys();
-
 				rsId.next();
 
 				lending.setLendingId(rsId.getInt(1));
-
 				ps.close();
 
 				PreparedStatement ps2 = con.prepareStatement(queryCopyLending);
+				
 				ps2.setInt(1, copyId);
-
 				ps2.setInt(2, lending.getLendingId());
-
 				ps2.execute();
 				ps2.close();
+				
 				lendingId = lending.getLendingId();
+				
 				return lending.getLendingId();
 			} else {
 				PreparedStatement ps2 = con.prepareStatement(queryCopyLending);
+				
 				ps2.setInt(1, copyId);
-
 				ps2.setInt(2, lendingId);
-
 				ps2.execute();
 				ps2.close();
+				
 				return lendingId;
 			}
 		} catch (SQLException e) {
@@ -259,9 +309,14 @@ public class LendingDao {
 			e.printStackTrace();
 		}
 		return lendingId;
-	}
+	}//addCopyLendingMethod
+	
+	/**
+	 * method to delete a lending given its id
+	 */
 
 	public void deleteLending(Lending lending, Copy copy) {
+		
 		String query = "DELETE FROM copyLending WHERE lendingId = ?";
 
 		try {
@@ -287,15 +342,13 @@ public class LendingDao {
 				e.printStackTrace();
 			}
 		}
-	}
+	}//deleteLending
 
 	/**
-	 * method to modify the Lending return date
-	 * 
-	 * @param lending
-	 * @param dateReturnDate
+	 * method to modify the Lending return date given its id
 	 */
-	public void modifyLendingReturndDate(int id, LocalDate dateReturnDate) {
+	
+	public void modifyLendingReturnDate(int id, LocalDate dateReturnDate) {
 
 		String query = "UPDATE lending SET lendingReturnDate =? WHERE lendingId= ?";
 
@@ -327,16 +380,13 @@ public class LendingDao {
 				e.printStackTrace();
 			}
 		}
-	}
-	
-	
-	
+	}//modifyLendingReturnDate
 	
 	/**
-	 * Method to add notes about a lending into the bbdd.
-	 * This is the final action to close a lending
+	 * Method to add notes about an existing lending into the database
 	 * @param lendingId, lendingNotes
 	 */
+	
 	public void addLendingNotes(int lendingId, String lendingNotes)
 	{
 		String query = "UPDATE lending SET lendingNotes =? WHERE lendingId= ?";
@@ -354,16 +404,11 @@ public class LendingDao {
 			catch (SQLException e) {e.printStackTrace();}
 		}
 	}//addLendingNotes()
-		
-
-	
 	
 	/**
-	 * method to get a lending filter by id
-	 * 
-	 * @param id
-	 * @return lending
+	 * method to get a lending filtered by its id
 	 */
+	
 	public Lending getLendingById(int id) {
 
 		Lending lending = new Lending();
@@ -414,14 +459,15 @@ public class LendingDao {
 		}
 
 		return lending;
-	}
+	}//getLendingById
 
 	/**
-	 * method to get a lending filter by UserId
+	 * method to get a lending filtered by UserId
 	 * 
 	 * @param userId
 	 * @return lending
 	 */
+	
 	public List<Lending> getLendingByUserId(int id) {
 
 		Lending lending = new Lending();
@@ -475,16 +521,12 @@ public class LendingDao {
 		}
 
 		return lendingList;
-	}
+	}//getLendingByUserId
 
 	/**
-	 * method to get a lending filter by UserId
-	 * 
-	 * @param secondDate
-	 * 
-	 * @param userId
-	 * @return lending
+	 * method to get a lending filter by its deadline (both first and second dates)
 	 */
+	
 	public List<Lending> getLendingByDeadLine(String firstDate, String secondDate) {
 
 		Lending lending = new Lending();
@@ -540,14 +582,12 @@ public class LendingDao {
 		}
 
 		return lendingList;
-	}
+	}//getLendingByDeadline
 
 	/**
-	 * )returns a List of reservation object with user and book information, or null
-	 * 
-	 * @param id
-	 * @return object Reservation
+	 * returns a List of reservation object with user and book information, be there or not
 	 */
+	
 	public ArrayList<Reservation> checkIfReservatedBook(int id) { // id (lendingId)
 
 		Reservation reservation = new Reservation();
@@ -593,6 +633,6 @@ public class LendingDao {
 		}
 
 		return reservationList;
-	}
+	}//checkIfReservationBook
 	
 }//class LendingDao
