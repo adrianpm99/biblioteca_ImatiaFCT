@@ -23,7 +23,7 @@ public class CopyRenderers {
 			System.out.println(
 					"===========================================================================================\n");
 			System.out.println(
-					"Id ejemplar: " + c.getCopyId() + "\t|| Observaciones ejemplar: "+c.getcopyNotes() + "\n"+"|| Localizacion (Estantería): "+shelving.getShelvingPublicNumber());
+					"Id ejemplar: " + c.getCopyId() + "\t|| Observaciones ejemplar: "+c.getcopyNotes() + "|| Localizacion (Estantería): "+shelving.getShelvingPublicNumber()+"\n");
 		}
 		
 	}//renderBookIdListCopy()
