@@ -62,7 +62,6 @@ public class CopyMenu {
 
 		case 3:
 			// option to modify the Notes of the Copy
-			// Modify CopyNotes
 			do {
 				System.out.print("Introduzca el id del ejemplar: ");
 				idCopy = InputUserData.checkUserInput("id", "Pruebe de nuevo(entero positivo)");
