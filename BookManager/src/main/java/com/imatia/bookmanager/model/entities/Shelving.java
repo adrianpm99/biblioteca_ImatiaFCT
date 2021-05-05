@@ -3,21 +3,21 @@ package com.imatia.bookmanager.model.entities;
 public class Shelving {
 
 	int shelvingId;
-	int shelvingNumber;
+	int shelvingPublicNumber;
 	
 	public Shelving() {
 		
 	}
 
-	public Shelving(int shelvingId, int shelvingNumber) {
+	public Shelving(int shelvingId, int shelvingPublicNumber) {
 		super();
 		this.shelvingId = shelvingId;
-		this.shelvingNumber = shelvingNumber;
+		this.shelvingPublicNumber = shelvingPublicNumber;
 	}
 
-	public Shelving(int shelvingNumber) {
+	public Shelving(int shelvingPublicNumber) {
 		super();
-		this.shelvingNumber = shelvingNumber;
+		this.shelvingPublicNumber = shelvingPublicNumber;
 	}
 
 	public int getShelvingId() {
@@ -28,12 +28,12 @@ public class Shelving {
 		this.shelvingId = shelvingId;
 	}
 
-	public int getShelvingNumber() {
-		return shelvingNumber;
+	public int getShelvingPublicNumber() {
+		return shelvingPublicNumber;
 	}
 
-	public void setShelvingNumber(int shelvingNumber) {
-		this.shelvingNumber = shelvingNumber;
+	public void setShelvingNumber(int shelvingPublicNumber) {
+		this.shelvingPublicNumber = shelvingPublicNumber;
 	}
 	
 }

@@ -42,6 +42,7 @@ public class InputUserData {
                 matcher = pattern.matcher(data);
                 break;
                 
+            case "shelving":
             case "pageNumber":
                 pattern = Pattern.compile("^(?!0)\\d{0,3}$");
                 matcher = pattern.matcher(data);
