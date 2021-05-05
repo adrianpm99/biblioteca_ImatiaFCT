@@ -17,7 +17,7 @@ public class EditCopyMenu {
 		
 		//check if exits a copy with this id
 		Copy copy = cc.getCopyById(id);
-		if(copy.getCopyId()==0) {
+		if(copy == null) {
 			System.out.println("No existe ningún ejemplar con el id facilitado");
 			CopyUi.showCopyUi();
 		}else {
