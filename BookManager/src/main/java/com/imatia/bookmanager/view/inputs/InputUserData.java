@@ -21,6 +21,10 @@ public class InputUserData {
 		Matcher matcher;
 		String data;
 		do {
+			//print the prompt
+			String prompt = "\rBookManager:\\> ";
+			System.out.print(prompt);
+			
             data = scan.nextLine();
             switch (dataType) {
             case "id":
