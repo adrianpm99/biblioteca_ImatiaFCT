@@ -12,20 +12,24 @@ import com.imatia.bookmanager.model.entities.Reservation;
 
 
 /**
- * Methods for accessing data about reservations.
- * Add, Delete and search reservations
+ * class to map the Reservation table to the Reservation object
+ * 
+ * @author Grupo2FCTImatia
+ * 
  */
-public class ReservationDao
-{
-	//First, crate a new instance of the connection SQLite
-	ConnectionSQLite connectionSQLite = new ConnectionSQLite();
+
+public class ReservationDao	{
 	
+	//First, crate a new instance of the SQLite connection
+	
+	ConnectionSQLite connectionSQLite = new ConnectionSQLite();	
 	
 	/**
-	 * Method to check if already exists a reservation of a book
-	 * @param bookId (the id of the book)
+	 * Method to check if a reservation of a book already exists
+	 * @param bookId
 	 * @return true if reservation exists, false if doesn't
 	 */
+	
 	public List<String> checkReservationExist(int bookId)
 	{
 		List<String> reservationExists= new ArrayList<String>();
@@ -58,6 +62,7 @@ public class ReservationDao
 	 * @param bookId (the id of the book)
 	 * @return true if exists, false if doesn't
 	 */
+	
 	public boolean checkLendingBookExist(int bookId)
 	{
 		boolean reservationExists= false;
@@ -87,12 +92,14 @@ public class ReservationDao
 	
 	
 	/**
-	 * Method to search and get a list whith data about
-	 * the availables copies of a book (if there are)
+	 * Method to search and get a list with data about
+	 * the available copies of a book (if there are any)
+	 * 
 	 * @param the id of the book
 	 * @return Strings with the title of the book, the id of the book,
-	 * and the id of every copy of the book which is not reservated yet.
+	 * and the id of every copy of the book which is not reserved yet.
 	 */
+	
 	public ArrayList<String> getAvailableCopies(int bookId)
 	{
 		ArrayList<String> copyDataList= new ArrayList<String>();
@@ -188,10 +195,10 @@ public class ReservationDao
 		}
 		
 		return copyDataList;
-	}//getAvailableCopies()
+	}//getAvailableCopiesAlternative()
 	
 	/**
-	 * Method to add a new reservation into the bbdd
+	 * Method to add a new reservation into the database
 	 * @param bookId
 	 * @param userId
 	 */
@@ -223,7 +230,7 @@ public class ReservationDao
 	
 	
 	/**
-	* method to get the data to the result of the ReservationResult
+	* method to get all rendered data of any reservation search
 	* 
 	* @param id Returned book id from lending
 	*/
@@ -273,6 +280,11 @@ public class ReservationDao
 		return al;
 	}//getReservationAdditionalData
 	
+	/**
+	 * method that deletes a reservation given its id
+	 * @param id
+	 */
+	
 	public void deleteReservation(int id) {
 		String query = "DELETE FROM reservation WHERE reservationId = ?";
 
@@ -304,6 +316,13 @@ public class ReservationDao
 		}
 	}//deleteReservation
 
+	/**
+	 * method to search a reservation without additional data (only shows reservationid, bookid and userid).
+	 * This is called by searchreservation menu without selecting any reservation
+	 * @param id
+	 * @return
+	 */
+	
 	public Reservation getReservationById(int id) {
 		
 		Reservation reservation= null;

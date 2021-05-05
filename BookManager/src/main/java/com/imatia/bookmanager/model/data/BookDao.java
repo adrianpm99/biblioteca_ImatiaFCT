@@ -13,20 +13,25 @@ import com.imatia.bookmanager.controller.CopyController;
 import com.imatia.bookmanager.model.entities.Book;
 
 /**
- * class to map the table book to object book
+ * class to map the book table to book object
  * 
  * @author Grupo2FCTImatia
  *
  */
+
 public class BookDao {
 
+	//First we open a connection to the database
+	
 	ConnectionSQLite connectionSQLite = new ConnectionSQLite();
 	
 	/**
-	 * method to get a book filter by id
+	 * method to get a book filtered by id
+	 * 
 	 * @param id
 	 * @return book
 	 */
+	
 	public Book getBookById(int id) {
 		
 		String query = "SELECT * FROM book WHERE id = ?";
@@ -70,11 +75,12 @@ public class BookDao {
 	
 
 	/**
-	 * method to get a list of books filter by title
+	 * method to get a list of books filtered by title
 	 * 
 	 * @param title
 	 * @return bookList
-	 */	
+	 */
+	
 	public List<Book> getBookByTitle(String title) {
 
 		String query = "SELECT * FROM book WHERE title LIKE ?";
@@ -125,10 +131,10 @@ public class BookDao {
 		}
 
 		return bookList;
-	}
+	}//getBookByTitle
 
 	/**
-	 * method to get a book filter by isbn
+	 * method to get a book filtered by isbn
 	 * 
 	 * @param isbn
 	 * @return book
@@ -180,10 +186,15 @@ public class BookDao {
 		}
 
 		return book;
-	}
+	}//getBbokByIsbn
+	
+	/**
+	 * method to add a book into the database
+	 * 
+	 * @param book
+	 */
 	
 	public void addBook(Book book) {
-
 
 		String query = "INSERT INTO book (title, description, author, pageNumber, ISBN, editorial, edition, bookPublicationYear) "
 				+ "VALUES (?,?,?,?,?,?,?,?) ";
@@ -221,7 +232,13 @@ public class BookDao {
 			e.printStackTrace();
 		}
 		
-	}
+	}//addBook
+	
+	/**
+	 * method to modify a book in the database given its id
+	 * 
+	 * @param book
+	 */
 	
 	public void modifyBook(Book book) {
 		String query = "UPDATE book SET title=  ?, description = ?, author = ?, pageNumber = ?, ISBN = ?, editorial = ?, edition = ?, bookPublicationYear= ? WHERE id = ?;";
@@ -253,14 +270,15 @@ public class BookDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+	}//modifyBook
 
 	/**
-	 * method to get a list of books filter by author
+	 * method to get a list of books filtered by author
 	 * 
 	 * @param author
 	 * @return bookList
 	 */
+	
 	public List<Book> getBooksByAuthor(String author) {
 
 		String query = "SELECT * FROM book WHERE author LIKE ?";
@@ -311,18 +329,20 @@ public class BookDao {
 		}
 
 		return bookList;
-	}
+	}//getBooksByAuthor
 
 	/**
-	 * Before proceeding to delete the book, check if any
-	 * copy of this has been loaned
+	 * method to check if any copy of a book has been loaned before deleting it,
+	 * disallowing the erase if true
+	 * 
 	 * @param id
-	 * @return
 	 */
+	
 	public boolean existBookLending(int id) {
 			
-			// verify if there are records in the copylending table and de lending.lendingReturnDate is null for some
-			// item with id of selected book
+			// verifies if there are records in the copyLending table and if the lending.lendingReturnDate is null for some
+			// item with the id of the selected book
+		
 			boolean lendingExist = false;
 		
 			String verify = "SELECT 1 FROM copy c, copyLending cl, lending l WHERE c.bookId = ?"
@@ -338,13 +358,13 @@ public class BookDao {
 				ps.setInt(1, id);
 				ResultSet rs = ps.executeQuery();
 				if (rs.next()) {
-					// in this case if there are records in the copylending table
+					// in this case there are records in the copylending table,
 					// therefore the book cannot be deleted
 					
 					lendingExist = true;
 				}else {
-					// in this case if you can proceed to delete the book
-					// and update all its instances as unavailable ???
+					// in this case you can proceed to delete the book
+					// and all of their copies with it
 					lendingExist = false;
 				}	
 				rs.close();
@@ -365,56 +385,65 @@ public class BookDao {
 				}
 			}
 			return lendingExist;
-		}
+	}//existBookLending
 	
 	/**
 	 * method to delete a book by id
 	 * 
 	 * @param id
 	 */
-	public void deleteBook (int id) {
+	
+	public void deleteBook (int id) {		
 		
+		//checks if any of the books' copies are being lent, preventing the deletion if true
 		
-	  if (existBookLending(id)) {
+		if (existBookLending(id)) {
 		
-		  System.out.println("Existen ejemplares prestados, no se puede borrar el libro");
+			System.out.println("Existen ejemplares prestados, no se puede borrar el libro");
 	  
-	  }else {
-		
-		  String query = "DELETE FROM Book WHERE id = ?";
-		  
-		  CopyController cc = new CopyController();
-		  
-		  cc.deleteCopyByIdBook(id);
-
-		try {
-
-			Connection con = connectionSQLite.getConnection();
-
-			PreparedStatement ps = con.prepareStatement(query);
-
-			ps.setInt(1, id);
-			ps.execute();
-			System.out.println("libro con el id: "+ id + " borrado");
-			ps.close();
-
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
+		}else {
+			
+			String query = "DELETE FROM Book WHERE id = ?";
+			 
+			CopyController cc = new CopyController();
+			  
+			cc.deleteCopyByIdBook(id);
+	
 			try {
-				connectionSQLite.closeConnection();
+	
+				Connection con = connectionSQLite.getConnection();
+	
+				PreparedStatement ps = con.prepareStatement(query);
+	
+				ps.setInt(1, id);
+				ps.execute();
+				System.out.println("libro con el id: "+ id + " borrado");
+				ps.close();
+	
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-		}
-	  }	
+			} finally {
+				try {
+					connectionSQLite.closeConnection();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}//finally
+		}//else	
 
-	}
+	}//deleteBook
+	
+	/**
+	 * method to get all books with any copies being lent
+	 * 
+	 * @param lendingId
+	 * @return
+	 */
 	
 	public List<Integer> getListIdBookByCopysInLendingCopy(int lendingId) {
 		
@@ -436,8 +465,8 @@ public class BookDao {
 				listIdBooks.add(idBook);		
 
 			}
+			
 			ps.close();
-
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -452,10 +481,9 @@ public class BookDao {
 				e.printStackTrace();
 			}
 		}
-
 		
 		return listIdBooks;
-	}
+	}//getListIdBookByCopysInLendingCopy
 	
 	
-}
+}//BookDao

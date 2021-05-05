@@ -4,9 +4,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/*
+/**
  * class to connect with the database
+ * 
+ * @author Grupo2FCTImatia
+ * 
  */
+
 public class ConnectionSQLite {
 
 	private static Connection connection = null;
@@ -27,4 +31,4 @@ public class ConnectionSQLite {
 			connection = null;
 		}
 	}// closeConnection
-}
+}//ConnectionSQLite

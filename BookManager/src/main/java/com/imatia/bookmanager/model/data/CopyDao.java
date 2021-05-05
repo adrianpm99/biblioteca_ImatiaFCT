@@ -12,19 +12,24 @@ import com.imatia.bookmanager.model.entities.Copy;
 import com.imatia.bookmanager.view.ui.SearchLendingUi;
 
 /**
- * class to map the table copy to object copy
+ * class to map the copy table to copy object
+ * 
  * @author Grupo2FCTImatia
  *
  */
+
 public class CopyDao {
+	
+	//First we open a connection to the database
 
 	ConnectionSQLite connectionSQLite = new ConnectionSQLite();
 
 	/**
-	 * method to insert a copy in database
+	 * method to insert a copy in the database
 	 * 
 	 * @param copy
 	 */
+	
 	public void addCopy(Copy copy) {
 
 		String query = "INSERT INTO copy (bookId,copyNotes) VALUES (?,?)";
@@ -58,23 +63,22 @@ public class CopyDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-	}
+		}//finally
+	}//addCopy
 
 	/**
-	 * method to get a copy filter by id
+	 * method to get a copy filtered by id
 	 * @param id
 	 * @return copy
 	 */
+	
 	public Copy getCopyById(int id) {
 
 		Copy copy = null;
-
 		String query = "SELECT * FROM copy WHERE copyId = ?";
 
 		try {
 			Connection con = connectionSQLite.getConnection();
-
 			PreparedStatement ps = con.prepareStatement(query);
 
 			ps.setInt(1, id);
@@ -93,9 +97,8 @@ public class CopyDao {
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (SQLException e) {
-			System.out.println("La consulta no ha devuelto ningún resultado");
-			//e.printStackTrace();
+		} catch (SQLException e) {			
+			System.out.println("La consulta no ha devuelto ningún resultado");			
 		}finally {
 			try {
 				connectionSQLite.closeConnection();
@@ -103,29 +106,28 @@ public class CopyDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-
+		}//finally
+		
 		return copy;
-	}
+	}//getCopyById
 	
 	/**
-	 * method to delete a copy filter by id
+	 * method to delete a copy filtered by id
 	 * @param id
 	 */
+	
 	public void deleteCopy(int id) {
 		
 		String query ="DELETE FROM copy WHERE copyId = ?";
 		
 		try {
-			Connection con = connectionSQLite.getConnection();
-			
+			Connection con = connectionSQLite.getConnection();			
 			PreparedStatement ps = con.prepareStatement(query);
 
 			ps.setInt(1, id);
 			ps.execute();
 			
-			System.out.println("Ejemplar con id: "+ id +" borrado");
-			
+			System.out.println("Ejemplar con id: "+ id +" borrado");			
 			ps.close();
 			
 		} catch (ClassNotFoundException e) {
@@ -141,21 +143,20 @@ public class CopyDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-		
-	}
+		}//finally		
+	}//deleteCopy
 	
 	/**
-	 * method to delete a copy of book by idBook
+	 * method to delete a copy of a book by idBook
 	 * @param id
 	 */
+	
 	public void deleteCopybyIdBook(int id) {
 		
 		String query ="DELETE FROM copy WHERE bookId = ?";
 		
 		try {
-			Connection con = connectionSQLite.getConnection();
-			
+			Connection con = connectionSQLite.getConnection();			
 			PreparedStatement ps = con.prepareStatement(query);
 
 			ps.setInt(1, id);
@@ -178,39 +179,33 @@ public class CopyDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-		
-		
-	}
+		}//finally		
+	}//deleteCopybyIdBook
 	
 	/**
-	 * method to get a list of idCopys in lending by book
-	 * @param lendingId
-	 * @param bookId
+	 * method to get a list of id copies in lending by book
+	 * @param lendingId, bookId
 	 * @return
 	 */
+	
 	public List<Integer> getCopyIdInLendingByBook(int lendingId, int bookId){
-		List<Integer> listIdCopys = new ArrayList<>();
 		
+		List<Integer> listIdCopys = new ArrayList<>();		
 		String query = "SELECT copyId FROM copyLending WHERE lendingId= ? AND copyId IN(SELECT copyId FROM copy WHERE bookId= ?)";
 
 		try {
 			Connection con = connectionSQLite.getConnection();
-
 			PreparedStatement ps = con.prepareStatement(query);
 
 			ps.setInt(1, lendingId);
 			ps.setInt(2, bookId);
 			ps.execute();
 			ResultSet rs = ps.getResultSet();
-			while(rs.next()) {
-
-			int idCopy = rs.getInt("copyId");
 			
-			listIdCopys.add(idCopy);
-			
-			}
-			
+			while(rs.next()) {				
+				int idCopy = rs.getInt("copyId");			
+				listIdCopys.add(idCopy);			
+			}			
 			
 			ps.close();
 
@@ -227,16 +222,14 @@ public class CopyDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-
+		}//finally
 		
 		return listIdCopys;
-	}
+	}//getCopyIdInLendingByBook
 
 	/**
-	 * method to get a List of all copies of a book
+	 * method to get a List of all the copies of a book
 	 * @param bookId
-	 * @return
 	 */
 	
 	public List<Copy> getCopyByBookId(int bookId) {
@@ -276,13 +269,17 @@ public class CopyDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		};
+		};//finally
+		
 		return copyList;
-	}
+	}//getCopyByBookId
 	
-	/*
-	 * method to edit copyNotes of a Copy
+	/**
+	 * method to edit the notes of a Copy
+	 * 
+	 * @param id, copyNote
 	 */
+	
 	public void editCopyNotes(int id, String copyNote) {
 		
 		String query = "UPDATE copy SET copyNotes =? WHERE copyId= ?";
@@ -320,9 +317,10 @@ public class CopyDao {
 	}
 	
 	/**
-	 * Before proceeding to delete the copy, check if it is leaded
+	 * method to check if a copy is lent before proceeding to delete the copy
+	 * 
 	 * @param id
-	 * @return true if the copy is lended
+	 * @return true if the copy is lent, false if not
 	 */
 	public boolean checkIfCopyIsLended(int copyId) {
 		
