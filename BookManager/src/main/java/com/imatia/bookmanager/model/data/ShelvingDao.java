@@ -192,7 +192,7 @@ public class ShelvingDao {
 	 */
 	public void deleteCopyShelvingByBookId(int bookId) {
 		CopyController cc = new CopyController();
-		String query = "DELETE FROM copyshelving WHERE cs.copyId = ?";
+		String query = "DELETE FROM copyshelving WHERE copyId = ?";
 		
 		try {
 			Connection con = connectionSQLite.getConnection();
@@ -201,8 +201,8 @@ public class ShelvingDao {
 			
 			List<Copy> copyList = cc.getCopyByBookId(bookId);
 			
-			for(int cont = 0; cont < copyList.size(); cont++) {
-				ps.setInt(1, copyList.get(cont).getCopyId());
+			for(Copy copy: copyList) {
+				ps.setInt(1, copy.getCopyId());
 				ps.execute();
 			}
 			ps.close();
