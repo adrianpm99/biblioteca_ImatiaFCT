@@ -48,7 +48,7 @@ public class ShelvingController {
 		}// getShelvingById
 		
 		public void deleteCopyShelving(int bookId) {
-			sd.deleteCopyShelving(bookId);
+			sd.deleteCopyShelvingByBookId(bookId);
 		}
 
 	

@@ -185,11 +185,11 @@ public class ShelvingDao {
 	
 	
 	/**
-	 * Delete all shelving by idBook
+	 * Delete all copyShelving by idBook
 	 * @param idBook
 	 * @return 
 	 */
-	public void deleteCopyShelving(int bookId) {
+	public void deleteCopyShelvingByBookId(int bookId) {
 		CopyController cc = new CopyController();
 		String query = "DELETE FROM copyshelving WHERE cs.copyId = ?";
 		
