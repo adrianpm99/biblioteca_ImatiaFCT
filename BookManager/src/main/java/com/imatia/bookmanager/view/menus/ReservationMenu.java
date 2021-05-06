@@ -8,8 +8,13 @@ import com.imatia.bookmanager.view.ui.StartMenuUI;
 
 /**
  * Options to manage what to do, after showing the reservations ui
+ * 
+ * @author Grupo2FCTImatia
+ *
  */
+
 public class ReservationMenu {
+	
 	public static void showReservationOptions() {
 		String option;
 		//Option
@@ -43,5 +48,7 @@ public class ReservationMenu {
 			SearchReservationUi.showSearchReservationUi();
 			break;
 		}
-	}//showReservationMenuOptions()
-}//class ReservationsMenu
+		
+	}//end showReservationMenuOptions()
+	
+}//end class ReservationsMenu

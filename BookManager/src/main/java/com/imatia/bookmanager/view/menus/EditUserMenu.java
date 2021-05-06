@@ -17,6 +17,7 @@ public class EditUserMenu {
 	 * @param id
 	 */
 	public static void showEditUserMenu(int id) {
+		
 		String name;
 		String surname;
 
@@ -42,6 +43,7 @@ public class EditUserMenu {
 
 		// finally, go to the start menu
 		StartMenuUI.showStartMenuUi();
-	}// showEditUserMenu
+		
+	}//endshowEditUserMenu
 
-}
+}//end EditUserMenu

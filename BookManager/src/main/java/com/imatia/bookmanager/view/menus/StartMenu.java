@@ -11,9 +11,13 @@ import com.imatia.bookmanager.view.ui.LendingsUi;
 import com.imatia.bookmanager.view.ui.SearchesUi;
 import com.imatia.bookmanager.view.ui.UserManagementUi;
 
-/*
- * this is the start menu options
+/**
+ * class to implement the start menu options
+ * 
+ * @author Grupo2FCTImatia
+ *
  */
+
 public class StartMenu {
 
 	public static void showStartMenuOption() {
@@ -65,9 +69,8 @@ public class StartMenu {
 		case 7:
 			CopyUi.showCopyUi();
 			break;
-			
 		}
 
-	}
+	} // end showStartMenuOption
 
-}
+}// end StartMenu

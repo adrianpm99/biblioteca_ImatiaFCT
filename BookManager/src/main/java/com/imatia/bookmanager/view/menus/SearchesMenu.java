@@ -11,9 +11,13 @@ import com.imatia.bookmanager.view.ui.ResultsByMethodUi;
 import com.imatia.bookmanager.view.ui.SearchesUi;
 import com.imatia.bookmanager.view.ui.StartMenuUI;
 
-/*
- * this is the search book menu options
+/**
+ * class to implement the search book menu options
+ * 
+ * @author Grupo2FCTImatia
+ *
  */
+
 public class SearchesMenu {
 
 	public static void showSearchesMenuOptions() {
@@ -40,7 +44,7 @@ public class SearchesMenu {
 				System.out.print("Introduzca el autor: ");
 				filter = InputUserData.checkUserInput("author", "Maximo 50 caracteres.");
 			} while (filter.equals(""));
-			//get the books by filter
+			//get the books by filter (Author)
 			bookList = bc.getBooksByAuthor(filter);
 			//if there are no results
 			if (bookList.isEmpty()) {
@@ -61,13 +65,19 @@ public class SearchesMenu {
 				System.out.print("Introduzca el titulo: ");
 				filter = InputUserData.checkUserInput("title", "Máximo 50 carácteres");
 			} while (filter.equals(""));
+			//get the books by filter (title)
 			bookList = bc.getBookByTitle(filter);
+			//if there are no results
 			if (bookList.isEmpty()) {
 				System.out.println("No se ha encontrado ningún libro con el titulo facilitado");
+				//back to the searches UI
 				SearchesUi.showSearchesUi();
 			} else {
+				//show the resultsUI by method
 				ResultsByMethodUi.showResultsUi("TITULO");
+				//render the books
 				BookRenderers.renderTitleListBooks(bc.getBookByTitle(filter));
+				//show results by method
 				ResultsByMethodMenu.showResultsByMethodMenuOptions();
 			}
 			break;
@@ -76,18 +86,24 @@ public class SearchesMenu {
 				System.out.print("Introduzca el ISBN: ");
 				filter = InputUserData.checkUserInput("ISBN", "Debe introducir 13 enteros positivos");
 			} while (filter.equals(""));
+			//get the books by filter (ISBN)
 			bookList = bc.getBookByIsbn(filter);
+			//if there are no results
 			if (bookList.isEmpty()) {
 				System.out.println("No se ha econtrado ningún libro con el ISBN facilitado");
+				//back to the searches UI
 				SearchesUi.showSearchesUi();
 			} else {
+				//show the resultsUI by method
 				ResultsByMethodUi.showResultsUi("ISBN");
+				//render the books
 				BookRenderers.renderISBNListBooks(bc.getBookByIsbn(filter));
+				//show results by method
 				ResultsByMethodMenu.showResultsByMethodMenuOptions();
 			}
 			break;
 		}
 
-	}//show searchesMenuOptions
+	}//end showSearchesMenuOptions
 
-}
+}//end SearchesMenu

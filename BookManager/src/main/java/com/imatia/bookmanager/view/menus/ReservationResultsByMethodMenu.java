@@ -6,9 +6,13 @@ import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.results.ReservationDetails;
 import com.imatia.bookmanager.view.ui.SearchReservationUi;
 
-/*
- * this is the class to show the menu options of results by method of reservations
+/**
+ * class to show the menu options of results by method of reservations
+ * 
+ * @author Grupo2FCTImatia
+ *
  */
+
 public class ReservationResultsByMethodMenu {
 
 	public static void showReservationResultsByMethodMenuOptions() {
@@ -41,7 +45,8 @@ public class ReservationResultsByMethodMenu {
 				ReservationDetails.showReservationDetails(reservation);
 			}
 			break;
-		}// showUserResultsByMethodMenuOptions
-	}
+		}
+		
+	}// showUserResultsByMethodMenuOptions
 
-}
+}// ReservationResultsByMethodMenu

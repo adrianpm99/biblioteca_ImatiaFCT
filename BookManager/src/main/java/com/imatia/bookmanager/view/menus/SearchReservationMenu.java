@@ -11,9 +11,13 @@ import com.imatia.bookmanager.view.ui.ReservationResultsByMethodUi;
 import com.imatia.bookmanager.view.ui.ReservationUi;
 import com.imatia.bookmanager.view.ui.SearchReservationUi;
 
-/*
- * this is the class to show the search reservation menu options
+/**
+ * class to show the search reservation menu options
+ * 
+ * @author Grupo2FCTImatia
+ *
  */
+
 public class SearchReservationMenu {
 	
 	public static void showSeachReservationMenuOptions() {
@@ -80,6 +84,7 @@ public class SearchReservationMenu {
 			}			
 			break;
 		}//switch
-	}//showSeachReservationMenuOptions()
+		
+	}//end showSeachReservationMenuOptions()
 
-}//class SearchReservationMenu
+}//end SearchReservationMenu

@@ -3,10 +3,14 @@ package com.imatia.bookmanager.view.menus;
 import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.ui.StartMenuUI;
 
-/*
- * this is the class to show the reservation details menu, in this case only shows one option
+/**
+ * class to show the reservation details menu, in this case only shows one option
  * go to the start menu
+ * 
+ * @author Grupo2FCTImatia
+ *
  */
+
 public class ReservationDetailsMenu {
 
 	public static void showReservationDetailsMenu() {
@@ -20,6 +24,6 @@ public class ReservationDetailsMenu {
 		} while (!option.equals("0"));
 		StartMenuUI.showStartMenuUi();
 
-	}
+	}//end showReservationDetailMenu
 
-}
+}//end ReservationDetailMenu

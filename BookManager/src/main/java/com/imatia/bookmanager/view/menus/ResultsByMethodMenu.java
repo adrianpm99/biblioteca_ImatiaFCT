@@ -6,9 +6,13 @@ import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.results.BookDetails;
 import com.imatia.bookmanager.view.ui.SearchesUi;
 
-/*
- * this is the class to show the menu options of results by method
+/**
+ * class to show the menu options of results by method
+ * 
+ * @author Grupo2FCTImatia
+ *
  */
+
 public class ResultsByMethodMenu {
 	
 	public static void showResultsByMethodMenuOptions() {
@@ -35,10 +39,11 @@ public class ResultsByMethodMenu {
 				bookId = InputUserData.checkUserInput("id", "Valor de Id incorrecto. Pruebe de nuevo (entero positivo).");
 			}while(bookId.equals(""));
 			
-		Book book = new BookController().getBookById(Integer.parseInt(bookId));
-		BookDetails.showBookDetails(book);
-		break;
+			Book book = new BookController().getBookById(Integer.parseInt(bookId));
+			BookDetails.showBookDetails(book);
+			break;
 		}
 		
-	}//showResultsByMethodMenuOptions
-}
+	}//end showResultsByMethodMenuOptions
+	
+}//end ResultsByMethodMenu

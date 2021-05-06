@@ -4,10 +4,15 @@ import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.ui.SearchLendingUi;
 import com.imatia.bookmanager.view.ui.StartMenuUI;
 
-/*
- * this is the class to show the lending menu options
+/**
+ * class to show the lending menu options
+ * 
+ * @author Grupo2FCTImatia
+ *
  */
+
 public class LendingsMenu {
+	
 	public static void showLendingsOptions() {
 
 		String option;
@@ -42,5 +47,6 @@ public class LendingsMenu {
 			break;
 		}
 
-	}// showLendingDetailsOptions()
-}// class LendingDetailsMenu
+	}//end  showLendingDetailsOptions()
+	
+}//end  class LendingDetailsMenu

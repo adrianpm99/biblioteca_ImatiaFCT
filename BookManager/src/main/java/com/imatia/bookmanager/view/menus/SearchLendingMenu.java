@@ -17,10 +17,13 @@ import com.imatia.bookmanager.view.ui.LendingsUi;
 import com.imatia.bookmanager.view.ui.ResultsSearchLendingUi;
 import com.imatia.bookmanager.view.ui.SearchLendingUi;
 
-
-/*
- * this is the search lending menu options
+/**
+ * class to implement the search lending menu options
+ * 
+ * @author Grupo2FCTImatia
+ *
  */
+
 public class SearchLendingMenu {
 
 	public static void showSearchLendingMenuOptions() {
@@ -28,18 +31,13 @@ public class SearchLendingMenu {
 		LendingController lc = new LendingController();
 		UserController uc = new UserController();
 		BookController bc = new BookController();
-		CopyController cc = new CopyController();
 		String option;
 		String filter;
 		String filter2;
-		Lending lending;
-		String bookCopys = "";
+		Lending lending = null;
 		User user;
 		List<Integer> bookList = new ArrayList<>();
-		List<Integer> copyList = new ArrayList<>();
 		List<Lending> lendingList = new ArrayList<>();
-		//string of book titles to print in the lending details view
-		String bookTitles = "";
 
 		do {
 			option = InputUserData.checkUserInput("option", "Opcion no válida. Pruebe de nuevo(entero positivo)");
@@ -51,14 +49,17 @@ public class SearchLendingMenu {
 		switch (Integer.parseInt(option)) {
 
 		case 0:
+			//back to lending ui
 			LendingsUi.showLendingsUi();
 			break;
-		case 1:
+			
+		case 1: // search by LendingId
 			do {
 				System.out.print("Introduzca el id del prestamo: (entero positivo) ");
 				filter = InputUserData.checkUserInput("id", "Pruebe de nuevo(entero positivo)");
 			} while (filter.equals(""));
-			//get the lending filter by id
+		
+			//get the lending filter by id -- return only one
 			lending = lc.getLendingById(Integer.valueOf(filter));
 			//if there are no results
 			if (lending == null) {
@@ -69,35 +70,37 @@ public class SearchLendingMenu {
 				user = uc.getUserById(lending.getUserId());
 				//get the books of the lending
 				bookList = bc.getListIdBookByCopysInLendingCopy(lending.getLendingId());
-
+/*
 				for (Integer i : bookList) {
 					//get a String of book titles of the lending
 					String bookTitle = bc.getBookById(i).getTitle();
 					//get the copys of the book lending
 					copyList = cc.getCopyIdInLendingByBook(lending.getLendingId(), bc.getBookById(i).getId());
 					//building the strings to show the results
-			
-						bookCopys = "(Id Ejemplar:" + copyList.toString() 
+					bookCopys = "(Id Ejemplar:" + copyList.toString() 
 									+ " Estado:["+cc.getCopyById(copyList.get(0)).getcopyNotes()+"])\r||\r";
 	
 					bookTitles = bookTitles + bookTitle + bookCopys + "|| ";
 				}
 				//show the lending details
-				LendingDetails.showLendingDetails(lending, user, bookTitles);
+			*/	LendingDetails.showLendingDetails(lending, user, bookList);
+		//		LendingDetails.showLendingDetails(lending);
 			}
 			break;
-		case 2:
+		case 2: // Search by UserId
 			do {
 				System.out.print("Introduzca el id del usuario:  (entero positivo) ");
 				filter = InputUserData.checkUserInput("id", "Pruebe de nuevo(entero positivo)");
 			} while (filter.equals(""));
 
-			// just pull out a list
+			// just pull out a list -- return a list
 			lendingList = lc.getLendingByUserId(Integer.valueOf(filter));
+			//if there are no results
 			if (lendingList.isEmpty()) {
 				System.out.println("No se ha econtrando ningún prestamo del usuario facilitado");
 				SearchLendingUi.showSearchLendingUi();
 			} else {
+				//show result lendingList
 				ResultsSearchLendingUi.showResultsSearchLendingUi("ID DE USUARIO");
 				LendingRenderers.renderUserIdListLending(lendingList);
 				// Details
@@ -105,24 +108,28 @@ public class SearchLendingMenu {
 					System.out.print("Introduzca el id del prestamo: (entero positivo) ");
 					filter = InputUserData.checkUserInput("id", "Pruebe de nuevo(entero positivo)");
 				} while (filter.equals(""));
-				lending = lc.getLendingById(Integer.valueOf(filter));
+				//get the user of the lending
 				user = uc.getUserById(lending.getUserId());
+				//get the books of the lending
 				bookList = bc.getListIdBookByCopysInLendingCopy(lending.getLendingId());
-
+/*
 				for (Integer i : bookList) {
-
+					//get a String of book titles of the lending
 					String bookTitle = bc.getBookById(i).getTitle();
+					//get the copys of the book lending
 					copyList = cc.getCopyIdInLendingByBook(lending.getLendingId(), bc.getBookById(i).getId());
-
+					//building the strings to show the results
 					bookCopys = "(Id Ejemplar:" + copyList.toString() 
-								+ " Estado:["+cc.getCopyById(copyList.get(0)).getcopyNotes()+"])\r||\r";
+									+ " Estado:["+cc.getCopyById(copyList.get(0)).getcopyNotes()+"])\r||\r";
+	
 					bookTitles = bookTitles + bookTitle + bookCopys + "|| ";
 				}
-
-				LendingDetails.showLendingDetails(lending, user, bookTitles);
+				//show the lending details
+			*/	LendingDetails.showLendingDetails(lending, user, bookList);
+		//		LendingDetails.showLendingDetails(lending);
 			}
 			break;
-		case 3:
+		case 3: // search by dates
 			System.out.println("Introduzca un rango de fechas: ");
 			do {
 				System.out.print("Introduzca la primera fecha: (dd-mm-yyyy) ");
@@ -138,15 +145,15 @@ public class SearchLendingMenu {
 			String firtsDate = UtilityDates.formatYearMonthDay(filter);
 			// to pass the second date as localDate it has to have this format
 			String secondDate = UtilityDates.formatYearMonthDay(filter2);
-		
-			
 
-			// firtsDate and secondDate are a string
+			// firtsDate and secondDate are a string -- return a list
 			lendingList = lc.getLendingByDeadLine(firtsDate, secondDate);
+			//if there are no results
 			if (lendingList.isEmpty()) {
 				System.out.println("No se ha encontrado ningún prestamo con la fecha de devolución facilitada");
 				SearchLendingUi.showSearchLendingUi();
 			} else {
+				//show result lendingList
 				ResultsSearchLendingUi.showResultsSearchLendingUi("FECHA DE DEVOLUCIÓN");
 				LendingRenderers.renderDateListLending(lendingList);
 
@@ -155,25 +162,29 @@ public class SearchLendingMenu {
 					System.out.print("Introduzca el id del prestamo: (entero positivo) ");
 					filter = InputUserData.checkUserInput("id", "Pruebe de nuevo(entero positivo)");
 				} while (filter.equals(""));
-				lending = lc.getLendingById(Integer.valueOf(filter));
+				//get the user of the lending
 				user = uc.getUserById(lending.getUserId());
+				//get the books of the lending
 				bookList = bc.getListIdBookByCopysInLendingCopy(lending.getLendingId());
-
+/*
 				for (Integer i : bookList) {
-
+					//get a String of book titles of the lending
 					String bookTitle = bc.getBookById(i).getTitle();
+					//get the copys of the book lending
 					copyList = cc.getCopyIdInLendingByBook(lending.getLendingId(), bc.getBookById(i).getId());
-
+					//building the strings to show the results
 					bookCopys = "(Id Ejemplar:" + copyList.toString() 
-								+ " Estado:["+cc.getCopyById(copyList.get(0)).getcopyNotes()+"])\r||\r";
+									+ " Estado:["+cc.getCopyById(copyList.get(0)).getcopyNotes()+"])\r||\r";
+	
 					bookTitles = bookTitles + bookTitle + bookCopys + "|| ";
 				}
-
-				LendingDetails.showLendingDetails(lending, user, bookTitles);
+				//show the lending details
+			*/	LendingDetails.showLendingDetails(lending, user, bookList);
+		//		LendingDetails.showLendingDetails(lending);
 			}
 			break;
 		}
 
-	}//showSearchLendingMenuOptions
+	}//end showSearchLendingMenuOptions
 
-}
+}//end SearchLendingMenu

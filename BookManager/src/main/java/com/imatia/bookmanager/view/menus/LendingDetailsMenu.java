@@ -3,10 +3,20 @@ package com.imatia.bookmanager.view.menus;
 import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.ui.SearchLendingUi;
 
-/*
- * this is the class to show menu options of lending details
+/**
+ *class to show menu options of lending details
+ * 
+ * @author Grupo2FCTImatia
+ *
  */
+
 public class LendingDetailsMenu {
+	
+	/**
+	 * show menu options of lending details
+	 * @param id
+	 */
+	
 	public static void showLendingDetailsMenuOptions(int id) {
 
 		String option;
@@ -25,9 +35,8 @@ public class LendingDetailsMenu {
 		case 1:
 			CloseLendingMenu.showCloseLendingMenu(id);
 			break;
-		
 		}
 
-	}//showLendingDetailsMenuOptions
+	}//end showLendingDetailsMenuOptions
 
-}
+}//end LendingDetailsMenu
