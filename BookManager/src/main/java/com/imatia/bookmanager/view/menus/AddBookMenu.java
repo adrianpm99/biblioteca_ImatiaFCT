@@ -60,15 +60,17 @@ public class AddBookMenu {
 
 		System.out.print("Páginas del libro (numero entero positivo): ");
 		pageNumber = InputUserData.checkUserInput("pageNumber", "Valor incorrecto. Pruebe de nuevo (entero positivo).");
-
-		System.out.print("ISBN (13 caracteres: numeros y letras sin espacios): ");
-		ISBN = InputUserData.checkUserInput("ISBN", "Valor incorrecto. Pruebe de nuevo (13 caracteres sin espacios).");
-
+		do {
+			System.out.print("ISBN (13 caracteres: numeros y letras sin espacios): ");
+			ISBN = InputUserData.checkUserInput("ISBN", "Valor incorrecto. Pruebe de nuevo (13 caracteres sin espacios).");
+			if (ISBN.equals(""))
+				System.out.println("El ISBN es obligatorio. Pruebe de nuevo.");
+		} while (ISBN.equals(""));
 		do {
 			System.out.print("Editorial: ");
 			editorial = InputUserData.checkUserInput("editorial", "Maximo 50 caracteres.");
 			if (author.equals(""))
-				System.out.println("La editorial es obligoria. Pruebe de nuevo.");
+				System.out.println("La editorial es obligatoria. Pruebe de nuevo.");
 		} while (editorial.equals(""));
 
 		System.out.print("Edicion(numero entero positivo): ");
