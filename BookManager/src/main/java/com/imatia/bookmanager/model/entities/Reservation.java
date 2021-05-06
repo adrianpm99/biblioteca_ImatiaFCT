@@ -1,11 +1,12 @@
 package com.imatia.bookmanager.model.entities;
 
 /**
- * 
- * class that defines the reservation object with its attributes, constructors
+ * Class that defines the Reservation object with its attributes, constructors
  * and getter and setter methods
  *
+ * @author Grupo2FCTImatia
  */
+
 public class Reservation {
 
 	int reservationId;
@@ -13,8 +14,7 @@ public class Reservation {
 	int userId;
 
 	public Reservation() {
-
-	}
+	}// Reservation()
 
 	public Reservation(int reservationId, int bookId, int userId) {
 
@@ -22,30 +22,30 @@ public class Reservation {
 		this.bookId = bookId;
 		this.userId = userId;
 
-	}
+	}// Reservation()
 
 	public int getReservationId() {
 		return reservationId;
-	}
+	}// getReservationId()
 
 	public void setReservationId(int reservationId) {
 		this.reservationId = reservationId;
-	}
+	}// setReservationId()
 
 	public int getBookId() {
 		return bookId;
-	}
+	}// getBookId()
 
 	public void setBookId(int bookId) {
 		this.bookId = bookId;
-	}
+	}// setBookId()
 
 	public int getUserId() {
 		return userId;
-	}
+	}// getUserId()
 
 	public void setUserId(int userId) {
 		this.userId = userId;
-	}
+	}// setUserId()
 
-}
+}// class Reservation
