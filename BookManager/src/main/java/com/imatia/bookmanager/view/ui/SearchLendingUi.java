@@ -6,6 +6,7 @@ import com.imatia.bookmanager.view.menus.SearchLendingMenu;
  * this is the UI for the search lending options
  *
  */
+
 public class SearchLendingUi {
 	
 	public static void showSearchLendingUi() {
@@ -23,4 +24,4 @@ public class SearchLendingUi {
 		
 	}//showSearchLendingUi
 
-}
+}//SearchLendingUi

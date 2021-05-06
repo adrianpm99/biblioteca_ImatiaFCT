@@ -2,9 +2,10 @@ package com.imatia.bookmanager.view.ui;
 
 import com.imatia.bookmanager.view.menus.SearchReservationMenu;
 
-/*
- * this is the class to show the search Reservation Ui
+/**
+ * this is the UI to show the SearchReservation menu
  */
+
 public class SearchReservationUi
 {
 	public static void showSearchReservationUi()

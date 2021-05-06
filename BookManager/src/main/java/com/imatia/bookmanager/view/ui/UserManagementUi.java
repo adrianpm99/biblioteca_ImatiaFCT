@@ -6,6 +6,7 @@ import com.imatia.bookmanager.view.menus.UserManagementMenu;
  * this is the UI to show the user manage options
  *
  */
+
 public class UserManagementUi {
 	
 	public static void showUserManagementUi() {
@@ -22,4 +23,4 @@ public class UserManagementUi {
 	}//showUserManagementUi
 	
 
-}
+}//UserManagementeUi

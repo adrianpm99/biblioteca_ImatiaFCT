@@ -6,6 +6,7 @@ import com.imatia.bookmanager.view.menus.StartMenu;
  * Start menu with the main functions: 
  * (searches, loans, add books and exit).
  */
+
 public class StartMenuUI
 {
 	public static void showStartMenuUi()

@@ -7,9 +7,12 @@ import com.imatia.bookmanager.view.menus.LendingDetailsMenu;
 
 
 
-/*
- * class to show a lending details
+/**
+ * Called by the "Select Lending" option in the SearchLendingMenu, class to show specific lending details:
+ * The user who requested the lending, their id, the book(s) he lent, the date in which he did, the date 
+ * when he should bring them back, the date where the devolution is cancelled, and the notes of the lending
  */
+
 public class LendingDetails {
 	
 	
@@ -41,4 +44,4 @@ public class LendingDetails {
 
 
 	}//showLendingDetails
-}
+}//LendingDetails

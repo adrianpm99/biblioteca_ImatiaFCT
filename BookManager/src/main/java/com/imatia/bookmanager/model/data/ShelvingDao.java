@@ -17,6 +17,7 @@ import com.imatia.bookmanager.controller.CopyController;
  * @author Grupo2FCTImatia
  *
  */
+
 public class ShelvingDao {
 
 	ConnectionSQLite connectionSQLite = new ConnectionSQLite();

@@ -3,8 +3,9 @@ package com.imatia.bookmanager.view.ui;
 import com.imatia.bookmanager.view.menus.LendingsMenu;
 
 /**
- * Lendings UI
+ * This is the UI for the Lendings
  */
+
 public class LendingsUi
 {
 	public static void showLendingsUi()

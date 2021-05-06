@@ -4,6 +4,7 @@ package com.imatia.bookmanager.view.ui;
  * Little credits view to show at the beginning of the app,
  * and only once.
  */
+
 public class CreditsInitialView
 {	
 	public static void showCredits()

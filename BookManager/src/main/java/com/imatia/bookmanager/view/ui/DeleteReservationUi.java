@@ -5,6 +5,7 @@ import com.imatia.bookmanager.view.menus.DeleteReservationMenu;
 /**
  * This is the ui to show when the user selects to cancel a reservation
  */
+
 public class DeleteReservationUi
 {
 	public static void showDeleteReservationUi()

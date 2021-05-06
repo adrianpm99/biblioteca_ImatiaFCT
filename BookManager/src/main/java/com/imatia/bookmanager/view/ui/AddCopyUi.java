@@ -5,10 +5,9 @@ import com.imatia.bookmanager.view.menus.AddCopyMenu;
 /**
  * This is the UI for the Add Copy menu.
  */
-public class AddCopyUi {
 
-		public static void showAddCopyUi()
-		{
+public class AddCopyUi {
+	public static void showAddCopyUi()	{
 			System.out.println(
 					"\n******************\r\n" + 
 					"** AÑADIR EJEMPLAR **\r\n" + 
@@ -18,5 +17,5 @@ public class AddCopyUi {
 					"---------------------------------------------------");
 			
 			AddCopyMenu.showAddCopyMenu();
-		}//showAddCopyMenu()
-	}//class AddCopyMenu
+	}//showAddCopyMenu()
+}//class AddCopyMenu

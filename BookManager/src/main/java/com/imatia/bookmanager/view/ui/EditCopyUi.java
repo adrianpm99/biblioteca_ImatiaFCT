@@ -2,12 +2,11 @@ package com.imatia.bookmanager.view.ui;
 
 import com.imatia.bookmanager.view.menus.EditCopyMenu;
 
-/*
+/**
  * this is the class to show the edit copy ui
  */
-public class EditCopyUi {
-	
-	
+
+public class EditCopyUi {	
 	public static void showEditCopyUi(int id)
 	{
 		
@@ -17,8 +16,6 @@ public class EditCopyUi {
 				"*******************\r\n");
 			
 		//show the edit copy menu
-		EditCopyMenu.showEditCopyMenu(id);
-	
+		EditCopyMenu.showEditCopyMenu(id);	
 	}//showEditUserUi
-
-}
+}//EditCopyUi

@@ -5,6 +5,7 @@ import com.imatia.bookmanager.view.menus.EditBookMenu;
 /**
  * This is the UI for the Edit Book menu.
  */
+
 public class EditBookUi
 {
 	public static void showEditBookUi(int id)

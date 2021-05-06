@@ -6,15 +6,20 @@ import com.imatia.bookmanager.controller.BookController;
 import com.imatia.bookmanager.controller.UserController;
 import com.imatia.bookmanager.model.entities.Reservation;
 import com.imatia.bookmanager.view.menus.ReservationDetailsMenu;
-/*
- * class to show the Reservation details
+
+/**
+ * class to show specific Reservation details:
+ * The ID of the reservations, which book is reserved, its title, the ID of the user
+ * who requested it, and their name and surname 
  */
+
 public class ReservationDetails {
 	
 	/**
-	 * method to print a Reservation details, receiving a ArrayList of Strings
+	 * Called by modifyLendingReturnDate, gets data from an existing Reservation
 	 * @param al
 	 */
+	
 	public static void showReservationDetails(ArrayList<String> al) {
 	
 		System.out.println(
@@ -38,9 +43,11 @@ public class ReservationDetails {
 	}//ShowReservationDetails()
 	
 	/**
-	 * method to print a reservation details, receiving a Reservation
+	 * method to print a reservation details, receiving a Reservation. Called by the "Select Reservation"
+	 * option on the SearchReservationMenu
 	 * @param res
 	 */
+	
 	public static void showReservationDetails(Reservation res) {
 		
 		System.out.println(

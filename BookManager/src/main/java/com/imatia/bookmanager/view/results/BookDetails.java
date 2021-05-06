@@ -7,9 +7,16 @@ import com.imatia.bookmanager.view.ui.SearchesUi;
 /**
  * This view shows the information details
  * about a selected book from the results list
+ * (Title, Author, ISBN, Publication Year, Edition, Editorial and Total number of pages)
  */
+
 public class BookDetails
 {
+	/**
+	 * Called by the "Select Book" option in the showResultsByMethod menu, specifies book data:
+	 * title, author, ISBN, year, edition, editorial and page number
+	 */
+	
 	public static void showBookDetails(Book b)
 	{
 	

@@ -6,6 +6,7 @@ import com.imatia.bookmanager.view.menus.SearchUserMenu;
  * this is the UI to show the search user options
  *
  */
+
 public class SearchUserUi {
 	
 	public static void showSearchUserUi() {
@@ -22,4 +23,4 @@ public class SearchUserUi {
 		SearchUserMenu.showSearchUserMenuOptions();
 	}//showSearchUserUi
 
-}
+}//SearchUserUi
