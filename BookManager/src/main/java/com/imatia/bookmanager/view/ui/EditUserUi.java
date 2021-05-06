@@ -2,9 +2,10 @@ package com.imatia.bookmanager.view.ui;
 
 import com.imatia.bookmanager.view.menus.EditUserMenu;
 
-/*
+/**
  * this is the UI to show the user edit view
  */
+
 public class EditUserUi {
 	
 	public static void showEditUserUi(int id)
@@ -22,4 +23,4 @@ public class EditUserUi {
 	
 	}//showEditUserUi
 
-}
+}//EditUserUi

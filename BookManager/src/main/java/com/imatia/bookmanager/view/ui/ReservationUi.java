@@ -3,8 +3,9 @@ package com.imatia.bookmanager.view.ui;
 import com.imatia.bookmanager.view.menus.ReservationMenu;
 
 /**
- * Reservations Menu, to add a reservation, cancel it, or go back.
+ * This is the UI for the Reservations Menu
  */
+
 public class ReservationUi
 {
 	public static void showReservationUi()

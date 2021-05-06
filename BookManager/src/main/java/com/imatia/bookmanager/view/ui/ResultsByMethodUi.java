@@ -1,13 +1,11 @@
 package com.imatia.bookmanager.view.ui;
 
-
-
-
 /**
  * This view shows only the menu options 
  * in the results when searching by author, title, or ISBN
  * (searching method is passed as argument)
  */
+
 public class ResultsByMethodUi
 {
 	public static void showResultsUi(String searchMethod)

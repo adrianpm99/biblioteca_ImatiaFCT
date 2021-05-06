@@ -5,6 +5,7 @@ import com.imatia.bookmanager.view.menus.SearchesMenu;
 /**
  * Searches Menu, to search by author, title or ISBN
  */
+
 public class SearchesUi
 {
 	public static void showSearchesUi()
@@ -19,5 +20,5 @@ public class SearchesUi
 				"----------------------------------------------------------------------------------------------------------");
 		
 		SearchesMenu.showSearchesMenuOptions();
-	}//showSearchesMenu()
-}//class SearchesMenu
+	}//showSearchesUi()
+}//class SearchesUi

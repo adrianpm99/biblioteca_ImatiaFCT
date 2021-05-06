@@ -7,9 +7,11 @@ import com.imatia.bookmanager.model.entities.Copy;
 import com.imatia.bookmanager.model.entities.Shelving;
 
 /**
- * These utils recieve a list of copies and then, according to the selected BookId, will print some specific basic data
+ * These utils recieve a list of copies and then, according to the selected BookId, will print:
+ * Its copy id, its notes, and its shelving public number
  * 
  */
+
 public class CopyRenderers {
 	/**
 	 * shows copyId and copyNotes
@@ -26,8 +28,6 @@ public class CopyRenderers {
 					"Id ejemplar: " + c.getCopyId() + "\t|| Observaciones ejemplar: "+c.getcopyNotes() + "|| Localizacion (Estantería): "+shelving.getShelvingPublicNumber()+"\n");
 		}
 		
-	}//renderBookIdListCopy()
-	
-	
+	}//renderBookIdListCopy()	
 
-}
+}//CopyRenderers

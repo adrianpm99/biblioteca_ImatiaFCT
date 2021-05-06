@@ -1,8 +1,9 @@
 package com.imatia.bookmanager.view.ui;
 
-/*
+/**
  * this is the class to show the reservation results ui
  */
+
 public class ReservationResultsByMethodUi {
 	
 	public static void showReservationResultsUi(String searchMethod)	
@@ -17,9 +18,5 @@ public class ReservationResultsByMethodUi {
 				"--------------------------------------------------------------");
 		
 
-	}
-
-	
-	
-
-}
+	}//showReservationResultsUi
+}//ReservationResultsByMethodUi
