@@ -1,6 +1,7 @@
 package com.imatia.bookmanager.view.menus;
 
 import com.imatia.bookmanager.controller.CopyController;
+import com.imatia.bookmanager.controller.ShelvingController;
 import com.imatia.bookmanager.model.entities.Copy;
 import com.imatia.bookmanager.view.inputs.InputUserData;
 import com.imatia.bookmanager.view.inputs.UtilityInputs;
@@ -17,6 +18,7 @@ public class DeleteCopyMenu {
 	public static void showDeleteCopyMenu() {
 
 		CopyController cc = new CopyController();
+		ShelvingController sc = new ShelvingController();
 
 		String copyId;
 
@@ -48,6 +50,8 @@ public class DeleteCopyMenu {
 			// get the confirmation of the delete
 			if (confirmationDelete) {
 				
+				//Delete copy location
+				sc.deleteCopyShelvingByCopyId(Integer.parseInt(copyId));
 				//Delete a copy from database
 				cc.deleteCopy(Integer.parseInt(copyId));
 			}
