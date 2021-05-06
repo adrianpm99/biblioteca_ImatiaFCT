@@ -409,7 +409,7 @@ public class BookDao {
 			CopyController cc = new CopyController();
 			ShelvingController sc = new ShelvingController();
 			
-			sc.deleteShelving(id);  
+			sc.deleteCopyShelving(id);  
 			cc.deleteCopyByIdBook(id);
 	
 			try {

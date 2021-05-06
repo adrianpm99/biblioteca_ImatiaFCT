@@ -189,9 +189,9 @@ public class ShelvingDao {
 	 * @param idBook
 	 * @return 
 	 */
-	public void deleteShelving(int bookId) {
+	public void deleteCopyShelving(int bookId) {
 		CopyController cc = new CopyController();
-		String query = "DELETE FROM shelving s, copyShelving cs WHERE s.shelvingId = cs.shelvingId AND cs.copyId = ?";
+		String query = "DELETE FROM copyshelving WHERE cs.copyId = ?";
 		
 		try {
 			Connection con = connectionSQLite.getConnection();
