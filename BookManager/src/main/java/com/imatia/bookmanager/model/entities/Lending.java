@@ -22,28 +22,10 @@ public class Lending {
 		super();
 	}// Lending()
 
-	public Lending(int lendingId, int userId, LocalDate lendingDate, LocalDate lendingDeadLine) {
-
-		super();
-		this.lendingId = lendingId;
-		this.userId = userId;
-		this.lendingDate = lendingDate;
-		this.lendingDeadLine = lendingDeadLine;
-
-	}// Lending()
-
-	public Lending(int lendingId, int userId, LocalDate lendingDate, LocalDate lendingDeadLine,
-			LocalDate lendingReturnDate) {
-
-		super();
-		this.lendingId = lendingId;
-		this.userId = userId;
-		this.lendingDate = lendingDate;
-		this.lendingDeadLine = lendingDeadLine;
-		this.lendingReturnDate = lendingReturnDate;
-
-	}// Lending()
-
+	/**
+	 * Called by showAddLendingMenu
+	 */
+	
 	public Lending(int lendingId, int userId, LocalDate lendingDate, LocalDate lendingDeadLine,
 			LocalDate lendingReturnDate, String lendingNotes) {
 
@@ -57,6 +39,10 @@ public class Lending {
 
 	}// Lending()
 
+	/**
+	 * Called by getLendingBy..., gets an existing Lending in the DB
+	 */
+	
 	public Lending(int lendingId, int userId, LocalDate lendingDate, LocalDate lendingDeadLine, String lendingNotes) {
 
 		super();

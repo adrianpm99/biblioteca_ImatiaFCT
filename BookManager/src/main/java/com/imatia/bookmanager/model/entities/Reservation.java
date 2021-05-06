@@ -16,6 +16,11 @@ public class Reservation {
 	public Reservation() {
 	}// Reservation()
 
+	/**
+	 * Called by createNewReservation (with the checkIfReservatedBook method), and getReservationBy...,
+	 * either creates or searches for a reservation in the DB
+	 */
+	
 	public Reservation(int reservationId, int bookId, int userId) {
 
 		this.reservationId = reservationId;

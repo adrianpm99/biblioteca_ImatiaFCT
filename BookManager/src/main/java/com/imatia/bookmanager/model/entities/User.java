@@ -16,6 +16,9 @@ public class User {
 	public User() {
 	}// User()
 
+	/**
+	 * Called by getUserBy..., gets an existing User in the DB
+	 */
 	public User(int userId, String userName, String userSurname) {
 
 		this.userId = userId;
@@ -24,6 +27,10 @@ public class User {
 
 	}// User()
 
+	/**
+	 * Called by the "Add User" option in the UserManagementMenu, creates a new user and gives them an ID
+	 */
+	
 	public User(String userName, String userSurname) {
 
 		super();

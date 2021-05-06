@@ -15,17 +15,14 @@ public class Shelving {
 	public Shelving() {
 	}// Shelving()
 
+	/**
+	 * Called by getShelvingBy..., collects data on an already existing Shelving in the DB 
+	 */
+	
 	public Shelving(int shelvingId, int shelvingPublicNumber) {
 		
 		super();
 		this.shelvingId = shelvingId;
-		this.shelvingPublicNumber = shelvingPublicNumber;
-		
-	}// Shelving()
-
-	public Shelving(int shelvingPublicNumber) {
-		
-		super();
 		this.shelvingPublicNumber = shelvingPublicNumber;
 		
 	}// Shelving()

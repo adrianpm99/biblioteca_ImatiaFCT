@@ -24,6 +24,10 @@ public class Book {
 	public Book() {
 	}// Book()
 
+	/**
+	 * Called by getBookBy..., gets an already existing Book in the DB
+	 */
+	
 	public Book(int id, String title, String description, String author, int pageNumber, String ISBN, String editorial,
 			int edition, Year bookPublicationYear) {
 
@@ -38,7 +42,11 @@ public class Book {
 		this.bookPublicationYear = bookPublicationYear;
 
 	}// Book
-
+	
+	/**
+	 * Called by showAddBookMenu, adds a new book and gives it an id
+	 */
+	
 	public Book(String title, String description, String author, int pageNumber, String iSBN, String editorial,
 			int edition, Year bookPublicationYear) {
 		

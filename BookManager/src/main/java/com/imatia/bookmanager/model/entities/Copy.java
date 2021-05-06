@@ -17,6 +17,10 @@ public class Copy {
 		super();
 	}// Copy()
 
+	/**
+	 * Called by getCopyById, gets a single copy by its id OR all the copies in the DB
+	 */
+	
 	public Copy(int copyId, int bookId, String copyNotes) {
 		
 		super();
@@ -26,6 +30,10 @@ public class Copy {
 
 	}// Copy()
 
+	/**
+	 * Called by getCopyById, gets all the copies of a single bookId
+	 */
+	
 	public Copy(int copyId, String copyNotes) {
 		
 		this.copyId = copyId;
