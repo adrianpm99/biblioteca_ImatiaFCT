@@ -65,11 +65,10 @@ public class ReservationDao	{
 	
 	public boolean checkLendingBookExist(int bookId)
 	{
-		boolean reservationExists= false;
+		boolean lendingExists= false;
 		
 		String query= "SELECT * FROM copy c,copyLending cl WHERE c.copyId = cl.copyId AND c.bookId = ?";
-	//	String query = "SELECT * FROM copy c,copyLending cl WHERE c.copyId = cl.copyId and c.bookId = ? not exists ()
-		
+			
 		try(Connection con= connectionSQLite.getConnection(); 
 			PreparedStatement ps= con.prepareStatement(query))
 		{
@@ -77,7 +76,10 @@ public class ReservationDao	{
 			ps.execute();
 			ResultSet rs= ps.getResultSet();
 					
-			if(rs.next()) reservationExists= true;
+			if(rs.next()) {
+				lendingExists= true;
+				System.out.println("Algun ejemplar prestado");
+			}
 		}
 		catch (SQLException e) {e.printStackTrace();}
 		catch (ClassNotFoundException e1) {e1.printStackTrace();}
@@ -87,9 +89,46 @@ public class ReservationDao	{
 			catch (SQLException e) {e.printStackTrace();}
 		}
 		
-		return reservationExists;
+		return lendingExists;
 	}//checkLendingBookExist()
 	
+
+	/**
+	 * Method to check if a book exists in the copyLending table
+	 * @param bookId (the id of the book)
+	 * @return true if some copy not exists at copyLending table, false if all copy are at copyLending table
+	 */
+	
+	public boolean checkLendingAnyCopyBookExist(int bookId)
+	{
+		boolean lendingExists= false;
+		
+		String query= "SELECT * FROM copy c "
+				 + "WHERE bookId = ? AND NOT EXISTS "
+				+ "(SELECT *  FROM copyLending cl  where c.copyId = cl.copyId)";
+			
+		try(Connection con= connectionSQLite.getConnection(); 
+			PreparedStatement ps= con.prepareStatement(query))
+		{
+			ps.setInt(1, bookId);
+			ps.execute();
+			ResultSet rs= ps.getResultSet();
+					
+			if(rs.next()) {
+				lendingExists= true;
+				System.out.println("Algun ejemplar NO PRESTADO NUNCA");
+			}
+		}
+		catch (SQLException e) {e.printStackTrace();}
+		catch (ClassNotFoundException e1) {e1.printStackTrace();}
+		finally
+		{
+			try {connectionSQLite.closeConnection();}
+			catch (SQLException e) {e.printStackTrace();}
+		}
+		
+		return lendingExists;
+	}//checkLendingBookExist()
 	
 	/**
 	 * Method to search and get a list with data about
@@ -105,7 +144,7 @@ public class ReservationDao	{
 		ArrayList<String> copyDataList= new ArrayList<String>();
 		String copyData;
 		
-		String query= "SELECT  book.id AS 'bookId', book.title AS 'title', copyLending.copyId AS 'copyId' " + 
+		String query= "SELECT DISTINCT book.id AS 'bookId', book.title AS 'title', copyLending.copyId AS 'copyId' " + 
 						"FROM book, copy, copyLending, lending " + 
 						"WHERE book.id = ? " + 
 						"AND book.id = copy.bookId " + 

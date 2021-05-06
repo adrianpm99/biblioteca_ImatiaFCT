@@ -38,10 +38,12 @@ public class ReservationController {
 		
 		if(!lendingBookExist) 
 		{
+			 System.out.println("CASO 1: ninguna copia prestada nunca");
 			//Get Copies to show
 			copyDataList= rd.getAvailableCopiesAlternative(bookId);
 			System.out.println("No se puede realizar la reserva.\n"
-							+ "El libro esta disponible para su prestamo.\n");
+							+ "El libro esta disponible para su prestamo.\n"
+							+ "Copias disponibles : \n");
 			//Show copies
 			for(String s: copyDataList) System.out.println(s);
 			System.out.println("\nTiene que pedir un préstamo.\n");
@@ -50,23 +52,41 @@ public class ReservationController {
 		}//if
 		else
 		{
+		// here you check if there is any copy without ever lending
+		   if (rd.checkLendingAnyCopyBookExist(bookId)) { 
+			   System.out.println("CASO 2: alguna copia prestada alguna vez, y otras sin prestar nunca");
+			  
+			 //Get Copies to show
+			//	copyDataList= rd.getAvailableCopiesAlternative(bookId);
+				System.out.println("No se puede realizar la reserva.\n"
+								+ "El libro esta disponible para su prestamo.\n");
+								
+				//Show copies
+			//	for(String s: copyDataList) System.out.println(s);
+				System.out.println("\nTiene que pedir un préstamo.\n");
+				LendingsUi.showLendingsUi();
+		   }else {	   
 			//At this point, there's no previous reservation of the book, 
 			//so it proceeds with creating reservation process
 			copyDataList= rd.getAvailableCopies(bookId);
 			if (copyDataList.isEmpty())
 			{
+				System.out.println("CASO 3: todas las copias prestadas y todas devueltas");
 				//Reservation can be done!
 				//Only rest to ask for the user id
 				System.out.println("Introduzca el id del ususario: ");
 				do 
 				{
 					userId = InputUserData.checkUserInput("id", "Inserte un id valido (entero positivo)");
-					if(userId.equals("")) System.out.println("Opcion no valida. Pruebe de nuevo (entero positivo)");
-				// check User exist
-					UserController uc = new UserController();
-					if (!uc.checkUserId(Integer.parseInt(userId))) {
-						System.out.println("Este usuario no existe. Introduzca un usuario válido");
-						userId= "";
+					if(userId.equals("")) {
+						System.out.println("Opcion no valida. Pruebe de nuevo (entero positivo)");
+					}else {
+					// check User exist
+						UserController uc = new UserController();
+						if (!uc.checkUserId(Integer.parseInt(userId))) {
+							System.out.println("Este usuario no existe. Introduzca un usuario válido");
+							userId= "";
+						}
 					}
 				}while(userId.equals(""));
 				
@@ -78,7 +98,17 @@ public class ReservationController {
 				
 				//Back to the main menu
 				StartMenuUI.showStartMenuUi();
+			}else{
+					System.out.println("CASO 4: todas las copias prestadas y alguna se ha vuelto a prestar");
+					System.out.println("No se puede realizar la reserva.\n"
+							+ "El libro esta disponible para su prestamo.\n"
+							+ "Copias disponibles : \n");
+					//Show copies
+					for(String s: copyDataList) System.out.println(s);
+					System.out.println("\nTiene que pedir un préstamo.\n");
+					LendingsUi.showLendingsUi();
 			}
+		   }	
 			
 		}//else
 	}//createNewReservation()	
