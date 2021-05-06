@@ -57,12 +57,12 @@ public class ReservationController {
 			   System.out.println("CASO 2: alguna copia prestada alguna vez, y otras sin prestar nunca");
 			  
 			 //Get Copies to show
-			//	copyDataList= rd.getAvailableCopiesAlternative(bookId);
+				copyDataList= rd.getAvailableCopiesAlternative(bookId);
 				System.out.println("No se puede realizar la reserva.\n"
-								+ "El libro esta disponible para su prestamo.\n");
-								
+								+ "El libro esta disponible para su prestamo.\n"
+								+ "Copias disponibles : \n");
 				//Show copies
-			//	for(String s: copyDataList) System.out.println(s);
+				for(String s: copyDataList) System.out.println(s);
 				System.out.println("\nTiene que pedir un préstamo.\n");
 				LendingsUi.showLendingsUi();
 		   }else {	   

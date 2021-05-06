@@ -78,7 +78,6 @@ public class ReservationDao	{
 					
 			if(rs.next()) {
 				lendingExists= true;
-				System.out.println("Algun ejemplar prestado");
 			}
 		}
 		catch (SQLException e) {e.printStackTrace();}
@@ -116,7 +115,6 @@ public class ReservationDao	{
 					
 			if(rs.next()) {
 				lendingExists= true;
-				System.out.println("Algun ejemplar NO PRESTADO NUNCA");
 			}
 		}
 		catch (SQLException e) {e.printStackTrace();}
@@ -176,8 +174,6 @@ public class ReservationDao	{
 				
 				ResultSet rs2 = ps2.getResultSet();
 				if(!rs2.next()) {
-				
-				
 					copyData= "||Titulo: "+bookTitle+" ||Id del libro: "+idBook+" ||Id de la copia: "+copyId;
 					copyDataList.add(copyData);
 				}
@@ -208,6 +204,9 @@ public class ReservationDao	{
 		
 		String query= "SELECT id, title , c.copyId FROM book b, copy c WHERE b.id = c.bookId AND b.id = ?";
 		
+		String queryLendingCheck = "SELECT * FROM copy c, copyLending cl, lending l WHERE c.copyId = ? AND c.copyId = cl.copyId "
+				+ "AND l.lendingId = cl.lendingId AND l.lendingReturndate IS NULL";
+	
 		try(Connection con= connectionSQLite.getConnection(); 
 			PreparedStatement ps= con.prepareStatement(query); )
 		{
@@ -220,9 +219,18 @@ public class ReservationDao	{
 				String bookTitle= rs.getString("title");
 				int idBook= rs.getInt("id");
 				int copyId= rs.getInt("copyId");
+		
+				//other query with copyID
+				PreparedStatement ps2 = con.prepareStatement(queryLendingCheck);
+				ps2.setInt(1, copyId);
+				ps2.execute();
 				
-				copyData= "||Titulo: "+bookTitle+" ||Id del libro: "+idBook+" ||Id de la copia: "+copyId;
-				copyDataList.add(copyData);
+				ResultSet rs2 = ps2.getResultSet();
+				if(!rs2.next()) {
+		
+					copyData= "||Titulo: "+bookTitle+" ||Id del libro: "+idBook+" ||Id de la copia: "+copyId;
+					copyDataList.add(copyData);
+				}
 			}
 		}
 		catch (SQLException e) {e.printStackTrace();}
@@ -452,10 +460,8 @@ public class ReservationDao	{
 		}
 		
 		return reservationList;
-		
 	}
-	
-	
+
 	
 	/**
 	 * method to get a reservation list by idUser
