@@ -51,5 +51,8 @@ public class ShelvingController {
 			sd.deleteCopyShelvingByBookId(bookId);
 		}
 
+		public void deleteCopyShelvingByCopyId(int idCopy) {
+			sd.deleteCopyShelvingByCopyId(idCopy);
+		}//deleteCopyShelvingByCopyid
 	
 }//class ShelvingController

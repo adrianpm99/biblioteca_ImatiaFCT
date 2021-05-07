@@ -6,10 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-
-import com.imatia.bookmanager.model.entities.Shelving;
+import com.imatia.bookmanager.controller.CopyController;
 import com.imatia.bookmanager.model.entities.Copy;
-import com.imatia.bookmanager.controller.CopyController; 
+import com.imatia.bookmanager.model.entities.Shelving;
 
 /**
  * class to map the table shelving to object shelving
@@ -135,18 +134,19 @@ public class ShelvingDao {
 		}
 		return shelving;
 	}// getShelvingById
-	
+
 	/**
 	 * Get the shelving object where is the copy
+	 * 
 	 * @param copyId
 	 * @return Shelving
 	 */
-	public Shelving getShelvingByCopyId(int copyId){
-		
+	public Shelving getShelvingByCopyId(int copyId) {
+
 		Shelving shelving = null;
-		
-		String query ="SELECT * FROM shelving s, copyShelving cs WHERE s.shelvingId = cs.shelvingId AND cs.copyId = ?";
-		
+
+		String query = "SELECT * FROM shelving s, copyShelving cs WHERE s.shelvingId = cs.shelvingId AND cs.copyId = ?";
+
 		try {
 			Connection con = connectionSQLite.getConnection();
 
@@ -156,12 +156,12 @@ public class ShelvingDao {
 			ps.execute();
 
 			ResultSet rs = ps.getResultSet();
-			if(rs.next()) {
-				//Get the data
+			if (rs.next()) {
+				// Get the data
 				int shelvingId = rs.getInt("shelvingId");
 				int shelvingPublicNumber = rs.getInt("shelvingPublicNumber");
 
-				//Create a Object with the data
+				// Create a Object with the data
 				shelving = new Shelving(shelvingId, shelvingPublicNumber);
 			}
 			ps.close();
@@ -170,7 +170,7 @@ public class ShelvingDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			//e.printStackTrace();
+			// e.printStackTrace();
 		} finally {
 			try {
 				connectionSQLite.closeConnection();
@@ -179,42 +179,80 @@ public class ShelvingDao {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return shelving;
-		
-	}//Shelving getShelvingByCopyId(int copyId)
-	
-	
+
+	}// Shelving getShelvingByCopyId(int copyId)
+
 	/**
 	 * Delete all copyShelving by idBook
+	 * 
 	 * @param idBook
-	 * @return 
+	 * @return
 	 */
 	public void deleteCopyShelvingByBookId(int bookId) {
 		CopyController cc = new CopyController();
-		String query = "DELETE FROM copyshelving WHERE cs.copyId = ?";
+		String query = "DELETE FROM copyshelving WHERE copyId = ?";
+		List<Copy> copyList = cc.getCopyByBookId(bookId);
+
+		for (Copy copy : copyList) {
+			try {
+				Connection con = connectionSQLite.getConnection();
+
+				PreparedStatement ps = null;
+				ps = con.prepareStatement(query);
+				ps.setInt(1, copy.getCopyId());
+				ps.execute();
+				ps.close();
+
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				try {
+					connectionSQLite.closeConnection();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}// deleteSehlving
+	
+	/**
+	 * Delete one copyshelving by copy id
+	 * @param id
+	 */
+	public void deleteCopyShelvingByCopyId(int id) {
+		
+		String query = "DELETE FROM copyshelving WHERE copyId = ?";
 		
 		try {
 			Connection con = connectionSQLite.getConnection();
-			
-			PreparedStatement ps = con.prepareStatement(query);
-			
-			List<Copy> copyList = cc.getCopyByBookId(bookId);
-			
-			for(int cont = 0; cont < copyList.size(); cont++) {
-				ps.setInt(1, copyList.get(cont).getCopyId());
-				ps.execute();
-			}
+
+			PreparedStatement ps;
+			ps = con.prepareStatement(query);
+			ps.setInt(1, id);
+			ps.execute();
 			ps.close();
 
-			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				connectionSQLite.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-	}//deleteSehlving
-	
-}//class ShelvingDao
+	}//deleteCopyShelvingByCopyId
+
+}// class ShelvingDao
