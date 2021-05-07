@@ -38,7 +38,7 @@ public class ReservationController {
 		
 		if(!lendingBookExist) 
 		{
-			 System.out.println("CASO 1: ninguna copia prestada nunca");
+		//	 System.out.println("CASO 1: ninguna copia prestada nunca");
 			//Get Copies to show
 			copyDataList= rd.getAvailableCopiesAlternative(bookId);
 			System.out.println("No se puede realizar la reserva.\n"
@@ -54,7 +54,7 @@ public class ReservationController {
 		{
 		// here you check if there is any copy without ever lending
 		   if (rd.checkLendingAnyCopyBookExist(bookId)) { 
-			   System.out.println("CASO 2: alguna copia prestada alguna vez, y otras sin prestar nunca");
+		//	   System.out.println("CASO 2: alguna copia prestada alguna vez, y otras sin prestar nunca");
 			  
 			 //Get Copies to show
 				copyDataList= rd.getAvailableCopiesAlternative(bookId);
@@ -71,7 +71,7 @@ public class ReservationController {
 			copyDataList= rd.getAvailableCopies(bookId);
 			if (copyDataList.isEmpty())
 			{
-				System.out.println("CASO 3: todas las copias prestadas y todas devueltas");
+		//		System.out.println("CASO 3: todas las copias prestadas y todas devueltas");
 				//Reservation can be done!
 				//Only rest to ask for the user id
 				System.out.println("Introduzca el id del ususario: ");
@@ -99,7 +99,7 @@ public class ReservationController {
 				//Back to the main menu
 				StartMenuUI.showStartMenuUi();
 			}else{
-					System.out.println("CASO 4: todas las copias prestadas y alguna se ha vuelto a prestar");
+		//			System.out.println("CASO 4: todas las copias prestadas y alguna se ha vuelto a prestar");
 					System.out.println("No se puede realizar la reserva.\n"
 							+ "El libro esta disponible para su prestamo.\n"
 							+ "Copias disponibles : \n");
